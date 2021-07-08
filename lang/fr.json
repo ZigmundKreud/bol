@@ -1,0 +1,17 @@
+{
+  "BOL.attributes.vigor": "Force",
+  "BOL.attributes.agility": "Agilité",
+  "BOL.attributes.mind": "Esprit",
+  "BOL.attributes.appeal": "Aura",
+  "BOL.aptitudes.init": "Initiative",
+  "BOL.aptitudes.melee": "Mêlée",
+  "BOL.aptitudes.ranged": "Tir",
+  "BOL.aptitudes.def": "Défense",
+  "BOL.aptitudes.prot": "Protection",
+  "BOL.resources.hp": "Vitalité",
+  "BOL.resources.hero": "Héroïsme",
+  "BOL.resources.faith": "Foi",
+  "BOL.resources.creation": "Création",
+  "BOL.resources.power": "Pouvoir",
+  "BOL.traits.xp": "Expérience"
+}

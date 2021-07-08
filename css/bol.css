@@ -1,0 +1,551 @@
+/* ----------------------------------------- */
+/*  Flexbox                                  */
+/* ----------------------------------------- */
+.flexrow {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+.flexrow > * {
+  flex: 1;
+}
+.flexrow .flex1 {
+  flex: 1;
+}
+.flexrow .flex2 {
+  flex: 2;
+}
+.flexrow .flex3 {
+  flex: 3;
+}
+.flexrow .flex4 {
+  flex: 4;
+}
+.flexrow .flex5 {
+  flex: 5;
+}
+.flexrow .flex6 {
+  flex: 6;
+}
+.flexrow .flex7 {
+  flex: 7;
+}
+.flexrow .flex8 {
+  flex: 8;
+}
+.flexrow .flex9 {
+  flex: 9;
+}
+.flexcol {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.flexcol > * {
+  flex: 1;
+}
+.flexcol .flex1 {
+  flex: 1;
+}
+.flexcol .flex2 {
+  flex: 2;
+}
+.flexcol .flex3 {
+  flex: 3;
+}
+.flexcol .flex4 {
+  flex: 4;
+}
+.flex-group-center,
+.flex-group-left,
+.flex-group-right {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+}
+.flex-group-left {
+  justify-content: flex-start;
+  text-align: left;
+}
+.flex-group-right {
+  justify-content: flex-end;
+  text-align: right;
+}
+.center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.left {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.right {
+  justify-content: flex-end;
+  text-align: right;
+  display: flex;
+  align-items: center;
+}
+.flex-center {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.flex-between {
+  justify-content: space-between;
+}
+.no-wrap {
+  flex-wrap: nowrap !important;
+}
+.bol {
+  /*
+  Copied from dnd5e
+   */
+  /* Form Groups */
+  /*
+   Placeholders
+   */
+}
+.bol input[readonly="true"] {
+  border: none;
+  color: dimgray;
+  cursor: not-allowed;
+  width: 100%;
+  vertical-align: middle;
+  background: transparent;
+}
+.bol input[type="text"],
+.bol input[type="number"],
+.bol input[type="text"]:hover,
+.bol input[type="number"]:hover,
+.bol input[type="text"]:focus,
+.bol input[type="number"]:focus {
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+.bol input:disabled:hover,
+.bol select:disabled:hover,
+.bol textarea:disabled:hover,
+.bol input:disabled:focus,
+.bol select:disabled:focus,
+.bol textarea:disabled:focus {
+  box-shadow: none !important;
+  border: 1px solid transparent !important;
+  outline: none !important;
+}
+.bol button {
+  background: rgba(0, 0, 0, 0.1);
+}
+.bol select {
+  font-size: 14px;
+  text-align: center;
+  text-align-last: center;
+  -moz-text-align-last: center;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+}
+.bol label.checkbox {
+  flex: auto;
+  padding: 0;
+  margin: 0;
+  height: 22px;
+  line-height: 22px;
+  font-size: 11px;
+}
+.bol label.checkbox > input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0 2px 0 0;
+  position: relative;
+  top: 4px;
+}
+.bol label.checkbox.right > input[type="checkbox"] {
+  margin: 0 0 0 2px;
+}
+.bol .form-group label {
+  flex: 2;
+  font-weight: bold;
+}
+.bol .form-group .form-fields {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.bol .form-group .form-fields > * {
+  flex: 1;
+  margin: 0 3px 0 0;
+}
+.bol .form-group .form-fields > *:last-child {
+  margin-right: 0;
+}
+.bol .form-group .form-fields > * .flex1 {
+  flex: 1;
+}
+.bol .form-group .form-fields > * .flex2 {
+  flex: 2;
+}
+.bol .form-group .form-fields > * .flex3 {
+  flex: 3;
+}
+.bol .form-group .form-fields > * .flex4 {
+  flex: 4;
+}
+.bol .form-group .form-fields label {
+  flex: 0 0 100%;
+  margin: 0;
+}
+.bol .form-group .form-fields label.checkbox {
+  flex: auto;
+  text-align: left;
+}
+.bol .form-group.stacked label {
+  flex: 0 0 100%;
+  margin: 0;
+}
+.bol .form-group.stacked label.checkbox {
+  flex: auto;
+  text-align: left;
+}
+.bol .form-header {
+  margin: 0 0 0.25em 0;
+  padding: 2px 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+.bol .tag {
+  display: inline-block;
+  margin: 0 2px 0 0;
+  padding: 0 3px;
+  font-size: 10px;
+  line-height: 16px;
+  border: 1px solid #999;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.05);
+}
+.bol ::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: lightgray;
+  opacity: 1;
+  /* Firefox */
+}
+.bol :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: lightgray;
+}
+.bol ::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: lightgray;
+}
+.bol input::placeholder {
+  color: lightgray;
+}
+/* ----------------------------------------- */
+/*  LOCAL FONTS                             */
+/* ----------------------------------------- */
+@font-face {
+  font-family: 'Contrail One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/contrailone/v10/eLGbP-j_JA-kG0_Zo51noafdZQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: "ImaginaryForces";
+  src: url('../fonts/iforces.ttf');
+}
+@font-face {
+  font-family: "OPTIFantastiK";
+  src: url('../fonts/OPTIFantastiK.otf');
+}
+@font-face {
+  font-family: "CCMeanwhile";
+  src: url('../fonts/ccmeanwhile-regular.ttf');
+}
+@font-face {
+  font-family: "Papyrus";
+  src: url('../fonts/PAPYRUS.TTF');
+}
+@font-face {
+  font-family: "Wolfsbane2";
+  src: url('../fonts/wolfsbane2.ttf');
+}
+@font-face {
+  font-family: "Wolfsbane2Condensed";
+  src: url('../fonts/wolfsbane2cond.ttf');
+}
+@font-face {
+  font-family: "Wolfsbane2Expanded";
+  src: url('../fonts/wolfsbane2expand.ttf');
+}
+.bol.sheet.actor {
+  min-width: 760px;
+  min-height: 700px;
+  max-height: 700px;
+}
+.bol.sheet.actor .window-content {
+  background-color: white;
+  background-image: url("/systems/bol/ui/logo.webp");
+  background-repeat: no-repeat;
+  background-size: 190px 115px;
+  height: 100%;
+  padding: 5px;
+  overflow-y: hidden;
+}
+.bol.sheet.actor .window-content form {
+  height: 100%;
+}
+.bol.sheet.actor .window-content form .sheet-header {
+  background-image: url("/systems/bol/ui/banner.webp");
+  background-repeat: no-repeat;
+  background-size: 330px 62px;
+  background-position-y: -15px;
+  background-position-x: right;
+  height: 115px;
+  min-height: 115px;
+  max-height: 115px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding-bottom: 10px;
+}
+.bol.sheet.actor .window-content form .sheet-header .header-field .header-field-group {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+.bol.sheet.actor .window-content form .sheet-header .header-field .header-field-group .header-field-label {
+  margin-right: 5px;
+}
+.bol.sheet.actor .window-content form .sheet-header .header-field .header-field-group .charname,
+.bol.sheet.actor .window-content form .sheet-header .header-field .header-field-group .header-field-value {
+  color: #4b4a44;
+  font-family: 'Contrail One', cursive;
+  font-size: 1.5rem;
+  background-color: #EEE;
+}
+.bol.sheet.actor .window-content form .sidebar {
+  padding-top: 115px;
+  min-width: 250px;
+  width: 250px;
+  max-width: 250px;
+}
+.bol.sheet.actor .window-content form .sidebar .profile-img {
+  cursor: pointer;
+  border: none;
+  background-color: #EEE;
+  height: auto;
+  width: calc(250px - 10px);
+  min-width: calc(250px - 10px);
+  max-width: calc(250px - 10px);
+  margin-right: 10px;
+}
+.bol.sheet.actor .window-content form .main {
+  /* Sheet Tabs */
+}
+.bol.sheet.actor .window-content form .main .tabs {
+  flex: 0 0 40px;
+  background-color: black;
+}
+.bol.sheet.actor .window-content form .main .tabs .item {
+  line-height: 40px;
+  font-weight: bold;
+  font-family: CCMeanwhile;
+  color: white;
+  font-size: 14px;
+}
+.bol.sheet.actor .window-content form .main .tabs .item.active {
+  text-decoration: underline;
+  text-shadow: none;
+}
+.bol.sheet.actor .window-content form .main .sheet-body {
+  overflow: hidden;
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab {
+  height: 100%;
+  overflow-y: auto;
+  /* Items List */
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list {
+  list-style: none;
+  margin: 7px 0;
+  padding: 0;
+  overflow-y: auto;
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item {
+  min-height: 30px;
+  line-height: 24px;
+  padding: 3px 0 3px 3px;
+  border-bottom: 1px solid #BBB;
+  align-items: stretch;
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item img {
+  flex: 0 0 30px;
+  margin-right: 5px;
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item .item-image {
+  margin: 0;
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item .item-name {
+  margin: 0;
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item .item-controls {
+  flex: 0 0 36px;
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item .item-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  flex: 2;
+  justify-content: flex-start;
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item .item-button {
+  line-height: 1;
+  font-size: 11px;
+  flex: none;
+  width: auto;
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item-header {
+  font-family: CCMeanwhile;
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab .attribute.vigor {
+  background-image: url("/systems/bol/ui/attributes/vigor.webp");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 64px 64px;
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab .attribute.agility {
+  background-image: url("/systems/bol/ui/attributes/agility.webp");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 64px 64px;
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab .attribute.mind {
+  background-image: url("/systems/bol/ui/attributes/mind.webp");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 64px 64px;
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab .attribute.appeal {
+  background-image: url("/systems/bol/ui/attributes/appeal.webp");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 64px 64px;
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab .attribute .stat-value {
+  margin-top: -10px;
+}
+.bol.sheet.actor .window-content form .main .sheet-body .tab.description .editor,
+.bol.sheet.actor .window-content form .main .sheet-body .tab.description .editor-content {
+  background-color: red;
+  height: 100%;
+}
+.bol.sheet.actor .stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: darkred;
+}
+.bol.sheet.actor .stat-roll {
+  font-size: 1.5rem;
+}
+.bol.sheet.actor .header-field-label,
+.bol.sheet.actor .stat-label {
+  font-weight: bold;
+  font-family: Wolfsbane2Expanded;
+  font-size: 2rem;
+  font-variant: small-caps;
+}
+.bol.sheet.actor .rounded {
+  border-radius: 100px;
+  width: 4rem;
+  height: 4rem;
+}
+.bol.sheet.actor .rounded-border {
+  border: 3px solid #4b4a44;
+  border-radius: 100px;
+  width: 4rem;
+  height: 4rem;
+}
+.bol.sheet.actor .half-rounded {
+  border-radius: 100px 100px 0px 0px;
+  width: 4rem;
+  height: 4rem;
+}
+.bol.sheet.actor .half-rounded-border {
+  border-radius: 100px 100px 0px 0px;
+  border: 3px solid #4b4a44;
+  width: 4rem;
+  height: 4rem;
+}
+.bol.sheet.actor .bol-footer {
+  height: 62px;
+  max-height: 62px;
+  min-height: 62px;
+}
+.bol.sheet.actor .bol-footer .footer-left img {
+  border: none;
+  height: 62px;
+  max-height: 62px;
+  min-height: 62px;
+  transform: scaleX(-1);
+}
+.bol.sheet.actor .bol-footer .footer-center {
+  margin-top: 20px;
+  margin-left: calc(-330px * 2);
+  margin-right: calc(-330px * 2);
+  height: 30px;
+  max-height: 30px;
+  min-height: 30px;
+  background-color: black;
+}
+.bol.sheet.actor .bol-footer .footer-right {
+  text-align: right;
+}
+.bol.sheet.actor .bol-footer .footer-right img {
+  border: none;
+  height: 62px;
+  max-height: 62px;
+  min-height: 62px;
+}
+.bol.sheet.item {
+  min-width: 460px;
+  min-height: 400px;
+}
+.bol.sheet.item .window-content {
+  background-color: white;
+  background-image: url("/systems/bol/ui/logo.webp");
+  background-repeat: no-repeat;
+  background-size: 190px 115px;
+  height: 100%;
+  padding: 5px;
+  overflow-y: hidden;
+}
+.bol.sheet.item .window-content form {
+  height: 100%;
+}
+.editor,
+.editor-content {
+  height: 100%;
+}
+.rollable {
+  color: #4b4a44;
+  cursor: pointer;
+}
+.malus {
+  color: darkred;
+}
+.bonus {
+  color: darkgreen;
+}

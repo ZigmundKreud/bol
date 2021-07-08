@@ -1,0 +1,83 @@
+{
+  "name": "bol",
+  "title": "Barbarians of Lemuria",
+  "description": "The Barbarians of Lemuria system for FoundryVTT!",
+  "version": "1.0.0",
+  "minimumCoreVersion": "0.8.6",
+  "compatibleCoreVersion": "0.8.6",
+  "templateVersion": 2,
+  "author": "Zigmund",
+  "esmodules": ["module/bol.js"],
+  "styles": ["css/bol.css"],
+  "scripts": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
+  ],
+  "packs": [
+    {
+      "name": "boons",
+      "label": "Avantages",
+      "system": "bol",
+      "path": "./packs/boons.db",
+      "entity": "Item",
+      "tag": "boon"
+    },
+    {
+      "name": "flaws",
+      "label": "Désavantages",
+      "system": "bol",
+      "path": "./packs/flaws.db",
+      "entity": "Item",
+      "tag": "flaw"
+    },
+    {
+      "name": "careers",
+      "label": "Carrières héroïques",
+      "system": "bol",
+      "path": "./packs/careers.db",
+      "entity": "Item",
+      "tag": "career"
+    },
+    {
+      "name": "origins",
+      "label": "Origines",
+      "system": "bol",
+      "path": "./packs/origins.db",
+      "entity": "Item",
+      "tag": "origin"
+    },
+    {
+      "name": "races",
+      "label": "Races",
+      "system": "bol",
+      "path": "./packs/races.db",
+      "entity": "Item",
+      "tag": "race"
+    },
+    {
+      "name": "equipment",
+      "label": "Equipement",
+      "system": "bol",
+      "path": "./packs/equipment.db",
+      "entity": "Item",
+      "tag": "item"
+    }
+  ],
+  "gridDistance": 1.5,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "traits.hp",
+  "secondaryTokenAttribute": "traits.hero",
+  "url": "",
+  "manifest": "",
+  "download": "",
+  "license": "LICENSE.txt"
+}

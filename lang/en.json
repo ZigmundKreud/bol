@@ -1,0 +1,17 @@
+{
+  "BOL.attributes.vigor": "Strength",
+  "BOL.attributes.agility": "Agility",
+  "BOL.attributes.mind": "Mind",
+  "BOL.attributes.appeal": "Appeal",
+  "BOL.aptitudes.init": "Initiative",
+  "BOL.aptitudes.melee": "Melee",
+  "BOL.aptitudes.ranged": "Ranged",
+  "BOL.aptitudes.def": "Defense",
+  "BOL.aptitudes.prot": "Protection",
+  "BOL.resources.hp": "Hit points",
+  "BOL.resources.hero": "Hero points",
+  "BOL.resources.faith": "Faith points",
+  "BOL.resources.creation": "Creation points",
+  "BOL.resources.power": "Power points",
+  "BOL.traits.xp": "Experience"
+}
