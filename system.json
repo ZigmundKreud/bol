@@ -78,6 +78,6 @@
   "secondaryTokenAttribute": "traits.hero",
   "url": "https://github.com/ZigmundKreud/bol",
   "manifest": "https://raw.githubusercontent.com/ZigmundKreud/bol/master/system.json",
-  "download": "",
+  "download": "https://github.com/ZigmundKreud/bol/archive/refs/tags/0.8.8.1.zip",
   "license": "LICENSE.txt"
 }
