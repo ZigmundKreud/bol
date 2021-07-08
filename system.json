@@ -2,9 +2,9 @@
   "name": "bol",
   "title": "Barbarians of Lemuria",
   "description": "The Barbarians of Lemuria system for FoundryVTT!",
-  "version": "1.0.0",
+  "version": "0.8.8.1",
   "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "0.8.6",
+  "compatibleCoreVersion": "0.8.8",
   "templateVersion": 2,
   "author": "Zigmund",
   "esmodules": ["module/bol.js"],
@@ -76,8 +76,8 @@
   "gridUnits": "m",
   "primaryTokenAttribute": "traits.hp",
   "secondaryTokenAttribute": "traits.hero",
-  "url": "",
-  "manifest": "",
+  "url": "https://github.com/ZigmundKreud/bol",
+  "manifest": "https://raw.githubusercontent.com/ZigmundKreud/bol/master/system.json",
   "download": "",
   "license": "LICENSE.txt"
 }

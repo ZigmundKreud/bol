@@ -1,2 +1,1 @@
-# bol
-Barbarians of Lemuria
+# Système Foundry pour Barbarians of Lemuria (VF)
