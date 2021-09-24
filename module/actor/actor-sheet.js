@@ -18,9 +18,9 @@ export class BoLActorSheet extends ActorSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
+  getData(options) {
     console.debug("getData");
-    const actor = super.getData();
+    const actor = super.getData(options);
     console.log(actor.data);
     actor.data.details = actor.data.data.details;
     actor.data.attributes = Object.values(actor.data.data.attributes);

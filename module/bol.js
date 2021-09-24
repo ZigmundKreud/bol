@@ -40,7 +40,7 @@ Hooks.once('init', async function () {
     registerSystemSettings();
 
     // Preload Handlebars Templates
-    preloadHandlebarsTemplates();
+    await preloadHandlebarsTemplates();
 
     // Register Handlebars helpers
     registerHandlebarsHelpers();
