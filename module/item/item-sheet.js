@@ -1,3 +1,5 @@
+import { BoLUtility } from "../system/bol-utility.js";
+
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
@@ -29,12 +31,26 @@ export class BoLItemSheet extends ItemSheet {
 
   /** @override */
   getData() {
-    const item = super.getData();
-    console.debug("Item getData");
-    item.data.description = item.data.data.description;
-    item.data.properties = item.data.data.properties;
-    console.log(item.data);
-    return item;
+    const objectData = BoLUtility.data(this.object);
+    
+    let itemData = foundry.utils.deepClone(BoLUtility.templateData(this.object));
+    let formData = {
+      title: this.title,
+      id: this.id,
+      type: objectData.type,
+      img: objectData.img,
+      name: objectData.name,
+      editable: this.isEditable,
+      cssClass: this.isEditable ? "editable" : "locked",
+      data: itemData, 
+      limited: this.object.limited,
+      options: this.options,
+      owner: this.document.isOwner,
+      isGM: game.user.isGM      
+    }
+    console.log("ITEMDATA", formData);
+    this.options.editable = !(this.object.data.origin == "embeddedItem");
+    return formData;
   }
 
   /* -------------------------------------------- */

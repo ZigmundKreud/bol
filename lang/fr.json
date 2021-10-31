@@ -13,5 +13,42 @@
   "BOL.resources.faith": "Foi",
   "BOL.resources.creation": "Création",
   "BOL.resources.power": "Pouvoir",
-  "BOL.traits.xp": "Expérience"
+  "BOL.traits.xp": "Expérience",
+
+  "Careers": "Carrières",
+  "Name": "Nom",
+  "Boons": "Avantages",
+  "Flaws": "Désavantages",
+  "Inventory": "Inventaire",
+
+  "Career": "Carrière",
+  "Boon": "Avantage",
+  "Flaw": "Désavantage",
+
+  "d6B": "d6 Bonus",
+  "d6M": "d6 Malus",
+  "ranged": "A Distance",
+  "melee": "Melée",
+  "spell" : "Sort",
+  "protection" : "Protectin",
+  "weapon" : "Arme",
+  "armor" : "Armure",
+  "helm" : "Casque",
+  "shield" : "Bouclier",
+
+  "equipable": "Equipable",
+  "stackable": "Empilable",
+  "consumable" : "Consommable",
+  "magical" : "Magique",
+
+  "2H" : "A Deux Mains",
+  "reloadable" : "A Recharger",
+  "bow" : "Arc",
+  "crossbow" : "Arbalète",
+  "throwing" : "Lancer", 
+
+  "rank": "Niveau",
+  "attribut": "Attribut",
+  "subtype": "Type",
+  "Language": "Langue"
 }

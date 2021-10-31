@@ -256,20 +256,8 @@
   src: url(https://fonts.gstatic.com/s/contrailone/v10/eLGbP-j_JA-kG0_Zo51noafdZQ.ttf) format('truetype');
 }
 @font-face {
-  font-family: "ImaginaryForces";
-  src: url('../fonts/iforces.ttf');
-}
-@font-face {
-  font-family: "OPTIFantastiK";
-  src: url('../fonts/OPTIFantastiK.otf');
-}
-@font-face {
   font-family: "CCMeanwhile";
   src: url('../fonts/ccmeanwhile-regular.ttf');
-}
-@font-face {
-  font-family: "Papyrus";
-  src: url('../fonts/PAPYRUS.TTF');
 }
 @font-face {
   font-family: "Wolfsbane2";
@@ -283,6 +271,9 @@
   font-family: "Wolfsbane2Expanded";
   src: url('../fonts/wolfsbane2expand.ttf');
 }
+/* ----------------------------------------- */
+/*  TEXT STYLES                             */
+/* ----------------------------------------- */
 .bol.sheet.actor {
   min-width: 760px;
   min-height: 700px;
@@ -548,4 +539,11 @@
 }
 .bonus {
   color: darkgreen;
+}
+.chat-message .chat-icon {
+  border: 0;
+  padding: 2px 6px 2px 2px;
+  float: left;
+  width: 64px;
+  height: 64px;
 }

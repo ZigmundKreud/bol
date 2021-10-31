@@ -59,6 +59,11 @@ export class BoLActorSheet extends ActorSheet {
       item.sheet.render(true);
     });
 
+    html.find('.roll-career').click(ev => {
+      const li = $(ev.currentTarget).parents(".item");
+      this.actor.rollCareer( li.data("itemId") );
+    });
+
     // Delete Inventory Item
     html.find('.item-delete').click(ev => {
       const li = $(ev.currentTarget).parents(".item");

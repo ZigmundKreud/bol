@@ -22,8 +22,8 @@ Hooks.once('init', async function () {
      * @type {String}
      */
     CONFIG.Combat.initiative = {
-        formula: "1d20",
-        decimals: 2
+        formula: "2d6+@attributes.mind.value+@aptitudes.init.value",
+        decimals: 0
     };
 
     // Define custom Entity classes

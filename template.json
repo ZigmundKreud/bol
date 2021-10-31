@@ -133,7 +133,10 @@
       "base": {
         "subtype" : "default",
         "description": "",
-        "properties" : {}
+        "properties" : {
+          "d6B": false,
+          "d6M": false
+        }
       },
       "equipment" : {
         "quantity": 1,
@@ -149,20 +152,14 @@
           "shield" : false,
 
           "equipable": false,
-          "stackable": false,
-          "activable" : false,
           "consumable" : false,
           "magical" : false,
-          "concealable" : false,
-          "ignoreshield" : false,
 
           "2H" : false,
           "reloadable" : false,
           "bow" : false,
           "crossbow" : false,
-          "powder" : false,
-          "throwing" : false,
-          "bashing" : false
+          "throwing" : false
         }
       }
     },
@@ -172,6 +169,7 @@
       "weight": 0
     },
     "feature": {
+      "rank": 0,
       "templates": ["base"]
     }
   }
