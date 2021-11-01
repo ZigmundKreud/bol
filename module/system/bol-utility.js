@@ -116,7 +116,11 @@ export class BoLUtility  {
     static createChatWithRollMode(name, chatOptions) {
       this.createChatMessage(name, game.settings.get("core", "rollMode"), chatOptions);
     }
-  
+  /* -------------------------------------------- */
+  static isRangedWeapon( weapon) {
+    return weapon.data.type == 'ranged' || weapon.data.thrown;
+  }
+
   /* -------------------------------------------- */
   static getTarget() {
     if (game.user.targets && game.user.targets.size == 1) {
@@ -152,7 +156,7 @@ export class BoLUtility  {
       modifier += rollData.attribute.value;
     } else if ( rollData.mode == 'weapon') {
       modifier += Number(rollData.attributes[rollData.rollAttribute].value) + Number(rollData.aptitude.value) + Number(rollData.rangeModifier);
-      modifier -= rollData.defender.aptitudes.def.value;
+      modifier -= rollData.defender.data.aptitudes.def.value;
     }
 
     let formula = nbDice+"d6"+mode+"+"+modifier;

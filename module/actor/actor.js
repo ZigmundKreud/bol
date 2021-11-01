@@ -126,6 +126,7 @@ export class BoLActor extends Actor {
         actorImg: this.img,
         weapon :  weapon,
         target: target,
+        isRanged: BoLUtility.isRangedWeapon( weapon ),
         defender: objectDefender,
         boons :  this.getBoons(),
         flaws :  this.getFlaws(),

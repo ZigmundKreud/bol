@@ -44,6 +44,7 @@
     </select>
   </div>
 
+  {{#if isRangedWeapon}}
   <div class="property flexrow">
     <label class="property-label">{{localize "Range Modifier"}}</label>
     <select id="rangeModifier" value="rangeModifier">
@@ -58,7 +59,8 @@
       {{/select}}
     </select>
   </div>
-
+  {{/if}}
+  
   <div class="property flexrow">
     <label class="property-label">{{localize "Modifier"}}</label>
     <select id="bonusMalus" value="bonusMalus">
