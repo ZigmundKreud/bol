@@ -1,0 +1,65 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img class="profile-img" src="{{img}}" data-edit="img" title="{{name}}"/>
+        <div class="header-fields">
+            <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="Name"/></h1>
+        </div>
+    </header>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="properties">Properties</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Description Tab --}}
+        <div class="tab" data-group="primary" data-tab="description">
+
+            <div class="property flexrow">
+              <label class="property-label">{{localize "subtype"}}</label>
+              <select name="data.subtype" value="{{data.subtype}}" data-dtype="String">
+                {{#select data.subtype}}
+                <option value="boon">{{localize "Avantage"}}</option>
+                <option value="flaw">{{localize "Flaw"}}</option>
+                <option value="career">{{localize "Career"}}</option>
+                <option value="language">{{localize "Language"}}</option>
+                {{/select}}
+              </select>
+            </div>
+            
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+        </div>
+
+        {{!-- Attributes Tab --}}
+        <div class="tab properties" data-group="primary" data-tab="properties">
+            {{!-- As you add new fields, add them in here! --}}
+<!--            <div class="grid grid-2col">-->
+                {{#if (eq data.subtype "career")}}
+                <div class="property flexrow">
+                    <label class="property-label">{{localize "rank"}}</label>
+                    <input type="text" name="data.rank" value="{{data.rank}}" data-dtype="Number"/>
+                </div>
+                {{else}}
+                <div class="property flexrow">
+                    <label class="property-label">Quantity</label>
+                    <input type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
+                </div>
+                <div class="property flexrow">
+                    <label class="property-label">Weight</label>
+                    <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
+                </div>
+                {{/if}}
+
+<!--            </div>-->
+            {{#each data.properties as |property key|}}
+                <div class="property flexrow">
+                    <label class="property-label">{{localize key}}</label>
+                    <label class="attribute-value checkbox"><input type="checkbox" name="data.properties.{{key}}" {{checked property}}/></label>
+                </div>
+            {{/each}}
+        </div>
+    </section>
+</form>
