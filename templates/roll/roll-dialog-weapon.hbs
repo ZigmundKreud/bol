@@ -1,8 +1,71 @@
 <form class="skill-roll-dialog">
   <h2 class="dialog-roll-title">{{title}}</h2>
 
-  <div class="flexrow">
-
+  <div class="property flexrow">
+    <label class="property-label">{{localize "attribut"}}</label>
+    <select id="rollAttribute" value="rollAttribute">
+      {{#select rollAttribute}}
+      <option value="vigor">{{localize "BOL.attributes.vigor"}}</option>
+      <option value="agility">{{localize "BOL.attributes.agility"}}</option>
+      {{/select}}
+    </select>
   </div>
-  
+
+  <div class="property flexrow">
+    <label class="property-label">{{localize "Defender"}} : </label>
+    <label class="property-label">{{defender.name}}</label>
+    <label class="property-label">{{localize "Defense score"}}</label>
+    <label class="property-label">{{defender.data.aptitudes.def.value}}</label>
+  </div>
+
+  <div class="property flexrow">
+    <label class="property-label">{{localize "d6M"}}</label>
+    <select id="d6Malus" value="d6Malus">
+      {{#select d6Malus}}
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      {{/select}}
+    </select>
+  </div>
+
+  <div class="property flexrow">
+    <label class="property-label">{{localize "d6B"}}</label>
+    <select id="d6Bonus" value="d6Bonus">
+      {{#select d6Bonus}}
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      {{/select}}
+    </select>
+  </div>
+
+  <div class="property flexrow">
+    <label class="property-label">{{localize "Range Modifier"}}</label>
+    <select id="rangeModifier" value="rangeModifier">
+      {{#select rangeModifier}}
+      <option value="1">{{localize "Point Blank"}}</option>
+      <option value="0">{{localize "Short"}}</option>
+      <option value="-1">{{localize "Medium"}}</option>
+      <option value="-2">{{localize "Long"}}</option>
+      <option value="-4">{{localize "Very Long"}}</option>
+      <option value="-6">{{localize "Extreme"}}</option>
+      <option value="-8">{{localize "Maximum"}}</option>
+      {{/select}}
+    </select>
+  </div>
+
+  <div class="property flexrow">
+    <label class="property-label">{{localize "Modifier"}}</label>
+    <select id="bonusMalus" value="bonusMalus">
+      {{#select bonusMalus}}
+      {{{optionsBonusMalus}}}
+      {{/select}}
+    </select>
+  </div>
+
 </form>

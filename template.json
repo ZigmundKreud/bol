@@ -128,7 +128,7 @@
     }
   },
   "Item": {
-    "types": ["item", "feature"],
+    "types": ["item", "feature", "weapon", "armor"],
     "templates": {
       "base": {
         "subtype" : "default",
@@ -167,6 +167,33 @@
       "templates": ["base", "equipment"],
       "quantity": 1,
       "weight": 0
+    },
+    "weapon": {
+      "type": "",
+      "quantity": 1,
+      "weight": 0,
+      "damage": "",
+      "range": "",
+      "thrown": false,
+      "twohands": false,
+      "reload": false,
+      "reloadduration": 0,
+      "canbehidden": false,
+      "ignoreshield": false,
+      "improvised": false,
+      "equipped": false,
+      "description": ""
+    },
+    "armor": {
+      "type": "",
+      "protectionroll": "",
+      "protectionfixed": 0,
+      "socialmalus": false,
+      "agilitymalus": 0,
+      "initmalus": 0,
+      "powercost": 0,
+      "equipped": false,
+      "description": ""
     },
     "feature": {
       "rank": 0,

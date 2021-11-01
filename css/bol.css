@@ -514,15 +514,6 @@
   min-width: 460px;
   min-height: 400px;
 }
-.bol.sheet.item .window-content {
-  background-color: white;
-  background-image: url("/systems/bol/ui/logo.webp");
-  background-repeat: no-repeat;
-  background-size: 190px 115px;
-  height: 100%;
-  padding: 5px;
-  overflow-y: hidden;
-}
 .bol.sheet.item .window-content form {
   height: 100%;
 }

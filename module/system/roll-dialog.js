@@ -18,12 +18,12 @@ export class BoLRollDialog extends Dialog {
       buttons: { 
         roll: {
             icon: '<i class="fas fa-check"></i>',
-            label: "Roll !",
+            label: game.i18n.localize("Roll"),
             callback: () => { this.roll() } 
           },
           cancel: {
             icon: '<i class="fas fa-times"></i>',
-            label: "Cancel",
+            label: game.i18n.localize("Cancel"),
             callback: () => { this.close() }
         } },
       default: "roll",

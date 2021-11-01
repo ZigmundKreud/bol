@@ -1,8 +1,39 @@
 <form class="skill-roll-dialog">
   <h2 class="dialog-roll-title">{{title}}</h2>
 
-  <div class="flexrow">
-
+  <div class="property flexrow">
+    <label class="property-label">{{localize "d6M"}}</label>
+    <select id="d6Malus" value="d6Malus">
+      {{#select d6Malus}}
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      {{/select}}
+    </select>
   </div>
-  
+
+  <div class="property flexrow">
+    <label class="property-label">{{localize "d6B"}}</label>
+    <select id="d6Bonus" value="d6Bonus">
+      {{#select d6Bonus}}
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      {{/select}}
+    </select>
+  </div>
+
+  <div class="property flexrow">
+    <label class="property-label">{{localize "Modifier"}}</label>
+    <select id="bonusMalus" value="bonusMalus">
+      {{#select bonusMalus}}
+      {{{optionsBonusMalus}}}
+      {{/select}}
+    </select>
+  </div>
+
 </form>

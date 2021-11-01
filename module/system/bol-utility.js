@@ -117,6 +117,15 @@ export class BoLUtility  {
       this.createChatMessage(name, game.settings.get("core", "rollMode"), chatOptions);
     }
   
+  /* -------------------------------------------- */
+  static getTarget() {
+    if (game.user.targets && game.user.targets.size == 1) {
+      for (let target of game.user.targets) {
+        return target;
+      }
+    }
+    return undefined;
+  }
   
   /* -------------------------------------------- */
   static async rollBoL( rollData ) {
@@ -136,9 +145,19 @@ export class BoLUtility  {
     nbDice +=  d6BM;
 
     // Final modifier 
-    let modifier = Number(rollData.attributes[rollData.rollAttribute].value) + Number(rollData.career.data.rank) + Number(rollData.bonusMalus);
+    let modifier = Number(rollData.bonusMalus);
+    if ( rollData.mode == 'career') {
+      modifier += Number(rollData.attributes[rollData.rollAttribute].value) + Number(rollData.career.data.rank);
+    } else if ( rollData.mode == 'attribute' ) {
+      modifier += rollData.attribute.value;
+    } else if ( rollData.mode == 'weapon') {
+      modifier += Number(rollData.attributes[rollData.rollAttribute].value) + Number(rollData.aptitude.value) + Number(rollData.rangeModifier);
+      modifier -= rollData.defender.aptitudes.def.value;
+    }
+
     let formula = nbDice+"d6"+mode+"+"+modifier;
-    console.log("Goigin to roll ", formula, rollData.attributes, rollData.rollAttribute);
+
+    console.log("Going to roll ", formula, rollData.attributes, rollData.rollAttribute);
     let myRoll = new Roll(formula).roll( { async: false});
     await this.showDiceSoNice(myRoll, game.settings.get("core", "rollMode") );
     rollData.roll = myRoll;
@@ -152,7 +171,6 @@ export class BoLUtility  {
     this.createChatWithRollMode( rollData.alias, {
       content: await renderTemplate(`systems/bol/templates/roll/chat-generic-result.hbs`, rollData)
     });
-      // TODO
   }  
 
   /* -------------------------------------------- */
