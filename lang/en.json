@@ -13,5 +13,9 @@
   "BOL.resources.faith": "Faith points",
   "BOL.resources.creation": "Creation points",
   "BOL.resources.power": "Power points",
-  "BOL.traits.xp": "Experience"
+  "BOL.traits.xp": "Experience",
+
+  "attribut": "Attribut",
+  "rank": "Level",
+  "subtype": "Type"
 }

@@ -26,7 +26,9 @@ export class BoLActorSheet extends ActorSheet {
     actor.data.attributes = Object.values(actor.data.data.attributes);
     actor.data.aptitudes = Object.values(actor.data.data.aptitudes);
     actor.data.resources = Object.values(actor.data.data.resources);
-    actor.data.equipment = actor.data.items.filter(i => i.type === "item");
+    actor.data.equipment = actor.data.items.filter(i => i.type === "item" || i.type == 'weapon' || i.type == 'armor');
+    actor.data.weapons = duplicate(actor.data.items.filter(i => i.type == 'weapon' ));
+    actor.data.armors = duplicate(actor.data.items.filter(i => i.type == 'armor' ));
     actor.data.features = {
       "origin" : actor.data.items.find(i => i.type === "feature" && i.data.subtype === "origin"),
       "race" : actor.data.items.find(i => i.type === "feature" && i.data.subtype === "race"),
@@ -34,10 +36,7 @@ export class BoLActorSheet extends ActorSheet {
       "boons" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "boon"),
       "flaws" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "flaw")
     };
-    // data.attributes = ["String", "Number", "Boolean"];
-    // for (let attr of Object.values(data.data.attributes)) {
-    //   attr.isCheckbox = attr.dtype === "Boolean";
-    // }
+
     return actor;
   }
 
@@ -58,7 +57,18 @@ export class BoLActorSheet extends ActorSheet {
       console.log(item);
       item.sheet.render(true);
     });
-
+    html.find('.roll-attribute').click(ev => {
+      this.actor.rollAttributeAptitude( $(ev.currentTarget).data("attr-key") );
+    });    
+    html.find('.roll-career').click(ev => {
+      const li = $(ev.currentTarget).parents(".item");
+      this.actor.rollCareer( li.data("itemId") );
+    });
+    html.find('.roll-weapon').click(ev => {
+      const li = $(ev.currentTarget).parents(".item");
+      this.actor.rollWeapon( li.data("itemId") );
+    });
+    
     // Delete Inventory Item
     html.find('.item-delete').click(ev => {
       const li = $(ev.currentTarget).parents(".item");

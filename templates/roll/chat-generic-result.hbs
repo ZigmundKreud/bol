@@ -1,0 +1,31 @@
+  <div class="chat-message-header">
+    <img class="chat-icon" src="{{actorImg}}" alt="{{alias}}" />
+    <h4 class=chat-actor-name>{{alias}}</h4>
+  </div>
+
+  <hr>
+
+  <div>
+    <h3>
+    {{#if (eq mode "attribute")}}
+      {{localize attribute.label}}
+    {{else}}  
+      {{#if (eq mode "career")}}  
+      {{localize "Career"}} : {{career.name}}
+      {{else}}
+        {{#if (eq mode "weapon")}}
+        {{localize "Attack with"}} {{weapon.name}}   
+        {{/if}}
+      {{/if}}
+    {{/if}}
+    </h3>
+
+    <div>
+    <ul>
+      <li>Formula : {{formula}}</li>
+      <li>Modifier : {{modifier}} </li>    
+      <li><strong>Total Roll : {{finalScore}}</strong>
+    </ul>  
+    </div>
+
+  </div>

@@ -1,8 +1,8 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
-        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+        <img class="profile-img" src="{{img}}" data-edit="img" title="{{name}}"/>
         <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+            <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="Name"/></h1>
         </div>
     </header>
 
@@ -17,6 +17,19 @@
 
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
+
+            <div class="property flexrow">
+              <label class="property-label">{{localize "subtype"}}</label>
+              <select name="data.subtype" value="{{data.subtype}}" data-dtype="String">
+                {{#select data.subtype}}
+                <option value="boon">{{localize "Avantage"}}</option>
+                <option value="flaw">{{localize "Flaw"}}</option>
+                <option value="career">{{localize "Career"}}</option>
+                <option value="language">{{localize "Language"}}</option>
+                {{/select}}
+              </select>
+            </div>
+            
             {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
         </div>
 
@@ -33,6 +46,12 @@
                     <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
                 </div>
 <!--            </div>-->
+            {{#each data.properties as |property key|}}
+                <div class="property flexrow">
+                    <label class="property-label">{{localize key}}</label>
+                    <label class="attribute-value checkbox"><input type="checkbox" name="data.properties.{{key}}" {{checked property}}/></label>
+                </div>
+            {{/each}}
         </div>
     </section>
 </form>
