@@ -167,6 +167,7 @@ export class BoLUtility  {
     rollData.roll = myRoll;
     rollData.formula = formula;
     rollData.modifier = modifier; 
+    rollData.nbDice = nbDice;
     rollData.finalScore = myRoll.total;
 
     let actor = game.actors.get(rollData.actorId);
