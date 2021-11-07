@@ -274,24 +274,57 @@
 /* ----------------------------------------- */
 /*  TEXT STYLES                             */
 /* ----------------------------------------- */
-.bol.sheet.actor {
-  min-width: 760px;
-  min-height: 700px;
-  max-height: 700px;
+/* Items List */
+.items-list {
+  list-style: none;
+  margin: 7px 0;
+  padding: 0;
+  overflow-y: auto;
 }
-.bol.sheet.actor .window-content {
-  background-color: white;
-  background-image: url("/systems/bol/ui/logo.webp");
-  background-repeat: no-repeat;
-  background-size: 190px 115px;
+.items-list .item-header {
+  font-family: "CCMeanwhile", cursive;
+}
+.items-list .item {
+  min-height: 30px;
+  line-height: 24px;
+  padding: 3px 0 3px 3px;
+  border-bottom: 1px solid #BBB;
+  align-items: stretch;
+}
+.items-list .item .item-image {
+  flex: 0 0 30px;
+  margin-right: 5px;
+}
+.items-list .item .item-image img {
+  margin: 0;
+  border: none;
+}
+.items-list .item .item-name {
+  margin: 0;
+}
+.items-list .item .item-controls-1 {
+  flex: 0 0 18px;
+}
+.items-list .item .item-controls,
+.items-list .item .item-controls-2 {
+  flex: 0 0 36px;
+}
+.items-list .item .item-controls-3 {
+  flex: 0 0 54px;
+}
+.items-list .item .item-control {
+  color: #4b4a44;
+}
+.bol.sheet .window-content {
+  background: white;
   height: 100%;
   padding: 5px;
   overflow-y: hidden;
 }
-.bol.sheet.actor .window-content form {
+.bol.sheet .window-content form {
   height: 100%;
 }
-.bol.sheet.actor .window-content form .sheet-header {
+.bol.sheet .window-content form .sheet-header {
   background-image: url("/systems/bol/ui/banner.webp");
   background-repeat: no-repeat;
   background-size: 330px 62px;
@@ -308,7 +341,7 @@
   align-items: flex-end;
   padding-bottom: 10px;
 }
-.bol.sheet.actor .window-content form .sheet-header .header-field .header-field-group {
+.bol.sheet .window-content form .sheet-header .header-field .header-field-group {
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -316,15 +349,56 @@
   justify-content: flex-start;
   align-items: baseline;
 }
-.bol.sheet.actor .window-content form .sheet-header .header-field .header-field-group .header-field-label {
+.bol.sheet .window-content form .sheet-header .header-field .header-field-group .header-field-label {
   margin-right: 5px;
 }
-.bol.sheet.actor .window-content form .sheet-header .header-field .header-field-group .charname,
-.bol.sheet.actor .window-content form .sheet-header .header-field .header-field-group .header-field-value {
+.bol.sheet .window-content form .sheet-header .header-field .header-field-group .charname,
+.bol.sheet .window-content form .sheet-header .header-field .header-field-group .itemname,
+.bol.sheet .window-content form .sheet-header .header-field .header-field-group .header-field-value {
   color: #4b4a44;
   font-family: 'Contrail One', cursive;
   font-size: 1.5rem;
   background-color: #EEE;
+}
+.bol.sheet .window-content form .main {
+  /* Sheet Tabs */
+}
+.bol.sheet .window-content form .main .tabs {
+  flex: 0 0 40px;
+  background-color: black;
+}
+.bol.sheet .window-content form .main .tabs .item {
+  line-height: 40px;
+  font-weight: bold;
+  font-family: "CCMeanwhile", cursive;
+  color: white;
+  font-size: 14px;
+}
+.bol.sheet .window-content form .main .tabs .item.active {
+  text-decoration: underline;
+  text-shadow: none;
+}
+.bol.sheet .window-content form .main .sheet-body {
+  overflow: hidden;
+}
+.bol.sheet .window-content form .main .sheet-body .tab {
+  height: 100%;
+  overflow-y: auto;
+  /* Items List */
+}
+.bol.sheet .window-content form .main .sheet-body .tab.description .editor,
+.bol.sheet .window-content form .main .sheet-body .tab.description .editor-content {
+  height: 100%;
+}
+.bol.sheet.actor {
+  min-width: 820px;
+  min-height: 700px;
+  height: 700px;
+}
+.bol.sheet.actor .window-content {
+  background-image: url("/systems/bol/ui/logo.webp");
+  background-repeat: no-repeat;
+  background-size: 190px 115px;
 }
 .bol.sheet.actor .window-content form .sidebar {
   padding-top: 115px;
@@ -342,74 +416,12 @@
   max-width: calc(250px - 10px);
   margin-right: 10px;
 }
-.bol.sheet.actor .window-content form .main {
-  /* Sheet Tabs */
-}
-.bol.sheet.actor .window-content form .main .tabs {
-  flex: 0 0 40px;
-  background-color: black;
-}
-.bol.sheet.actor .window-content form .main .tabs .item {
-  line-height: 40px;
-  font-weight: bold;
-  font-family: CCMeanwhile;
-  color: white;
-  font-size: 14px;
-}
-.bol.sheet.actor .window-content form .main .tabs .item.active {
-  text-decoration: underline;
-  text-shadow: none;
-}
 .bol.sheet.actor .window-content form .main .sheet-body {
   overflow: hidden;
 }
 .bol.sheet.actor .window-content form .main .sheet-body .tab {
   height: 100%;
   overflow-y: auto;
-  /* Items List */
-}
-.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list {
-  list-style: none;
-  margin: 7px 0;
-  padding: 0;
-  overflow-y: auto;
-}
-.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item {
-  min-height: 30px;
-  line-height: 24px;
-  padding: 3px 0 3px 3px;
-  border-bottom: 1px solid #BBB;
-  align-items: stretch;
-}
-.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item img {
-  flex: 0 0 30px;
-  margin-right: 5px;
-}
-.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item .item-image {
-  margin: 0;
-}
-.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item .item-name {
-  margin: 0;
-}
-.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item .item-controls {
-  flex: 0 0 36px;
-}
-.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item .item-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: center;
-  flex: 2;
-  justify-content: flex-start;
-}
-.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item .item-button {
-  line-height: 1;
-  font-size: 11px;
-  flex: none;
-  width: auto;
-}
-.bol.sheet.actor .window-content form .main .sheet-body .tab .items-list .item-header {
-  font-family: CCMeanwhile;
 }
 .bol.sheet.actor .window-content form .main .sheet-body .tab .attribute.vigor {
   background-image: url("/systems/bol/ui/attributes/vigor.webp");
@@ -437,48 +449,6 @@
 }
 .bol.sheet.actor .window-content form .main .sheet-body .tab .attribute .stat-value {
   margin-top: -10px;
-}
-.bol.sheet.actor .window-content form .main .sheet-body .tab.description .editor,
-.bol.sheet.actor .window-content form .main .sheet-body .tab.description .editor-content {
-  background-color: red;
-  height: 100%;
-}
-.bol.sheet.actor .stat-value {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: darkred;
-}
-.bol.sheet.actor .stat-roll {
-  font-size: 1.5rem;
-}
-.bol.sheet.actor .header-field-label,
-.bol.sheet.actor .stat-label {
-  font-weight: bold;
-  font-family: Wolfsbane2Expanded;
-  font-size: 2rem;
-  font-variant: small-caps;
-}
-.bol.sheet.actor .rounded {
-  border-radius: 100px;
-  width: 4rem;
-  height: 4rem;
-}
-.bol.sheet.actor .rounded-border {
-  border: 3px solid #4b4a44;
-  border-radius: 100px;
-  width: 4rem;
-  height: 4rem;
-}
-.bol.sheet.actor .half-rounded {
-  border-radius: 100px 100px 0px 0px;
-  width: 4rem;
-  height: 4rem;
-}
-.bol.sheet.actor .half-rounded-border {
-  border-radius: 100px 100px 0px 0px;
-  border: 3px solid #4b4a44;
-  width: 4rem;
-  height: 4rem;
 }
 .bol.sheet.actor .bol-footer {
   height: 62px;
@@ -510,12 +480,51 @@
   max-height: 62px;
   min-height: 62px;
 }
+.bol.sheet.actor .stat-max {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #4b4a44;
+}
+.bol.sheet.actor .stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: darkred;
+}
+.bol.sheet.actor .stat-roll {
+  font-size: 1.5rem;
+}
+.bol.sheet.actor .header-field-label,
+.bol.sheet.actor .stat-label {
+  font-weight: bold;
+  font-family: "Wolfsbane2Expanded", serif;
+  font-size: 2rem;
+  font-variant: small-caps;
+}
+.bol.sheet.actor .rounded {
+  border-radius: 100px;
+  width: 4rem;
+  height: 4rem;
+}
+.bol.sheet.actor .rounded-border {
+  border: 3px solid #4b4a44;
+  border-radius: 100px;
+  width: 4rem;
+  height: 4rem;
+}
+.bol.sheet.actor .half-rounded {
+  border-radius: 100px 100px 0px 0px;
+  width: 4rem;
+  height: 4rem;
+}
+.bol.sheet.actor .half-rounded-border {
+  border-radius: 100px 100px 0px 0px;
+  border: 3px solid #4b4a44;
+  width: 4rem;
+  height: 4rem;
+}
 .bol.sheet.item {
   min-width: 460px;
   min-height: 400px;
-}
-.bol.sheet.item .window-content form {
-  height: 100%;
 }
 .editor,
 .editor-content {

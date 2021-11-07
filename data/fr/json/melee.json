@@ -1,0 +1,232 @@
+[
+  {
+    "name": "Arme d’hast",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/weapon.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Arme d’hast</h1><p>ce nom recouvre une catégorie d’armes possédant toutes un fer destiné à frapper, fixé au bout d’une longue hampe en bois, qui offre à son utilisateur une grande allonge. Selon leur forme, ces armes à deux mains portent le nom de hallebarde, coutille, guisarme, vouge…</p>",
+      "properties" : {
+        "melee": true,
+        "weapon" : true,
+        "equipable": true,
+        "2H" : true,
+        "damage" : "d6B"
+      }
+    }
+  },
+  {
+    "name": "Bâton",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/weapon.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Bâton</h1><p>une longueur de bois robuste (environ 1,80 m de hauteur), qui sert aussi bien de bâton de marche que d’arme.</p>",
+      "properties" : {
+        "melee": true,
+        "weapon" : true,
+        "equipable": true,
+        "2H" : true,
+        "bashing" : true,
+        "damage" : "d6"
+      }
+    }
+  },
+  {
+    "name": "Dague",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/weapon.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Dague</h1><p>cette catégorie regroupe toutes les lames courtes destinées à lacérer ou poignarder un adversaire. Les dagues sont à un ou deux tranchants selon les modèles, et peuvent être lancées aussi bien qu’utilisées au corps à corps. Facilement dissimulable, la dague est l’arme favorite des truands et des assassins.</p>",
+      "properties" : {
+        "melee": true,
+        "weapon" : true,
+        "equipable": true,
+        "stackable": true,
+        "concealable" : true,
+        "throwable" : true,
+        "range" : 3,
+        "damage" : "d6M"
+      }
+    }
+  },
+  {
+    "name": "Épée",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/weapon.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Épée</h1><p>l’arme favorite des héros. Elle se décline en différents modèles utilisés un peu partout en Lémurie, comme les sabres d’abordage, les tulwars, les cimeterres ou les épées longues. Inscrivez le nom de l’arme que vous voulez sur la fiche de votre personnage en fonction de l’image que vous vous faites de ce dernier. Mais au final, une épée reste une longue lame utilisée pour tuer l’ennemi.</p>",
+      "properties" : {
+        "melee": true,
+        "weapon" : true,
+        "equipable": true,
+        "damage" : "d6"
+      }
+    }
+  },
+  {
+    "name": "Épée à deux mains",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/weapon.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Épée à deux mains</h1><p>Une lourde épée pouvant mesurer jusqu’à 1,80 m de long pour les plus grandes, et s’utilisant à deux mains. Elle peut porter différents noms selon les modèles : claymore, espadon, épée bâtarde…</p>",
+      "properties" : {
+        "melee": true,
+        "weapon" : true,
+        "equipable": true,
+        "2H" : true,
+        "damage" : "d6B"
+      }
+    }
+  },
+  {
+    "name": "Hâche à deux mains",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/weapon.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Hâche à deux mains</h1><p>Une lourde hache s’utilisant à deux mains.</p>",
+      "properties" : {
+        "melee": true,
+        "weapon" : true,
+        "equipable": true,
+        "2H" : true,
+        "damage" : "d6B"
+      }
+    }
+  },
+  {
+    "name": "Fléau",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/weapon.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Fléau</h1><p>un fléau consiste en un manche de bois prolongé d’une chaîne, à l’extrémité de laquelle est fixée une boule hérissée de pointes métalliques. Les fléaux ne sont pas des armes employées couramment en Lémurie, mais les gladiateurs en utilisent parfois dans les arènes. Les attaques au fléau ignorent le bonus en défense accordé par l’emploi d’un bouclier.</p>",
+      "properties" : {
+        "melee": true,
+        "weapon" : true,
+        "equipable": true,
+        "ignoreshield" : true,
+        "damage" : "d6"
+      }
+    }
+  },
+  {
+    "name": "Gourdin",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/weapon.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Gourdin</h1><p>c’est l’arme la plus rudimentaire qui soit. Un gourdin consiste généralement en un bâton de bois noueux, extrêmement dur et mesurant moins de 90 cm de long. Par commodité, on regroupe sous ce terme toute autre arme contondante du même genre (matraque, etc.). Il est possible d’utiliser un gourdin pour infliger des dégâts non létaux et assommer son ennemi plutôt que de le tuer.</p>",
+      "properties" : {
+        "melee": true,
+        "weapon" : true,
+        "equipable": true,
+        "bashing" : true,
+        "damage" : "d6M"
+      }
+    }
+  },
+  {
+    "name": "Hache",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/weapon.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Hache</h1><p>un fer à un ou deux tranchants (qui peut être en bronze, en fer ou en acier) monté sur un manche en bois.</p>",
+      "properties" : {
+        "melee": true,
+        "weapon" : true,
+        "equipable": true,
+        "throwable" : true,
+        "range" : 3,
+        "damage" : "d6"
+      }
+    }
+  },
+  {
+    "name": "Lance",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/weapon.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Lance</h1><p>une hampe de bois de 1,80 m de long (parfois davantage), pourvue d’une pointe, qui peut être lancée ou utilisée au corps à corps, notamment contre des adversaires montés.</p>",
+      "properties" : {
+        "melee": true,
+        "weapon" : true,
+        "equipable": true,
+        "throwable" : true,
+        "range" : 6,
+        "damage" : "d6"
+      }
+    }
+  },
+  {
+    "name": "Masse d’armes",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/weapon.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Masse d’armes</h1><p>cette arme a la même forme qu’un gourdin, mais possède une tête en métal, souvent agrémentée de pointes ou d’ailettes pour plus d’efficacité. Les masses d’armes à une main peuvent se lancer, mais à courte distance, car elles ne sont pas vraiment prévues pour cet usage.</p>",
+      "properties" : {
+        "melee": true,
+        "weapon" : true,
+        "equipable": true,
+        "throwable" : true,
+        "range" : 1.5,
+        "damage" : "d6"
+      }
+    }
+  },
+  {
+    "name": "Massue",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/weapon.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Massue</h1><p>la version lourde du gourdin. Une massue consiste en un solide manche en bois dont l’extrémité, plus volumineuse, sert à fracasser le crâne de ses adversaires, d’où son autre nom de casse-tête.</p>",
+      "properties" : {
+        "melee": true,
+        "weapon" : true,
+        "equipable": true,
+        "throwable" : true,
+        "range" : 3,
+        "damage" : "d6"
+      }
+    }
+  },
+  {
+    "name": "Morgenstern",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/weapon.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Morgenstern</h1><p>une grosse boule de métal hérissée de pointes, montée à l’extrémité d’une longue hampe de 1,20 à 1,50 m de long. Rudimentaire, mais efficace.</p>",
+      "properties" : {
+        "melee": true,
+        "weapon" : true,
+        "equipable": true,
+        "2H" : true,
+        "damage" : "d6B"
+      }
+    }
+  },
+  {
+    "name": "Rapière",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/weapon.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Rapière</h1><p>cette épée fine et légère est essentiellement utilisée par les bellâtres et les courtisans des cités-états de Lémurie, chez qui l’escrime a été élevé au rang d’art. La rapière s’utilise généralement en conjonction avec une dague de parade (aussi appelée main gauche), un petit bouclier, ou une simple cape roulée en boule.</p>",
+      "properties" : {
+        "melee": true,
+        "weapon" : true,
+        "equipable": true,
+        "damage" : "d6M"
+      }
+    }
+  }
+]

@@ -153,5 +153,21 @@ export class BoLActor extends Actor {
     }
   }
 
-  
+
+  /**
+   *
+   * @param {*} item
+   * @param {*} bypassChecks
+   * @returns
+   */
+  toggleEquipItem(item) {
+    const equipable = item.data.data.properties.equipable;
+    if(equipable){
+      let itemData = duplicate(item.data);
+      itemData.data.worn = !itemData.data.worn;
+      return item.update(itemData);
+    }
+  }
+
+
 }

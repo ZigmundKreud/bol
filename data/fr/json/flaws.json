@@ -1,0 +1,389 @@
+[
+  {
+    "name": "Addiction",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Addiction</h1><p>vous avez développé une dépendance à une substance, et vous en avez besoin de manière quotidienne pour vivre normalement. Si vous passez une journée sans assouvir votre vice, vous subissez un dé de malus sur tous vos jets.</p>"
+    }
+  },
+  {
+    "name": "Âgé",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Âgé</h1><p>votre personnage n’a plus vingt ans. S’il ne dispose pas chaque jour d’une période décente de repos, il commence à se fatiguer et subit un dé de malus pour toute action physique éreintante. Ce désavantage devrait aussi offrir bien d’autres situations cocasses au cours de la partie.</p>"
+    }
+  },
+  {
+    "name": "Arrogant",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Arrogant</h1><p>vous subissez un dé de malus lorsque vous interagissez avec des provinciaux ou des étrangers, qui pourraient prendre ombrage de votre arrogance. Ce désavantage est très fréquent au sein de la noblesse.</p>"
+    }
+  },
+  {
+    "name": "Bigleux",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Bigleux</h1><p>lorsque vous faites appel à votre vue pour observer ou repérer quelque chose, vous subissez un dé de malus.</p>"
+    }
+  },
+  {
+    "name": "Borgne/oreille coupée",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Borgne/oreille coupée</h1><p>vous subissez un dé de malus quand le MJ estime que cela est approprié à la situation.</p>"
+    }
+  },
+  {
+    "name": "Bouseux",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Bouseux</h1><p>la grande ville est un endroit déstabilisant et impitoyable pour les nouveaux venus. Vous subissez un dé de malus dans les situations concernant la survie en milieu urbain.</p>"
+    }
+  },
+  {
+    "name": "Chétif",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Chétif</h1><p>vous ne jouissez pas d’une solide constitution. Ôtez 2 points à votre score de vitalité.</p>"
+    }
+  },
+  {
+    "name": "Crédule",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Crédule</h1><p>vous gobez les mensonges les plus gros. Vous subissez un dé de malus quand quelqu’un essaie de vous convaincre qu’une idée est bonne, alors qu’elle ne l’est pas.</p>"
+    }
+  },
+  {
+    "name": "Cupide",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Cupide</h1><p>vous êtes incapable de résister à une occasion de vous enrichir. S’il y a une chance de se remplir les poches, vous perdez tout bon sens. Vous subissez un dé de malus à chaque fois que vous êtes tenté par une offre alléchante.</p>"
+    }
+  },
+  {
+    "name": "Deux mains gauches",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Deux mains gauches</h1><p>vous subissez un dé de malus pour crocheter une serrure, tirer à l’arc ou à l’arbalète, ou accomplir toute autre tâche de précision requérant une bonne dextérité.</p>"
+    }
+  },
+  {
+    "name": "Distrait",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Distrait</h1><p>vous n’êtes pas forcément stupide – en fait, vous pouvez même être brillant – mais vous êtes tête-en-l’air, incapable de vous souvenir de vos obligations ou du nom des gens. Un défaut que le MJ se fera un plaisir d’exploiter de temps à autre au détriment de votre personnage…</p>"
+    }
+  },
+  {
+    "name": "Dur d’oreille",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Dur d’oreille</h1><p>lorsque vous faites appel à votre audition pour percevoir quelque chose, vous subissez un dé de malus.</p>"
+    }
+  },
+  {
+    "name": "Fanatique",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Fanatique</h1><p>ce désavantage est plus fréquent chez les rivaux que chez les héros. Beaucoup d’hommes sont prêts à mourir pour leur foi, mais un fanatique est prêt à tuer pour elle. Vous subissez un dé de malus à chaque fois que vous essayez de vous montrer courtois envers un infidèle.</p>"
+    }
+  },
+  {
+    "name": "Fanfaron",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Fanfaron</h1><p>vous avez une très haute opinion de vous-même et ressentez le besoin de la partager avec le reste du monde. Vous avez tendance à vous attribuer le mérite qui revient à d’autres et à exagérer vos propres exploits tout en minimisant le rôle que vos compagnons ont pu jouer. Inutile de le dire, vous prenez de grandes libertés avec la vérité, ce qui pourrait vous valoir d’être traité de menteur.</p>"
+    }
+  },
+  {
+    "name": "Foie jaune : quand les épées sont tirées, vous connaissez toujours un moment d’indécision. Lancez un d3",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Foie jaune : quand les épées sont tirées, vous connaissez toujours un moment d’indécision. Lancez un d3</h1><p>c’est le nombre de rounds où vous restez paralysé par la situation, incapable d’agir autrement qu’en effectuant des actions défensives.</p>"
+    }
+  },
+  {
+    "name": "Gars de la ville",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Gars de la ville</h1><p>vous n’êtes pas à votre aise dans les grands espaces naturels. Vous subissez un dé de malus dans les situations concernant la survie en milieu sauvage.</p>"
+    }
+  },
+  {
+    "name": "Illettré",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Illettré</h1><p>vous ne savez ni lire ni écrire, et ne pouvez pas choisir de carrière exigeant d’être lettré.</p>"
+    }
+  },
+  {
+    "name": "Impétueux",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Impétueux</h1><p>vous vous laissez souvent emporter par votre colère et réagissez à la moindre insulte, réelle ou supposée. Vous subissez un dé de malus pour vous efforcer de contrôler votre colère et d’agir rationnellement, par exemple pour éviter de faire un esclandre en plein bal au palais, ou pour ignorer la raillerie d’un ennemi. Votre colère peut vous mettre en danger, en vous incitant par exemple à vous battre en duel pour des motifs futiles.</p>"
+    }
+  },
+  {
+    "name": "Inadapté à la chaleur",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Inadapté à la chaleur</h1><p>vous êtes extrêmement sensible à la chaleur. Vous subissez un dé de malus sur toutes les actions entreprises dans un environnement de grande chaleur.</p>"
+    }
+  },
+  {
+    "name": "Inadapté au froid",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Inadapté au froid</h1><p>vous êtes particulièrement sensible au froid. Vous subissez un dé de malus sur toutes les actions entreprises dans un environnement de grand froid.</p>"
+    }
+  },
+  {
+    "name": "Incapable de mentir",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Incapable de mentir</h1><p>que ce soit par nervosité ou par respect d’un code de l’honneur strict, vous êtes un très mauvais menteur. Vous subissez un dé de malus à chaque fois que vous essayez de tromper autrui, de dire des demi-vérités ou de cacher une information à quelqu’un qui vous pose une question directe. Vous êtes du genre à répondre « je ne vous dirai rien » plutôt que « je ne vois pas de quoi vous voulez parler ».</p>"
+    }
+  },
+  {
+    "name": "Indigne de confiance",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Indigne de confiance</h1><p>vous subissez un dé de malus quand la situation exige que quelqu’un vous croie ou vous fasse confiance.</p>"
+    }
+  },
+  {
+    "name": "Inquiétant",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Inquiétant</h1><p>il y a quelque chose en vous qui perturbe les autres. Cela peut provenir de votre regard, de votre odeur ou de votre façon de parler. Même les animaux vous évitent. Vous subissez un dé de malus dans les interactions sociales ou quand vous tentez d’amadouer des animaux.</p>"
+    }
+  },
+  {
+    "name": "Lent à la détente",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Lent à la détente</h1><p>vous n’êtes jamais très vigilant à ce qui se passe autour de vous et vous êtes lent à réagir face au danger. Vous subissez un dé de malus sur vos jets de réaction.</p>"
+    }
+  },
+  {
+    "name": "Lubrique",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Lubrique</h1><p>vous avez le plus grand mal à résister aux charmes du sexe opposé et subissez un dé de malus sur vos jets pour ne pas succomber à un joli minois.</p>"
+    }
+  },
+  {
+    "name": "Malédiction de Morgazzon",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Malédiction de Morgazzon</h1><p>vous êtes atteint de démence. Vous devrez travailler avec le MJ pour déterminer la façon dont votre folie se manifeste.</p>"
+    }
+  },
+  {
+    "name": "Manchot/unijambiste",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Manchot/unijambiste</h1><p>vous subissez un dé de malus quand le MJ estime que cela est approprié à la situation.</p>"
+    }
+  },
+  {
+    "name": "Marin d’eau douce",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Marin d’eau douce</h1><p>vous subissez un dé de malus pour toute activité entreprise à bord d’un navire.</p>"
+    }
+  },
+  {
+    "name": "Maudit",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Maudit</h1><p>les dieux se sont détournés de vous, ou alors c’est que vous êtes tout simplement malchanceux. Pour une raison incompréhensible, les tuiles tombent toujours sur vous. Les gardes de la ville vous prennent pour un criminel recherché, la servante de la taverne que vous avez attirée dans votre lit se révèle être une princesse en fuite, vous marchez sur une petite branche qui se brise avec un craquement sonore juste au moment où vous alliez réussir à passer discrètement, etc. En d’autres termes, vous commencez le jeu avec 1 point d’héroïsme en moins.</p>"
+    }
+  },
+  {
+    "name": "Mauvaise réputation",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Mauvaise réputation</h1><p>vous avez commis dans le passé quelque méfait de sinistre mémoire. Peu importe si vous êtes réellement coupable ou pas, ou si vous aviez une bonne raison d’agir comme vous l’avez fait, vous êtes précédé par votre mauvaise réputation. Vous subissez un dé de malus dans les interactions sociales où il s’agit de faire bonne impression, et continuez à subir ce malus jusqu’à ce que vous ayez (re)gagné la confiance de la personne en question.</p>"
+    }
+  },
+  {
+    "name": "Méfiance envers la sorcellerie",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Méfiance envers la sorcellerie</h1><p>vous subissez un dé de malus quand vous êtes confronté à des sorciers et des alchimistes.</p>"
+    }
+  },
+  {
+    "name": "Muet",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Muet</h1><p>vous êtes incapable de parler, et vous subissez toujours un dé de malus dans les interactions sociales où vous avez besoin de vous faire comprendre.</p>"
+    }
+  },
+  {
+    "name": "Non-combattant",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Non-combattant</h1><p>vous n’êtes pas un guerrier, vos talents sont ailleurs. Vous ne disposez que de deux points (au lieu de quatre) à répartir dans les aptitudes de combat, mais vous débutez avec six points de carrière (au lieu de quatre). De plus, le coût en points d’expérience pour améliorer vos aptitudes de combat est doublé.</p>"
+    }
+  },
+  {
+    "name": "Obsession",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Obsession</h1><p>vous êtes totalement obsédé par quelque chose. Il peut s’agir d’un but, d’une personne ou d’un objet. Vous consacrez beaucoup de temps, d’énergie et d’argent à cette obsession. À chaque fois que vous vous trouvez en présence de l’objet de votre obsession, vous subissez un dé de malus sur tous les jets qui impliquent que vous l’ignoriez. Il peut arriver que votre obsession vous plonge dans des situations inextricables ou cocasses.</p>"
+    }
+  },
+  {
+    "name": "Pataud",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Pataud</h1><p>vous n’avez pas un bon sens de l’équilibre. Vous subissez un dé de malus à chaque fois que l’équilibre entre en jeu, par exemple pour traverser un précipice sur une passerelle étroite, ou prendre pied sur une saillie à flanc de montagne.</p>"
+    }
+  },
+  {
+    "name": "Phobie",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Phobie</h1><p>vous êtes affligé d’une peur irrationnelle. Vous subissez un dé de malus en présence de l’objet de votre phobie. Il peut s’agir par exemple de la peur du feu, des reptiles, des araignées, des hauteurs, de la foule, de la mort, de l’obscurité, des espaces confinés, des navires volants, etc.</p>"
+    }
+  },
+  {
+    "name": "Poltron",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Poltron</h1><p>ce n’est pas un désavantage très fréquent chez les héros, mais vous avez les pires difficultés à contrôler votre peur. Vous subissez un dé de malus sur les jets destinés à résister aux effets de la peur ou de l’intimidation. De plus, vous faites toujours de votre mieux pour éviter toute forme de conflit.</p>"
+    }
+  },
+  {
+    "name": "Repoussant",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Repoussant</h1><p>vous êtes particulièrement laid. Vous subissez un dé de malus dans les situations où l’apparence peut avoir son importance.</p>"
+    }
+  },
+  {
+    "name": "Signe distinctif",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Signe distinctif</h1><p>il y a quelque chose chez vous qui ne s’oublie pas. Il peut s’agir d’une cicatrice particulière ou d’un tatouage, à moins que vous ne soyez né avec six doigts à la main gauche. Bref, vous possédez une caractéristique physique qui se remarque. Vous subissez un dé de malus quand vous essayez de vous déguiser ou de passer inaperçu. Si vous êtes également affligé du désavantage traqué, les chasseurs de primes et les espions ont deux fois plus de chances de vous repérer quand vous entrez ou sortez d’une cité.</p>"
+    }
+  },
+  {
+    "name": "Soiffard",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Soiffard</h1><p>quand vous êtes chargé d’une tâche importante par vos compagnons, lancez un dé. Si vous obtenez un 1, vous êtes ivre et incapable de faire quoi que ce soit jusqu’à ce que vous ayez dessoûlé.</p>"
+    }
+  },
+  {
+    "name": "Souffreteux",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Souffreteux</h1><p>vous souffrez d’une constitution fragile. Vous ne pouvez récupérer de points de vitalité perdus que si vous bénéficiez de soins médicaux ; vous ne récupérez rien par du simple repos, comme c’est normalement la règle.</p>"
+    }
+  },
+  {
+    "name": "Taciturne",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Taciturne</h1><p>votre personnage est incroyablement taiseux. Les jours où il prononce une phrase de plus de trois mots sont à marquer d’une pierre blanche, et il est très rare qu’il engage de lui-même la conversation. Son extrême réticence à parler implique malheureusement qu’il ne donne jamais une information si on ne la lui demande pas. Vous subissez un dé de malus dans les interactions sociales.</p>"
+    }
+  },
+  {
+    "name": "Traqué",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/flaw.webp",
+    "data": {
+      "subtype": "flaw",
+      "description": "<h1>Traqué</h1><p>vous êtes recherché par les autorités, ou bien vous avez offensé un aristocrate puissant ou un roi des pirates. Quoi qu’il en soit, vous devez constamment échapper à leurs agents qui tentent de vous capturer ou de vous tuer. Lancez un d6 à chaque fois que vous entrez dans une ville nouvelle. Sur un 1, les agents à la solde de votre ennemi (ou cet ennemi lui-même) vous auront repéré et vous tomberont dessus.</p>"
+    }
+  }
+]

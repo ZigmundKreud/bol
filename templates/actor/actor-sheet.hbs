@@ -5,167 +5,26 @@
             <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
         </div>
         <div class="main flex1">
-            {{!-- Sheet Header --}}
-            <header class="sheet-header">
-                <div class="header-field flex3">
-                    <div class="header-field-group">
-                        <label class="header-field-label">Nom</label><br/>
-                        <input class="charname" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
-                    </div>
-                </div>
-                <div class="header-field flex2">
-                    <div class="header-field-group">
-                        <label class="header-field-label">Experience</label><br/>
-                        <input class="header-field-value" type="text" name="data.details.xp.spent" value="{{numberFormat data.details.xp.spent decimals=0 sign=false}}" data-dtype="Number"/><br/>
-                        <input class="header-field-value" type="text" name="data.details.xp.total" value="{{numberFormat data.details.xp.total decimals=0 sign=false}}" data-dtype="Number"/><br/>
-                    </div>
-                </div>
-            </header>
-
+            {{> "systems/bol/templates/actor/parts/actor-header.hbs"}}
             {{!-- Sheet Tab Navigation --}}
             <nav class="sheet-tabs tabs" data-group="primary">
-                <a class="item" data-tab="stats">Attributs</a>
-                <a class="item" data-tab="features">Actions</a>
-                <a class="item" data-tab="equipment">Equipement</a>
-                <a class="item" data-tab="description">Description</a>
+                <a class="item" data-tab="stats">{{localize "BOL.ui.tab.stats"}}</a>
+                <a class="item" data-tab="combat">{{localize "BOL.ui.tab.combat"}}</a>
+                <a class="item" data-tab="features">{{localize "BOL.ui.tab.features"}}</a>
+                <a class="item" data-tab="equipment">{{localize "BOL.ui.tab.equipment"}}</a>
+                <a class="item" data-tab="description">{{localize "BOL.ui.tab.description"}}</a>
             </nav>
             {{!-- Sheet Body --}}
             <section class="sheet-body">
-                <div class="tab stats" data-group="primary" data-tab="stats">
-                    <div class="attributes flexrow">
-                        {{#each data.attributes as |attribute id|}}
-                            <div class="attribute stat flex1 flex-group-center {{key}}">
-                                <label class="stat-label"><a class="roll-attribute" data-attr-key="{{key}}">{{localize label}}</a></label><br/>
-                                <input class="stat-value rounded" type="text" name="data.attributes.{{key}}.value" value="{{numberFormat value decimals=0 sign=true}}" data-dtype="Number"/><br/>
-                                <span  class="stat-roll malus rollable" title="2d6M" data-roll="3d6kh2+@attributes.{{key}}.value" data-label="{{key}}"><i class="fas fa-dice"></i></span>
-                                <span  class="stat-roll rollable" title="2d6" data-roll="2d6+@attributes.{{key}}.value" data-label="{{key}}"><i class="fas fa-dice"></i></span>
-                                <span  class="stat-roll bonus rollable" title="2d6B" data-roll="3d6kl2+@attributes.{{key}}.value" data-label="{{key}}"><i class="fas fa-dice"></i></span>
-                            </div>
-                        {{/each}}
-                    </div>
-                    <hr/>
-                    <div class="aptitudes flexrow">
-                    {{#each data.aptitudes as |aptitude id|}}
-                        <div class="aptitude stat flex1 flex-group-center">
-                            <label class="stat-label"><a class="roll-attribute" data-attr-key="{{key}}">{{localize label}}</a></label><br/>
-                            <input class="stat-value rounded-border" type="text" name="data.aptitudes.{{key}}.value" value="{{numberFormat value decimals=0 sign=true}}" data-dtype="Number"/><br/>
-                            <span class="stat-roll malus rollable" title="2d6M" data-roll="3d6kh2+@aptitudes.{{key}}.value" data-label="{{key}}"><i class="fas fa-dice"></i></span>
-                            <span class="stat-roll rollable" title="2d6" data-roll="2d6+@aptitudes.{{key}}.value" data-label="{{key}}"><i class="fas fa-dice"></i></span>
-                            <span class="stat-roll bonus rollable" title="2d6B" data-roll="3d6kl2+@aptitudes.{{key}}.value" data-label="{{key}}"><i class="fas fa-dice"></i></span>
-                        </div>
-                    {{/each}}
-                    </div>
-                    <hr/>
-                    <div class="resources flexrow">
-                    {{#each data.resources as |resource id|}}
-                        <div class="resource stat flex1 flex-group-center">
-                            <label class="stat-label">{{localize label}}</label><br/>
-                            <input class="stat-value" type="text" name="data.resources.{{key}}.value" value="{{numberFormat value decimals=0 sign=false}}" data-dtype="Number"/>
-                            <input class="stat-max" type="text" name="data.resources.{{key}}.max" value="{{numberFormat max decimals=0 sign=false}}" data-dtype="Number"/>
-                        </div>
-                    {{/each}}
-                    </div>
+                <div class="tab stats" data-group="primary" data-tab="stats">{{> "systems/bol/templates/actor/parts/tabs/actor-stats.hbs"}}</div>
+                <div class="tab combat" data-group="primary" data-tab="combat">
+                    {{> "systems/bol/templates/actor/parts/tabs/actor-combat.hbs"}}
                 </div>
-
                 <div class="tab features" data-group="primary" data-tab="features">
-                    <ol class="items-list">
-                        <li class="item flexrow item-header">
-                            <div class="item-image">{{localize "Careers"}}</div>
-                            <div class="item-name">{{localize "Name"}}</div>
-                            <div class="item-name">{{localize "Level"}}</div>
-                        </li>
-                        {{#each data.features.careers as |item id|}}
-                            <li class="item flexrow" data-item-id="{{item._id}}">
-                                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                                <h4 class="item-name"><a class="roll-career">{{item.name}}</a></h4>
-                                <span class="item-name">{{item.data.rank}}</span>
-                                <div class="item-controls">
-                                    <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                                    <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                                </div>
-                            </li>
-                        {{/each}}
-                    </ol>
-
-                    <ol class="items-list">
-                        <li class="item flexrow item-header">
-                            <div class="item-image">{{localize "Weapons"}}</div>
-                            <div class="item-name">{{localize "Name"}}</div>
-                            <div class="item-name">{{localize "Damage"}}</div>
-                        </li>
-                        {{#each data.weapons as |weapon id|}}
-                            <li class="item flexrow" data-item-id="{{weapon._id}}">
-                                <div class="item-image"><img src="{{weapon.img}}" title="{{weapon.name}}" width="24" height="24"/></div>
-                                <h4 class="item-name"><a class="roll-weapon">{{weapon.name}}</a></h4>
-                                <span class="item-name">{{weapon.data.damage}}</span>
-                                <div class="item-controls">
-                                    <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                                    <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                                </div>
-                            </li>
-                        {{/each}}
-                    </ol>
-
-                    <ol class="items-list">
-                        <li class="item flexrow item-header">
-                            <div class="item-image">{{localize "Boons"}}</div>
-                            <div class="item-name">{{localize "Name"}}</div>
-<!--                            <div class="item-controls">-->
-<!--                                <a class="item-control item-create" title="Create item" data-type="item"><i class="fas fa-plus"></i> Add item</a>-->
-<!--                            </div>-->
-                        </li>
-                        {{#each data.features.boons as |item id|}}
-                            <li class="item flexrow" data-item-id="{{item._id}}">
-                                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                                <h4 class="item-name">{{item.name}}</h4>
-                                <div class="item-controls">
-                                    <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                                    <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                                </div>
-                            </li>
-                        {{/each}}
-                    </ol>
-                    <ol class="items-list">
-                        <li class="item flexrow item-header">
-                            <div class="item-image">{{localize "Flaws"}}</div>
-                            <div class="item-name">{{localize  "Name"}}</div>
-<!--                            <div class="item-controls">-->
-<!--                                <a class="item-control item-create" title="Create item" data-type="item"><i class="fas fa-plus"></i> Add item</a>-->
-<!--                            </div>-->
-                        </li>
-                        {{#each data.features.flaws as |item id|}}
-                            <li class="item flexrow" data-item-id="{{item._id}}">
-                                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                                <h4 class="item-name">{{item.name}}</h4>
-                                <div class="item-controls">
-                                    <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                                    <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                                </div>
-                            </li>
-                        {{/each}}
-                    </ol>
+                    {{> "systems/bol/templates/actor/parts/tabs/actor-features.hbs"}}
                 </div>
                 <div class="tab equipment" data-group="primary" data-tab="equipment">
-                    <ol class="items-list">
-                        <li class="item flexrow item-header">
-                            <div class="item-image">{{localize "Inventory"}}</div>
-                            <div class="item-name">{{localize "Name"}}</div>
-<!--                            <div class="item-controls">-->
-<!--                                <a class="item-control item-create" title="Create item" data-type="item"><i class="fas fa-plus"></i> Add item</a>-->
-<!--                            </div>-->
-                        </li>
-                        {{#each data.equipment as |item id|}}
-                            <li class="item flexrow" data-item-id="{{item._id}}">
-                                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                                <h4 class="item-name">{{item.name}}</h4>
-                                <div class="item-controls">
-                                    <a class="item-control item-equip" title="Worn">{{#if weapon.data.equipped}}<i class="fas fa-circle"></i>{{else}}<i class="fas fa-genderless"></i>{{/if}}</a>
-                                    <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                                    <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                                </div>
-                            </li>
-                        {{/each}}
-                    </ol>
+                    {{> "systems/bol/templates/actor/parts/tabs/actor-equipment.hbs"}}
                 </div>
                 <div class="tab description" data-group="primary" data-tab="description">
                     {{editor content=data.details.biography target="data.details.biography" button=true owner=owner editable=editable}}

@@ -174,7 +174,7 @@ export class BoLUtility  {
     actor.saveRollData( rollData );
   
     this.createChatWithRollMode( rollData.alias, {
-      content: await renderTemplate(`systems/bol/templates/roll/chat-generic-result.hbs`, rollData)
+      content: await renderTemplate(`systems/bol/templates/chat/chat-generic-result.hbs`, rollData)
     });
   }  
 

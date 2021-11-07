@@ -1,0 +1,132 @@
+[
+  {
+    "name": "Amure légère",
+    "img": "/systems/bol/ui/icons/armor.webp",
+    "type": "item",
+    "data": {
+      "subtype": "armor",
+      "description": "<h1>Amure légère</h1><p>Si votre personnage préfère éviter les combats mais sait qu’il risque de ne pas y couper, vous souhaiterez peut-être qu’il bénéficie au moins d’une petite protection. La catégorie des armures légères comprend les différentes sortes d’armures de cuir et les chemises de mailles. Votre personnage pourrait ainsi porter un robuste gilet et des brassards en cuir, ou un pourpoint doublé, accompagné de bottes et de gants en cuir souple. À moins que vous ne décidiez qu’il soit vêtu d’une légère chemise de mailles et de rien d’autre.</p><p>Une armure légère est généralement dissimulable (à moins d’être inspecté de près ou d’avoir affaire à l’œil exercé d’un soldat vétéran) et ne vous désigne pas au premier regard comme un guerrier.</p><h2>Effets des armures légères</h2><ul><li>protection d6-3 (0-3 points de réduction des dégâts) ;</li><li>si vous préférez un chiffre fixe, une armure légère offre 1 point de protection ;</li><li>le port d’une armure légère handicape un sorcier et augmente de 1 point de pouvoir le coût de ses sorts.</li></ul>",
+      "properties" : {
+        "equipable": true,
+        "protection" : true,
+        "armor" : true,
+        "concealable" : true,
+        "modifiers" : {
+          "social" : true,
+          "agility" : -1,
+          "powercost" : 1
+        },
+        "soak" : {
+          "formula" : "d6-3",
+          "value" : 1
+        }
+      }
+    }
+  },
+  {
+    "name": "Armure moyenne",
+    "img": "/systems/bol/ui/icons/armor.webp",
+    "type": "item",
+    "data": {
+      "subtype": "armor",
+      "description": "<h1>Armure moyenne</h1><p>Ce type d’armure, compromis entre la maniabilité de l’armure légère et la protection de l’armure lourde, est le choix favori des aventuriers qui s’attendent à affronter des combats de manière régulière. Il peut s’agir d’une armure de cuir couvrant la majeure partie du corps, avec des parties en cuir bouilli pour protéger les points vitaux, ou d’une armure mêlant le cuir et la cotte de mailles, ou encore d’une cuirasse en acier, simple mais efficace.</p><p>Un personnage portant une armure moyenne peut généralement en ôter certaines parties pour la transformer en armure légère s’il le souhaite.</p><h2>Effets des armures moyennes</h2><ul><li>protection d6-2 (0-4 points de réduction des dégâts) ;</li><li>si vous préférez un chiffre fixe, une armure moyenne offre 2 points de protection ;</li><li>le port d’une armure moyenne s’accompagne d’un malus de -1 en agilité du fait de l’encombrement ;</li><li>le port d’une armure moyenne handicape un sorcier et augmente de 2 points de pouvoir le coût de ses sorts.</li></ul>",
+      "properties" : {
+        "equipable": true,
+        "protection" : true,
+        "armor" : true,
+        "modifiers" : {
+          "social" : true,
+          "agility" : -1,
+          "powercost" : 2
+        },
+        "soak" : {
+          "formula" : "d6-2",
+          "value" : 2
+        }
+      }
+    }
+  },
+  {
+    "name": "Armure lourde",
+    "img": "/systems/bol/ui/icons/armor.webp",
+    "type": "item",
+    "data": {
+      "subtype": "armor",
+      "description": "<h1>Armure lourde</h1><p>Ce type d’armure est porté par des gladiateurs, des chevaliers partant à la guerre, ou par ceux prévoyant de participer à une bataille sanglante dans un proche avenir. Ce n’ est pas une armure que l’on peut porter la journée entière, et encore moins pour voyager ou s’adonner aux activités ordinaires du quotidien. Il peut s’agir d’un haubert de mailles descendant jusqu’aux genoux ou d’une cuirasse en acier, complétée de grèves et de gantelets, ou encore d’une brigandine (une veste de cuir cousue de plaques de métal) avec gantelets et hautes bottes.</p><p>Un personnage portant une armure lourde peut généralement ôter certaines parties de celle-ci pour la transformer en armure moyenne s’il le souhaite.</p><p>Les personnages ayant moins de 0 en vigueur ne peuvent pas porter d’armure lourde (ils ne sont pas assez robustes pour supporter un pareil attirail).</p><h2>Effets des armures lourdes</h2><ul><li>protection d6-1 (0-5 points de réduction des dégâts) ;</li><li>si vous préférez un chiffre fixe, une armure lourde offre 3 points de protection ;</li><li>le port d’une armure lourde s’accompagne d’un malus de -2 en agilité du fait de l’ encombrement ;</li><li>le port d’une armure lourde handicape un sorcier et augmente de 3 points de pouvoir le coût de ses sorts.</li></ul>",
+      "properties" : {
+        "equipable": true,
+        "protection" : true,
+        "armor" : true,
+        "modifiers" : {
+          "social" : true,
+          "agility" : -2,
+          "powercost" : 3
+        },
+        "soak" : {
+          "formula" : "d6-1",
+          "value" : 1
+        }
+      }
+    }
+  },
+  {
+    "name": "Casque",
+    "img": "/systems/bol/ui/icons/armor.webp",
+    "type": "item",
+    "data": {
+      "subtype": "helm",
+      "description": "<h1>Casque</h1><p>Si vous êtes équipé d’un casque, celui-ci ajoute +1 à la protection de votre armure, dans le cas où vous en portez une. Si vous portez par exemple une armure légère et un casque, votre dé de protection sera égal à d6-2 (d6-1 en armure moyenne et d6 en armure lourde).</p><p>En revanche, un casque vous inflige un malus à l’initiative (il est plus difficile de remarquer ce qui se passe autour de vous avec un casque qui limite votre champ de vision), ainsi que dans certaines situations sociales.</p><p>En général, un héros ne porte pas son casque en permanence et ne le met que lorsqu’il se prépare au combat.</p>",
+      "properties" : {
+        "equipable": true,
+        "protection" : true,
+        "helm" : true,
+        "modifiers" : {
+          "social" : true
+        },
+        "soak" : {
+          "formula" : "+1",
+          "value" : 1
+        }
+      }
+    }
+  },
+  {
+    "name": "Petit bouclier",
+    "img": "/systems/bol/ui/icons/shield.webp",
+    "type": "item",
+    "data": {
+      "subtype": "shield",
+      "description": "<h1>Petit bouclier</h1><p>Un personnage ne peut bénéficier de son bouclier que s’il est conscient de l’attaque qui le vise, et donc s’il est prêt à la parer.</p>",
+      "properties" : {
+        "equipable": true,
+        "protection" : true,
+        "shield" : true,
+        "blocking" : {
+          "malus" : -1,
+          "nbAttacksPerRound" : "1"
+        }
+      }
+    }
+  },
+  {
+    "name": "Grand bouclier",
+    "img": "/systems/bol/ui/icons/shield.webp",
+    "type": "item",
+    "data": {
+      "subtype": "shield",
+      "description": "<h1>Grand bouclier</h1><p>Un personnage ne peut bénéficier de son bouclier que s’il est conscient de l’attaque qui le vise, et donc s’il est prêt à la parer.</p>",
+      "properties" : {
+        "equipable": true,
+        "protection" : true,
+        "shield" : true,
+        "modifiers" : {
+          "agility" : -1
+        },
+        "blocking" : {
+          "malus" : -1,
+          "nbAttacksPerRound" : "1"
+        }
+      }
+    }
+  }
+]

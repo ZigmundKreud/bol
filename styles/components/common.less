@@ -1,0 +1,90 @@
+.window-content {
+  background: white;
+  height: 100%;
+  padding: 5px;
+  overflow-y: hidden;
+
+  form {
+    height: 100%;
+    .sheet-header {
+      //background-color: red;
+      background-image: url("/systems/bol/ui/banner.webp");
+      background-repeat: no-repeat;
+      background-size: @deco-width @deco-height;
+      background-position-y: -15px;
+      background-position-x: right;
+
+      height: @logo-height;
+      min-height: @logo-height;
+      max-height: @logo-height;
+
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: flex-end;
+      padding-bottom: 10px;
+
+      .header-field {
+        .header-field-group {
+          overflow: hidden;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+          align-items: baseline;
+
+          .header-field-label {
+            margin-right: 5px;
+          }
+
+          .charname,
+          .itemname,
+          .header-field-value {
+            color: @colorOlive;
+            font-family: @font-secondary;
+            font-size: 1.5rem;
+            background-color: #EEE;
+          }
+        }
+      }
+    }
+
+    .main {
+      /* Sheet Tabs */
+      .tabs {
+        flex: 0 0 40px;
+        background-color: black;
+
+        .item {
+          line-height: 40px;
+          font-weight: bold;
+          font-family: @font-handwrite;
+          color: white;
+          font-size: 14px;
+        }
+
+        .item.active {
+          text-decoration: underline;
+          text-shadow: none;
+        }
+      }
+
+      .sheet-body {
+        overflow: hidden;
+
+        .tab {
+          height: 100%;
+          overflow-y: auto;
+          /* Items List */
+          &.description {
+            .editor, .editor-content {
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

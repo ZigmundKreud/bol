@@ -1,0 +1,156 @@
+.window-content {
+  background-image: url("/systems/bol/ui/logo.webp");
+  background-repeat: no-repeat;
+  background-size: @logo-width @logo-height;
+
+  form {
+    .sidebar {
+      //background-color: green;
+      //background-color: red;
+      padding-top: @logo-height;
+      min-width: @sidebar-width;
+      width: @sidebar-width;
+      max-width: @sidebar-width;
+
+      .profile-img {
+        cursor: pointer;
+        border: none;
+        background-color: #EEE;
+        height: auto;
+        width: calc(@sidebar-width - 10px);
+        min-width: calc(@sidebar-width - 10px);
+        max-width: calc(@sidebar-width - 10px);
+        margin-right: 10px;
+      }
+    }
+    .main {
+      .sheet-body {
+        overflow: hidden;
+        .tab {
+          height: 100%;
+          overflow-y: auto;
+          .attribute {
+            &.vigor {
+              background-image: url("/systems/bol/ui/attributes/vigor.webp");
+              background-repeat: no-repeat;
+              background-position: center center;
+              background-size: @attributes-width @attributes-height;
+            }
+
+            &.agility {
+              background-image: url("/systems/bol/ui/attributes/agility.webp");
+              background-repeat: no-repeat;
+              background-position: center center;
+              background-size: @attributes-width @attributes-height;
+            }
+
+            &.mind {
+              background-image: url("/systems/bol/ui/attributes/mind.webp");
+              background-repeat: no-repeat;
+              background-position: center center;
+              background-size: @attributes-width @attributes-height;
+            }
+
+            &.appeal {
+              background-image: url("/systems/bol/ui/attributes/appeal.webp");
+              background-repeat: no-repeat;
+              background-position: center center;
+              background-size: @attributes-width @attributes-height;
+            }
+
+            .stat-value {
+              margin-top: -10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.bol-footer {
+  height: @deco-height;
+  max-height: @deco-height;
+  min-height: @deco-height;
+
+  .footer-left {
+    img {
+      border: none;
+      height: @deco-height;
+      max-height: @deco-height;
+      min-height: @deco-height;
+      transform: scaleX(-1);
+    }
+  }
+
+  .footer-center {
+    margin-top: 20px;
+    margin-left: calc(-@deco-width * 2);
+    margin-right: calc(-@deco-width * 2);
+    height: @footer-height;
+    max-height: @footer-height;
+    min-height: @footer-height;
+    background-color: black;
+  }
+
+  .footer-right {
+    text-align: right;
+
+    img {
+      border: none;
+      height: @deco-height;
+      max-height: @deco-height;
+      min-height: @deco-height;
+    }
+  }
+}
+
+.stat-max {
+  font-size: 1rem;
+  font-weight: bold;
+  color: @colorOlive;
+}
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: darkred;
+}
+
+.stat-roll {
+  font-size: 1.5rem;
+}
+
+.header-field-label,
+.stat-label {
+  font-weight: bold;
+  font-family: @font-tertiary;
+  font-size: 2rem;
+  font-variant: small-caps;
+}
+
+
+.rounded {
+  border-radius: 100px;
+  width: 4rem;
+  height: 4rem;
+}
+
+.rounded-border {
+  border: 3px solid @colorOlive;
+  border-radius: 100px;
+  width: 4rem;
+  height: 4rem;
+}
+
+.half-rounded {
+  border-radius: 100px 100px 0px 0px;
+  width: 4rem;
+  height: 4rem;
+}
+
+.half-rounded-border {
+  border-radius: 100px 100px 0px 0px;
+  border: 3px solid @colorOlive;
+  width: 4rem;
+  height: 4rem;
+}

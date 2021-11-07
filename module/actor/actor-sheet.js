@@ -18,29 +18,6 @@ export class BoLActorSheet extends ActorSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData(options) {
-    console.debug("getData");
-    const actor = super.getData(options);
-    console.log(actor.data);
-    actor.data.details = actor.data.data.details;
-    actor.data.attributes = Object.values(actor.data.data.attributes);
-    actor.data.aptitudes = Object.values(actor.data.data.aptitudes);
-    actor.data.resources = Object.values(actor.data.data.resources);
-    actor.data.equipment = actor.data.items.filter(i => i.type === "item" || i.type == 'weapon' || i.type == 'armor');
-    actor.data.weapons = duplicate(actor.data.items.filter(i => i.type == 'weapon' ));
-    actor.data.armors = duplicate(actor.data.items.filter(i => i.type == 'armor' ));
-    actor.data.features = {
-      "origin" : actor.data.items.find(i => i.type === "feature" && i.data.subtype === "origin"),
-      "race" : actor.data.items.find(i => i.type === "feature" && i.data.subtype === "race"),
-      "careers" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "career"),
-      "boons" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "boon"),
-      "flaws" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "flaw")
-    };
-
-    return actor;
-  }
-
-  /** @override */
   activateListeners(html) {
     super.activateListeners(html);
 
@@ -59,7 +36,7 @@ export class BoLActorSheet extends ActorSheet {
     });
     html.find('.roll-attribute').click(ev => {
       this.actor.rollAttributeAptitude( $(ev.currentTarget).data("attr-key") );
-    });    
+    });
     html.find('.roll-career').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
       this.actor.rollCareer( li.data("itemId") );
@@ -68,7 +45,10 @@ export class BoLActorSheet extends ActorSheet {
       const li = $(ev.currentTarget).parents(".item");
       this.actor.rollWeapon( li.data("itemId") );
     });
-    
+
+    // Equip/Unequip item
+    html.find('.item-equip').click(this._onToggleEquip.bind(this));
+
     // Delete Inventory Item
     html.find('.item-delete').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
@@ -80,6 +60,56 @@ export class BoLActorSheet extends ActorSheet {
     html.find('.rollable').click(this._onRoll.bind(this));
   }
 
+  /* -------------------------------------------- */
+
+  /** @override */
+  getData(options) {
+    console.debug("getData");
+    const actor = super.getData(options);
+    console.log(actor.data);
+    actor.data.details = actor.data.data.details;
+    actor.data.attributes = Object.values(actor.data.data.attributes);
+    actor.data.aptitudes = Object.values(actor.data.data.aptitudes);
+    actor.data.resources = Object.values(actor.data.data.resources);
+    actor.data.equipment = actor.data.items.filter(i => i.type === "item" || i.type == 'weapon' || i.type == 'armor');
+    actor.data.weapons = duplicate(actor.data.items.filter(i => i.type == 'weapon' ));
+    actor.data.armors = duplicate(actor.data.items.filter(i => i.type == 'armor' ));
+
+    actor.data.features = {
+      "careers" : {
+        "label" : "BOL.featureCategory.careers",
+        "ranked" : true,
+        "items" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "career")
+      },
+      "origins" : {
+        "label" : "BOL.featureCategory.origins",
+        "ranked" : false,
+        "items" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "origin")
+      },
+      "races" : {
+        "label" : "BOL.featureCategory.races",
+        "ranked" : false,
+        "items" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "race")
+      },
+      "boons" : {
+        "label" : "BOL.featureCategory.boons",
+        "ranked" : false,
+        "items" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "boon")
+      },
+      "flaws" : {
+        "label" : "BOL.featureCategory.flaws",
+        "ranked" : false,
+        "items" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "flaw")
+      },
+      "languages" : {
+        "label" : "BOL.featureCategory.languages",
+        "ranked" : false,
+        "items" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "language")
+      }
+    };
+
+    return actor;
+  }
   /* -------------------------------------------- */
 
   /**
@@ -109,6 +139,14 @@ export class BoLActorSheet extends ActorSheet {
     return this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 
+
+  _onToggleEquip(event) {
+    event.preventDefault();
+    const li = $(event.currentTarget).closest(".item");
+    const item = this.actor.items.get(li.data("itemId"));
+    return this.actor.toggleEquipItem(item);
+  }
+
   /**
    * Handle clickable rolls.
    * @param {Event} event   The originating click event
@@ -129,4 +167,12 @@ export class BoLActorSheet extends ActorSheet {
     }
   }
 
+  /** @override */
+  setPosition(options = {}) {
+    const position = super.setPosition(options);
+    const sheetBody = this.element.find(".sheet-body");
+    const bodyHeight = position.height - 192;
+    sheetBody.css("height", bodyHeight);
+    return position;
+  }
 }

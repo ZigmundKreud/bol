@@ -1,0 +1,533 @@
+[
+  {
+    "name": "Agilité de l’homme-oiseau",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Agilité de l’homme-oiseau</h1><p>ajoutez 1 à votre agilité. Votre score maximum en agilité passe à 6 au lieu de 5, et votre score de départ maximum en agilité peut être de 4 (au lieu de 3).</p>"
+    }
+  },
+  {
+    "name": "Ami des bêtes",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Ami des bêtes</h1><p>vous possédez une affinité naturelle avec les animaux. Vous bénéficiez d’un dé de bonus quand vous interagissez avec eux. Si vous êtes dresseur, vous pouvez avoir avec vous deux ou trois compagnons animaux de taille petite, ou un seul de taille moyenne ou grande.</p>"
+    }
+  },
+  {
+    "name": "Ami des céruléens",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Ami des céruléens</h1><p>vous avez grandi à proximité des géants bleus, ou bien des circonstances particulières vous ont valu leur amitié, et ils vous considèrent comme un des leurs. Vous bénéficiez d’un dé de bonus quand vous interagissez avec les nomades bleus.</p>"
+    }
+  },
+  {
+    "name": "Amis dans la pègre",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Amis dans la pègre</h1><p>vous comptez des amis peu recommandables parmi les différentes pègres qui gangrènent la Lémurie. Ils peuvent vous aider à trouver un receleur, vous fournir une planque, etc.</p>"
+    }
+  },
+  {
+    "name": "Amis haut placés",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Amis haut placés</h1><p>vous jouissez de contacts au sein des plus hauts échelons de la société. Même s’ils ne seront pas en général disposés à risquer leur tête pour vous, ils pourront vous apporter de l’aide (comme vous obtenir une audience auprès d’un autre personnage important, vous fournir des informations, jouer de leur influence auprès de la noblesse locale, etc.). Bien sûr, ces amis attendront parfois en retour une faveur de votre part...</p>"
+    }
+  },
+  {
+    "name": "Arme favorite",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Arme favorite</h1><p>vous disposez d’une arme de qualité (une grande épée valgardienne, un arc long de Tyrus, une fronde d’Axos, un kriss halakhi, un khastok de Malakut, une hache d’abordage de Parsool, une rapière de Satarla, ou une arme spécialement fabriquée pour vous ou dont vous avez hérité) et vous vous êtes entraîné à son maniement depuis l’enfance. Vous bénéficiez d’un dé de bonus lorsque vous utilisez cette arme (ou, si elle est perdue, volée ou détruite, une arme de substitution qui devra reproduire ses qualités uniques, ce qui risque d’être particulièrement onéreux).</p>"
+    }
+  },
+  {
+    "name": "Artiste",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Artiste</h1><p>vous avez une sensibilité d’artiste. Vous bénéficiez d’un dé de bonus pour créer ou estimer des objets d’art.</p>"
+    }
+  },
+  {
+    "name": "Athlète",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Athlète</h1><p>vous bénéficiez d’un dé de bonus quand vous entreprenez des activités athlétiques (autres que le combat) comme courir, nager, grimper ou sauter.</p>"
+    }
+  },
+  {
+    "name": "Attirant",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Attirant</h1><p>vous êtes particulièrement beau ou séduisant. Vous bénéficiez d’un dé de bonus dans les situations où l’apparence peut jouer un rôle.</p>"
+    }
+  },
+  {
+    "name": "Bagarreur",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Bagarreur</h1><p>vous êtes un boxeur et un lutteur compétent. Vous bénéficiez d’un dé de bonus à l’attaque quand vous combattez à mains nues.</p>"
+    }
+  },
+  {
+    "name": "Baudrier de guerre",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Baudrier de guerre</h1><p>cet avantage autorise votre personnage à ne porter qu’un pagne ou un bikini en cotte de mailles et un simple baudrier (l’équivalent d’une armure légère au mieux), tout en considérant qu’il s’agit d’une armure moyenne en terme de protection, et ce sans subir le moindre malus d’armure.</p>"
+    }
+  },
+  {
+    "name": "Beau parleur",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Beau parleur</h1><p>vous êtes très persuasif et excellent menteur. Vous bénéficiez d’un dé de bonus quand vous voulez mentir, escroquer, baratiner ou tromper quelqu’un.</p>"
+    }
+  },
+  {
+    "name": "Bibliothèque savante",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Bibliothèque savante</h1><p>vous disposez d’une bibliothèque de qualité pour mener vos recherches. Vous bénéficiez d’un dé de bonus pour recueillir des informations lorsque vous vous trouvez dans votre bibliothèque. Vous devez toutefois enrichir régulièrement vos collections, ce qui vous conduit à partir à l’aventure pour trouver les moyens d’acquérir de nouveaux manuscrits.</p>"
+    }
+  },
+  {
+    "name": "Bien né",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Bien né</h1><p>vous avez grandi dans les palais et les cours, parmi la noblesse et la haute société. Vous bénéficiez d’un dé de bonus pour agir selon les règles de l’étiquette et de la courtoisie.</p>"
+    }
+  },
+  {
+    "name": "Colosse",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Colosse</h1><p>vous savez mobiliser votre vigueur pour accomplir de véritables tours de force. Vous bénéficiez d’un dé de bonus pour briser, lever, tirer ou pousser des objets.</p>"
+    }
+  },
+  {
+    "name": "Combat à l’aveugle",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Combat à l’aveugle</h1><p>pas de lumière ? Aucun problème. En vous basant sur les odeurs, les bruits, les déplacements d’air, vous ne faites plus qu’un avec le monde qui vous entoure. Votre personnage ignore les malus imposés par le MJ pour combattre dans l’obscurité.</p>"
+    }
+  },
+  {
+    "name": "Cri de guerre",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Cri de guerre</h1><p>le personnage pousse son cri de guerre pour effrayer les ennemis à portée de voix. Ces derniers subissent un dé de malus sur tous leurs jets d’attaque durant le round qui suit le cri de guerre. Cet avantage ne peut être utilisé gratuitement qu’une fois par jour ; toute utilisation supplémentaire exigera la dépense de 1 point d’héroïsme.</p>"
+    }
+  },
+  {
+    "name": "Discret",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Discret</h1><p>vous êtes vif et agile. Vous bénéficiez d’un dé de bonus dans les situations où vous essayez de faire preuve de discrétion.</p>"
+    }
+  },
+  {
+    "name": "Doigts de fée",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Doigts de fée</h1><p>vous bénéficiez d’un dé de bonus pour toutes les tâches exigeant une grande dextérité, comme le vol à la tire, la fabrication d’objets, le jonglage ou la triche aux cartes et aux dés.</p>"
+    }
+  },
+  {
+    "name": "Dur à cuire",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Dur à cuire</h1><p>vous avez la robustesse d’un bronyx. Ajoutez 2 points à votre vitalité.</p>"
+    }
+  },
+  {
+    "name": "Érudit",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Érudit</h1><p>quand vous cherchez à vous souvenir d’un fait relevant de votre domaine de compétence, vous bénéficiez d’un dé de bonus.</p>"
+    }
+  },
+  {
+    "name": "Fêtard",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Fêtard</h1><p>vous connaissez bien les auberges et les tavernes, et vous n’êtes pas le dernier quand il s’agit de lever le coude. Vous bénéficiez d’un dé de bonus pour recueillir des informations, trouver des contacts ou obtenir des biens et des services quand vous vous trouvez dans une taverne. De plus, vous tenez très bien l’alcool et bénéficiez également d’un dé de bonus pour résister aux effets de la boisson.</p>"
+    }
+  },
+  {
+    "name": "Fils des plaines",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Fils des plaines</h1><p>vous avez grandi dans les plaines. Lorsque vous vous trouvez dans un paysage de plaine, vous bénéficiez d’un dé de bonus pour pister, piéger ou chasser, ainsi que pour d’autres activités similaires de survie (mais pas pour combattre).</p>"
+    }
+  },
+  {
+    "name": "Fortuné",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Fortuné</h1><p>vous disposez d’une source de revenus ou d’un héritage. Vous bénéficiez d’un dé de bonus quand vous cherchez à acquérir des biens ou des services dans votre cité d’origine.</p>"
+    }
+  },
+  {
+    "name": "Gamin des rues",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Gamin des rues</h1><p>vous êtes un enfant des rues. Vous bénéficiez d’un dé de bonus quand vous interagissez avec les gens des bas-fonds de la cité, ou pour des activités comme filer quelqu’un ou remarquer un détail dans la rue (mais pas pour combattre).</p>"
+    }
+  },
+  {
+    "name": "Inspirateur",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Inspirateur</h1><p>vous savez motiver vos amis et vos partisans. Cela peut se faire au moyen d’une invocation aux dieux, d’un discours enflammé ou d’une musique inspirante, à moins que cela ne vienne simplement de votre présence charismatique. Pour le round qui suit l’utilisation de cet avantage, vos compagnons bénéficient d’un dé de bonus à tous leurs jets d’attaque (à condition d’être à portée de voix). Cet avantage ne peut être utilisé gratuitement qu’une fois par jour ; toute utilisation supplémentaire exigera la dépense de 1 point d’héroïsme.</p>"
+    }
+  },
+  {
+    "name": "Intimidant",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Intimidant</h1><p>vous bénéficiez d’un dé de bonus à chaque fois que vous essayez de forcer quelqu’un à vous donner une information ou à faire une chose à laquelle il répugne.</p>"
+    }
+  },
+  {
+    "name": "Intrépide",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Intrépide</h1><p>votre personnage est insensible à la peur. Même une peur magiquement induite n’a aucune prise sur lui.</p>"
+    }
+  },
+  {
+    "name": "Laboratoire fourni",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Laboratoire fourni</h1><p>vous disposez d’un laboratoire de qualité pour mener vos expériences. Vous bénéficiez d’un dé de bonus aux jets pour créer des préparations alchimiques ou des instruments mécaniques lorsque vous vous trouvez dans votre laboratoire. Celui-ci doit toutefois être réapprovisionné de temps à autre, ce qui vous conduit à partir à l’aventure pour trouver les moyens financiers et matériels de refaire vos stocks.</p>"
+    }
+  },
+  {
+    "name": "Magie des Rois-Sorciers",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Magie des Rois-Sorciers</h1><p>vous avez atteint une certaine compréhension des antiques secrets des Rois-Sorciers. Vous bénéficiez d’un dé de bonus pour lancer des sortilèges. Si vous choisissez cet avantage, vous devez prendre un désavantage supplémentaire.</p>"
+    }
+  },
+  {
+    "name": "Mains guérisseuses",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Mains guérisseuses</h1><p>vous bénéficiez d’un dé de bonus sur les tests destinés à aider un blessé à récupérer de ses blessures, d’un empoisonnement, etc. Vous devez posséder la carrière médecin pour prendre cet avantage.</p>"
+    }
+  },
+  {
+    "name": "Maître du déguisement",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Maître du déguisement</h1><p>vous bénéficiez d’un dé de bonus quand vous tentez de dissimuler votre identité. De plus, si vous souhaitez intervenir promptement dans une scène où votre personnage n’était pas présent, vous pouvez dépenser 1 point d’héroïsme pour faire partie du décor, par exemple déguisé en garde de la patrouille ou en bourgeois passant dans la rue. En fait, vous étiez là depuis le début, mais incognito!</p>"
+    }
+  },
+  {
+    "name": "Marqué par les dieux",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Marqué par les dieux</h1><p>les dieux vous accordent leur faveur. Vous gagnez 1 point d’héroïsme supplémentaire.</p>"
+    }
+  },
+  {
+    "name": "Montagnard",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Montagnard</h1><p>vous avez grandi dans les montagnes. Lorsque vous vous trouvez dans un paysage montagneux, vous bénéficiez d’un dé de bonus pour pister, piéger ou chasser, ainsi que pour d’autres activités similaires de survie (mais pas pour combattre).</p>"
+    }
+  },
+  {
+    "name": "Né en selle",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Né en selle</h1><p>vous bénéficiez d’un dé de bonus pour chevaucher des montures et agir en selle (mais pas pour combattre).</p>"
+    }
+  },
+  {
+    "name": "Odorat développé",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Odorat développé</h1><p>à chaque fois que vous effectuez un jet d’action sous esprit pour percevoir quelque chose grâce à votre odorat, vous bénéficiez d’un dé de bonus.</p>"
+    }
+  },
+  {
+    "name": "Ouïe fine",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Ouïe fine</h1><p>à chaque fois que vous effectuez un jet d’action sous esprit pour percevoir quelque chose grâce à votre ouïe, vous bénéficiez d’un dé de bonus.</p>"
+    }
+  },
+  {
+    "name": "Outillage",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Outillage</h1><p>vous possédez un jeu d’outils adaptés à votre métier ou votre artisanat. Vous bénéficiez d’un dé de bonus quand vous entreprenez une action où l’emploi de ces outils peut se révéler efficace.</p>"
+    }
+  },
+  {
+    "name": "Peau dure",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Peau dure</h1><p>vous avez une peau particulièrement résistante et épaisse qui vous confère +1 en protection, même quand vous ne portez pas d’armure.</p>"
+    }
+  },
+  {
+    "name": "Perspicace",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Perspicace</h1><p>vous êtes doué pour percer à jour les menteurs. Quand quelqu’un tente de vous mentir ou de vous entourlouper, vous bénéficiez d’un dé de bonus pour le remarquer. Cela ne veut pas dire que vous connaîtrez forcément la vérité, mais vous saurez au moins qu’on est en train de vous mentir.</p>"
+    }
+  },
+  {
+    "name": "Pied marin",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Pied marin</h1><p>vous avez grandi dans un environnement de navires et de bateaux. Vous bénéficiez d’un dé de bonus pour manœuvrer une embarcation ou entreprendre des activités physiques à bord d’un navire (mais pas pour combattre).</p>"
+    }
+  },
+  {
+    "name": "Pisteur des marais",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Pisteur des marais</h1><p>vous avez grandi dans les marais. Lorsque vous vous trouvez dans un paysage de marécage, vous bénéficiez d’un dé de bonus pour pister, piéger ou chasser, ainsi que pour d’autres activités similaires de survie (mais pas pour combattre).</p>"
+    }
+  },
+  {
+    "name": "Poings d’acier",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Poings d’acier</h1><p>vous avez les poings durs comme la pierre après des années d’entraînement ou à force de vous bagarrer dans toutes les tavernes de la ville. Vous ajoutez votre vigueur aux dégâts quand vous combattez à mains nues.</p>"
+    }
+  },
+  {
+    "name": "Pouvoir du Néant",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Pouvoir du Néant</h1><p>vous avez porté le regard sur l’abîme de noirceur du Néant, et recevez deux points de pouvoir supplémentaires. Si vous choisissez cet avantage, vous devez aussi prendre un désavantage supplémentaire.</p>"
+    }
+  },
+  {
+    "name": "Récupération rapide",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Récupération rapide</h1><p>vous jouissiez d’une constitution hors norme. Lorsque vous récupérez après un combat, vous regagnez 1 point de vitalité supplémentaire (qui s’ajoute à la récupération normale, égale à la moitié des points perdus). De plus, si vous êtes blessé, vous récupérez 1 point de vitalité par jour, peu importe les activités que vous entreprenez.</p>"
+    }
+  },
+  {
+    "name": "Renard du désert",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Renard du désert</h1><p>lorsque vous vous trouvez dans un désert, vous bénéficiez d’un dé de bonus pour pister, piéger ou chasser, ainsi que pour d’autres activités similaires de survie (mais pas pour combattre).</p>"
+    }
+  },
+  {
+    "name": "Résistant à la magie",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Résistant à la magie</h1><p>si vous êtes visé par un sortilège, lancez un d6. Sur un 6, le sortilège n’a aucun effet sur vous.</p>"
+    }
+  },
+  {
+    "name": "Résistant aux poisons",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Résistant aux poisons</h1><p>vous bénéficiez d’un dé de bonus pour résister aux effets des drogues, des venins, des toxines, ainsi que de l’alcool.</p>"
+    }
+  },
+  {
+    "name": "Roi de la jungle",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Roi de la jungle</h1><p>vous avez grandi dans la jungle. Lorsque vous vous trouvez dans un paysage de jungle, vous bénéficiez d’un dé de bonus pour pister, piéger ou chasser, ainsi que pour d’autres activités similaires de survie (mais pas pour combattre).</p>"
+    }
+  },
+  {
+    "name": "Roi de l’évasion",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Roi de l’évasion</h1><p>cordes, chaînes, menottes, prison, rien ne vous retient bien longtemps. Que ce soit par vos talents ou par un coup de chance, vous finissez toujours par vous libérer. Vous bénéficiez d’un dé de bonus lorsque vous tentez de vous évader ou de vous libérer de vos liens.</p>"
+    }
+  },
+  {
+    "name": "Santé de fer",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Santé de fer</h1><p>vous êtes immunisé à toutes les maladies, y compris celles d’origine magique.</p>"
+    }
+  },
+  {
+    "name": "Savant",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Savant</h1><p>ajoutez 1 à votre esprit. Votre score maximum en esprit passe à 6 au lieu de 5, et votre score de départ maximum en esprit peut être de 4 (au lieu de 3).</p>"
+    }
+  },
+  {
+    "name": "Sentir la magie",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Sentir la magie</h1><p>vous bénéficiez d’un dé de bonus quand vous essayez de reconnaître (ou de traquer) un sorcier, un effet ou un artefact magique.</p>"
+    }
+  },
+  {
+    "name": "Tigre des neiges",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Tigre des neiges</h1><p>vous avez grandi dans la toundra gelée. Lorsque vous vous trouvez dans un paysage neigeux, vous bénéficiez d’un dé de bonus pour pister, piéger ou chasser, ainsi que pour d’autres activités similaires de survie (mais pas pour combattre).</p>"
+    }
+  },
+  {
+    "name": "Tireur puissant",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Tireur puissant</h1><p>avec un type d’arme à distance choisi (arc, fronde, javelot, etc.), vous ajoutez votre vigueur aux dégâts.</p>"
+    }
+  },
+  {
+    "name": "Vigilant",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Vigilant</h1><p>vous jouissez d’une excellente capacité de réaction face au danger. Vous bénéficiez d’un dé de bonus à vos jets de réaction.</p>"
+    }
+  },
+  {
+    "name": "Vigueur céruléenne",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Vigueur céruléenne</h1><p>vous êtes grand et fort. Ajoutez 1 à votre vigueur. Votre score maximum en vigueur passe à 6 au lieu de 5, et votre score de départ maximum en vigueur peut être de 4 (au lieu de 3).</p>"
+    }
+  },
+  {
+    "name": "Vision nocturne",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Vision nocturne</h1><p>vous bénéficiez d’un dé de bonus quand l’obscurité impose un malus à la vision.</p>"
+    }
+  },
+  {
+    "name": "Vue perçante",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/boon.webp",
+    "data": {
+      "subtype": "boon",
+      "description": "<h1>Vue perçante</h1><p>à chaque fois que vous effectuez un jet d’action sous esprit pour percevoir quelque chose grâce à votre vue, vous bénéficiez d’un dé de bonus.</p>"
+    }
+  }
+]

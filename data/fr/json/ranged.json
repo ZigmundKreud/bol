@@ -1,0 +1,131 @@
+[
+,  {
+  "name": "Arbalète",
+  "type": "item",
+  "img": "/systems/bol/ui/icons/crossbow.webp",
+  "data": {
+    "subtype": "weapon",
+    "description": "<h1>Arbalète</h1><p>une arme de tir qui nécessite peu d’entraînement et offre beaucoup de puissance. Les lourds projectiles tirés par une arbalète portent le nom de carreaux. Il faut un round complet pour charger une arbalète.</p>",
+    "properties" : {
+      "equipable" : true,
+      "2h" : true,
+      "ranged": true,
+      "reloadable" : true,
+      "weapon" : true,
+      "damage" : "d6",
+      "range" : 30,
+      "reload" : 1
+    }
+  }
+},
+  {
+    "name": "Arbalète lourde",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/crossbow.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Arbalète lourde</h1><p>plus lourde et plus puissante qu’une arbalète normale, l’arbalète lourde est peu usitée en Lémurie, sauf comme arme de siège portative. Il faut 2 rounds complets pour charger une arbalète lourde.</p>",
+      "properties" : {
+        "equipable" : true,
+        "2h" : true,
+        "ranged": true,
+        "reloadable" : true,
+        "weapon" : true,
+        "damage" : "d6B",
+        "range" : 45,
+        "reload" : 2
+      }
+    }
+  },
+  {
+    "name": "Arc",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/bow.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Arc</h1><p>une longue tige flexible en bois dont les extrémités sont reliées par une corde et qui permet de tirer des flèches. Il existe différentes formes d’arcs.</p>",
+      "properties" : {
+        "equipable" : true,
+        "2h" : true,
+        "ranged": true,
+        "reloadable" : true,
+        "weapon" : true,
+        "damage" : "d6",
+        "range" : 22,
+        "reload" : 0
+      }
+    }
+  },
+  {
+    "name": "Bâton-Fronde",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/sling.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Bâton-Fronde</h1><p>Version plus puissante de la fronde, montée au bout d’un bâton (ce qui en fait une arme à deux mains), qui permet des tirs à plus longue portée.</p>",
+      "properties" : {
+        "equipable" : true,
+        "2h" : true,
+        "ranged": true,
+        "reloadable" : true,
+        "weapon" : true,
+        "damage" : "d6M",
+        "range" : 18,
+        "reload" : 0
+      }
+    }
+  },
+  {
+    "name": "Fronde",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/sling.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Fronde</h1><p>simple pièce de cuir équipée de lanières, une fronde permet de projeter de petites pierres ou des billes de plomb avec une certaine force. C’est une arme peu coûteuse et facile à fabriquer. Il existe une version plus puissante, montée au bout d’un bâton (ce qui en fait une arme à deux mains), qui permet des tirs à plus longue portée.</p>",
+      "properties" : {
+        "equipable" : true,
+        "ranged": true,
+        "reloadable" : true,
+        "weapon" : true,
+        "damage" : "d6M",
+        "range" : 9,
+        "reload" : 0
+      }
+    }
+  },
+  {
+    "name": "Javelot",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/thrown.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Javelot</h1><p>une arme de jet constituée d’une courte hampe surmontée d’une tête pointue. En général, un guerrier qui utilise le javelot en emporte deux ou trois avec lui. Cette arme a la faveur des hommes-oiseaux de l’Axos.</p>",
+      "properties" : {
+        "equipable" : true,
+        "stackable": true,
+        "ranged": true,
+        "throwable" : true,
+        "damage" : "d6M",
+        "range" : 6
+      }
+    }
+  },
+  {
+    "name": "Fléchettes",
+    "type": "item",
+    "img": "/systems/bol/ui/icons/thrown.webp",
+    "data": {
+      "subtype": "weapon",
+      "description": "<h1>Fléchettes</h1><p>de petits projectiles ressemblant à des flèches miniatures, destinés à être lancés à la main. En général, un personnage qui utilise des fléchettes en possède un petit stock.</p>",
+      "properties" : {
+        "equipable" : true,
+        "stackable": true,
+        "ranged": true,
+        "throwable" : true,
+        "weapon" : true,
+        "damage" : "d6M",
+        "range" : 6
+      }
+    }
+  }
+]

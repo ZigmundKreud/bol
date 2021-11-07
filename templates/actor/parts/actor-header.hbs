@@ -1,0 +1,14 @@
+{{!-- Sheet Header --}}
+<header class="sheet-header">
+    <div class="header-field flex1">
+        <div class="header-field-group flexrow">
+            <label class="header-field-label flex2">Nom</label><br/>
+            <input class="charname  flex6" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+        </div>
+        <div class="header-field-group flexrow">
+            <label class="header-field-label flex2">Experience</label><br/>
+            <input class="header-field-value flex3" type="text" name="data.details.xp.spent" value="{{numberFormat data.details.xp.spent decimals=0 sign=false}}" data-dtype="Number"/><br/>
+            <input class="header-field-value flex3" type="text" name="data.details.xp.total" value="{{numberFormat data.details.xp.total decimals=0 sign=false}}" data-dtype="Number"/><br/>
+        </div>
+    </div>
+</header>

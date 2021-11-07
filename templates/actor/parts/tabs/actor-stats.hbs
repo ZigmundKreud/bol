@@ -1,0 +1,33 @@
+<div class="attributes flexrow">
+    {{#each data.attributes as |attribute id|}}
+        <div class="attribute stat flex1 flex-group-center {{key}}">
+            <label class="stat-label"><a class="roll-attribute" data-attr-key="{{key}}">{{localize label}}</a></label><br/>
+            <input class="stat-value rounded" type="text" name="data.attributes.{{key}}.value" value="{{numberFormat value decimals=0 sign=true}}" data-dtype="Number"/><br/>
+            <span  class="stat-roll malus rollable" title="2d6M" data-roll="3d6kh2+@attributes.{{key}}.value" data-label="{{key}}"><i class="fas fa-dice"></i></span>
+            <span  class="stat-roll rollable" title="2d6" data-roll="2d6+@attributes.{{key}}.value" data-label="{{key}}"><i class="fas fa-dice"></i></span>
+            <span  class="stat-roll bonus rollable" title="2d6B" data-roll="3d6kl2+@attributes.{{key}}.value" data-label="{{key}}"><i class="fas fa-dice"></i></span>
+        </div>
+    {{/each}}
+</div>
+<hr/>
+<div class="aptitudes flexrow">
+    {{#each data.aptitudes as |aptitude id|}}
+        <div class="aptitude stat flex1 flex-group-center">
+            <label class="stat-label"><a class="roll-attribute" data-attr-key="{{key}}">{{localize label}}</a></label><br/>
+            <input class="stat-value rounded-border" type="text" name="data.aptitudes.{{key}}.value" value="{{numberFormat value decimals=0 sign=true}}" data-dtype="Number"/><br/>
+            <span class="stat-roll malus rollable" title="2d6M" data-roll="3d6kh2+@aptitudes.{{key}}.value" data-label="{{key}}"><i class="fas fa-dice"></i></span>
+            <span class="stat-roll rollable" title="2d6" data-roll="2d6+@aptitudes.{{key}}.value" data-label="{{key}}"><i class="fas fa-dice"></i></span>
+            <span class="stat-roll bonus rollable" title="2d6B" data-roll="3d6kl2+@aptitudes.{{key}}.value" data-label="{{key}}"><i class="fas fa-dice"></i></span>
+        </div>
+    {{/each}}
+</div>
+<hr/>
+<div class="resources flexrow">
+    {{#each data.resources as |resource id|}}
+        <div class="resource stat flex1 flex-group-center">
+            <label class="stat-label">{{localize label}}</label><br/>
+            <input class="stat-value" type="text" name="data.resources.{{key}}.value" value="{{numberFormat value decimals=0 sign=false}}" data-dtype="Number"/>
+            <input class="stat-max" type="text" name="data.resources.{{key}}.max" value="{{numberFormat max decimals=0 sign=false}}" data-dtype="Number"/>
+        </div>
+    {{/each}}
+</div>

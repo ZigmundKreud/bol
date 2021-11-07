@@ -9,66 +9,93 @@ System.debugMode = true;
 
 export const BOL = {};
 
-BOL.itemProperties = {
-    "equipable": "BOL.properties.equipable",
-    "stackable": "BOL.properties.stackable",
-    "unique": "BOL.properties.unique",
-    "tailored": "BOL.properties.tailored",
-    "2h": "BOL.properties.2H",
-    "predilection": "BOL.properties.predilection",
-    "ranged": "BOL.properties.ranged",
-    "proficient": "BOL.properties.proficient",
-    "finesse": "BOL.properties.finesse",
-    "two-handed": "BOL.properties.two-handed",
-    "equipment": "BOL.properties.equipment",
-    "weapon": "BOL.properties.weapon",
-    "protection": "BOL.properties.protection",
-    "reloadable": "BOL.properties.reloadable",
-    "bow": "BOL.properties.bow",
-    "crossbow": "BOL.properties.crossbow",
-    "powder": "BOL.properties.powder",
-    "throwing": "BOL.properties.throwing",
-    "dr": "BOL.properties.dr",
-    "sneak": "BOL.properties.sneak",
-    "powerful": "BOL.properties.powerful",
-    "critscience": "BOL.properties.critscience",
-    "specialization": "BOL.properties.specialization",
-    "effects": "BOL.properties.effects",
-    "activable": "BOL.properties.activable",
-    "2H": "BOL.properties.2H",
-    "13strmin": "BOL.properties.13strmin",
-    "bashing": "BOL.properties.bashing",
-    "sling": "BOL.properties.sling",
-    "spell": "BOL.properties.spell",
-    "profile": "BOL.properties.profile",
-    "prestige": "BOL.properties.prestige",
-    "alternative": "BOL.properties.alternative",
-    "consumable": "BOL.properties.consumable",
-    "racial": "BOL.properties.racial",
-    "creature" : "BOL.properties.creature"
-};
 
 BOL.itemCategories = {
-    "other": "BOL.category.other",
-    "armor": "BOL.category.armor",
-    "shield": "BOL.category.shield",
-    "melee": "BOL.category.melee",
-    "ranged": "BOL.category.ranged",
-    "spell": "BOL.category.spell",
-    "jewel": "BOL.category.jewel",
-    "scroll": "BOL.category.scroll",
-    "wand": "BOL.category.wand",
-    "ammunition": "BOL.category.ammunition",
-    "consumable": "BOL.category.consumable",
-    "container": "BOL.category.container",
-    "mount": "BOL.category.mount",
-    "currency": "BOL.category.currency",
-    "trapping": "BOL.category.trapping"
+    "equipment" : "BOL.itemCategory.equipment",
+    "consumable" : "BOL.itemCategory.consumable",
+    "spell" : "BOL.itemCategory.spell",
+    "mount" : "BOL.itemCategory.mount",
+    "vehicle" : "BOL.itemCategory.vehicle",
+    "other" : "BOL.itemCategory.other"
+}
+
+BOL.equipmentCategory = {
+    "weapon" : "BOL.equipmentCategory.weapon",
+    "protection" : "BOL.equipmentCategory.protection",
+    "jewel" : "BOL.equipmentCategory.jewel",
+    "scroll" : "BOL.equipmentCategory.scroll",
+    "ammunition" : "BOL.equipmentCategory.ammunition",
+    "container" : "BOL.equipmentCategory.container",
+    "currency" : "BOL.equipmentCategory.currency",
+    "other" : "BOL.equipmentCategory.other"
+}
+
+BOL.protectionCategory = {
+    "armor" : "BOL.protectionCategory.armor",
+    "shield" : "BOL.protectionCategory.shield",
+    "helm" : "BOL.protectionCategory.helm",
+    "other" : "BOL.protectionCategory.other"
+}
+
+BOL.weaponCategory = {
+    "melee" : "BOL.weaponCategory.melee",
+    "ranged" : "BOL.weaponCategory.ranged",
+    "other" : "BOL.weaponCategory.other"
+}
+
+BOL.itemProperty = {
+    "equipable" : "BOL.itemProperty.equipable",
+    "protection" : "BOL.itemProperty.protection",
+    "blocking" : "BOL.itemProperty.blocking",
+    "magical" : "BOL.itemProperty.magical",
+    "concealable" : "BOL.itemProperty.concealable",
+    "2H" : "BOL.itemProperty.2H",
+    "helm" : "BOL.itemProperty.helm",
+    "improvised" : "BOL.itemProperty.improvised",
+    "shield" : "BOL.itemProperty.shield",
+    "melee" : "BOL.itemProperty.melee",
+    "throwable" : "BOL.itemProperty.throwable",
+    "ignoreshield" : "BOL.itemProperty.ignoreshield",
+    "bashing" : "BOL.itemProperty.bashing",
+    "stackable" : "BOL.itemProperty.stackable",
+    "ranged" : "BOL.itemProperty.ranged",
+    "weapon" : "BOL.itemProperty.weapon",
+    "reloadable" : "BOL.itemProperty.reloadable",
+    "worn" : "BOL.itemProperty.worn"
+}
+
+BOL.itemStat = {
+    "quantity" : "BOL.itemStat.quantity",
+    "weight" : "BOL.itemStat.weight",
+    "price" : "BOL.itemStat.price",
+    "range" : "BOL.itemStat.range",
+    "damage" : "BOL.itemStat.damage",
+    "reload" : "BOL.itemStat.reload",
+    "soak" : "BOL.itemStat.soak",
+    "blocking" : "BOL.itemStat.blocking",
+    "modifiers" : "BOL.itemStat.modifiers"
+}
+
+BOL.itemModifiers = {
+    "init" : "BOL.itemModifiers.init",
+    "social" : "BOL.itemModifiers.social",
+    "agility" : "BOL.itemModifiers.agility",
+    "powercost" : "BOL.itemModifiers.powercost"
+}
+
+BOL.itemBlocking = {
+    "malus" : "BOL.itemBlocking.malus",
+    "nbAttacksPerRound" : "BOL.itemBlocking.nbAttacksPerRound"
+}
+
+BOL.itemSoak = {
+    "formula" : "BOL.itemSoak.formula",
+    "value" : "BOL.itemSoak.value"
 }
 
 BOL.itemIcons = {
     "item": "icons/containers/chest/chest-worn-oak-tan.webp",
-    "capacity":"icons/sundries/scrolls/scroll-plain-tan-red.webp",
+    "capacity": "icons/sundries/scrolls/scroll-plain-tan-red.webp",
     "species": "icons/environment/people/group.webp",
     "profile": "icons/sundries/documents/blueprint-axe.webp",
     "path": "icons/sundries/books/book-embossed-gold-red.webp"
@@ -76,7 +103,7 @@ BOL.itemIcons = {
 
 BOL.actorIcons = {
     "npc": "icons/environment/people/commoner.webp",
-    "encounter":"icons/svg/mystery-man-black.svg",
+    "encounter": "icons/svg/mystery-man-black.svg",
     "loot": "icons/containers/bags/sack-simple-leather-brown.webp"
 }
 

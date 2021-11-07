@@ -1,0 +1,128 @@
+[
+  {
+    "name": "Argot des mers",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/language.webp",
+    "data": {
+      "subtype": "language",
+      "description": "<h1>Argot des mers</h1><p>les îles du Crâne, à la population hétéroclite en provenance des quatre coins du monde, ont développé leur propre langue, un assemblage bigarré d’influences diverses. Il n’en existe pas de forme écrite.</p>"
+    }
+  },
+  {
+    "name": "Axien",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/language.webp",
+    "data": {
+      "subtype": "language",
+      "description": "<h1>Axien</h1><p>l’axien est la langue des tribus barbares qui vivent dans la chaîne de l’Axos. Cette langue reste plutôt confinée à cette région montagneuse, mais on raconte que d’anciens textes datant de l’époque lointaine où l’axien était plus largement répandu seraient entreposés dans des grottes oubliées au cœur des montagnes.</p>"
+    }
+  },
+  {
+    "name": "Beshaari",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/language.webp",
+    "data": {
+      "subtype": "language",
+      "description": "<h1>Beshaari</h1><p>les nomades du désert de Beshaar parlent et écrivent leur propre langue. La plupart des habitants d’Halakh parlent le beshaari en plus du lémurien.</p>"
+    }
+  },
+  {
+    "name": "Céruléen",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/language.webp",
+    "data": {
+      "subtype": "language",
+      "description": "<h1>Céruléen</h1><p>les nomades bleus parlent leur propre langue, qui n’a pas de forme écrite. Les marchands d’Oomis apprennent souvent le céruléen.</p>"
+    }
+  },
+  {
+    "name": "Démonique",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/language.webp",
+    "data": {
+      "subtype": "language",
+      "description": "<h1>Démonique</h1><p>c’est l’ancienne langue des RoisSorciers, dans laquelle sont rédigés tous les textes remontant à leur époque. Les magiciens, alchimistes, druides et prêtres doivent apprendre le démonique s’ils veulent pouvoir utiliser les puissants sortilèges et recettes alchimiques de cette antique race. Ce langage est particulièrement ardu et ses formes orale et écrite exigent d’être apprises séparément. Les magiciens de Zalut conversent toujours en démonique, à moins de devoir parler à des étrangers.</p>"
+    }
+  },
+  {
+    "name": "Festreli",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/language.webp",
+    "data": {
+      "subtype": "language",
+      "description": "<h1>Festreli</h1><p>à l’origine, le festreli était un dialecte du lémurien, mais il s’en est tellement éloigné qu’il est à présent devenu presque inintelligible pour des locuteurs du lémurien.</p>"
+    }
+  },
+  {
+    "name": "Grooth",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/language.webp",
+    "data": {
+      "subtype": "language",
+      "description": "<h1>Grooth</h1><p>il ne s’agit pas d’une langue à proprement parler, mais plutôt d’un langage rudimentaire fait de grognements, de grimaces, de tapements du pied et de grands mouvements simiesques. Ce langage n’a pas de forme écrite et est totalement inusité en dehors des tribus des grooth.</p>"
+    }
+  },
+  {
+    "name": "Kashtien",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/language.webp",
+    "data": {
+      "subtype": "language",
+      "description": "<h1>Kashtien</h1><p>les habitants des marais de Kasht ont leur propre langue, dont chaque tribu utilise une variante qui lui est propre.</p>"
+    }
+  },
+  {
+    "name": "Lémurien",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/language.webp",
+    "data": {
+      "subtype": "language",
+      "description": "<h1>Lémurien</h1><p>la langue la plus communément parlée en Lémurie. Chaque cité parle cependant son propre dialecte lémurien, ce qui veut dire qu’un voyageur aura parfois du mal à comprendre les gens du coin. Le MJ pourra à l’occasion vous demander de réussir un jet d’esprit pour communiquer avec des gens d’autres cités que la vôtre.</p>"
+    }
+  },
+  {
+    "name": "Malakutien",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/language.webp",
+    "data": {
+      "subtype": "language",
+      "description": "<h1>Malakutien</h1><p>les habitants de Malakut et de la région environnante parlent leur propre langue.</p>"
+    }
+  },
+  {
+    "name": "Shamite",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/language.webp",
+    "data": {
+      "subtype": "language",
+      "description": "<h1>Shamite</h1><p>les habitants de Shamballah et de la région environnante parlent leur propre langue.</p>"
+    }
+  },
+  {
+    "name": "Chant du vent",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/language.webp",
+    "data": {
+      "subtype": "language",
+      "description": "<h1>Chant du vent</h1><p>la langue chantante des hommes-oiseaux peut évoquer tour à tour le son de la brise se faufilant entre les rochers escarpés des sommets et le sifflement des bourrasques s’engouffrant dans les canyons montagneux et les cavernes. Cette langue est très difficile à parler correctement pour un étranger. Elle possède une forme écrite, qui est tout aussi difficile à maîtriser et à traduire.</p>"
+    }
+  },
+  {
+    "name": "Valgardien",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/language.webp",
+    "data": {
+      "subtype": "language",
+      "description": "<h1>Valgardien</h1><p>les gens du Valgard parlent et écrivent leur propre langue, qui est étonnamment élaborée.</p>"
+    }
+  },
+  {
+    "name": "Ygddari",
+    "type": "feature",
+    "img": "/systems/bol/ui/icons/language.webp",
+    "data": {
+      "subtype": "language",
+      "description": "<h1>Ygddari</h1><p>c’est le nom de l’ancienne langue des hommes (aussi appelée langue des Anciens). Peu d’individus la parlent aujourd’hui, et encore moins peuvent la lire. Il arrive cependant que d’antiques textes soient retrouvés dans les ruines d’Ygddar, de Qiddesh, de Qeb, de Qar ou d’Oosal, mais leur traduction requiert généralement les services d’un scribe particulièrement compétent.</p>"
+    }
+  }
+]
