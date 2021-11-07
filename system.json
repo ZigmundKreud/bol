@@ -2,7 +2,7 @@
   "name": "bol",
   "title": "Barbarians of Lemuria",
   "description": "The Barbarians of Lemuria system for FoundryVTT!",
-  "version": "0.8.8.7",
+  "version": "0.8.9.0",
   "minimumCoreVersion": "0.8.6",
   "compatibleCoreVersion": "0.8.9",
   "templateVersion": 8,
