@@ -19,7 +19,7 @@ BOL.itemCategories = {
     "other" : "BOL.itemCategory.other"
 }
 
-BOL.equipmentCategory = {
+BOL.equipmentCategories = {
     "weapon" : "BOL.equipmentCategory.weapon",
     "protection" : "BOL.equipmentCategory.protection",
     "jewel" : "BOL.equipmentCategory.jewel",
@@ -30,20 +30,20 @@ BOL.equipmentCategory = {
     "other" : "BOL.equipmentCategory.other"
 }
 
-BOL.protectionCategory = {
+BOL.protectionCategories = {
     "armor" : "BOL.protectionCategory.armor",
     "shield" : "BOL.protectionCategory.shield",
     "helm" : "BOL.protectionCategory.helm",
     "other" : "BOL.protectionCategory.other"
 }
 
-BOL.weaponCategory = {
+BOL.weaponCategories = {
     "melee" : "BOL.weaponCategory.melee",
     "ranged" : "BOL.weaponCategory.ranged",
     "other" : "BOL.weaponCategory.other"
 }
 
-BOL.itemProperty = {
+BOL.itemProperties = {
     "equipable" : "BOL.itemProperty.equipable",
     "protection" : "BOL.itemProperty.protection",
     "blocking" : "BOL.itemProperty.blocking",
@@ -61,10 +61,10 @@ BOL.itemProperty = {
     "ranged" : "BOL.itemProperty.ranged",
     "weapon" : "BOL.itemProperty.weapon",
     "reloadable" : "BOL.itemProperty.reloadable",
-    "worn" : "BOL.itemProperty.worn"
+    "worn" : "BOL.itemProperty.worn",
 }
 
-BOL.itemStat = {
+BOL.itemStats = {
     "quantity" : "BOL.itemStat.quantity",
     "weight" : "BOL.itemStat.weight",
     "price" : "BOL.itemStat.price",
@@ -91,6 +91,15 @@ BOL.itemBlocking = {
 BOL.itemSoak = {
     "formula" : "BOL.itemSoak.formula",
     "value" : "BOL.itemSoak.value"
+}
+
+BOL.featureSubtypes = {
+    "origin" : "BOL.featureSubtypes.origin",
+    "race" : "BOL.featureSubtypes.race",
+    "career" : "BOL.featureSubtypes.career",
+    "boon" : "BOL.featureSubtypes.boon",
+    "flaw" : "BOL.featureSubtypes.flaw",
+    "language" : "BOL.featureSubtypes.language"
 }
 
 BOL.itemIcons = {

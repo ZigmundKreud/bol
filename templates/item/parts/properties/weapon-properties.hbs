@@ -1,28 +1,8 @@
-<div class="property flexrow">
-    <label class="property-label">{{localize "subtype"}}</label>
-    <select name="data.subtype" value="{{data.subtype}}" data-dtype="String">
-        {{#select data.subtype}}
-            <option value="boon">{{localize "Avantage"}}</option>
-            <option value="flaw">{{localize "Flaw"}}</option>
-            <option value="career">{{localize "Career"}}</option>
-            <option value="language">{{localize "Language"}}</option>
-        {{/select}}
-    </select>
-</div>
+<h3 class="form-header">{{localize "BOL.ui.weapon"}}</h3>
 
-<!--            <div class="grid grid-2col">-->
-<div class="property flexrow">
-    <label class="property-label">Quantity</label>
-    <input type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
-</div>
-<div class="property flexrow">
-    <label class="property-label">Weight</label>
-    <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
-</div>
-<!--            </div>-->
-{{#each data.properties as |property key|}}
-    <div class="property flexrow">
-        <label class="property-label">{{localize key}}</label>
-        <label class="attribute-value checkbox"><input type="checkbox" name="data.properties.{{key}}" {{checked property}}/></label>
-    </div>
-{{/each}}
+{{#if data.properties.melee}}
+    {{> "systems/bol/templates/item/parts/properties/melee-properties.hbs"}}
+{{/if}}
+{{#if data.properties.ranged}}
+    {{> "systems/bol/templates/item/parts/properties/ranged-properties.hbs"}}
+{{/if}}

@@ -31,12 +31,14 @@ export class BoLItemSheet extends ItemSheet {
 
   /** @override */
   getData() {
-    const objectData = BoLUtility.data(this.object);
+    const objectData = BoLUtility.data(this.item);
+    // const objectData = BoLUtility.data(this.object);
     
-    let itemData = foundry.utils.deepClone(BoLUtility.templateData(this.object));
+    let itemData = foundry.utils.deepClone(BoLUtility.templateData(this.item));
     let formData = {
       title: this.title,
       id: this.id,
+      config: game.bol.config,
       type: objectData.type,
       img: objectData.img,
       name: objectData.name,
@@ -46,7 +48,9 @@ export class BoLItemSheet extends ItemSheet {
       limited: this.object.limited,
       options: this.options,
       owner: this.document.isOwner,
-      isGM: game.user.isGM      
+      isGM: game.user.isGM,
+      itemProperties : this.item.itemProperties
+
     }
     console.log("ITEMDATA", formData);
     this.options.editable = !(this.object.data.origin == "embeddedItem");
@@ -73,4 +77,5 @@ export class BoLItemSheet extends ItemSheet {
     if (!this.options.editable) return;
     // Roll handlers, click handlers, etc. would go here.
   }
+
 }

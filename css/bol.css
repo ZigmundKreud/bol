@@ -245,6 +245,9 @@
 .bol input::placeholder {
   color: lightgray;
 }
+.bol .property {
+  margin-top: 2px;
+}
 /* ----------------------------------------- */
 /*  LOCAL FONTS                             */
 /* ----------------------------------------- */
@@ -282,7 +285,14 @@
   overflow-y: auto;
 }
 .items-list .item-header {
-  font-family: "CCMeanwhile", cursive;
+  font-family: 'Signika', sans-serif;
+  font-size: 1em;
+  color: #4b4a44;
+  background-color: lightgray;
+}
+.items-list .item-header .item-name {
+  font-family: "Wolfsbane2Expanded", cursive;
+  font-size: 1.5em;
 }
 .items-list .item {
   min-height: 30px;
@@ -293,13 +303,41 @@
 }
 .items-list .item .item-image {
   flex: 0 0 30px;
-  margin-right: 5px;
+  padding: 0;
+  margin: 0 5px 0 0;
+  height: 30px;
+  width: 30px;
+  min-height: 30px;
+  min-width: 30px;
 }
 .items-list .item .item-image img {
+  padding: 0;
   margin: 0;
   border: none;
+  height: 30px;
+  width: 30px;
+  min-height: 30px;
+  min-width: 30px;
 }
-.items-list .item .item-name {
+.items-list .item .item-image.roll-weapon,
+.items-list .item .item-image.roll-career {
+  background-color: transparent;
+  background-image: url("../../../icons/svg/dice-target.svg") !important;
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+.items-list .item .item-image.roll-weapon:hover,
+.items-list .item .item-image.roll-career:hover {
+  background-color: gray;
+}
+.items-list .item .item-image.roll-weapon:hover img,
+.items-list .item .item-image.roll-career:hover img {
+  visibility: hidden;
+}
+.items-list .item .item-name,
+.items-list .item .item-field {
   margin: 0;
 }
 .items-list .item .item-controls-1 {
@@ -315,8 +353,86 @@
 .items-list .item .item-control {
   color: #4b4a44;
 }
+/* ----------------------------------------- */
+/*  Premade colors                           */
+/* ----------------------------------------- */
+.light {
+  color: lightgray;
+}
+.bg-light {
+  background: lightgray;
+}
+.darkgray {
+  color: #23221d;
+}
+.bg-darkgray {
+  background: #23221d;
+  color: #fff;
+}
+.darkbrown {
+  color: #464331c4;
+}
+.bg-darkbrown {
+  background: #464331c4;
+  color: #fff;
+}
+.darkslate {
+  color: darkslategray;
+}
+.bg-darkslate {
+  background: darkslategray;
+  color: #fff;
+}
+.darkgreen {
+  color: #003c1e;
+}
+.bg-darkgreen {
+  background: #003c1e;
+  color: #fff;
+}
+.darkblue {
+  color: midnightblue;
+}
+.bg-darkblue {
+  background: midnightblue;
+  color: #fff;
+}
+.blue {
+  color: #009ee0;
+}
+.bg-blue {
+  background: #009ee0;
+  color: #fff;
+}
+.green {
+  color: #44a12b;
+}
+.bg-green {
+  background: #44a12b;
+  color: #fff;
+}
+.black {
+  color: #000;
+}
+.bg-black {
+  background: #000;
+  color: #fff;
+}
+.red {
+  color: #cd071e;
+}
+.bg-red {
+  background: #cd071e;
+  color: #fff;
+}
+.purple {
+  color: purple;
+}
+.bg-purple {
+  background: purple;
+  color: #fff;
+}
 .bol.sheet .window-content {
-  background: white;
   height: 100%;
   padding: 5px;
   overflow-y: hidden;
@@ -395,10 +511,11 @@
   min-height: 700px;
   height: 700px;
 }
-.bol.sheet.actor .window-content {
+.bol.sheet.actor .window-content form {
   background-image: url("/systems/bol/ui/logo.webp");
   background-repeat: no-repeat;
   background-size: 190px 115px;
+  background-color: white;
 }
 .bol.sheet.actor .window-content form .sidebar {
   padding-top: 115px;
@@ -496,7 +613,7 @@
 .bol.sheet.actor .header-field-label,
 .bol.sheet.actor .stat-label {
   font-weight: bold;
-  font-family: "Wolfsbane2Expanded", serif;
+  font-family: "Wolfsbane2Expanded", cursive;
   font-size: 2rem;
   font-variant: small-caps;
 }
@@ -526,6 +643,38 @@
   min-width: 460px;
   min-height: 400px;
 }
+.bol.sheet.item h1 input.itemname {
+  font-family: "Wolfsbane2Expanded", cursive;
+}
+.bol.sheet.item .item-properties {
+  flex: 0 0 150px;
+  margin: 5px 5px 5px 0;
+  padding-right: 5px;
+  border-right: 1px groove #eeede0;
+}
+.bol.sheet.item .item-properties .form-group {
+  margin: 0;
+}
+.bol.sheet.item .item-properties .form-group label {
+  line-height: 20px;
+}
+.bol.sheet.item .item-properties .form-group input {
+  text-align: right;
+}
+.bol.sheet.item .item-properties .properties-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.bol.sheet.item .item-properties .properties-list li {
+  margin: 3px 0;
+  padding: 0 2px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px groove #eeede0;
+  text-align: center;
+  font-size: 12px;
+  line-height: 18px;
+}
 .editor,
 .editor-content {
   height: 100%;
@@ -541,9 +690,8 @@
   color: darkgreen;
 }
 .chat-message .chat-icon {
-  border: 0;
-  padding: 2px 6px 2px 2px;
-  float: left;
+  flex: 0 0 64px;
+  border: 1px outset lightgray;
   width: 64px;
   height: 64px;
 }

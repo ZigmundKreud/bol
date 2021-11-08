@@ -1,74 +1,34 @@
 <form class="skill-roll-dialog">
-  <h2 class="dialog-roll-title">{{title}}</h2>
-
-  <div class="property flexrow">
-    <label class="property-label">{{localize "Defender"}} : </label>
-    <label class="property-label">{{defender.name}}</label>
-    <label class="property-label">{{localize "Defense score"}}</label>
-    <label class="property-label">{{defender.data.aptitudes.def.value}}</label>
-  </div>
-
-  <div class="property flexrow">
-    <label class="property-label">{{localize "attribut"}}</label>
-    <select id="rollAttribute" value="rollAttribute">
-      {{#select rollAttribute}}
-      <option value="vigor">{{localize "BOL.attributes.vigor"}}</option>
-      <option value="agility">{{localize "BOL.attributes.agility"}}</option>
-      {{/select}}
-    </select>
-  </div>
-
-
-  <div class="property flexrow">
-    <label class="property-label">{{localize "d6M"}}</label>
-    <select id="d6Malus" value="d6Malus">
-      {{#select d6Malus}}
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      {{/select}}
-    </select>
-  </div>
-
-  <div class="property flexrow">
-    <label class="property-label">{{localize "d6B"}}</label>
-    <select id="d6Bonus" value="d6Bonus">
-      {{#select d6Bonus}}
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      {{/select}}
-    </select>
-  </div>
-
-  {{#if isRangedWeapon}}
-  <div class="property flexrow">
-    <label class="property-label">{{localize "Range Modifier"}}</label>
-    <select id="rangeModifier" value="rangeModifier">
-      {{#select rangeModifier}}
-      <option value="1">{{localize "Point Blank"}}</option>
-      <option value="0">{{localize "Short"}}</option>
-      <option value="-1">{{localize "Medium"}}</option>
-      <option value="-2">{{localize "Long"}}</option>
-      <option value="-4">{{localize "Very Long"}}</option>
-      <option value="-6">{{localize "Extreme"}}</option>
-      <option value="-8">{{localize "Maximum"}}</option>
-      {{/select}}
-    </select>
-  </div>
-  {{/if}}
-  
-  <div class="property flexrow">
-    <label class="property-label">{{localize "Modifier"}}</label>
-    <select id="bonusMalus" value="bonusMalus">
-      {{#select bonusMalus}}
-      {{{optionsBonusMalus}}}
-      {{/select}}
-    </select>
-  </div>
+    {{#if defender}}
+        <div class="property flexrow">
+            <label class="property-label">{{localize "Defender"}} : </label>
+            <label class="property-label">{{defender.name}}</label>
+        </div>
+        <div class="property flexrow">
+            <label class="property-label">{{localize "Defense score"}}</label>
+            <label class="property-label">{{defender.data.aptitudes.def.value}}</label>
+        </div>
+    {{/if}}
+    {{> "systems/bol/templates/roll/parts/roll-dialog-attribute.hbs"}}
+    {{> "systems/bol/templates/roll/parts/roll-dialog-modifiers.hbs"}}
+    {{#if isRangedWeapon}}
+        <div class="property flexrow">
+            <label class="property-label">{{localize "Range Modifier"}}</label>
+            <input class="field-value center" id="rangeModifier" name="rangeModifier" type="text"
+                   value="{{numberFormat rangeModifier decimals=0 sign=true}}" data-dtype="Number"
+                   style="text-align: center"/>
+            <!--    <select id="rangeModifier" value="rangeModifier">-->
+            <!--      {{!#select rangeModifier}}-->
+            <!--      <option value="1">{{localize "BOL.range.PointBlank"}}</option>-->
+            <!--      <option value="0">{{localize "BOL.range.Short"}}</option>-->
+            <!--      <option value="-1">{{localize "BOL.range.Medium"}}</option>-->
+            <!--      <option value="-2">{{localize "BOL.range.Long"}}</option>-->
+            <!--      <option value="-4">{{localize "BOL.range.Very Long"}}</option>-->
+            <!--      <option value="-6">{{localize "BOL.range.Extreme"}}</option>-->
+            <!--      <option value="-8">{{localize "BOL.range.Maximum"}}</option>-->
+            <!--      {{!/select}}-->
+            <!--    </select>-->
+        </div>
+    {{/if}}
 
 </form>

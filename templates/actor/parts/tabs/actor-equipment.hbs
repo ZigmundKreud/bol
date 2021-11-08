@@ -1,25 +1,22 @@
 <ol class="items-list">
     <li class="item flexrow item-header">
-        <div class="item-name flex1">{{localize "BOL.itemCategory.equipment"}}</div>
-        <!--                            <div class="item-controls">-->
-        <!--                                <a class="item-control item-create" title="Create item" data-type="item"><i class="fas fa-plus"></i> Add item</a>-->
-        <!--                            </div>-->
+        <div class="item-name flex3">{{localize "BOL.itemCategory.equipment"}}</div>
+        <div class="item-field">{{localize "BOL.ui.quantity"}}</div>
+        <div class="item-field"></div>
     </li>
     {{#each data.equipment as |item id|}}
         <li class="item flexrow" data-item-id="{{item._id}}">
-            <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-            <h4 class="item-name flex1">{{item.name}}</h4>
-                {{#if data.properties.equipable}}
-                <div class="item-controls-3">
-                    {{#if data.worn}}
-                        <a class="item-control item-equip" title="{{localize "BOL.ui.unequip"}}"><i class="fas fa-shield-alt"></i></a>
-                    {{else}}
-                        <a class="item-control item-equip" title="{{localize "BOL.ui.equip"}}" style="color:lightgray;"><i class="fas fa-shield-alt"></i></a>
-                    {{/if}}
+            <div class="item-image"><img src="{{item.img}}" title="{{item.name}}"/></div>
+            <h4 class="item-name flex3"><a class="item-edit">{{item.name}}</a></h4>
+            <div class="item-field">{{item.data.quantity}}</div>
+            {{#if data.properties.equipable}}
+                {{#if data.worn}}
+                    <div class="item-controls-1"><a class="item-control item-equip" title="{{localize "BOL.ui.unequip"}}"><i class="fas fa-shield-alt"></i></a></div>
                 {{else}}
-                <div class="item-controls-2">
+                    <div class="item-controls-1"><a class="item-control item-equip" title="{{localize "BOL.ui.equip"}}" style="color:lightgray;"><i class="fas fa-shield-alt"></i></a></div>
                 {{/if}}
-                <a class="item-control item-edit" title="{{localize "BOL.ui.edit"}}"><i class="fas fa-edit"></i></a>
+            {{/if}}
+            <div class="item-controls-1">
                 <a class="item-control item-delete" title="{{localize "BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
             </div>
         </li>

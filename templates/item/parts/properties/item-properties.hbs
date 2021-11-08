@@ -1,28 +1,62 @@
+<!--<div class="property flexrow">-->
+<!--    <label class="property-label">{{localize "BOL.ui.category"}}</label>-->
+<!--    <select name="data.subtype" value="{{data.category}}" data-dtype="String">-->
+<!--        {{#select data.category}}-->
+<!--            {{#each config.itemCategories as |item id|}}-->
+<!--                <option value="{{id}}">{{localize item}}</option>-->
+<!--            {{/each}}-->
+<!--        {{/select}}-->
+<!--    </select>-->
+<!--</div>-->
+
 <div class="property flexrow">
-    <label class="property-label">{{localize "subtype"}}</label>
+    <label class="property-label">{{localize "BOL.ui.subtype"}}</label>
     <select name="data.subtype" value="{{data.subtype}}" data-dtype="String">
         {{#select data.subtype}}
-            <option value="boon">{{localize "Avantage"}}</option>
-            <option value="flaw">{{localize "Flaw"}}</option>
-            <option value="career">{{localize "Career"}}</option>
-            <option value="language">{{localize "Language"}}</option>
+            {{#each config.equipmentCategories as |item id|}}
+                <option value="{{id}}">{{localize item}}</option>
+            {{/each}}
         {{/select}}
     </select>
 </div>
 
-<!--            <div class="grid grid-2col">-->
+<hr/>
+
 <div class="property flexrow">
-    <label class="property-label">Quantity</label>
+    <label class="property-label">{{localize "BOL.ui.quantity"}}</label>
     <input type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
 </div>
 <div class="property flexrow">
-    <label class="property-label">Weight</label>
+    <label class="property-label">{{localize "BOL.ui.weight"}}</label>
     <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
 </div>
-<!--            </div>-->
-{{#each data.properties as |property key|}}
-    <div class="property flexrow">
-        <label class="property-label">{{localize key}}</label>
-        <label class="attribute-value checkbox"><input type="checkbox" name="data.properties.{{key}}" {{checked property}}/></label>
+<div class="property flexrow">
+    <label class="property-label">{{localize "BOL.ui.price"}}</label>
+    <input type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/>
+</div>
+
+<hr/>
+
+<div class="form-group stacked">
+<!--    <label>Propriétés</label>-->
+    <div class="form-fields">
+        {{#each data.properties as |property key|}}
+            <label class="checkbox">
+                <input type="checkbox" name="data.properties.{{key}}" {{checked property}}> {{localize key}} ({{key}})
+            </label>
+        {{/each}}
     </div>
-{{/each}}
+</div>
+
+{{#if data.properties.equipable}}
+    {{> "systems/bol/templates/item/parts/properties/equipment-properties.hbs"}}
+{{/if}}
+{{#if data.properties.weapon}}
+    {{> "systems/bol/templates/item/parts/properties/weapon-properties.hbs"}}
+{{/if}}
+{{#if (equals data.properties.protection)}}
+    {{> "systems/bol/templates/item/parts/properties/protection-properties.hbs"}}
+{{/if}}
+{{#if data.properties.shield}}
+    {{> "systems/bol/templates/item/parts/properties/shield-properties.hbs"}}
+{{/if}}

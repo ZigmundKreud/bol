@@ -1,21 +1,20 @@
-{{#each data.features as | features id|}}
+{{#each data.features as | features key|}}
     {{#if (gt (count features.items) 0)}}
         <ol class="items-list">
             <li class="item flexrow item-header">
-                <div class="item-name flex3">{{localize features.label}}</div>
+                <div class="item-name flex2">{{localize features.label}}</div>
                 {{#if ranked}}
-                    <div class="item-level">{{localize "Level"}}</div>
+                    <div class="item-field">{{localize "Level"}}</div>
                 {{/if}}
             </li>
             {{#each features.items as |item id|}}
                 <li class="item flexrow" data-item-id="{{item._id}}">
-                    <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                    <h4 class="item-name flex4"><a class="roll-career">{{item.name}}</a></h4>
+                    <div class="item-image {{#if (equals key "careers")}}roll-career{{/if}}"><img src="{{item.img}}" title="{{item.name}}"/></div>
+                    <h4 class="item-name flex2"><a class="item-edit">{{item.name}}</a></h4>
                     {{#if item.data.rank}}
-                        <span class="item-level">{{item.data.rank}}</span>
+                        <span class="item-field">{{item.data.rank}}</span>
                     {{/if}}
-                    <div class="item-controls-2">
-                        <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                    <div class="item-controls-1">
                         <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
                     </div>
                 </li>

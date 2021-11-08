@@ -33,12 +33,13 @@ export class BoLUtility  {
 
   /* -------------------------------------------- */
   static buildListOptions(min, max) {
-    let options = ""
+    let options = [];
     for (let i = min; i <= max; i++) {
-      options += `<option value="${i}">${i}</option>`
+      options.push(`<option value="${i}">${i}</option>`);
     }
-    return options;
+    return options.join("");
   }
+
   /* -------------------------------------------- */
   static async showDiceSoNice(roll, rollMode) {
     if (game.modules.get("dice-so-nice")?.active) {

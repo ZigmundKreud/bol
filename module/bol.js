@@ -14,7 +14,8 @@ Hooks.once('init', async function () {
 
     game.bol = {
         BoLActor,
-        BoLItem
+        BoLItem,
+        config:BOL
     };
 
     /**

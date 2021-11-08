@@ -5,8 +5,9 @@ export class BoLRollDialog extends Dialog {
   /* -------------------------------------------- */
   static async create(actor, rollData ) {
 
-    let options = { classes: ["BoL"], width: 600, height: 320, 'z-index': 99999 };
-    let html = await renderTemplate(`systems/bol/templates/roll/roll-dialog-${rollData.mode}.hbs`, rollData);
+    let options = { classes: ["bol", "dialog"], width: 600, height: 320, 'z-index': 99999 };
+    // let html = await renderTemplate(`systems/bol/templates/roll/roll-dialog-${rollData.mode}.hbs`, rollData);
+    let html = await renderTemplate(`systems/bol/templates/roll/roll-dialog.hbs`, rollData);
     return new BoLRollDialog(actor, rollData, html, options );
   }
 

@@ -31,7 +31,6 @@ export class BoLActorSheet extends ActorSheet {
     html.find('.item-edit').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
-      console.log(item);
       item.sheet.render(true);
     });
     html.find('.roll-attribute').click(ev => {
@@ -64,51 +63,17 @@ export class BoLActorSheet extends ActorSheet {
 
   /** @override */
   getData(options) {
-    console.debug("getData");
-    const actor = super.getData(options);
-    console.log(actor.data);
-    actor.data.details = actor.data.data.details;
-    actor.data.attributes = Object.values(actor.data.data.attributes);
-    actor.data.aptitudes = Object.values(actor.data.data.aptitudes);
-    actor.data.resources = Object.values(actor.data.data.resources);
-    actor.data.equipment = actor.data.items.filter(i => i.type === "item" || i.type == 'weapon' || i.type == 'armor');
-    actor.data.weapons = duplicate(actor.data.items.filter(i => i.type == 'weapon' ));
-    actor.data.armors = duplicate(actor.data.items.filter(i => i.type == 'armor' ));
-
-    actor.data.features = {
-      "careers" : {
-        "label" : "BOL.featureCategory.careers",
-        "ranked" : true,
-        "items" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "career")
-      },
-      "origins" : {
-        "label" : "BOL.featureCategory.origins",
-        "ranked" : false,
-        "items" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "origin")
-      },
-      "races" : {
-        "label" : "BOL.featureCategory.races",
-        "ranked" : false,
-        "items" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "race")
-      },
-      "boons" : {
-        "label" : "BOL.featureCategory.boons",
-        "ranked" : false,
-        "items" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "boon")
-      },
-      "flaws" : {
-        "label" : "BOL.featureCategory.flaws",
-        "ranked" : false,
-        "items" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "flaw")
-      },
-      "languages" : {
-        "label" : "BOL.featureCategory.languages",
-        "ranked" : false,
-        "items" : actor.data.items.filter(i => i.type === "feature" && i.data.subtype === "language")
-      }
+    const actorData = super.getData(options);
+    actorData.data = {
+      details : this.actor.details,
+      attributes : this.actor.attributes,
+      aptitudes : this.actor.aptitudes,
+      resources : this.actor.resources,
+      equipment : this.actor.equipment,
+      combat : this.actor.buildCombat(),
+      features : this.actor.buildFeatures()
     };
-
-    return actor;
+    return actorData;
   }
   /* -------------------------------------------- */
 

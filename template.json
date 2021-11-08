@@ -119,6 +119,12 @@
             "label" : "BOL.resources.power",
             "value": 0,
             "max": 0
+          },
+          "villainy" : {
+            "key" : "villainy",
+            "label" : "BOL.resources.villainy",
+            "value": 5,
+            "max": 5
           }
         }
       }
@@ -128,15 +134,13 @@
     }
   },
   "Item": {
-    "types": ["item", "feature", "weapon", "armor"],
+    "types": ["item", "feature"],
     "templates": {
       "base": {
+        "category" : null,
         "subtype" : "default",
         "description": "",
-        "properties" : {
-          "d6B": false,
-          "d6M": false
-        }
+        "properties" : {}
       },
       "equipment" : {
         "quantity": 1,
@@ -164,9 +168,7 @@
       }
     },
     "item": {
-      "templates": ["base", "equipment"],
-      "quantity": 1,
-      "weight": 0
+      "templates": ["base", "equipment"]
     },
     "weapon": {
       "type": "",
@@ -197,7 +199,11 @@
     },
     "feature": {
       "rank": 0,
-      "templates": ["base"]
+      "templates": ["base"],
+      "properties" : {
+        "d6B": false,
+        "d6M": false
+      }
     }
   }
 }

@@ -17,10 +17,16 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/bol/templates/item/parts/item-header.hbs",
         "systems/bol/templates/item/parts/properties/feature-properties.hbs",
         "systems/bol/templates/item/parts/properties/equipment-properties.hbs",
+        "systems/bol/templates/item/parts/properties/protection-properties.hbs",
+        "systems/bol/templates/item/parts/properties/shield-properties.hbs",
+        "systems/bol/templates/item/parts/properties/weapon-properties.hbs",
         "systems/bol/templates/item/parts/properties/armor-properties.hbs",
         "systems/bol/templates/item/parts/properties/melee-properties.hbs",
         "systems/bol/templates/item/parts/properties/ranged-properties.hbs",
-        "systems/bol/templates/item/parts/properties/item-properties.hbs"
+        "systems/bol/templates/item/parts/properties/item-properties.hbs",
+        // DIALOGS
+        "systems/bol/templates/roll/parts/roll-dialog-modifiers.hbs",
+        "systems/bol/templates/roll/parts/roll-dialog-attribute.hbs"
     ];
 
     // Load the template parts
