@@ -26,7 +26,7 @@ Hooks.once('init', async function () {
         formula: "2d6+@attributes.mind.value+@aptitudes.init.value",
         decimals: 0
     };
-
+0
     // Define custom Entity classes
     CONFIG.Actor.documentClass = BoLActor;
     CONFIG.Item.documentClass = BoLItem;
