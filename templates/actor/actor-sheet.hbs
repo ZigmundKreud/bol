@@ -2,12 +2,17 @@
     <div class="wrap flexrow">
         {{!-- Sidebar --}}
         <div class="sidebar flex0">
-            <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
+            <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" style="border:1px outset lightgray; box-shadow: 5px 5px 5px gray"/>
         </div>
         <div class="main flex1">
             {{> "systems/bol/templates/actor/parts/actor-header.hbs"}}
             {{!-- Sheet Tab Navigation --}}
             <nav class="sheet-tabs tabs" data-group="primary">
+<!--                <a class="item" data-tab="stats" title="{{localize "BOL.ui.tab.stats"}}"><i class="fas fa-id-card"></i></a>-->
+<!--                <a class="item" data-tab="combat" title="{{localize "BOL.ui.tab.combat"}}"><i class="fas fa-fist-raised"></i></a>-->
+<!--                <a class="item" data-tab="features" title="{{localize "BOL.ui.tab.features"}}"><i class="fas fa-wrench"></i></a>-->
+<!--                <a class="item" data-tab="equipment" title="{{localize "BOL.ui.tab.equipment"}}"><i class="fas fa-box-open"></i></a>-->
+<!--                <a class="item" data-tab="description" title="{{localize "BOL.ui.tab.description"}}"><i class="fas fa-portrait"></i></a>-->
                 <a class="item" data-tab="stats">{{localize "BOL.ui.tab.stats"}}</a>
                 <a class="item" data-tab="combat">{{localize "BOL.ui.tab.combat"}}</a>
                 <a class="item" data-tab="features">{{localize "BOL.ui.tab.features"}}</a>

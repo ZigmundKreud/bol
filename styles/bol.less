@@ -3,6 +3,7 @@
 @import "global/typography";
 @import "global/item-list";
 @import "global/colors";
+@import 'global/chat';
 
 @logo-width: 190px;
 @logo-height: 115px;
@@ -30,6 +31,13 @@
     }
   }
   &.dialog {
+    .sheet-header{
+      h3 {
+        font-family: @font-tertiary;
+        font-size: 24px;
+        color: black;
+      }
+    }
   }
 }
 
@@ -38,23 +46,16 @@
 }
 
 .rollable {
-  color: @colorOlive;
+  //color: @colorOlive;
   cursor: pointer;
 }
 
-.malus {
-  color: darkred;
-}
-
-.bonus {
-  color: darkgreen;
-}
-
 .chat-message .chat-icon {
-  flex : 0 0 64px;
-  border: 1px outset lightgray;
-  //padding: 2px 6px 2px 2px;
-  //float: left;
+  float:right;
+  border:1px outset lightgray;
+  box-shadow: 3px 3px 3px black;
+  margin: 3px;
+  //flex : 0 0 64px;
   width: 64px;
   height: 64px;
 }

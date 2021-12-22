@@ -8,13 +8,15 @@ import {preloadHandlebarsTemplates} from "./system/templates.js";
 import {registerHandlebarsHelpers} from "./system/helpers.js";
 import {registerSystemSettings} from "./system/settings.js";
 import registerHooks from "./system/hooks.js";
-import {DataLoader} from "./system/data.js";
+// import {DataLoader} from "./system/data.js";
+import {Macros} from "./system/macros.js";
 
 Hooks.once('init', async function () {
 
     game.bol = {
         BoLActor,
         BoLItem,
+        macros : Macros,
         config:BOL
     };
 

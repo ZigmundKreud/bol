@@ -9,9 +9,18 @@
     </select>
 </div>
 
-{{#each data.properties as |property key|}}
-    <div class="property flexrow">
-        <label class="property-label">{{localize key}}</label>
-        <label class="attribute-value checkbox"><input type="checkbox" name="data.properties.{{key}}" {{checked property}}/></label>
-    </div>
-{{/each}}
+{{#if (equals data.subtype "career")}}
+    {{> "systems/bol/templates/item/parts/properties/feature/career-properties.hbs"}}
+{{/if}}
+{{!#if (equals data.subtype "origin")}}
+    {{!> "systems/bol/templates/item/parts/properties/feature/origin-properties.hbs"}}
+{{!/if}}
+{{!#if (equals data.subtype "race")}}
+    {{!> "systems/bol/templates/item/parts/properties/feature/race-properties.hbs"}}
+{{!/if}}
+{{!#if (equals data.subtype "boon")}}
+    {{!> "systems/bol/templates/item/parts/properties/feature/boon-properties.hbs"}}
+{{!/if}}
+{{!#if (equals data.subtype "flaw")}}
+    {{!> "systems/bol/templates/item/parts/properties/feature/flaw-properties.hbs"}}
+{{!/if}}

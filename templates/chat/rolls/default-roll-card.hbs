@@ -1,0 +1,21 @@
+<img class="chat-icon" src="{{actor.img}}" alt="{{actor.name}}"/>
+{{#if isSuccess}}
+    {{#if isCritical}}
+        <h2 class="success critical"><i class="fas fa-check-double"></i>&nbsp;{{localize "BOL.ui.critical"}}...</h2>
+    {{else}}
+        <h2 class="success"><i class="fas fa-check"></i>&nbsp;{{localize "BOL.ui.success"}}...</h2>
+    {{/if}}
+{{/if}}
+{{#if isFailure}}
+    {{#if isFumble}}
+        <h2 class="failure fumble"><i class="fas fa-skull-crossbones"></i>&nbsp;{{localize "BOL.ui.fumble"}}...</h2>
+    {{else}}
+        <h2 class="failure"><i class="fas fa-times"></i>&nbsp;{{localize "BOL.ui.failure"}}...</h2>
+    {{/if}}
+{{/if}}
+<h3><strong>{{description}}</strong>
+{{!#if hasDescription}}
+<!--<h4>-->
+<!--    <pre class="rollDescr-line">{{!description}}</pre>-->
+<!--</h4>-->
+{{!/if}}

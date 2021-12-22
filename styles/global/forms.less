@@ -49,11 +49,6 @@
   }
 
   select {
-    //-webkit-appearance: none;
-    //-moz-appearance: none;
-    //color: $c-black;
-    //color: $colorDark;
-    //font-family: $font-primary;
     font-size: 14px;
     text-align: center;
     text-align-last: center;
@@ -61,16 +56,31 @@
     width: 100%;
     border: none;
     border-radius: 0;
-
-    //  height: calc(100% - 2px);
-    //  //border: 1px solid $colorTan;
-    //  background: rgba(0, 0, 0, 0.05);
-    //  border-radius: 0;
-    //  border: none;
-    //  box-shadow: none;
-    //  color: $colorDark;
   }
 
+  select[multiple]{
+    box-shadow: none;
+    border: none;
+    font-size: 12px;
+    &:focus {
+      option:checked {
+        background: @c-darkred linear-gradient(0deg, @c-darkred 0%, @c-darkred 100%);
+        color:white;
+      }
+    }
+  }
+  option:hover,
+  option:focus,
+  option:active,
+  option:checked,
+  option[selected] {
+    cursor: pointer;
+    background: @c-darkred linear-gradient(0deg, @c-darkred 0%, @c-darkred 100%);
+    color:white;
+  }
+  //option:not(:checked) {
+  //  color: black;
+  //} /* or whatever your default style is */
 
   label.checkbox {
     flex: auto;

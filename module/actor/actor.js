@@ -1,6 +1,3 @@
-import { BoLRollDialog } from "../system/roll-dialog.js";
-import { BoLUtility } from "../system/bol-utility.js";
-
 /**
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
  * @extends {Actor}
@@ -14,9 +11,7 @@ export class BoLActor extends Actor {
     // console.log(actorData);
     // const data = actorData.data;
     // const flags = actorData.flags;
-
-    // Make separate methods for each Actor type (character, npc, etc.) to keep
-    // things organized.
+    // Make separate methods for each Actor type (character, npc, etc.) to keep things organized.
     if (actorData.type === 'character') {
       this._prepareCharacterData(actorData);
     }
@@ -165,97 +160,6 @@ export class BoLActor extends Actor {
     };
   }
   /* -------------------------------------------- */
-  buildRollData(mode, title) {
-    return {
-      mode : mode,
-      title : title,
-      actorId: this.id,
-      actorImg: this.img,
-      boons :  this.boons,
-      flaws :  this.flaws,
-      d6Bonus: 0,
-      d6Malus: 0,
-      rollMode: game.settings.get("core", "rollMode"),
-      optionsBonusMalus: BoLUtility.buildListOptions(-8, +2),
-      bonusMalus: 0
-    }
-  }
-
-  saveRollData( rollData) {
-    this.currentRollData = rollData;
-  }
-
-  /* -------------------------------------------- */
-  async rollAttributeAptitude( attrKey ) {
-    let attr = this.data.data.attributes[attrKey];
-    if ( !attr) {
-      attr = this.data.data.aptitudes[attrKey];
-    }
-    if (attr) {
-      let rollData = this.buildRollData("attribute", game.i18n.localize(attr.label));
-      rollData.attribute = duplicate(attr);
-      let rollDialog = await BoLRollDialog.create( this, rollData);
-      rollDialog.render( true );
-    } else {
-      ui.notifications.warn("Unable to find attribute " + attrKey );
-    }
-  }
-
-  /* -------------------------------------------- */
-  async rollCareer( careerId ) {
-    let career = BoLUtility.data(this.data.items.find( item => item.type == 'feature' && item.id == careerId));
-    if (career) {
-      let rollData = this.buildRollData("career", `${career.name} : ${career.data.rank}`);
-      rollData.career = career;
-      rollData.rollAttribute = 'mind';
-      rollData.attributes = duplicate(this.data.data.attributes);
-      let rollDialog = await BoLRollDialog.create( this, rollData);
-      rollDialog.render( true );
-    } else {
-      ui.notifications.warn("Unable to find career for actor " + this.name + " - Career ID  " + careerId);
-    }
-  }
-
-  /* -------------------------------------------- */
-  async rollWeapon( weaponId ) {
-    let weapon = BoLUtility.data(this.data.items.find( item => item.type == 'item' && item.id == weaponId));
-    if (weapon) {
-      let target = BoLUtility.getTarget();
-      // if ( !target) {
-      //   ui.notifications.warn("You must have a target to attack with a Weapon");
-      //   return;
-      // }
-      let objectDefender = (target) ? BoLUtility.data(game.actors.get(target.data.actorId)) : null;
-      objectDefender = (objectDefender) ? mergeObject(objectDefender, target.data.actorData) : null;
-      let rollData = this.buildRollData("weapon", weapon.name);
-      rollData.weapon =  weapon;
-      rollData.target = target;
-      rollData.isRanged = BoLUtility.isRangedWeapon( weapon );
-      rollData.defender = objectDefender;
-      rollData.rollAttribute = 'agility';
-      rollData.attributes = duplicate(this.data.data.attributes); // For damage bonus
-      rollData.rangeModifier = 0;
-
-      if ( weapon.data.type == 'melee') {
-        rollData.aptitude = duplicate(this.data.data.aptitudes.melee);
-      } else {
-        rollData.aptitude = duplicate(this.data.data.aptitudes.ranged);
-      }
-      console.log("WEAPON ! ", rollData);
-      let rollDialog = await BoLRollDialog.create( this, rollData);
-      rollDialog.render( true );
-    } else {
-      ui.notifications.warn("Unable to find weapon for actor " + this.name + " - Weapon ID  " + weaponId);
-    }
-  }
-
-
-  /**
-   *
-   * @param {*} item
-   * @param {*} bypassChecks
-   * @returns
-   */
   toggleEquipItem(item) {
     const equipable = item.data.data.properties.equipable;
     if(equipable){
@@ -264,6 +168,4 @@ export class BoLActor extends Actor {
       return item.update(itemData);
     }
   }
-
-
 }

@@ -149,6 +149,24 @@
   border: none;
   border-radius: 0;
 }
+.bol select[multiple] {
+  box-shadow: none;
+  border: none;
+  font-size: 12px;
+}
+.bol select[multiple]:focus option:checked {
+  background: darkred linear-gradient(0deg, darkred 0%, darkred 100%);
+  color: white;
+}
+.bol option:hover,
+.bol option:focus,
+.bol option:active,
+.bol option:checked,
+.bol option[selected] {
+  cursor: pointer;
+  background: darkred linear-gradient(0deg, darkred 0%, darkred 100%);
+  color: white;
+}
 .bol label.checkbox {
   flex: auto;
   padding: 0;
@@ -425,12 +443,43 @@
   background: #cd071e;
   color: #fff;
 }
+.darkred {
+  color: darkred;
+}
+.bg-darkred {
+  background: darkred;
+  color: #fff;
+}
 .purple {
   color: purple;
 }
 .bg-purple {
   background: purple;
   color: #fff;
+}
+.message-header h2.damage {
+  color: orangered;
+  font-weight: bold;
+}
+.message-header h2.critical {
+  color: green;
+  font-weight: bold;
+}
+.message-header h2.fumble {
+  color: red;
+  font-weight: bold;
+}
+.message-header h2.success {
+  color: darkgreen;
+  font-weight: bold;
+}
+.message-header h2.failure {
+  color: darkred;
+  font-weight: bold;
+}
+.message-header h2.roll {
+  color: darkslategrey;
+  font-weight: bold;
 }
 .bol.sheet .window-content {
   height: 100%;
@@ -609,6 +658,13 @@
 }
 .bol.sheet.actor .stat-roll {
   font-size: 1.5rem;
+  color: #4b4a44;
+}
+.bol.sheet.actor .stat-roll.malus {
+  color: darkred;
+}
+.bol.sheet.actor .stat-roll.bonus {
+  color: darkgreen;
 }
 .bol.sheet.actor .header-field-label,
 .bol.sheet.actor .stat-label {
@@ -624,6 +680,7 @@
 }
 .bol.sheet.actor .rounded-border {
   border: 3px solid #4b4a44;
+  box-shadow: 5px 5px 5px gray;
   border-radius: 100px;
   width: 4rem;
   height: 4rem;
@@ -675,23 +732,23 @@
   font-size: 12px;
   line-height: 18px;
 }
+.bol.dialog .sheet-header h3 {
+  font-family: "Wolfsbane2Expanded", cursive;
+  font-size: 24px;
+  color: black;
+}
 .editor,
 .editor-content {
   height: 100%;
 }
 .rollable {
-  color: #4b4a44;
   cursor: pointer;
 }
-.malus {
-  color: darkred;
-}
-.bonus {
-  color: darkgreen;
-}
 .chat-message .chat-icon {
-  flex: 0 0 64px;
+  float: right;
   border: 1px outset lightgray;
+  box-shadow: 3px 3px 3px black;
+  margin: 3px;
   width: 64px;
   height: 64px;
 }

@@ -7,6 +7,12 @@
           "biography": "",
           "notes": "",
           "languages": [],
+          "creation": {
+            "key" : "creation",
+            "label" : "BOL.resources.creation",
+            "value": 0,
+            "max": 0
+          },
           "xp": {
             "key" : "xp",
             "label" : "BOL.traits.xp",
@@ -19,12 +25,6 @@
             "base": 0,
             "value": 0,
             "bonus": 0
-          },
-          "creation": {
-            "key" : "creation",
-            "label" : "BOL.resources.creation",
-            "value": 0,
-            "max": 0
           }
         },
         "attributes": {
@@ -119,12 +119,6 @@
             "label" : "BOL.resources.power",
             "value": 0,
             "max": 0
-          },
-          "villainy" : {
-            "key" : "villainy",
-            "label" : "BOL.resources.villainy",
-            "value": 5,
-            "max": 5
           }
         }
       }
@@ -154,11 +148,9 @@
           "armor" : false,
           "helm" : false,
           "shield" : false,
-
           "equipable": false,
           "consumable" : false,
           "magical" : false,
-
           "2H" : false,
           "reloadable" : false,
           "bow" : false,
@@ -170,40 +162,10 @@
     "item": {
       "templates": ["base", "equipment"]
     },
-    "weapon": {
-      "type": "",
-      "quantity": 1,
-      "weight": 0,
-      "damage": "",
-      "range": "",
-      "thrown": false,
-      "twohands": false,
-      "reload": false,
-      "reloadduration": 0,
-      "canbehidden": false,
-      "ignoreshield": false,
-      "improvised": false,
-      "equipped": false,
-      "description": ""
-    },
-    "armor": {
-      "type": "",
-      "protectionroll": "",
-      "protectionfixed": 0,
-      "socialmalus": false,
-      "agilitymalus": 0,
-      "initmalus": 0,
-      "powercost": 0,
-      "equipped": false,
-      "description": ""
-    },
     "feature": {
       "rank": 0,
       "templates": ["base"],
-      "properties" : {
-        "d6B": false,
-        "d6M": false
-      }
+      "properties" : {}
     }
   }
 }

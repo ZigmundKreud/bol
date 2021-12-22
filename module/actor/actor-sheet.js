@@ -2,6 +2,8 @@
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
+import {BoLRoll} from "../controllers/bol-rolls.js";
+
 export class BoLActorSheet extends ActorSheet {
 
   /** @override */
@@ -33,18 +35,6 @@ export class BoLActorSheet extends ActorSheet {
       const item = this.actor.items.get(li.data("itemId"));
       item.sheet.render(true);
     });
-    html.find('.roll-attribute').click(ev => {
-      this.actor.rollAttributeAptitude( $(ev.currentTarget).data("attr-key") );
-    });
-    html.find('.roll-career').click(ev => {
-      const li = $(ev.currentTarget).parents(".item");
-      this.actor.rollCareer( li.data("itemId") );
-    });
-    html.find('.roll-weapon').click(ev => {
-      const li = $(ev.currentTarget).parents(".item");
-      this.actor.rollWeapon( li.data("itemId") );
-    });
-
     // Equip/Unequip item
     html.find('.item-equip').click(this._onToggleEquip.bind(this));
 
@@ -57,6 +47,18 @@ export class BoLActorSheet extends ActorSheet {
 
     // Rollable abilities.
     html.find('.rollable').click(this._onRoll.bind(this));
+
+    // html.find('.roll-attribute').click(ev => {
+    //   this.actor.rollAttributeAptitude( $(ev.currentTarget).data("attr-key") );
+    // });
+    // html.find('.roll-career').click(ev => {
+    //   const li = $(ev.currentTarget).parents(".item");
+    //   this.actor.rollCareer( li.data("itemId") );
+    // });
+    // html.find('.roll-weapon').click(ev => {
+    //   const li = $(ev.currentTarget).parents(".item");
+    //   this.actor.rollWeapon( li.data("itemId") );
+    // });
   }
 
   /* -------------------------------------------- */
@@ -121,14 +123,16 @@ export class BoLActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
-
-    if (dataset.roll) {
-      let roll = new Roll(dataset.roll, this.actor.data.data);
-      let label = dataset.label ? `Rolling ${dataset.label}` : '';
-      roll.roll().toMessage({
-        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-        flavor: label
-      });
+    const actorData = this.getData();
+    const rollType = dataset.rollType;
+    switch(rollType) {
+      case "attribute" :
+        BoLRoll.attributeCheck(this.actor, actorData, dataset, event);
+        break;
+      case "aptitude" :
+        BoLRoll.aptitudeCheck(this.actor, actorData, dataset, event);
+        break;
+      default : break;
     }
   }
 

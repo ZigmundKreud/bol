@@ -115,11 +115,20 @@
 .stat-value {
   font-size: 1.5rem;
   font-weight: bold;
-  color: darkred;
+  color: @c-darkred;
 }
 
 .stat-roll {
   font-size: 1.5rem;
+  color: @colorOlive;
+
+  &.malus {
+    color: @c-darkred;
+  }
+
+  &.bonus {
+    color: darkgreen;
+  }
 }
 
 .header-field-label,
@@ -139,6 +148,7 @@
 
 .rounded-border {
   border: 3px solid @colorOlive;
+  box-shadow: 5px 5px 5px gray;
   border-radius: 100px;
   width: 4rem;
   height: 4rem;

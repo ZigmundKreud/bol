@@ -4,14 +4,14 @@
             <li class="item flexrow item-header">
                 <div class="item-name flex2">{{localize features.label}}</div>
                 {{#if ranked}}
-                    <div class="item-field">{{localize "Level"}}</div>
+                    <div class="item-field">{{localize "BOL.ui.rank"}}</div>
                 {{/if}}
             </li>
             {{#each features.items as |item id|}}
                 <li class="item flexrow" data-item-id="{{item._id}}">
                     <div class="item-image {{#if (equals key "careers")}}roll-career{{/if}}"><img src="{{item.img}}" title="{{item.name}}"/></div>
                     <h4 class="item-name flex2"><a class="item-edit">{{item.name}}</a></h4>
-                    {{#if item.data.rank}}
+                    {{#if (equals key "careers")}}
                         <span class="item-field">{{item.data.rank}}</span>
                     {{/if}}
                     <div class="item-controls-1">

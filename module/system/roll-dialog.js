@@ -1,4 +1,4 @@
-import { BoLUtility } from "../system/bol-utility.js";
+import { BoLUtility } from "./bol-utility.js";
 
 export class BoLRollDialog extends Dialog {
 
@@ -47,7 +47,7 @@ export class BoLRollDialog extends Dialog {
   activateListeners(html) {
     super.activateListeners(html);
 
-    var dialog = this;
+    let dialog = this;
     function onLoad() {
     }
     $(function () { onLoad(); });
