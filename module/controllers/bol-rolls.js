@@ -38,6 +38,7 @@ export class BoLRoll {
             boons:actorData.features.boons,
             flaws:actorData.features.flaws
         };
+        console.log(dialogData.careers);
         const rollOptionContent = await renderTemplate(rollOptionTpl, dialogData);
         let d = new Dialog({
             title: label,
@@ -56,8 +57,8 @@ export class BoLRoll {
                         const attr = html.find('#attr').val();
                         const adv = html.find('#adv').val();
                         const mod = html.find('#mod').val();
-                        const careers = html.find('#career').val();
-                        const career = (careers.size >0) ? Math.max(...html.find('#career').val().map(i => parseInt(i))) : 0;
+                        let careers = html.find('#career').val();
+                        const career = (!careers) ? 0 : Math.max(...careers.map(i => parseInt(i)));
                         const isMalus = adv < 0;
                         const dicePool = (isMalus) ? 2 - parseInt(adv) : 2 + parseInt(adv);
                         const attrValue = eval(`actor.data.data.attributes.${attr}.value`);
@@ -102,8 +103,8 @@ export class BoLRoll {
                         const apt = html.find('#apt').val();
                         const adv = html.find('#adv').val();
                         const mod = html.find('#mod').val();
-                        const careers = html.find('#career').val();
-                        const career = (careers.size >0) ? Math.max(...html.find('#career').val().map(i => parseInt(i))) : 0;
+                        let careers = html.find('#career').val();
+                        const career = (!careers) ? 0 : Math.max(...careers.map(i => parseInt(i)));
                         const isMalus = adv < 0;
                         const dicePool = (isMalus) ? 2 - parseInt(adv) : 2 + parseInt(adv);
                         const aptValue = eval(`actor.data.data.aptitudes.${apt}.value`);
