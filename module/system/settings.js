@@ -9,5 +9,15 @@ export const registerSystemSettings = function() {
         type: Boolean,
         onChange: lang => window.location.reload()
     });
+    
+    game.settings.register("bol", "rollArmor", {
+      name: "Effectuer des jets pour les armures",
+      hint: "Effectue un jet de dés pour les armures (valeur fixe si désactivé)",
+      scope: "world",
+      config: true,
+      default: true,
+      type: Boolean,
+      onChange: lang => window.location.reload()
+  });
 
 };
