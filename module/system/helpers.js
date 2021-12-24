@@ -56,6 +56,10 @@ export const registerHandlebarsHelpers = function () {
         return val1 || val2;
     });
 
+    Handlebars.registerHelper('or3', function (val1, val2, val3) {
+        return val1 || val2 || val3;
+    });
+
     Handlebars.registerHelper('not', function (cond) {
         return !cond;
     });
@@ -99,5 +103,11 @@ export const registerHandlebarsHelpers = function () {
     Handlebars.registerHelper('includes', function (array, val) {
         return array.includes(val);
     });
+
+    Handlebars.registerHelper('eval', function (expr) {
+        return eval(expr);
+    });
+
+
 
 }

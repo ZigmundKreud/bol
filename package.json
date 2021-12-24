@@ -15,6 +15,7 @@
   "private": true,
   "dependencies": {
     "gulp": "^4.0.2",
-    "gulp-less": "^4.0.1"
+    "gulp-less": "^4.0.1",
+    "rpg-awesome": "^0.2.0"
   }
 }

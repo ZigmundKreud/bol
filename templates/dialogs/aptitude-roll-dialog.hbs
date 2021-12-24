@@ -8,7 +8,7 @@
         </div>
     </header>
     <div class="flexrow" style="margin-bottom: 1px;">
-        <div class="flex1 center bg-darkslate">
+        <div class="flex1 center bg-darkred">
             <label for="apt">{{localize 'BOL.ui.aptitude'}}</label>
         </div>
         <div class="flex1 center cell">
@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="flexrow" style="margin-bottom: 1px;">
-        <div class="flex1 center bg-darkslate">
+        <div class="flex1 center bg-darkred">
             <label for="adv">{{localize 'BOL.ui.advantages'}}</label>
         </div>
         <div class="flex1 center cell">
@@ -29,15 +29,16 @@
         </div>
     </div>
     <div class="flexrow" style="margin-bottom: 1px;">
-        <div class="flex1 center bg-darkslate">
+        <div class="flex1 center bg-darkred">
             <label for="mod">{{localize 'BOL.ui.modifiers'}}</label>
         </div>
         <div class="flex1 center cell">
             <input type="text" class="field-value" name="mod" id="mod" value="{{mod}}" data-type="Number">
         </div>
     </div>
+    {{#if careers.items}}
     <div class="flexrow" style="margin-bottom: 1px;">
-        <div class="flex1 center bg-darkslate">
+        <div class="flex1 center bg-darkred">
             <label for="mod">{{localize 'BOL.ui.careers'}}</label>
         </div>
         <div class="flex1 center cell">
@@ -48,4 +49,5 @@
             </select>
         </div>
     </div>
+    {{/if}}
 </form>

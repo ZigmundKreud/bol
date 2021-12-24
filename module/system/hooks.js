@@ -1,5 +1,8 @@
 export default function registerHooks() {
 
+    Hooks.on("renderPause", ((_app, html) => {
+        html.find("img").attr("src", "systems/bol/ui/pause2.webp")
+    }))
     /**
      * Create a macro when dropping an entity on the hotbar
      * Item      - open roll dialog for item

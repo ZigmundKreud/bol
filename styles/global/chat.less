@@ -24,3 +24,59 @@
     font-weight: bold;
   }
 }
+
+.chat-message {
+  margin: 3px;
+  padding: 10px;
+  font-size: 14px;
+  border-radius : 0;
+  background-color: white;
+  background-image: url("/systems/bol/ui/box-border-large.webp");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  .message-header {
+    .flavor-text {
+      font-family: @font-special;
+      font-size: 14px;
+      h2 {
+        font-family: @font-special2;
+        font-size: 20px;
+      }
+    }
+  }
+  .message-content {
+    .dice-roll {
+      .dice-result {
+        .dice-formula {
+          border-radius: 0px;
+          border: 1px inset lightgray;
+          background-color: #282828;
+          color: white;
+        }
+        .dice-tooltip {
+          .tooltip-part {
+            .part-formula {
+              //display: none;
+            }
+            .part-total {
+              border-radius: 0px;
+              border: 1px inset lightgray;
+              background-color: #2a2a2a;
+              color: white;
+            }
+          }
+        }
+        .dice-total {
+          border-radius: 0px;
+          border: 1px inset lightgray;
+          background-color: #2a2a2a;
+          color: white;
+        }
+      }
+    }
+  }
+  //  color: #191813;
+//  background: url(../bol/ui/box-border-large.webp) no-repeat;
+//  border: 2px solid #6f6c66;
+//  border-radius: 5px;
+}

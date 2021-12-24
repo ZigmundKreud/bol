@@ -1,6 +1,8 @@
+@import "global/typography";
+@import 'global/foundry-overrides';
+@import 'global/mixins';
 @import "global/flex";
 @import "global/forms";
-@import "global/typography";
 @import "global/item-list";
 @import "global/colors";
 @import 'global/chat';
@@ -14,7 +16,18 @@
 @footer-height: 30px;
 @sidebar-width: 250px;
 
+body.system-bol {
+  img#logo{
+    content: url("/systems/bol/ui/logo2.webp");
+  }
+}
 .bol {
+  //&.app {
+    //border:none;
+    //background: transparent;
+    //box-shadow: none;
+  //}
+
   &.sheet {
     @import 'components/common';
     &.actor {

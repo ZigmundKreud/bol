@@ -1,7 +1,7 @@
 <div class="attributes flexrow">
     {{#each data.attributes as |attribute id|}}
         <div class="attribute stat flex1 flex-group-center {{key}}">
-            <label class="stat-label"><a class="rollable" data-roll-type="attribute" data-key="{{key}}">{{localize label}}</a></label><br/>
+            <label class="stat-label"><a class="rollable" data-roll-type="attribute" data-roll="2d6+@attributes.{{key}}.value" data-adv="0" data-key="{{key}}">{{localize label}}</a></label><br/>
             <input class="stat-value rounded" type="text" name="data.attributes.{{key}}.value" value="{{numberFormat value decimals=0 sign=true}}" data-dtype="Number"/><br/>
             <span  class="stat-roll malus rollable" title="2d6M" data-roll-type="attribute" data-roll="3d6kh2+@attributes.{{key}}.value" data-adv="-1" data-key="{{key}}"><i class="fas fa-dice"></i></span>
             <span  class="stat-roll rollable"       title="2d6"  data-roll-type="attribute" data-roll="2d6+@attributes.{{key}}.value"    data-adv="0"  data-key="{{key}}"><i class="fas fa-dice"></i></span>
@@ -13,7 +13,7 @@
 <div class="aptitudes flexrow">
     {{#each data.aptitudes as |aptitude id|}}
         <div class="aptitude stat flex1 flex-group-center">
-            <label class="stat-label"><a class="rollable" data-roll-type="aptitude" data-key="{{key}}">{{localize label}}</a></label><br/>
+            <label class="stat-label"><a class="rollable" data-roll-type="aptitude" data-roll="2d6+@aptitudes.{{key}}.value" data-adv="0" data-key="{{key}}">{{localize label}}</a></label><br/>
             <input class="stat-value rounded-border" type="text" name="data.aptitudes.{{key}}.value" value="{{numberFormat value decimals=0 sign=true}}" data-dtype="Number"/><br/>
             <span class="stat-roll malus rollable"  title="2d6M" data-roll-type="aptitude" data-roll="3d6kh2+@aptitudes.{{key}}.value" data-adv="-1" data-key="{{key}}"><i class="fas fa-dice"></i></span>
             <span class="stat-roll rollable"        title="2d6"  data-roll-type="aptitude" data-roll="2d6+@aptitudes.{{key}}.value"    data-adv="0" data-key="{{key}}"><i class="fas fa-dice"></i></span>

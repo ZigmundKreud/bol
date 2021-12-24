@@ -49,6 +49,7 @@
   }
 
   select {
+    box-shadow: none;
     font-size: 14px;
     text-align: center;
     text-align-last: center;
@@ -61,13 +62,17 @@
   select[multiple]{
     box-shadow: none;
     border: none;
-    font-size: 12px;
+    font-size: 14px;
     &:focus {
       option:checked {
         background: @c-darkred linear-gradient(0deg, @c-darkred 0%, @c-darkred 100%);
         color:white;
       }
     }
+  }
+  option {
+    font-size: 14px;
+    .ellipsis();
   }
   option:hover,
   option:focus,
@@ -153,6 +158,9 @@
         }
       }
 
+      .field-value {
+        text-align: center;
+      }
     }
 
     // Stacked Groups
@@ -170,13 +178,43 @@
   }
 
   .form-header {
-    margin: 0 0 0.25em 0;
-    padding: 2px 0;
-    //border-top: $borderGroove;
-    //border-bottom: $borderGroove;
-    //font-family: $font-tertiary;
-    font-size: 20px;
+    margin: 0.25em 0 0.25em 0;
+    padding: 2px 5px;
+    //font-family: @font-special2;
+    //border-top: @borderGroove;
+    //border-bottom: @borderGroove;
+    font-family: @font-tertiary;
+    color: @colorOlive;
+    background-color: lightgray;
+  }
+
+  h1.form-header {
+    font-size: 2.5em;
     font-weight: 700;
+    //color : black;
+  }
+  h2.form-header {
+    font-size: 2em;
+    font-weight: 500;
+    //color : black;
+    //border-top: @borderGroove;
+    border-bottom: @borderGroove;
+  }
+  h3.form-header {
+    font-size: 1.5em;
+    font-weight: 500;
+    //color : black;
+    //border-top: @borderGroove;
+    border-bottom: @borderGroove;
+  }
+  h4.form-header {
+    font-size: 1em;
+    font-weight: 500;
+    font-family: @font-primary;
+    color : black;
+    background-color: transparent;
+    border-top: none;
+    border-bottom: @borderGroove;
   }
 
   .tag {

@@ -139,6 +139,7 @@
       "equipment" : {
         "quantity": 1,
         "weight": 0,
+        "price": 0,
         "properties" : {
           "ranged": false,
           "melee": false,

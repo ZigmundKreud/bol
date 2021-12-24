@@ -9,23 +9,95 @@ System.debugMode = true;
 
 export const BOL = {};
 
+BOL.damageValues = {
+    "d3" : "d3",
+    "d6M" : "d6M (Malus)",
+    "d6" : "d6",
+    "d6B" : "d6B (Bonus)",
+    "d6BB" : "d6B + dé bonus",
+}
+
+BOL.armorQualities = {
+    "none" : "BOL.armorQuality.none",
+    "light" : "BOL.armorQuality.light",
+    "lightQ" : "BOL.armorQuality.lightQ",
+    "lightSup" : "BOL.armorQuality.lightSup",
+    "lightLeg" : "BOL.armorQuality.lightLeg",
+    "medium" : "BOL.armorQuality.medium",
+    "mediumQ" : "BOL.armorQuality.mediumQ",
+    "mediumSup" : "BOL.armorQuality.mediumSup",
+    "mediumLeg" : "BOL.armorQuality.mediumLeg",
+    "heavy" : "BOL.armorQuality.heavy",
+    "heavyQ" : "BOL.armorQuality.heavyQ",
+    "heavySup" : "BOL.armorQuality.heavySup",
+    "heavyLeg" : "BOL.armorQuality.heavyLeg"
+}
+
+BOL.soakFormulas = {
+    "none" : "0",
+    "light" : "1d6-3",
+    "lightQ" : "1d6r1-3",
+    "lightSup" : "1d6-2",
+    "lightLeg" : "2d6kh1-2",
+    "medium" : "1d6-2",
+    "mediumQ" : "1d6r1-2",
+    "mediumSup" : "1d6-1",
+    "mediumLeg" : "2d6kh1-1",
+    "heavy" : "1d6-1",
+    "heavyQ" : "1d6r1-1",
+    "heavySup" : "1d6",
+    "heavyLeg" : "2d6kh1"
+}
+
+BOL.attackAttributes = {
+    "vigor" : "BOL.attributes.vigor",
+    "agility" : "BOL.attributes.agility",
+    "mind" : "BOL.attributes.mind",
+    "appeal" : "BOL.attributes.appeal"
+}
+
+BOL.attackAptitudes = {
+    "melee" : "BOL.aptitudes.melee",
+    "ranged" : "BOL.aptitudes.ranged"
+}
+
+BOL.aptitudes = {
+    "melee" : "BOL.aptitudes.melee",
+    "ranged" : "BOL.aptitudes.ranged",
+    "init" : "BOL.aptitudes.init",
+    "def" : "BOL.aptitudes.def"
+}
+
+BOL.damageAttributes = {
+    "vigor" : "BOL.attributes.vigor",
+    "agility" : "BOL.attributes.agility",
+    "mind" : "BOL.attributes.mind",
+    "appeal" : "BOL.attributes.appeal"
+}
 
 BOL.itemCategories = {
     "equipment" : "BOL.itemCategory.equipment",
-    "consumable" : "BOL.itemCategory.consumable",
     "spell" : "BOL.itemCategory.spell",
-    "mount" : "BOL.itemCategory.mount",
     "vehicle" : "BOL.itemCategory.vehicle",
     "other" : "BOL.itemCategory.other"
 }
 
-BOL.equipmentCategories = {
-    "weapon" : "BOL.equipmentCategory.weapon",
+BOL.itemSubtypes = {
+    "equipment" : "BOL.equipmentCategory.equipment",
     "protection" : "BOL.equipmentCategory.protection",
+    "weapon" : "BOL.equipmentCategory.weapon",
+    "magical" : "BOL.equipmentCategory.magical"
+}
+
+BOL.equipmentCategories = {
+    "armor" : "BOL.equipmentCategory.armor",
+    "weapon" : "BOL.equipmentCategory.weapon",
+    "shield" : "BOL.equipmentCategory.shield",
+    "helm" : "BOL.equipmentCategory.helm",
     "jewel" : "BOL.equipmentCategory.jewel",
     "scroll" : "BOL.equipmentCategory.scroll",
-    "ammunition" : "BOL.equipmentCategory.ammunition",
     "container" : "BOL.equipmentCategory.container",
+    "ammunition" : "BOL.equipmentCategory.ammunition",
     "currency" : "BOL.equipmentCategory.currency",
     "other" : "BOL.equipmentCategory.other"
 }
@@ -43,7 +115,14 @@ BOL.weaponCategories = {
     "other" : "BOL.weaponCategory.other"
 }
 
-BOL.itemProperties = {
+BOL.itemProperties1 = {
+    "equipable" : "BOL.itemProperty.equipable",
+    "protection" : "BOL.itemProperty.protection",
+    "magical" : "BOL.itemProperty.magical",
+    "worn" : "BOL.itemProperty.worn",
+}
+
+BOL.itemProperties2 = {
     "equipable" : "BOL.itemProperty.equipable",
     "protection" : "BOL.itemProperty.protection",
     "blocking" : "BOL.itemProperty.blocking",
@@ -62,6 +141,15 @@ BOL.itemProperties = {
     "weapon" : "BOL.itemProperty.weapon",
     "reloadable" : "BOL.itemProperty.reloadable",
     "worn" : "BOL.itemProperty.worn",
+    "spell" : "BOL.itemProperty.spell",
+    "armor" : "BOL.itemProperty.armor",
+    "consumable" : "BOL.itemProperty.consumable",
+    "bow" : "BOL.itemProperty.bow",
+    "crossbow" : "BOL.itemProperty.crossbow",
+    "throwing" : "BOL.itemProperty.throwing",
+    "activable" : "BOL.itemProperty.activable",
+    "powder" : "BOL.itemProperty.powder",
+    "damage" : "BOL.itemProperty.damage"
 }
 
 BOL.itemStats = {

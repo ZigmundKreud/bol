@@ -1,8 +1,128 @@
 <h3 class="form-header">{{localize "BOL.ui.weapon"}}</h3>
+<div class="form-group">
+    <label>{{localize "BOL.ui.subtype"}}</label>
+    <div class="form-fields">
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.melee" {{checked data.properties.melee}}> {{localize "BOL.itemProperty.melee"}}
+        </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.ranged" {{checked data.properties.ranged}}> {{localize "BOL.itemProperty.ranged"}}
+        </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.throwing" {{checked data.properties.throwing}}> {{localize "BOL.itemProperty.throwing"}}
+        </label>
+    </div>
+</div>
+<hr/>
+<div class="form-group">
+    <label>{{localize "BOL.ui.properties"}}</label>
+    <div class="form-fields">
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.throwable" {{checked data.properties.throwable}}> {{localize "BOL.itemProperty.throwable"}}
+        </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.2H" {{checked data.properties.2H}}> {{localize "BOL.itemProperty.2H"}}
+        </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.concealable" {{checked data.properties.concealable}}> {{localize "BOL.itemProperty.concealable"}}
+        </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.ignoreshield" {{checked data.properties.ignoreshield}}> {{localize "BOL.itemProperty.ignoreshield"}}
+        </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.bashing" {{checked data.properties.bashing}}> {{localize "BOL.itemProperty.bashing"}}
+        </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.reloadable" {{checked data.properties.reloadable}}> {{localize "BOL.itemProperty.reloadable"}}
+        </label>
+    </div>
+</div>
+<hr/>
+<div class="form-group">
+    <label class="property-label">{{localize "BOL.itemProperty.attackAttribute"}}</label>
+    <div class="form-fields center">
+        <select class="field-value" name="data.properties.attackAttribute" data-dtype="String">
+            {{#select data.properties.attackAttribute}}
+                {{#each config.attackAttributes as |value id|}}
+                    <option value="{{id}}">{{localize value}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label class="property-label">{{localize "BOL.itemProperty.attackAptitude"}}</label>
+    <div class="form-fields center">
+        <select class="field-value" name="data.properties.attackAptitude" data-dtype="String">
+            {{#select data.properties.attackAptitude}}
+                {{#each config.attackAptitudes as |value id|}}
+                    <option value="{{id}}">{{localize value}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label class="property-label">{{localize "BOL.itemProperty.attackModifiers"}}</label>
+    <div class="form-fields center">
+        <input class="field-value" type="text" name="data.properties.attackModifiers" value="{{data.properties.attackModifiers}}" data-dtype="Number"/>
+    </div>
+</div>
+<hr/>
+<div class="form-group">
+    <label class="property-label">{{localize "BOL.itemProperty.damage"}}</label>
+    <div class="form-fields">
+        <select class="field-value" name="data.properties.damage" data-dtype="String">
+            {{#select data.properties.damage}}
+                {{#each config.damageValues as |value id|}}
+                    <option value="{{id}}">{{value}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label class="property-label">{{localize "BOL.itemProperty.damageAttribute"}}</label>
+    <div class="form-fields center">
+        <select class="field-value" name="data.properties.damageAttribute" data-dtype="String">
+            {{#select data.properties.damageAttribute}}
+                {{#each config.damageAttributes as |value id|}}
+                    <option value="{{id}}">{{localize value}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label class="property-label">{{localize "BOL.itemProperty.damageModifiers"}}</label>
+    <div class="form-fields center">
+        <input class="field-value" type="text" name="data.properties.damageModifiers" value="{{data.properties.damageModifiers}}" data-dtype="Number"/>
+    </div>
+</div>
+<div class="form-group">
+    <label class="property-label">{{localize "BOL.itemProperty.damageSpecial"}}</label>
+    <div class="form-fields center">
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.damageReroll1" {{checked data.properties.damageReroll1}}> {{localize "BOL.itemProperty.damageReroll1"}}
+        </label>
+    </div>
+</div>
 
-{{#if data.properties.melee}}
-    {{> "systems/bol/templates/item/parts/properties/melee-properties.hbs"}}
+{{#if (or data.properties.throwing (or data.properties.ranged data.properties.throwable))}}
+    <hr/>
+    <div class="form-group">
+        <label class="property-label">{{localize "BOL.itemProperty.range"}}</label>
+        <div class="form-fields center">
+            <input class="field-value" type="text" name="data.properties.range" value="{{data.properties.range}}" data-dtype="Number"/>
+        </div>
+    </div>
 {{/if}}
-{{#if data.properties.ranged}}
-    {{> "systems/bol/templates/item/parts/properties/ranged-properties.hbs"}}
+{{#if data.properties.reloadable}}
+    <div class="form-group">
+        <label class="property-label">{{localize "BOL.itemProperty.reload"}}</label>
+        <div class="form-fields center">
+            <input class="field-value" type="text" name="data.properties.reload" value="{{data.properties.reload}}" data-dtype="Number"/>
+        </div>
+    </div>
 {{/if}}
+

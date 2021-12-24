@@ -1,62 +1,40 @@
-<!--<div class="property flexrow">-->
-<!--    <label class="property-label">{{localize "BOL.ui.category"}}</label>-->
-<!--    <select name="data.subtype" value="{{data.category}}" data-dtype="String">-->
-<!--        {{#select data.category}}-->
-<!--            {{#each config.itemCategories as |item id|}}-->
-<!--                <option value="{{id}}">{{localize item}}</option>-->
-<!--            {{/each}}-->
-<!--        {{/select}}-->
-<!--    </select>-->
-<!--</div>-->
-
-<div class="property flexrow">
-    <label class="property-label">{{localize "BOL.ui.subtype"}}</label>
-    <select name="data.subtype" value="{{data.subtype}}" data-dtype="String">
-        {{#select data.subtype}}
-            {{#each config.equipmentCategories as |item id|}}
-                <option value="{{id}}">{{localize item}}</option>
-            {{/each}}
-        {{/select}}
-    </select>
-</div>
-
-<hr/>
-
-<div class="property flexrow">
-    <label class="property-label">{{localize "BOL.ui.quantity"}}</label>
-    <input type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
-</div>
-<div class="property flexrow">
-    <label class="property-label">{{localize "BOL.ui.weight"}}</label>
-    <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
-</div>
-<div class="property flexrow">
-    <label class="property-label">{{localize "BOL.ui.price"}}</label>
-    <input type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/>
-</div>
-
-<hr/>
-
-<div class="form-group stacked">
-<!--    <label>Propriétés</label>-->
+<div class="form-group">
+    <label class="property-label">{{localize "BOL.ui.category"}}</label>
     <div class="form-fields">
-        {{#each data.properties as |property key|}}
-            <label class="checkbox">
-                <input type="checkbox" name="data.properties.{{key}}" {{checked property}}> {{localize key}} ({{key}})
-            </label>
-        {{/each}}
+        <select class="field-value" name="data.category" value="{{data.category}}" data-dtype="String">
+            {{#select data.category}}
+                {{#each config.itemCategories as |item id|}}
+                    <option value="{{id}}">{{localize item}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
     </div>
 </div>
 
-{{#if data.properties.equipable}}
+<div class="form-group">
+    <label class="property-label">Type</label>
+    <div class="form-fields">
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.weapon" {{checked data.properties.weapon}}> {{localize "BOL.itemProperty.weapon"}}
+        </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.protection" {{checked data.properties.protection}}> {{localize "BOL.itemProperty.protection"}}
+        </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.magical" {{checked data.properties.magical}}> {{localize "BOL.itemProperty.magical"}}
+        </label>
+    </div>
+</div>
+
+{{#if (equals data.category "equipment")}}
     {{> "systems/bol/templates/item/parts/properties/item/equipment-properties.hbs"}}
 {{/if}}
 {{#if data.properties.weapon}}
     {{> "systems/bol/templates/item/parts/properties/item/weapon-properties.hbs"}}
 {{/if}}
-{{#if (equals data.properties.protection)}}
+{{#if data.properties.protection}}
     {{> "systems/bol/templates/item/parts/properties/item/protection-properties.hbs"}}
 {{/if}}
-{{#if data.properties.shield}}
-    {{> "systems/bol/templates/item/parts/properties/item/shield-properties.hbs"}}
+{{#if data.properties.magical}}
+    {{> "systems/bol/templates/item/parts/properties/item/magical-properties.hbs"}}
 {{/if}}

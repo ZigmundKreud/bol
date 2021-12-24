@@ -1,4 +1,131 @@
 /* ----------------------------------------- */
+/*  LOCAL FONTS                             */
+/* ----------------------------------------- */
+@import "../node_modules/rpg-awesome/css/rpg-awesome.min.css";
+@font-face {
+  font-family: 'Contrail One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/contrailone/v10/eLGbP-j_JA-kG0_Zo51noafdZQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: "CCMeanwhile";
+  src: url('../fonts/ccmeanwhile-regular.ttf');
+}
+@font-face {
+  font-family: "Wolfsbane2";
+  src: url('../fonts/wolfsbane2.ttf');
+}
+@font-face {
+  font-family: "Wolfsbane2Condensed";
+  src: url('../fonts/wolfsbane2cond.ttf');
+}
+@font-face {
+  font-family: "Wolfsbane2Expanded";
+  src: url('../fonts/wolfsbane2expand.ttf');
+}
+@font-face {
+  font-family: "IMFellDWPicaSC-Regular";
+  src: url('../fonts/IMFellDWPicaSC-Regular.ttf');
+}
+/* ----------------------------------------- */
+/*  TEXT STYLES                             */
+/* ----------------------------------------- */
+/* -------------- */
+/*  Font Awesome  */
+/*   Overrides    */
+/* -------------- */
+/* ------------- */
+a.entity-link,
+a.inline-roll {
+  border: none;
+  background: transparent;
+  border-bottom: 1px dotted grey;
+  padding: 0;
+}
+a.inline-roll {
+  border: none;
+}
+a:hover {
+  text-shadow: 0 0 5px #a00;
+}
+#pause {
+  background: none;
+}
+#pause > img {
+  width: 200px;
+  height: 200px;
+  top: -50px;
+  left: calc(50% - 100px);
+  opacity: 0.7;
+  -webkit-animation: rotation 10s infinite linear;
+  animation: rotation 10s infinite linear;
+}
+#pause h3 {
+  font-family: "IMFellDWPicaSC-Regular", serif;
+  font-size: 32px;
+  text-shadow: 0px 3px 5px #000000;
+}
+::-webkit-scrollbar-thumb {
+  outline: none;
+  border-radius: 3px;
+  background: #999 !important;
+  border: 1px solid #333 !important;
+  border-color: #333 !important;
+}
+::-webkit-scrollbar-track {
+  box-shadow: 0 0 3px #005d67 inset !important;
+  border-radius: 3px;
+}
+* {
+  scrollbar-width: thin !important;
+  scrollbar-color: #005d67 #ccc !important;
+}
+.element-invisible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+.hide {
+  display: none;
+}
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.nomargin {
+  margin: 0;
+  padding: 0;
+}
+.flxrow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.flxrow > * {
+  flex: 1;
+}
+.flxrow .flex1 {
+  flex: 1;
+}
+.flxrow .flex2 {
+  flex: 2;
+}
+.flxrow .flex3 {
+  flex: 3;
+}
+.flxrow .flex4 {
+  flex: 4;
+}
+/* ----------------------------------------- */
 /*  Flexbox                                  */
 /* ----------------------------------------- */
 .flexrow {
@@ -141,6 +268,7 @@
   background: rgba(0, 0, 0, 0.1);
 }
 .bol select {
+  box-shadow: none;
   font-size: 14px;
   text-align: center;
   text-align-last: center;
@@ -152,11 +280,17 @@
 .bol select[multiple] {
   box-shadow: none;
   border: none;
-  font-size: 12px;
+  font-size: 14px;
 }
 .bol select[multiple]:focus option:checked {
   background: darkred linear-gradient(0deg, darkred 0%, darkred 100%);
   color: white;
+}
+.bol option {
+  font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .bol option:hover,
 .bol option:focus,
@@ -222,6 +356,9 @@
   flex: auto;
   text-align: left;
 }
+.bol .form-group .form-fields .field-value {
+  text-align: center;
+}
 .bol .form-group.stacked label {
   flex: 0 0 100%;
   margin: 0;
@@ -231,10 +368,34 @@
   text-align: left;
 }
 .bol .form-header {
-  margin: 0 0 0.25em 0;
-  padding: 2px 0;
-  font-size: 20px;
+  margin: 0.25em 0 0.25em 0;
+  padding: 2px 5px;
+  font-family: "Wolfsbane2Expanded", cursive;
+  color: #4b4a44;
+  background-color: lightgray;
+}
+.bol h1.form-header {
+  font-size: 2.5em;
   font-weight: 700;
+}
+.bol h2.form-header {
+  font-size: 2em;
+  font-weight: 500;
+  border-bottom: 1px groove #eeede0;
+}
+.bol h3.form-header {
+  font-size: 1.5em;
+  font-weight: 500;
+  border-bottom: 1px groove #eeede0;
+}
+.bol h4.form-header {
+  font-size: 1em;
+  font-weight: 500;
+  font-family: 'Signika', sans-serif;
+  color: black;
+  background-color: transparent;
+  border-top: none;
+  border-bottom: 1px groove #eeede0;
 }
 .bol .tag {
   display: inline-block;
@@ -266,35 +427,6 @@
 .bol .property {
   margin-top: 2px;
 }
-/* ----------------------------------------- */
-/*  LOCAL FONTS                             */
-/* ----------------------------------------- */
-@font-face {
-  font-family: 'Contrail One';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/contrailone/v10/eLGbP-j_JA-kG0_Zo51noafdZQ.ttf) format('truetype');
-}
-@font-face {
-  font-family: "CCMeanwhile";
-  src: url('../fonts/ccmeanwhile-regular.ttf');
-}
-@font-face {
-  font-family: "Wolfsbane2";
-  src: url('../fonts/wolfsbane2.ttf');
-}
-@font-face {
-  font-family: "Wolfsbane2Condensed";
-  src: url('../fonts/wolfsbane2cond.ttf');
-}
-@font-face {
-  font-family: "Wolfsbane2Expanded";
-  src: url('../fonts/wolfsbane2expand.ttf');
-}
-/* ----------------------------------------- */
-/*  TEXT STYLES                             */
-/* ----------------------------------------- */
 /* Items List */
 .items-list {
   list-style: none;
@@ -481,12 +613,61 @@
   color: darkslategrey;
   font-weight: bold;
 }
+.chat-message {
+  margin: 3px;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 0;
+  background-color: white;
+  background-image: url("/systems/bol/ui/box-border-large.webp");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.chat-message .message-header .flavor-text {
+  font-family: "IMFellDWPicaSC-Regular", serif;
+  font-size: 14px;
+}
+.chat-message .message-header .flavor-text h2 {
+  font-family: "Modesto Condensed", "Palatino Linotype", serif;
+  font-size: 20px;
+}
+.chat-message .message-content .dice-roll .dice-result .dice-formula {
+  border-radius: 0px;
+  border: 1px inset lightgray;
+  background-color: #282828;
+  color: white;
+}
+.chat-message .message-content .dice-roll .dice-result .dice-tooltip .tooltip-part .part-total {
+  border-radius: 0px;
+  border: 1px inset lightgray;
+  background-color: #2a2a2a;
+  color: white;
+}
+.chat-message .message-content .dice-roll .dice-result .dice-total {
+  border-radius: 0px;
+  border: 1px inset lightgray;
+  background-color: #2a2a2a;
+  color: white;
+}
+body.system-bol img#logo {
+  content: url("/systems/bol/ui/logo2.webp");
+}
+.bol.sheet .window-header {
+  border: none;
+}
 .bol.sheet .window-content {
   height: 100%;
-  padding: 5px;
+  padding: 10px;
   overflow-y: hidden;
+  background: transparent;
 }
 .bol.sheet .window-content form {
+  border: 10px solid transparent;
+  border-image: url("/systems/bol/ui/box-border-large.webp") 36 repeat;
+  border-image-outset: 1;
+  background: white;
+  margin: 0;
+  padding: 0;
   height: 100%;
 }
 .bol.sheet .window-content form .sheet-header {
@@ -529,15 +710,16 @@
   /* Sheet Tabs */
 }
 .bol.sheet .window-content form .main .tabs {
-  flex: 0 0 40px;
+  flex: 0 0 30px;
   background-color: black;
 }
 .bol.sheet .window-content form .main .tabs .item {
-  line-height: 40px;
+  line-height: 30px;
   font-weight: bold;
   font-family: "CCMeanwhile", cursive;
   color: white;
-  font-size: 14px;
+  padding-top: 4px;
+  font-size: 0.8em;
 }
 .bol.sheet .window-content form .main .tabs .item.active {
   text-decoration: underline;
@@ -547,7 +729,8 @@
   overflow: hidden;
 }
 .bol.sheet .window-content form .main .sheet-body .tab {
-  height: 100%;
+  height: 95%;
+  border: none;
   overflow-y: auto;
   /* Items List */
 }
@@ -564,7 +747,6 @@
   background-image: url("/systems/bol/ui/logo.webp");
   background-repeat: no-repeat;
   background-size: 190px 115px;
-  background-color: white;
 }
 .bol.sheet.actor .window-content form .sidebar {
   padding-top: 115px;
@@ -584,10 +766,6 @@
 }
 .bol.sheet.actor .window-content form .main .sheet-body {
   overflow: hidden;
-}
-.bol.sheet.actor .window-content form .main .sheet-body .tab {
-  height: 100%;
-  overflow-y: auto;
 }
 .bol.sheet.actor .window-content form .main .sheet-body .tab .attribute.vigor {
   background-image: url("/systems/bol/ui/attributes/vigor.webp");
@@ -714,9 +892,6 @@
 }
 .bol.sheet.item .item-properties .form-group label {
   line-height: 20px;
-}
-.bol.sheet.item .item-properties .form-group input {
-  text-align: right;
 }
 .bol.sheet.item .item-properties .properties-list {
   list-style: none;

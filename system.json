@@ -72,6 +72,7 @@
       "tag": "item"
     }
   ],
+  "background": "ui/splash-page.webp",
   "gridDistance": 1.5,
   "gridUnits": "m",
   "primaryTokenAttribute": "resources.hp",

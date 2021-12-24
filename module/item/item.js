@@ -31,7 +31,7 @@ export class BoLItem extends Item {
     const props = [];
     if ( this.data.type === "item" ) {
       const entries = Object.entries(this.data.data.properties);
-      props.push(...entries.filter(e => e[1] === true).map(e => { return game.bol.config.itemProperties[e[0]] }));
+      props.push(...entries.filter(e => e[1] === true).map(e => { return game.bol.config.itemProperties2[e[0]] }));
     }
     return props.filter(p => !!p);
   }
