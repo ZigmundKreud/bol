@@ -34,9 +34,9 @@ export class BoLRoll {
             adv:adv,
             mod: mod,
             attr:attribute,
-            careers:actorData.data.features.careers,
-            boons:actorData.data.features.boons,
-            flaws:actorData.data.features.flaws
+            careers:actorData.features.careers,
+            boons:actorData.features.boons,
+            flaws:actorData.features.flaws
         };
         const rollOptionContent = await renderTemplate(rollOptionTpl, dialogData);
         let d = new Dialog({
@@ -80,9 +80,9 @@ export class BoLRoll {
             adv:adv,
             mod: mod,
             apt:aptitude,
-            careers:actorData.data.features.careers,
-            boons:actorData.data.features.boons,
-            flaws:actorData.data.features.flaws
+            careers:actorData.features.careers,
+            boons:actorData.features.boons,
+            flaws:actorData.features.flaws
         };
         const rollOptionContent = await renderTemplate(rollOptionTpl, dialogData);
         let d = new Dialog({

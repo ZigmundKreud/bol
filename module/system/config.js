@@ -17,6 +17,25 @@ BOL.damageValues = {
     "d6BB" : "d6B + dé bonus",
 }
 
+BOL.equipmentSlots = {
+    "none" : "BOL.equipmentSlots.none",
+    "head" : "BOL.equipmentSlots.head",
+    "neck" : "BOL.equipmentSlots.neck",
+    "shoulders" : "BOL.equipmentSlots.shoulders",
+    "body" : "BOL.equipmentSlots.body",
+    "rhand" : "BOL.equipmentSlots.rhand",
+    "lhand" : "BOL.equipmentSlots.lhand",
+    "2hands" : "BOL.equipmentSlots.2hands",
+    "rarm" : "BOL.equipmentSlots.rarm",
+    "larm" : "BOL.equipmentSlots.larm",
+    "chest" : "BOL.equipmentSlots.chest",
+    "belt" : "BOL.equipmentSlots.belt",
+    "legs" : "BOL.equipmentSlots.legs",
+    "feet" : "BOL.equipmentSlots.feet",
+    "finder" : "BOL.equipmentSlots.finder",
+    "ear" : "BOL.equipmentSlots.ear"
+}
+
 BOL.armorQualities = {
     "none" : "BOL.armorQuality.none",
     "light" : "BOL.armorQuality.light",
@@ -83,13 +102,6 @@ BOL.itemCategories = {
 }
 
 BOL.itemSubtypes = {
-    "equipment" : "BOL.equipmentCategory.equipment",
-    "protection" : "BOL.equipmentCategory.protection",
-    "weapon" : "BOL.equipmentCategory.weapon",
-    "magical" : "BOL.equipmentCategory.magical"
-}
-
-BOL.equipmentCategories = {
     "armor" : "BOL.equipmentCategory.armor",
     "weapon" : "BOL.equipmentCategory.weapon",
     "shield" : "BOL.equipmentCategory.shield",
@@ -101,6 +113,26 @@ BOL.equipmentCategories = {
     "currency" : "BOL.equipmentCategory.currency",
     "other" : "BOL.equipmentCategory.other"
 }
+
+BOL.vehicleSubtypes = {
+    "mount" : "BOL.vehicleCategory.mount",
+    "flying" : "BOL.vehicleCategory.flying",
+    "boat" : "BOL.vehicleCategory.boat",
+    "other" : "BOL.vehicleCategory.other"
+}
+
+// BOL.equipmentCategories = {
+//     "armor" : "BOL.equipmentCategory.armor",
+//     "weapon" : "BOL.equipmentCategory.weapon",
+//     "shield" : "BOL.equipmentCategory.shield",
+//     "helm" : "BOL.equipmentCategory.helm",
+//     "jewel" : "BOL.equipmentCategory.jewel",
+//     "scroll" : "BOL.equipmentCategory.scroll",
+//     "container" : "BOL.equipmentCategory.container",
+//     "ammunition" : "BOL.equipmentCategory.ammunition",
+//     "currency" : "BOL.equipmentCategory.currency",
+//     "other" : "BOL.equipmentCategory.other"
+// }
 
 BOL.protectionCategories = {
     "armor" : "BOL.protectionCategory.armor",

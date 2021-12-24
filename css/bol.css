@@ -427,6 +427,9 @@ a:hover {
 .bol .property {
   margin-top: 2px;
 }
+.bol .inc-dec-btns {
+  color: #4b4a44;
+}
 /* Items List */
 .items-list {
   list-style: none;

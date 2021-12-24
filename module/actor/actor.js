@@ -68,27 +68,50 @@ export class BoLActor extends Actor {
   get equipment() {
     return this.itemData.filter(i => i.type === "item");
   }
-  get weapons() {
-    return this.itemData.filter(i => i.type === "item" && i.data.subtype === "weapon");
-  }
   get armors() {
-    return this.itemData.filter(i => i.type === "item" && i.data.subtype === "armor" && i.data.worn === true);
+    return this.itemData.filter(i => i.type === "item"  && i.data.category === "equipment" && i.data.subtype === "armor");
   }
   get helms() {
-    return this.itemData.filter(i => i.type === "item" && i.data.subtype === "helm" && i.data.worn === true);
+    return this.itemData.filter(i => i.type === "item" && i.data.category === "equipment" && i.data.subtype === "helm");
   }
   get shields() {
-    return this.itemData.filter(i => i.type === "item" && i.data.subtype === "shield" && i.data.worn === true);
+    return this.itemData.filter(i => i.type === "item" && i.data.category === "equipment" && i.data.subtype === "shield");
+  }
+
+  get weapons() {
+    return this.itemData.filter(i => i.type === "item" && i.data.category === "equipment" && i.data.subtype === "weapon");
   }
   get protections() {
-    return this.armors.concat(this.helms)
+    return this.armors.concat(this.helms).concat(this.shields)
   }
+
   get melee() {
-    return this.weapons.filter(i => i.data.properties.melee === true && i.data.worn === true);
+    return this.weapons.filter(i => i.data.properties.melee === true);
   }
   get ranged() {
-    return this.weapons.filter(i => i.data.properties.ranged === true && i.data.worn === true);
+    return this.weapons.filter(i => i.data.properties.ranged === true);
   }
+
+  get containers() {
+    return this.itemData.filter(i => i.type === "item" && i.data.category === "equipment" && i.data.subtype === "container");
+  }
+
+  get treasure() {
+    return this.itemData.filter(i => i.type === "item" && i.data.category === "equipment" && i.data.subtype === "currency");
+  }
+
+  get vehicles() {
+    return this.itemData.filter(i => i.type === "item" && i.data.category === "vehicle");
+  }
+
+  get ammos() {
+    return this.itemData.filter(i => i.type === "item" && i.data.category === "equipment" && i.data.subtype === "ammunition");
+  }
+
+  get misc() {
+    return this.itemData.filter(i => i.type === "item" && i.data.category === "equipment" && (i.data.subtype === "other" ||i.data.subtype === "container" ||i.data.subtype === "scroll" || i.data.subtype === "jewel"));
+  }
+
   buildFeatures(){
     return {
       "careers": {

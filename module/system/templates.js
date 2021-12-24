@@ -11,6 +11,7 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/bol/templates/actor/parts/actor-header.hbs",
         "systems/bol/templates/actor/parts/tabs/actor-stats.hbs",
         "systems/bol/templates/actor/parts/tabs/actor-combat.hbs",
+        "systems/bol/templates/actor/parts/tabs/actor-actions.hbs",
         "systems/bol/templates/actor/parts/tabs/actor-features.hbs",
         "systems/bol/templates/actor/parts/tabs/actor-equipment.hbs",
         // ITEMS
@@ -18,6 +19,7 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/bol/templates/item/parts/properties/feature-properties.hbs",
         "systems/bol/templates/item/parts/properties/item-properties.hbs",
         "systems/bol/templates/item/parts/properties/item/equipment-properties.hbs",
+        "systems/bol/templates/item/parts/properties/item/vehicle-properties.hbs",
         "systems/bol/templates/item/parts/properties/item/protection-properties.hbs",
         "systems/bol/templates/item/parts/properties/item/weapon-properties.hbs",
         "systems/bol/templates/item/parts/properties/item/magical-properties.hbs",

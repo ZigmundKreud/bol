@@ -38,11 +38,53 @@ export class BoLActorSheet extends ActorSheet {
     // Equip/Unequip item
     html.find('.item-equip').click(this._onToggleEquip.bind(this));
 
+    // Incr./Decr. career ranks
+    html.find(".inc-dec-btns").click((ev) => {
+      const li = $(ev.currentTarget).parents(".item");
+      if(li){
+        const item = this.actor.items.get(li.data("itemId"));
+        if(item){
+          const dataset = ev.currentTarget.dataset;
+          const operator = dataset.operator;
+          const target = dataset.target;
+          const incr = parseInt(dataset.incr);
+          const min = parseInt(dataset.min);
+          const max = parseInt(dataset.max);
+          const itemData = item.data;
+          let value = eval("itemData."+target);
+          if(operator === "minus"){
+            if(value >= min + incr) value -= incr;
+            else value = min;
+          }
+          if(operator === "plus"){
+            if(value <= max - incr) value += incr;
+            else value = max;
+          }
+          let update = {};
+          update[target] = value;
+          item.update(update);
+        }
+      }
+      // const input = html.find("#" + type);
+      // let value = parseInt(input.val(), 10) || 0;
+      // value += operator === "plus" ? 1 : -1;
+      // input.val(value > 0 ? value : 0);
+    });
+
+
     // Delete Inventory Item
     html.find('.item-delete').click(ev => {
-      const li = $(ev.currentTarget).parents(".item");
-      this.actor.deleteEmbeddedDocuments("Item", [li.data("itemId")])
-      li.slideUp(200, () => this.render(false));
+      Dialog.confirm({
+        title: "Suppression",
+        content: `Vous êtes sûr de vouloir supprimer cet item ?`,
+        yes: () => {
+          const li = $(ev.currentTarget).parents(".item");
+          this.actor.deleteEmbeddedDocuments("Item", [li.data("itemId")])
+          li.slideUp(200, () => this.render(false));
+        },
+        no: () => {},
+        defaultYes: false,
+      });
     });
 
     // Rollable abilities.
@@ -65,17 +107,28 @@ export class BoLActorSheet extends ActorSheet {
 
   /** @override */
   getData(options) {
-    const actorData = super.getData(options);
-    actorData.data = {
-      details : this.actor.details,
-      attributes : this.actor.attributes,
-      aptitudes : this.actor.aptitudes,
-      resources : this.actor.resources,
-      equipment : this.actor.equipment,
-      combat : this.actor.buildCombat(),
-      features : this.actor.buildFeatures()
-    };
-    return actorData;
+    const data = super.getData(options);
+    const actorData = data.data;
+    data.config = game.bol.config;
+    data.data = actorData.data;
+    data.details = this.actor.details;
+    data.attributes = this.actor.attributes;
+    data.aptitudes = this.actor.aptitudes;
+    data.resources = this.actor.resources;
+    data.equipment = this.actor.equipment;
+    data.weapons = this.actor.weapons;
+    data.protections = this.actor.protections;
+    data.containers = this.actor.containers;
+    data.treasure = this.actor.treasure;
+    data.vehicles = this.actor.vehicles;
+    data.ammos = this.actor.ammos;
+    data.misc = this.actor.misc;
+    data.combat = this.actor.buildCombat();
+    data.features = this.actor.buildFeatures();
+    data.isGM = game.user.isGM;
+
+    console.log("ACTORDATA", data);
+    return data;
   }
   /* -------------------------------------------- */
 

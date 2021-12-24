@@ -1,17 +1,35 @@
-<h3 class="form-header">{{localize "BOL.ui.equipment"}}</h3>
-<!--<div class="property flexrow">-->
-<!--    <label class="property-label">{{!localize "BOL.ui.subtype"}}</label>-->
-<!--    <select name="data.subtype" data-dtype="String">-->
-<!--        {{!#select data.subtype}}-->
-<!--            {{!#each config.equipmentCategories as |item id|}}-->
-<!--                <option value="{{!id}}" {{!#if (equals data.subtype id)}}selected{{!/if}}>{{!localize item}}</option>-->
-<!--            {{!/each}}-->
-<!--        {{!/select}}-->
-<!--    </select>-->
-<!--</div>-->
+<h3 class="form-header">{{localize "BOL.ui.equipmentProperties"}}</h3>
 
 <div class="form-group">
     <label class="property-label">{{localize "BOL.ui.subtype"}}</label>
+    <div class="form-fields">
+        <select name="data.subtype" data-dtype="String">
+            {{#select data.subtype}}
+                {{#each config.itemSubtypes as |item id|}}
+                    <option value="{{id}}">{{localize item}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+    </div>
+</div>
+<hr/>
+<div class="form-group">
+    <label class="property-label">{{localize "BOL.ui.capacities"}}</label>
+    <div class="form-fields">
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.weapon" {{checked data.properties.weapon}}> {{localize "BOL.itemProperty.weapon"}}
+        </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.protection" {{checked data.properties.protection}}> {{localize "BOL.itemProperty.protection"}}
+        </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.magical" {{checked data.properties.magical}}> {{localize "BOL.itemProperty.magical"}}
+        </label>
+    </div>
+</div>
+<hr/>
+<div class="form-group">
+    <label class="property-label">{{localize "BOL.ui.properties"}}</label>
     <div class="form-fields">
         <label class="checkbox">
             <input class="field-value" type="checkbox" name="data.properties.equipable" {{checked data.properties.equipable}}> {{localize "BOL.itemProperty.equipable"}}
@@ -24,14 +42,26 @@
         </label>
     </div>
 </div>
-
+<hr/>
 {{#if data.properties.equipable}}
 <div class="form-group">
-    <label>Équipé</label>
+    <label>{{localize "BOL.itemProperty.worn"}}</label>
     <div class="form-fields">
         <label class="checkbox">
-            <input class="field-value" type="checkbox" name="data.properties.worn" {{checked data.properties.worn}}> {{localize "BOL.itemProperty.worn"}}
+            <input class="field-value" type="checkbox" name="data.worn" {{checked data.worn}}> {{localize "BOL.itemProperty.worn"}}
         </label>
+    </div>
+</div>
+<div class="form-group">
+    <label>{{localize "BOL.itemProperty.slot"}}</label>
+    <div class="form-fields center">
+        <select class="field-value" name="data.properties.slot" data-dtype="String">
+            {{#select data.properties.slot}}
+                {{#each config.equipmentSlots as |value id|}}
+                    <option value="{{id}}">{{localize value}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
     </div>
 </div>
 {{/if}}
@@ -63,3 +93,14 @@
         <input class="field-value" type="text" name="data.price" value="{{data.price}}" data-dtype="Number"/>
     </div>
 </div>
+
+
+{{#if data.properties.weapon}}
+    {{> "systems/bol/templates/item/parts/properties/item/weapon-properties.hbs"}}
+{{/if}}
+{{#if data.properties.protection}}
+    {{> "systems/bol/templates/item/parts/properties/item/protection-properties.hbs"}}
+{{/if}}
+{{#if data.properties.magical}}
+    {{> "systems/bol/templates/item/parts/properties/item/magical-properties.hbs"}}
+{{/if}}

@@ -140,6 +140,7 @@
         "quantity": 1,
         "weight": 0,
         "price": 0,
+        "worn": false,
         "properties" : {
           "ranged": false,
           "melee": false,

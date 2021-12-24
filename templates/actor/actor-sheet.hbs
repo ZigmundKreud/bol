@@ -9,7 +9,7 @@
             {{!-- Sheet Tab Navigation --}}
             <nav class="sheet-tabs tabs" data-group="primary">
                 <a class="item" data-tab="stats">{{localize "BOL.ui.tab.stats"}}</a>
-                <a class="item" data-tab="combat">{{localize "BOL.ui.tab.combat"}}</a>
+                <a class="item" data-tab="actions">{{localize "BOL.ui.tab.actions"}}</a>
                 <a class="item" data-tab="features">{{localize "BOL.ui.tab.features"}}</a>
                 <a class="item" data-tab="equipment">{{localize "BOL.ui.tab.equipment"}}</a>
                 <a class="item" data-tab="description">{{localize "BOL.ui.tab.description"}}</a>
@@ -17,6 +17,9 @@
             {{!-- Sheet Body --}}
             <section class="sheet-body">
                 <div class="tab stats" data-group="primary" data-tab="stats">{{> "systems/bol/templates/actor/parts/tabs/actor-stats.hbs"}}</div>
+                <div class="tab actions" data-group="primary" data-tab="actions">
+                    {{> "systems/bol/templates/actor/parts/tabs/actor-actions.hbs"}}
+                </div>
                 <div class="tab combat" data-group="primary" data-tab="combat">
                     {{> "systems/bol/templates/actor/parts/tabs/actor-combat.hbs"}}
                 </div>
