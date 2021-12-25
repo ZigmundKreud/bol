@@ -180,6 +180,30 @@ export class BoLUtility  {
   }  
 
   /* -------------------------------------------- */
+  static getDamageFormula( damageString) {
+    if (damageString[0] == 'd') {damageString = "1" + damageString} // Help parsing
+    var myReg = new RegExp('(\\d+)[dD]([\\d]+)([MB]*)?([\\+\\d]*)?', 'g');
+    let res = myReg.exec(damageString);
+    let nbDice = parseInt(res[1]);
+    let postForm = 'kh'+nbDice;
+    let modIndex = 3;
+    if ( res[3]) {
+      if ( res[3] == 'M') {
+        postForm = 'kl'+nbDice;
+        nbDice++;
+        modIndex = 4;
+      }
+      if ( res[3] == 'B') {
+        postForm = 'kh'+nbDice;
+        nbDice++;
+        modIndex = 4;
+      }
+    }
+    let formula = nbDice+"d"+res[2] + postForm + ((res[modIndex]) ? res[modIndex] : "");
+    return formula;
+  }
+
+  /* -------------------------------------------- */
   static async confirmDelete(actorSheet, li) {
     let itemId = li.data("item-id");
     let msgTxt = "<p>Are you sure to remove this Item ?";

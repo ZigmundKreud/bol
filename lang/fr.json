@@ -94,6 +94,8 @@
   "BOL.ui.misc" : "Divers",
   "BOL.ui.vehicleProperties" : " Propriétés de véhicule",
   "BOL.ui.speed" : "Vitesse",
+  "BOL.ui.noWeaponName" : "Arme Inconnue",
+  "BOL.ui.targetDefence": "Défense",
 
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",

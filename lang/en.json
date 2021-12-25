@@ -92,7 +92,9 @@
   "BOL.ui.treasure" : "Trésor",
   "BOL.ui.vehicles" : "Véhicules/Montures",
   "BOL.ui.misc" : "Divers",
-
+  "BOL.ui.noWeaponName" : "Unknown Weapon",
+  "BOL.ui.targetDefence": "Defence",
+  
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",
   "BOL.featureCategory.careers": "Carrières",

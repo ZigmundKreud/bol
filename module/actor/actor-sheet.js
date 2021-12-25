@@ -186,7 +186,7 @@ export class BoLActorSheet extends ActorSheet {
         BoLRoll.aptitudeCheck(this.actor, actorData, dataset, event);
         break;
       case "weapon": 
-        console.log("ROLL WEAPON !!!"); // TODO
+        BoLRoll.weaponCheck(this.actor, actorData, dataset, event);
         break;
       default : break;
     }
