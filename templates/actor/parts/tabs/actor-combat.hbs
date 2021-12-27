@@ -8,17 +8,16 @@
     </li>
 </ol>
 
-{{#each data.combat as | combat id|}}
-    {{#if (gt (count combat.items) 0)}}
+{{#each combat as |combatType id|}}
         <ol class="items-list">
             <li class="item flexrow item-header">
-                <div class="item-name flex2">{{localize combat.label}}</div>
+                <div class="item-name flex2">{{localize combatType.label}}</div>
                 {{#if protection}}<div class="item-field">{{localize "BOL.ui.protection"}}</div>{{/if}}
                 {{#if blocking}}<div class="item-field">{{localize "BOL.ui.blocking"}}</div>{{/if}}
                 {{#if weapon}}<div class="item-field">{{localize "BOL.ui.damages"}}</div>{{/if}}
                 {{#if ranged}}<div class="item-field">{{localize "BOL.ui.range"}}</div>{{else}}<div class="item-field"></div>{{/if}}
             </li>
-            {{#each combat.items as |item id|}}
+            {{#each combatType.items as |item id|}}
                 <li class="item flexrow" data-item-id="{{item._id}}">
                     <div class="item-image {{#if ../weapon}}roll-weapon{{/if}}"><img src="{{item.img}}" title="{{item.name}}"/></div>
                     <h4 class="item-name flex2"><a class="item-edit">{{item.name}}</a></h4>
@@ -29,5 +28,4 @@
                 </li>
             {{/each}}
         </ol>
-    {{/if}}
 {{/each}}

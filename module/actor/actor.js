@@ -41,6 +41,9 @@ export class BoLActor extends Actor {
   get aptitudes() {
     return Object.values(this.data.data.aptitudes);
   }
+  get defenseValue() {
+    return this.data.data.aptitudes.def.value;
+  }
   get resources() {
     return Object.values(this.data.data.resources);
   }
@@ -84,7 +87,6 @@ export class BoLActor extends Actor {
   get protections() {
     return this.armors.concat(this.helms).concat(this.shields)
   }
-
   get melee() {
     return this.weapons.filter(i => i.data.properties.melee === true);
   }

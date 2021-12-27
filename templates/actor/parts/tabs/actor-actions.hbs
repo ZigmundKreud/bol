@@ -5,3 +5,24 @@
     <li class="item flexrow"><div class="item-image roll-weapon"><img src="icons/skills/melee/unarmed-punch-fist.webp" title="Attaque à mains nues"/></div><h4 class="item-name flex2"><a class="item-edit">Attaque à mains nues</a></h4></li>
 </ol>
 
+{{#each combat as |combatType id|}}
+        <ol class="items-list">
+            <li class="item flexrow item-header">
+                <div class="item-name flex2">{{localize combatType.label}}</div>
+                {{#if protection}}<div class="item-field">{{localize "BOL.ui.protection"}}</div>{{/if}}
+                {{#if blocking}}<div class="item-field">{{localize "BOL.ui.blocking"}}</div>{{/if}}
+                {{#if weapon}}<div class="item-field">{{localize "BOL.ui.damages"}}</div>{{/if}}
+                {{#if ranged}}<div class="item-field">{{localize "BOL.ui.range"}}</div>{{else}}<div class="item-field"></div>{{/if}}
+            </li>
+            {{#each combatType.items as |item id|}}
+                <li class="item flexrow" data-item-id="{{item._id}}">
+                    <div class="item-image" ><img src="{{item.img}}" title="{{item.name}}"/></div>
+                    <h4 class="item-name flex2">{{#if ../weapon}}<a class="rollable" data-roll-type="weapon">{{/if}}{{item.name}}{{#if ../weapon}}</a>{{/if}}</h4>
+                    {{#if ../protection}}<div class="item-field">{{item.data.properties.soak.value}}</div>{{/if}}
+                    {{#if ../blocking}}<div class="item-field">{{item.data.properties.blocking.malus}}</div>{{/if}}
+                    {{#if ../weapon}}<div class="item-field">{{item.data.properties.damage}}</div>{{/if}}
+                    {{#if ../ranged}}<div class="item-field">{{item.data.properties.range}}</div>{{else}}<div class="item-field"></div>{{/if}}
+                </li>
+            {{/each}}
+        </ol>
+{{/each}}
