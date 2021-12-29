@@ -2,14 +2,21 @@
   "name": "bol",
   "title": "Barbarians of Lemuria",
   "description": "The Barbarians of Lemuria system for FoundryVTT!",
+  "author": "Zigmund",
+  "authors": [],
+  "url": "https://github.com/ZigmundKreud/bol",
+  "license": "LICENSE.txt",
+  "flags": {},
   "version": "0.8.9.0",
   "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "0.8.9",
-  "templateVersion": 8,
-  "author": "Zigmund",
-  "esmodules": ["module/bol.js"],
-  "styles": ["css/bol.css"],
+  "compatibleCoreVersion": "9",
   "scripts": [],
+  "esmodules": [
+    "module/bol.js"
+  ],
+  "styles": [
+    "css/bol.css"
+  ],
   "languages": [
     {
       "lang": "en",
@@ -29,7 +36,9 @@
       "system": "bol",
       "path": "./packs/boons.db",
       "entity": "Item",
-      "tag": "boon"
+      "tag": "boon",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "flaws",
@@ -37,7 +46,9 @@
       "system": "bol",
       "path": "./packs/flaws.db",
       "entity": "Item",
-      "tag": "flaw"
+      "tag": "flaw",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "careers",
@@ -45,7 +56,9 @@
       "system": "bol",
       "path": "./packs/careers.db",
       "entity": "Item",
-      "tag": "career"
+      "tag": "career",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "origins",
@@ -53,7 +66,9 @@
       "system": "bol",
       "path": "./packs/origins.db",
       "entity": "Item",
-      "tag": "origin"
+      "tag": "origin",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "races",
@@ -61,7 +76,9 @@
       "system": "bol",
       "path": "./packs/races.db",
       "entity": "Item",
-      "tag": "race"
+      "tag": "race",
+      "type": "Item",
+      "private": false
     },
     {
       "name": "equipment",
@@ -69,16 +86,20 @@
       "system": "bol",
       "path": "./packs/equipment.db",
       "entity": "Item",
-      "tag": "item"
+      "tag": "item",
+      "type": "Item",
+      "private": false
     }
   ],
+  "system": [],
+  "dependencies": [],
+  "socket": true,
+  "manifest": "https://raw.githubusercontent.com/ZigmundKreud/bol/master/system.json",
+  "download": "https://github.com/ZigmundKreud/bol/archive/refs/heads/master.zip",
+  "protected": false,
   "background": "ui/splash-page.webp",
   "gridDistance": 1.5,
   "gridUnits": "m",
   "primaryTokenAttribute": "resources.hp",
-  "secondaryTokenAttribute": "resources.hero",
-  "url": "https://github.com/ZigmundKreud/bol",
-  "manifest": "https://raw.githubusercontent.com/ZigmundKreud/bol/master/system.json",
-  "download": "https://github.com/ZigmundKreud/bol/archive/refs/heads/master.zip",
-  "license": "LICENSE.txt"
+  "secondaryTokenAttribute": "resources.hero"
 }

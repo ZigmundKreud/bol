@@ -29,6 +29,10 @@ export class BoLActor extends Actor {
   }
 
   /* -------------------------------------------- */
+  _onUpdate() {
+    this.manageHealthState()    
+  }
+  /* -------------------------------------------- */
   get itemData(){
     return Array.from(this.data.items.values()).map(i => i.data);
   }
@@ -184,6 +188,43 @@ export class BoLActor extends Actor {
       }
     };
   }
+
+  /*-------------------------------------------- */
+  manageHealthState() {
+    if (this.data.data.resources.hp.value == 0 ) {
+      // TODO : Message pour depense heroisme
+    }
+  }
+
+  /*-------------------------------------------- */
+  async subHeroPoints( nb) {
+    let newHeroP = this.data.data.resources.hero.value - nb;
+    newHeroP = (newHeroP < 0 ) ? 0 : newHeroP;
+    await this.update( { 'data.resources.hero.value': newHeroP} );
+  }
+
+  /*-------------------------------------------- */
+  async sufferDamage( damage) {
+    let newHP = this.data.data.resources.hp.value - damage;
+    await this.update( { 'data.resources.hp.value': newHP} );
+  }
+
+  /* -------------------------------------------- */
+  getArmorFormula( ) {
+    let protectWorn = this.protections.filter( item => item.data.worn);
+    let formula = ""
+    console.log("Protections: ", protectWorn)
+    for (let protect of protectWorn) {
+      if ( protect.data.subtype == 'helm') {
+        formula += "+1"  
+      } else {
+        formula += "+" + protect.data.properties.soak.formula;
+      }
+    }
+    console.log("Protect Formula", formula)
+    return (formula == "") ? 0 :formula;
+  }
+
   /* -------------------------------------------- */
   toggleEquipItem(item) {
     const equipable = item.data.data.properties.equipable;

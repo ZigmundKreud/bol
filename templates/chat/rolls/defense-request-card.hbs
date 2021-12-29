@@ -1,0 +1,14 @@
+<img class="chat-icon" src="{{defender.img}}" alt="{{defender.name}}"/>
+Va encaisser {{damageTotal}} dégats !
+
+<button class="damage-handling" data-defense-mode="damage-with-armor" data-attack-id="{{attackId}}">Encaisser avec la protection de l'armure</button>
+<button class="damage-handling" data-defense-mode="damage-without-armor" data-attack-id="{{attackId}}">Encaisser sans la protection de l'armure</button>
+
+{{#if defender.data.data.resources.hero.value}}
+<button class="damage-handling" data-defense-mode="hero-reduce-damage" data-attack-id="{{attackId}}">Juste une égratignure (1 Point d'Héroisme)</button>
+
+{{#each defenderWeapons as |weapon idx|}}
+<button class="damage-handling" data-defense-mode="hero-in-extremis" data-attack-id="{{@root.attackId}}" data-weapon-id="{{weapon._id}}">Parade in Extremis avec {{weapon.name}} (1 Point d'Héroisme)</button>
+{{/each}}
+
+{{/if}}

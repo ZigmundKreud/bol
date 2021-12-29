@@ -31,12 +31,7 @@ export class BoLRoll {
       // const elt = $(event.currentTarget)[0];
       // let key = elt.attributes["data-rolling"].value;
       let target = BoLUtility.getTarget()
-      if ( !target) {
-        ui.notifications.warn("No target selected for attack !");
-        return;
-      }
       const li = $(event.currentTarget).parents(".item");
-      console.log("ITEM", target);
       const weapon = actor.items.get(li.data("item-id"));
       if (!weapon) {
         ui.notifications.warn("Unable to find weapon !");
@@ -50,7 +45,7 @@ export class BoLRoll {
         weapon :weapon,
         mod: 0,
         target : target,
-        defender: game.actors.get(target.data.actorId),
+        defender: (target) ? game.actors.get(target.data.actorId) : undefined,
         adv :dataset.adv || 0,
         attribute : eval(`actor.data.data.attributes.${weaponData.properties.attackAttribute}`),
         aptitude : eval(`actor.data.data.aptitudes.${weaponData.properties.attackAptitude}`),
@@ -74,7 +69,7 @@ export class BoLRoll {
             boons:actorData.features.boons,
             flaws:actorData.features.flaws
         };
-        console.log(dialogData.careers);
+        
         const rollOptionContent = await renderTemplate(rollOptionTpl, dialogData);
         let d = new Dialog({
             title: label,
@@ -123,8 +118,17 @@ export class BoLRoll {
           careers: attackDef.attackerData.features.careers,
           boons: attackDef.attackerData.features.boons,
           flaws: attackDef.attackerData.features.flaws,
-          defence: attackDef.defender.defenseValue,
       };
+      if ( attackDef.defender) {
+        dialogData.defence = attackDef.defender.defenseValue,
+        dialogData.shieldBlock = 'none'
+        let shields = attackDef.defender.shields
+        for( let shield of shields) {
+          dialogData.shieldBlock = (shield.data.properties.blocking.blockingAll) ? 'blockall' : 'blockone';
+          dialogData.shieldAttackMalus = (shield.data.properties.blocking.malus)? shield.data.properties.blocking.malus : 1;
+          dialogData.applyShieldMalus = false
+        }
+      }
       const rollOptionContent = await renderTemplate(rollOptionTpl, dialogData);
       let d = new Dialog({
           title: attackDef.label,
@@ -144,13 +148,20 @@ export class BoLRoll {
                       const apt = html.find('#apt').val();
                       const adv = html.find('#adv').val();
                       const mod = html.find('#mod').val() || 0;
+
+                      let shieldMalus = 0;
+                      const applyShieldMalus = html.find('#applyShieldMalus').val() || false;
+                      if (applyShieldMalus || dialogData.shieldBlock =='blockall') {
+                        shieldMalus = dialogData.shieldAttackMalus;
+                      }
+
                       let careers = html.find('#career').val();
                       const career = (careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
                       const isMalus = adv < 0;
                       const dicePool = (isMalus) ? 2 - parseInt(adv) : 2 + parseInt(adv);
                       const attrValue = eval(`attackDef.attacker.data.data.attributes.${attr}.value`);
                       const aptValue = eval(`attackDef.attacker.data.data.aptitudes.${apt}.value`);
-                      const modifiers = parseInt(attrValue) + parseInt(aptValue) + parseInt(mod) + parseInt(career) - dialogData.defence;
+                      const modifiers = parseInt(attrValue) + parseInt(aptValue) + parseInt(mod) + parseInt(career) - dialogData.defence - shieldMalus;
                       const formula = (isMalus) ? dicePool + "d6kl2 + " + modifiers : dicePool + "d6kh2 + " + modifiers;
                       attackDef.formula = formula;
                       let r = new BoLAttackRoll(attackDef);
@@ -270,7 +281,7 @@ export class BoLAttackRoll {
 
   async roll(){
       const r = new Roll(this.attackDef.formula);
-      await r.roll({"async": true});
+      await r.roll({"async": false});
       const activeDice = r.terms[0].results.filter(r => r.active);
       const diceTotal = activeDice.map(r => r.result).reduce((a, b) => a + b);
       this._isSuccess = (r.total >= 9);
@@ -290,17 +301,30 @@ export class BoLAttackRoll {
         let weaponFormula = BoLUtility.getDamageFormula(this.attackDef.weapon.data.data.properties.damage)
         let damageFormula = weaponFormula + "+" + this.attackDef.attacker.data.data.attributes[attrDamage].value;
         this.damageRoll = new Roll(damageFormula);
-        await this.damageRoll.roll({"async": true});
+        await this.damageRoll.roll({"async": false});
+        // Update attackDef object
+        this.attackDef.damageFormula = damageFormula;
+        this.attackDef.damageRoll = this.damageRoll;
+
         this._buildDamageChatMessage(this.attackDef.attacker, this.attackDef.weapon, this.damageRoll.total).then(msgFlavor => {
           this.damageRoll.toMessage({
               user: game.user.id,
               flavor: msgFlavor,
               speaker: ChatMessage.getSpeaker({actor: this.attackDef.attacker}),
               flags : {msgType : "default"}
+          }).then( result => {           
+            if (this.attackDef.target) { 
+              // Broadcast to GM or process it directly in case of GM defense
+              if ( !game.user.isGM) {
+                game.socket.emit("system.bol", { msg: "msg_attack_success", data: this.attackDef });
+              } else {
+                BoLUtility.processAttackSuccess(  this.attackDef);
+              }
+            }
           });
-       });
+      });
       }
-  }
+    }
 
   _buildDamageChatMessage(actor, weapon, total) {
     const rollMessageTpl = 'systems/bol/templates/chat/rolls/damage-roll-card.hbs';

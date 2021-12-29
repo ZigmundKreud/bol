@@ -55,6 +55,26 @@
         </div>
         <div class="flex1 center cell">{{defence}}</div>
     </div>
+      {{#if (eq shieldBlock 'blockall')}}
+      <div class="flexrow" style="margin-bottom: 1px;">
+          <div class="flex1 center bg-darkred">
+              <label for="mod">{{localize 'BOL.ui.shieldMalus'}}</label>
+          </div>
+          <div class="flex1 center cell">{{shieldAttackMalus}}</div>
+      </div>
+      {{/if}}
+      {{#if (eq shieldBlock 'blockone')}}
+      <div class="flexrow" style="margin-bottom: 1px;">
+          <div class="flex1 center bg-darkred">
+              <label for="mod">{{localize 'BOL.ui.shieldMalus'}}</label>
+          </div>
+          <div class="flex1 center cell">
+            <label class="checkbox">
+              <input class="field-value" type="checkbox" id="applyShieldMalus" name="applyShieldMalus" {{checked applyShieldMalus}}> {{localize "BOL.ui.applyShieldMalus"}}
+            </label>
+          </div>
+      </div>
+      {{/if}}
     {{#if careers.items}}
     <div class="flexrow" style="margin-bottom: 1px;">
         <div class="flex1 center bg-darkred">
