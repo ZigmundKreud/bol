@@ -1,0 +1,22 @@
+<img class="chat-icon" src="{{defender.img}}" alt="{{defender.name}}"/>
+<h3>Dégats subis par {{defender.name}}</h3>
+<ul>
+  <li>
+  {{#if (eq defenseMode "damage-with-armor")}}
+  Protection de l'armure : {{rollArmor.total}}.
+  {{/if}}
+  {{#if (eq defenseMode "damage-without-armor")}}
+  Aucune protection d'armure !
+  {{/if}}
+  {{#if (eq defenseMode "hero-reduce-damage")}}
+  Un point d'héroisme dépensé, pour une réduction des dommages de {{rollHero.total}}.
+  {{/if}}
+  {{#if (eq defenseMode "hero-in-extremis")}}
+  Aucun dommage encaissé, grâce à la parade in-extremis avec {{weaponHero.name}}. L'arme a été détruite pendant cette parade !
+  Un point d'héroisme a également été dépensé.
+  {{/if}}
+</li>
+<li>
+Encaissement final : {{finalDamage}} dégats !
+</li>
+</ul>
