@@ -96,6 +96,10 @@
   "BOL.ui.speed" : "Vitesse",
   "BOL.ui.noWeaponName" : "Arme Inconnue",
   "BOL.ui.targetDefence": "Défense",
+  "BOL.ui.applyShieldMalus": "Appliquer le Malus de Petit Bouclier",
+  "BOL.ui.shieldMalus": "Malus de Bouclier",
+  "BOL.ui.defenseScore": "Score de Defense",
+  "BOL.ui.defender": "Défenseur",
 
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",

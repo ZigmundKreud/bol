@@ -94,7 +94,11 @@
   "BOL.ui.misc" : "Divers",
   "BOL.ui.noWeaponName" : "Unknown Weapon",
   "BOL.ui.targetDefence": "Defence",
-  
+  "BOL.ui.applyShieldMalus": "Apply Small Shield Malus",
+  "BOL.ui.shieldMalus": "Shield Malus",
+  "BOL.ui.defenseScore": "Defense Score",
+  "BOL.ui.defender": "Defender",
+
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",
   "BOL.featureCategory.careers": "Carrières",

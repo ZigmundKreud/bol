@@ -69,7 +69,7 @@ export class BoLRoll {
             boons:actorData.features.boons,
             flaws:actorData.features.flaws
         };
-        console.log(dialogData.careers);
+        
         const rollOptionContent = await renderTemplate(rollOptionTpl, dialogData);
         let d = new Dialog({
             title: label,
@@ -118,8 +118,17 @@ export class BoLRoll {
           careers: attackDef.attackerData.features.careers,
           boons: attackDef.attackerData.features.boons,
           flaws: attackDef.attackerData.features.flaws,
-          defence: (attackDef.defender) ? attackDef.defender.defenseValue : 0,
       };
+      if ( attackDef.defender) {
+        dialogData.defence = attackDef.defender.defenseValue,
+        dialogData.shieldBlock = 'none'
+        let shields = attackDef.defender.shields
+        for( let shield of shields) {
+          dialogData.shieldBlock = (shield.data.properties.blocking.blockingAll) ? 'blockall' : 'blockone';
+          dialogData.shieldAttackMalus = (shield.data.properties.blocking.malus)? shield.data.properties.blocking.malus : 1;
+          dialogData.applyShieldMalus = false
+        }
+      }
       const rollOptionContent = await renderTemplate(rollOptionTpl, dialogData);
       let d = new Dialog({
           title: attackDef.label,
@@ -139,13 +148,20 @@ export class BoLRoll {
                       const apt = html.find('#apt').val();
                       const adv = html.find('#adv').val();
                       const mod = html.find('#mod').val() || 0;
+
+                      let shieldMalus = 0;
+                      const applyShieldMalus = html.find('#applyShieldMalus').val() || false;
+                      if (applyShieldMalus || dialogData.shieldBlock =='blockall') {
+                        shieldMalus = dialogData.shieldAttackMalus;
+                      }
+
                       let careers = html.find('#career').val();
                       const career = (careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
                       const isMalus = adv < 0;
                       const dicePool = (isMalus) ? 2 - parseInt(adv) : 2 + parseInt(adv);
                       const attrValue = eval(`attackDef.attacker.data.data.attributes.${attr}.value`);
                       const aptValue = eval(`attackDef.attacker.data.data.aptitudes.${apt}.value`);
-                      const modifiers = parseInt(attrValue) + parseInt(aptValue) + parseInt(mod) + parseInt(career) - dialogData.defence;
+                      const modifiers = parseInt(attrValue) + parseInt(aptValue) + parseInt(mod) + parseInt(career) - dialogData.defence - shieldMalus;
                       const formula = (isMalus) ? dicePool + "d6kl2 + " + modifiers : dicePool + "d6kh2 + " + modifiers;
                       attackDef.formula = formula;
                       let r = new BoLAttackRoll(attackDef);
