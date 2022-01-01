@@ -96,8 +96,30 @@ export class BoLUtility {
   }
 
   /* -------------------------------------------- */
+  static sendAttackSuccess(attackDef) {
+    if (attackDef.target) {
+      // Broadcast to GM or process it directly in case of GM defense
+      if (!game.user.isGM) {
+        game.socket.emit("system.bol", { msg: "msg_attack_success", data: attackDef });
+      } else {
+        BoLUtility.processAttackSuccess(attackDef);
+      }
+    }
+  }
+
+  /* -------------------------------------------- */
   static async chatListeners(html) {
     // Damage handling
+    html.on("click", '.damage-increase', event => {      
+      let attackId = event.currentTarget.attributes['data-attack-id'].value;
+      let damageMode = event.currentTarget.attributes['data-damage-mode'].value;
+      if ( game.user.isGM) {
+        BoLUtility.processDamageIncrease(event, attackId, damageMode)
+      } else {
+        game.socket.emit("system.bol", { msg: "msg_damage_increase", data: {event: event, attackId: attackId, damageMode: damageMode} });
+      }
+    });
+
     html.on("click", '.damage-handling', event => {      
       let attackId = event.currentTarget.attributes['data-attack-id'].value;
       let defenseMode = event.currentTarget.attributes['data-defense-mode'].value;
@@ -111,6 +133,31 @@ export class BoLUtility {
     });
   }
 
+    /* -------------------------------------------- */
+    static async processDamageIncrease(event, attackId, damageMode ) {
+      if ( !game.user.isGM) {
+        return;
+      }
+      BoLUtility.removeChatMessageId(BoLUtility.findChatMessageId(event.currentTarget));
+  
+      // Only GM process this 
+      let attackDef = this.attackStore[attackId];
+      if (attackDef) {
+        attackDef.damageMode = damageMode;
+        if (defenseMode == 'damage-plus-6') {
+          attackDef.damageRoll.total += 6;
+        }
+        if (defenseMode == 'damage-plus-12') {
+          attackDef.damageRoll.total += 12;
+          attackDef.defender.subHeroPoints(1);
+        }
+        if (defenseMode == 'damage-normal') {
+          // Do nothing !
+        }
+        BoLUtility.sendAttackSuccess( this.attackDef);
+      }
+    }
+  
   /* -------------------------------------------- */
   static async processDamageHandling(event, attackId, defenseMode, weaponId=-1) {
     if ( !game.user.isGM) {
@@ -120,14 +167,14 @@ export class BoLUtility {
 
     // Only GM process this 
     let attackDef = this.attackStore[attackId];
-    console.log("DEFENSE2", attackId, defenseMode, weaponId, attackDef);
     if (attackDef) {
       attackDef.defenseMode = defenseMode;
       if (defenseMode == 'damage-with-armor') {
-        let armorFormula = attackDef.defender.getArmorFormula();
+        let armorFormula = attackDef.defender.getArmorFormula();        
         attackDef.rollArmor = new Roll(armorFormula)
         attackDef.rollArmor.roll( {async: false} );
-        attackDef.finalDamage = attackDef.damageRoll.total - attackDef.rollArmor.total;
+        attackDef.armorProtect = (attackDef.rollArmor.total<0) ? 0 : attackDef.rollArmor.total;
+        attackDef.finalDamage = attackDef.damageRoll.total - attackDef.armorProtect;
         attackDef.finalDamage = (attackDef.finalDamage<0) ? 0 : attackDef.finalDamage;
         attackDef.defender.sufferDamage(attackDef.finalDamage);
       }
@@ -136,9 +183,13 @@ export class BoLUtility {
         attackDef.defender.sufferDamage(attackDef.finalDamage);
       }
       if (defenseMode == 'hero-reduce-damage') {
+        let armorFormula = attackDef.defender.getArmorFormula();        
+        attackDef.rollArmor = new Roll(armorFormula)
+        attackDef.rollArmor.roll( {async: false} );
+        attackDef.armorProtect = (attackDef.rollArmor.total<0) ? 0 : attackDef.rollArmor.total;
         attackDef.rollHero = new Roll("1d6");
         attackDef.rollHero.roll( {async: false} );
-        attackDef.finalDamage = attackDef.damageRoll.total - attackDef.rollHero.total;
+        attackDef.finalDamage = attackDef.damageRoll.total - attackDef.rollHero.total - attackDef.armorProtect;
         attackDef.finalDamage = (attackDef.finalDamage<0) ? 0 : attackDef.finalDamage;
         attackDef.defender.sufferDamage(attackDef.finalDamage);
         attackDef.defender.subHeroPoints(1);
@@ -157,6 +208,7 @@ export class BoLUtility {
           rollArmor: attackDef.rollArmor,
           rollHero: attackDef.rollHero,
           weaponHero : attackDef.weaponHero,
+          armorProtect: attackDef.armorProtect,
           defender: attackDef.defender,
           defenseMode: attackDef.defenseMode,
           finalDamage: attackDef.finalDamage
@@ -313,6 +365,9 @@ export class BoLUtility {
     if (sockmsg.name == "msg_damage_handling") {
       BoLUtility.processDamageHandling(sockmsg.data.event, sockmsg.data.attackId, sockmsg.data.defenseMode)
     }
+    if (sockmsg.name == "msg_damage_increase") {
+      BoLUtility.processDamageIncrease(sockmsg.data.event, sockmsg.data.attackId, sockmsg.data.damageMode)
+    }
   }
 
   /* -------------------------------------------- */
@@ -337,6 +392,30 @@ export class BoLUtility {
     }
     let formula = nbDice + "d" + res[2] + postForm + ((res[modIndex]) ? res[modIndex] : "");
     return formula;
+  }
+  /* -------------------------------------------- */
+  static async showDiceSoNice(roll, rollMode) {
+    if (game.modules.get("dice-so-nice")?.active) {
+      if (game.dice3d) {
+        let whisper = null;
+        let blind = false;
+        rollMode = rollMode ?? game.settings.get("core", "rollMode");
+        switch (rollMode) {
+          case "blindroll": //GM only
+            blind = true;
+          case "gmroll": //GM + rolling player
+            whisper = BoLUtility.getUsers(user => user.isGM);
+            break;
+          case "roll": //everybody
+            whisper = BoLUtility.getUsers(user => user.active);
+            break;
+          case "selfroll":
+            whisper = [game.user.id];
+            break;
+        }
+        await game.dice3d.showForRoll(roll, game.user, true, whisper, blind);
+      }
+    }
   }
 
   /* -------------------------------------------- */
