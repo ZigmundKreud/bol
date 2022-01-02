@@ -394,31 +394,6 @@ export class BoLUtility {
     return formula;
   }
   /* -------------------------------------------- */
-  static async showDiceSoNice(roll, rollMode) {
-    if (game.modules.get("dice-so-nice")?.active) {
-      if (game.dice3d) {
-        let whisper = null;
-        let blind = false;
-        rollMode = rollMode ?? game.settings.get("core", "rollMode");
-        switch (rollMode) {
-          case "blindroll": //GM only
-            blind = true;
-          case "gmroll": //GM + rolling player
-            whisper = BoLUtility.getUsers(user => user.isGM);
-            break;
-          case "roll": //everybody
-            whisper = BoLUtility.getUsers(user => user.active);
-            break;
-          case "selfroll":
-            whisper = [game.user.id];
-            break;
-        }
-        await game.dice3d.showForRoll(roll, game.user, true, whisper, blind);
-      }
-    }
-  }
-
-  /* -------------------------------------------- */
   static async confirmDelete(actorSheet, li) {
     let itemId = li.data("item-id");
     let msgTxt = "<p>Are you sure to remove this Item ?";

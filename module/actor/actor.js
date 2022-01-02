@@ -6,32 +6,41 @@ export class BoLActor extends Actor {
   
   /** @override */
   prepareData() {
-    super.prepareData();
     const actorData = this.data;
     // console.log(actorData);
     // const data = actorData.data;
     // const flags = actorData.flags;
     // Make separate methods for each Actor type (character, npc, etc.) to keep things organized.
     if (actorData.type === 'character') {
-      this._prepareCharacterData(actorData);
+      //this._prepareCharacterData(actorData);
     }
+    super.prepareData();
   }
 
-  /**
-   * Prepare Character type specific data
-   */
-  _prepareCharacterData(actorData) {
-    let newVitality = 10 + this.data.data.attributes.vigor.value;
-    if ( newVitality != this.data.data.resources.hp.max) {
-      this.data.data.resources.hp.max = newVitality;
-      this.update( { 'data.resources.hp.max': newVitality});
+  /* -------------------------------------------- */
+  //_onUpdate(changed, options, user) {
+    //    
+  //}
+
+  /* -------------------------------------------- */
+  updateResourcesData( ) {
+    let newVitality = 10 + this.data.data.attributes.vigor.value + this.data.data.resources.hp.bonus
+    if ( this.data.data.resources.hp.max != newVitality) {
+      this.update( {'data.resources.hp.max': newVitality} );
+    }
+    let newPower = 10 + this.data.data.attributes.mind.value + this.data.data.resources.power.bonus
+    if ( this.data.data.resources.power.max != newPower) {
+      this.update( {'data.resources.power.max': newPower} );
     }
   }
 
   /* -------------------------------------------- */
-  _onUpdate() {
-    this.manageHealthState()    
+  prepareDerivedData() {
+    super.prepareDerivedData()
+    this.updateResourcesData()
+    this.manageHealthState();
   }
+
   /* -------------------------------------------- */
   get itemData(){
     return Array.from(this.data.items.values()).map(i => i.data);
