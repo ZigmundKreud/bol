@@ -3,13 +3,14 @@
 <ul>
   <li>
   {{#if (eq defenseMode "damage-with-armor")}}
-  Protection de l'armure : {{rollArmor.total}}.
+  Protection de l'armure : {{armorProtect}}.
   {{/if}}
   {{#if (eq defenseMode "damage-without-armor")}}
   Aucune protection d'armure !
   {{/if}}
   {{#if (eq defenseMode "hero-reduce-damage")}}
-  Un point d'héroisme dépensé, pour une réduction des dommages de {{rollHero.total}}.
+  Protection de l'armure : {{armorProtect}}.
+  Un point d'héroisme dépensé, pour une réduction des dommages supplémentaire de {{rollHero.total}}.
   {{/if}}
   {{#if (eq defenseMode "hero-in-extremis")}}
   Aucun dommage encaissé, grâce à la parade in-extremis avec {{weaponHero.name}}. L'arme a été détruite pendant cette parade !

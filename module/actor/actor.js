@@ -217,7 +217,7 @@ export class BoLActor extends Actor {
     for (let protect of protectWorn) {
       if ( protect.data.subtype == 'helm') {
         formula += "+1"  
-      } else {
+      } else if ( protect.data.subtype == 'armor') {
         formula += "+" + protect.data.properties.soak.formula;
       }
     }
