@@ -108,27 +108,32 @@ export class BoLActorSheet extends ActorSheet {
   /** @override */
   getData(options) {
     const data = super.getData(options);
-    const actorData = data.data;
-    data.config = game.bol.config;
-    data.data = actorData.data;
-    data.details = this.actor.details;
-    data.attributes = this.actor.attributes;
-    data.aptitudes = this.actor.aptitudes;
-    data.resources = this.actor.resources;
-    data.equipment = this.actor.equipment;
-    data.weapons = this.actor.weapons;
-    data.protections = this.actor.protections;
-    data.containers = this.actor.containers;
-    data.treasure = this.actor.treasure;
-    data.vehicles = this.actor.vehicles;
-    data.ammos = this.actor.ammos;
-    data.misc = this.actor.misc;
-    data.combat = this.actor.buildCombat();
-    data.features = this.actor.buildFeatures();
-    data.isGM = game.user.isGM;
+    const actorData = duplicate(data.data);
+    let formData = duplicate(data)
+    formData.config = game.bol.config;
+    formData.data = actorData.data;
+    formData.details = this.actor.details;
+    formData.attributes = this.actor.attributes;
+    formData.aptitudes = this.actor.aptitudes;
+    formData.resources = this.actor.resources;
+    formData.equipment = this.actor.equipment;
+    formData.weapons = this.actor.weapons;
+    formData.protections = this.actor.protections;
+    formData.containers = this.actor.containers;
+    formData.treasure = this.actor.treasure;
+    formData.vehicles = this.actor.vehicles;
+    formData.ammos = this.actor.ammos;
+    formData.misc = this.actor.misc;
+    formData.combat = this.actor.buildCombat();
+    formData.features = this.actor.buildFeatures();
+    formData.isGM = game.user.isGM;
+    formData.options= this.options,
+    formData.owner= this.document.isOwner,
+    formData.editScore= this.options.editScore,
+    formData.isGM= game.user.isGM
 
-    console.log("ACTORDATA", data);
-    return data;
+    console.log("ACTORDATA", formData);
+    return formData;
   }
   /* -------------------------------------------- */
 
@@ -158,7 +163,6 @@ export class BoLActorSheet extends ActorSheet {
     // Finally, create the item!
     return this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
-
 
   _onToggleEquip(event) {
     event.preventDefault();

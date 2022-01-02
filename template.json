@@ -111,12 +111,14 @@
           "faith": {
             "key" : "faith",
             "label" : "BOL.resources.faith",
+            "bonus": 0,
             "value": 0,
             "max": 0
           },
           "power": {
             "key" : "power",
             "label" : "BOL.resources.power",
+            "bonus": 0,
             "value": 0,
             "max": 0
           }
