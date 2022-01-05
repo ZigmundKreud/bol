@@ -52,7 +52,7 @@ export class BoLRoll {
       label: (weapon.name) ? weapon.name : game.i18n.localize('BOL.ui.noWeaponName'),
       description: actor.name + " - " + game.i18n.localize('BOL.ui.weaponAttack'),
     }
-    console.log("WEAPON!", attackDef, weaponData);
+    console.debug("WEAPON!", attackDef, weaponData);
     return this.weaponRollDialog(attackDef);
   }
 

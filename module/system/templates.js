@@ -19,6 +19,7 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/bol/templates/item/parts/properties/feature-properties.hbs",
         "systems/bol/templates/item/parts/properties/item-properties.hbs",
         "systems/bol/templates/item/parts/properties/item/equipment-properties.hbs",
+        "systems/bol/templates/item/parts/properties/item/capacity-properties.hbs",
         "systems/bol/templates/item/parts/properties/item/vehicle-properties.hbs",
         "systems/bol/templates/item/parts/properties/item/protection-properties.hbs",
         "systems/bol/templates/item/parts/properties/item/weapon-properties.hbs",

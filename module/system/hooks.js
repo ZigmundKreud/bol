@@ -1,8 +1,21 @@
+import {BoLUtility} from "./bol-utility.js";
+
 export default function registerHooks() {
+
+    /**
+     * Ready hook loads tables, and override's foundry's entity link functions to provide extension to pseudo entities
+     */
+
+    Hooks.once("ready", async () => {
+        console.info("BOL | System Initialized.");
+    });
 
     Hooks.on("renderPause", ((_app, html) => {
         html.find("img").attr("src", "systems/bol/ui/pause2.webp")
     }))
+
+    Hooks.on('renderChatLog', (log, html, data) => BoLUtility.chatListeners(html));
+
     /**
      * Create a macro when dropping an entity on the hotbar
      * Item      - open roll dialog for item

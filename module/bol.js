@@ -76,28 +76,3 @@ Hooks.once('init', async function () {
   //   return str.toLowerCase();
   // });
 });
-
-
-/**
- * Ready hook loads tables, and override's foundry's entity link functions to provide extension to pseudo entities
- */
-
-Hooks.once("ready", async () => {
-
-  console.debug("Importing data");
-
-  // DataLoader.loadData("boons");
-  // DataLoader.loadData("flaws");
-  // DataLoader.loadData("careers");
-  // DataLoader.loadData("origins");
-  // DataLoader.loadData("races");
-  // DataLoader.loadData("equipment");
-
-  // UpdateUtils.updatePacks();
-  // UpdateUtils.updatePaths();
-  // UpdateUtils.updateProfiles();
-  // UpdateUtils.updateSpecies();
-  // UpdateUtils.updateEncounters();
-
-  console.info("BOL | System Initialized.");
-});

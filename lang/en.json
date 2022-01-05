@@ -1,11 +1,13 @@
 {
-  "ACTOR.TypeCharacter": "Character",
+  "ACTOR.TypeCharacter": "Personnage",
+  "ACTOR.TypeEncounter": "Rencontre",
   "ITEM.TypeItem": "Objet",
   "ITEM.TypeFeature": "Trait",
   "ITEM.TypeWeapon": "Arme",
   "ITEM.TypeArmor": "Armure",
 
   "BOL.attributes.vigor": "Vigueur",
+  "BOL.attributes.halfvigor" : "Demi-vigueur",
   "BOL.attributes.agility": "Agilité",
   "BOL.attributes.mind": "Esprit",
   "BOL.attributes.appeal": "Aura",
@@ -92,12 +94,14 @@
   "BOL.ui.treasure" : "Trésor",
   "BOL.ui.vehicles" : "Véhicules/Montures",
   "BOL.ui.misc" : "Divers",
-  "BOL.ui.noWeaponName" : "Unknown Weapon",
-  "BOL.ui.targetDefence": "Defence",
-  "BOL.ui.applyShieldMalus": "Apply Small Shield Malus",
-  "BOL.ui.shieldMalus": "Shield Malus",
-  "BOL.ui.defenseScore": "Defense Score",
-  "BOL.ui.defender": "Defender",
+  "BOL.ui.vehicleProperties" : " Propriétés de véhicule",
+  "BOL.ui.speed" : "Vitesse",
+  "BOL.ui.noWeaponName" : "Arme Inconnue",
+  "BOL.ui.targetDefence": "Défense",
+  "BOL.ui.applyShieldMalus": "Appliquer le Malus de Petit Bouclier",
+  "BOL.ui.shieldMalus": "Malus de Bouclier",
+  "BOL.ui.defenseScore": "Score de Defense",
+  "BOL.ui.defender": "Défenseur",
 
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",
@@ -119,6 +123,7 @@
   "BOL.itemCategory.spell": "Sort",
   "BOL.itemCategory.vehicle": "Monture/Véhicule",
   "BOL.itemCategory.other": "Autre",
+  "BOL.itemCategory.capacity" : "Capacité",
 
   "BOL.combatCategory.protections": "Protections",
   "BOL.combatCategory.shields": "Boucliers",
@@ -192,6 +197,7 @@
   "BOL.itemProperty.blockingAllAttacks" : "Bloque toutes les attaques",
   "BOL.itemProperty.slot" : "Emplacement utilisé",
   "BOL.itemProperty.reload": "Rechargement (Actions)",
+  "BOL.itemProperty.weaponSize" : "Classe d'arme",
 
   "BOL.itemStat.quantity": "Quantité",
   "BOL.itemStat.weight": "Poids",
@@ -202,6 +208,12 @@
   "BOL.itemStat.soak": "Valeur de protection",
   "BOL.itemStat.blocking": "Bloquage",
   "BOL.itemStat.modifiers": "Modificateurs",
+
+  "BOL.weaponSize.unarmed" :  "Mains nues",
+  "BOL.weaponSize.improvised" : "Arme improvisée",
+  "BOL.weaponSize.light" : "Légère",
+  "BOL.weaponSize.medium" : "Moyenne",
+  "BOL.weaponSize.heavy" : "Lourde",
 
   "BOL.itemModifiers.init": "Malus (Initiative)",
   "BOL.itemModifiers.social": "Malus (Social)",
@@ -246,6 +258,11 @@
   "BOL.equipmentSlots.feet" : "Pieds",
   "BOL.equipmentSlots.finder" : "Doigt",
   "BOL.equipmentSlots.ear" : "Oreille",
+
+  "BOL.vehicleCategory.mount" : "Monture terrestre",
+  "BOL.vehicleCategory.flying" : "Monture volante",
+  "BOL.vehicleCategory.boat" : "Bateau",
+  "BOL.vehicleCategory.other" : "Autre",
 
 
   "BOL.range.PointBlank": "Bout portant",

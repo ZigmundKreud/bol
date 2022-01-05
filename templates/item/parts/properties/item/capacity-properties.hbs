@@ -1,0 +1,25 @@
+<h3 class="form-header">{{localize "BOL.ui.capacityProperties"}}</h3>
+<div class="form-group">
+    <label class="property-label">{{localize "BOL.ui.type"}}</label>
+    <div class="form-fields">
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.weapon" {{checked data.properties.weapon}}> {{localize "BOL.itemProperty.weapon"}}
+        </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.protection" {{checked data.properties.protection}}> {{localize "BOL.itemProperty.protection"}}
+        </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.magical" {{checked data.properties.magical}}> {{localize "BOL.itemProperty.magical"}}
+        </label>
+    </div>
+</div>
+
+{{#if data.properties.weapon}}
+    {{> "systems/bol/templates/item/parts/properties/item/weapon-properties.hbs"}}
+{{/if}}
+{{#if data.properties.protection}}
+    {{> "systems/bol/templates/item/parts/properties/item/protection-properties.hbs"}}
+{{/if}}
+{{#if data.properties.magical}}
+    {{> "systems/bol/templates/item/parts/properties/item/magical-properties.hbs"}}
+{{/if}}

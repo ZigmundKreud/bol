@@ -39,7 +39,7 @@ export class BoLItemSheet extends ItemSheet {
     data.category = itemData.category;
     data.itemProperties = this.item.itemProperties;
     data.isGM = game.user.isGM;
-    console.log("ITEMDATA", data);
+    console.debug("ITEMDATA", data);
     return data;
   }
 

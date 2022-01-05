@@ -1,11 +1,13 @@
 {
-  "ACTOR.TypeCharacter": "Character",
+  "ACTOR.TypeCharacter": "Personnage",
+  "ACTOR.TypeEncounter": "Rencontre",
   "ITEM.TypeItem": "Objet",
   "ITEM.TypeFeature": "Trait",
   "ITEM.TypeWeapon": "Arme",
   "ITEM.TypeArmor": "Armure",
 
   "BOL.attributes.vigor": "Vigueur",
+  "BOL.attributes.halfvigor" : "Demi-vigueur",
   "BOL.attributes.agility": "Agilité",
   "BOL.attributes.mind": "Esprit",
   "BOL.attributes.appeal": "Aura",
@@ -55,6 +57,7 @@
   "BOL.ui.weaponProperties" : "Propiétés offensives",
   "BOL.ui.protectionProperties" : "Protection",
   "BOL.ui.magicalProperties" : "Propriétés magiques",
+  "BOL.ui.capacityProperties" : "Propriétés de capacité",
   "BOL.ui.armor" : "Armure",
   "BOL.ui.reach" : "Allonge",
   "BOL.ui.weapon" : "Arme",
@@ -121,6 +124,7 @@
   "BOL.itemCategory.spell": "Sort",
   "BOL.itemCategory.vehicle": "Monture/Véhicule",
   "BOL.itemCategory.other": "Autre",
+  "BOL.itemCategory.capacity" : "Capacité",
 
   "BOL.combatCategory.protections": "Protections",
   "BOL.combatCategory.shields": "Boucliers",
@@ -194,6 +198,7 @@
   "BOL.itemProperty.blockingAllAttacks" : "Bloque toutes les attaques",
   "BOL.itemProperty.slot" : "Emplacement utilisé",
   "BOL.itemProperty.reload": "Rechargement (Actions)",
+  "BOL.itemProperty.weaponSize" : "Classe d'arme",
 
   "BOL.itemStat.quantity": "Quantité",
   "BOL.itemStat.weight": "Poids",
@@ -204,6 +209,12 @@
   "BOL.itemStat.soak": "Valeur de protection",
   "BOL.itemStat.blocking": "Bloquage",
   "BOL.itemStat.modifiers": "Modificateurs",
+
+  "BOL.weaponSize.unarmed" :  "Mains nues",
+  "BOL.weaponSize.improvised" : "Arme improvisée",
+  "BOL.weaponSize.light" : "Légère",
+  "BOL.weaponSize.medium" : "Moyenne",
+  "BOL.weaponSize.heavy" : "Lourde",
 
   "BOL.itemModifiers.init": "Malus (Initiative)",
   "BOL.itemModifiers.social": "Malus (Social)",

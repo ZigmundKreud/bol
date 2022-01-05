@@ -14,6 +14,9 @@
 {{#if (equals data.category "equipment")}}
     {{> "systems/bol/templates/item/parts/properties/item/equipment-properties.hbs"}}
 {{/if}}
+{{#if (equals data.category "capacity")}}
+    {{> "systems/bol/templates/item/parts/properties/item/capacity-properties.hbs"}}
+{{/if}}
 {{#if (equals data.category "vehicle")}}
     {{> "systems/bol/templates/item/parts/properties/item/vehicle-properties.hbs"}}
 {{/if}}

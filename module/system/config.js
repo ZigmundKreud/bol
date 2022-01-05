@@ -87,15 +87,23 @@ BOL.aptitudes = {
     "def" : "BOL.aptitudes.def"
 }
 
+BOL.weaponSizes = {
+    "unarmed" : "BOL.weaponSize.unarmed",
+    "improvised" : "BOL.weaponSize.improvised",
+    "light" : "BOL.weaponSize.light",
+    "medium" : "BOL.weaponSize.medium",
+    "heavy" : "BOL.weaponSize.heavy"
+}
+
 BOL.damageAttributes = {
+    "zero" : "0",
     "vigor" : "BOL.attributes.vigor",
-    "agility" : "BOL.attributes.agility",
-    "mind" : "BOL.attributes.mind",
-    "appeal" : "BOL.attributes.appeal"
+    "half-vigor" : "BOL.attributes.halfvigor"
 }
 
 BOL.itemCategories = {
     "equipment" : "BOL.itemCategory.equipment",
+    "capacity" : "BOL.itemCategory.capacity",
     "spell" : "BOL.itemCategory.spell",
     "vehicle" : "BOL.itemCategory.vehicle",
     "other" : "BOL.itemCategory.other"

@@ -74,6 +74,18 @@
 </div>
 <hr/>
 <div class="form-group">
+    <label class="property-label">{{localize "BOL.itemProperty.weaponSize"}}</label>
+    <div class="form-fields">
+        <select class="field-value" name="data.properties.weaponSize" data-dtype="String">
+            {{#select data.properties.weaponSize}}
+                {{#each config.weaponSizes as |value id|}}
+                    <option value="{{id}}">{{localize value}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+    </div>
+</div>
+<div class="form-group">
     <label class="property-label">{{localize "BOL.itemProperty.damage"}}</label>
     <div class="form-fields">
         <select class="field-value" name="data.properties.damage" data-dtype="String">
