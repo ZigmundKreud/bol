@@ -124,7 +124,7 @@ export class BoLUtility {
       let attackId = event.currentTarget.attributes['data-attack-id'].value;
       let defenseMode = event.currentTarget.attributes['data-defense-mode'].value;
       let weaponId = (event.currentTarget.attributes['data-weapon-id']) ? event.currentTarget.attributes['data-weapon-id'].value : -1
-      //console.log("DEFENSE1", event.currentTarget, attackId, defenseMode, weaponId);
+      console.log("DEFENSE1", event.currentTarget, attackId, defenseMode, weaponId);
       if ( game.user.isGM) {
         BoLUtility.processDamageHandling(event, attackId, defenseMode, weaponId)
       } else {
@@ -165,10 +165,14 @@ export class BoLUtility {
     }
     BoLUtility.removeChatMessageId(BoLUtility.findChatMessageId(event.currentTarget));
 
+    //console.log("Damage Handling", event, attackId, defenseMode, weaponId)
     // Only GM process this 
     let attackDef = this.attackStore[attackId];
     if (attackDef) {
+      if (attackDef.defenseDone) return; // ?? Why ???
+      attackDef.defenseDone = true
       attackDef.defenseMode = defenseMode;
+      
       if (defenseMode == 'damage-with-armor') {
         let armorFormula = attackDef.defender.getArmorFormula();        
         attackDef.rollArmor = new Roll(armorFormula)
