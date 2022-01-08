@@ -109,6 +109,7 @@
             "key": "power",
             "label": "BOL.resources.power",
             "value": 0,
+            "bonus": 0,
             "max": 0
           }
         }

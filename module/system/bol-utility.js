@@ -249,7 +249,6 @@ export class BoLUtility {
   }
 
   /* -------------------------------------------- */
-
   static removeChatMessageId(messageId) {
     if (messageId){
       game.messages.get(messageId)?.delete();
