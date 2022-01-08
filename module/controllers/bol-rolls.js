@@ -89,7 +89,7 @@ export class BoLRoll {
             const adv = html.find('#adv').val();
             const mod = html.find('#mod').val();
             let careers = html.find('#career').val();
-            const career = (careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
+            const career = (careers && careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
             const isMalus = adv < 0;
             const dicePool = (isMalus) ? 2 - parseInt(adv) : 2 + parseInt(adv);
             const attrValue = eval(`actor.data.data.attributes.${attr}.value`);
@@ -118,7 +118,9 @@ export class BoLRoll {
       careers: attackDef.attackerData.features.careers,
       boons: attackDef.attackerData.features.boons,
       flaws: attackDef.attackerData.features.flaws,
+      defence: 0
     };
+    
     if (attackDef.defender) {
       dialogData.defence = attackDef.defender.defenseValue,
         dialogData.shieldBlock = 'none'
@@ -156,7 +158,7 @@ export class BoLRoll {
             }
 
             let careers = html.find('#career').val();
-            const career = (careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
+            const career = (careers && careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
             const isMalus = adv < 0;
             const dicePool = (isMalus) ? 2 - parseInt(adv) : 2 + parseInt(adv);
             const attrValue = eval(`attackDef.attacker.data.data.attributes.${attr}.value`);
@@ -204,7 +206,7 @@ export class BoLRoll {
             const adv = html.find('#adv').val();
             const mod = html.find('#mod').val();
             let careers = html.find('#career').val();
-            const career = (careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
+            const career = (careers && careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
             const isMalus = adv < 0;
             const dicePool = (isMalus) ? 2 - parseInt(adv) : 2 + parseInt(adv);
             const aptValue = eval(`actor.data.data.aptitudes.${apt}.value`);
@@ -280,6 +282,7 @@ export class BoLAttackRoll {
   }
 
   async roll() {
+    console.log("Attack def",this.attackDef.formula )
     const r = new Roll(this.attackDef.formula);
     await r.roll({ "async": false });
     //await BoLUtility.showDiceSoNice(r);
