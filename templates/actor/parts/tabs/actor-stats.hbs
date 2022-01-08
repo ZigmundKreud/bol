@@ -23,12 +23,14 @@
 </div>
 <hr/>
 <div class="resources flexrow">
-    {{#each data.resources as |resource id|}}
+    {{#each resources as |resource id|}}
         <div class="resource stat flex1 flex-group-center">
             <label class="stat-label">{{localize label}}</label><br/>
             <input class="stat-value" type="text" name="data.resources.{{key}}.value" value="{{numberFormat value decimals=0 sign=false}}" data-dtype="Number"/>
+            {{#if (eq @root.data.type 'player')}}
             {{#if (exists bonus)}}
             <span class="flexrow"><label class="stat-max">Bonus:</label><input class="stat-max" type="text" name="data.resources.{{key}}.bonus" value="{{numberFormat bonus decimals=0 sign=false}}" data-dtype="Number"/></span>
+            {{/if}}
             {{/if}}
             <input class="stat-max" type="text" name="data.resources.{{key}}.max" value="{{numberFormat max decimals=0 sign=false}}" data-dtype="Number"/>
         </div>

@@ -117,7 +117,7 @@
     },
     "character": {
       "templates": [ "base" ],
-      "type": "npc",
+      "type": "player",
       "villainy": false,
       "xp": {
         "key": "xp",
@@ -135,6 +135,7 @@
     "encounter": {
       "templates": [ "base" ],
       "type": "tough",
+      "villainy": false,
       "size": "",
       "environment": ""
     }
