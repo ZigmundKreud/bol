@@ -12,7 +12,12 @@ export class BoLActor extends Actor {
     // const flags = actorData.flags;
     // Make separate methods for each Actor type (character, npc, etc.) to keep things organized.
     if (actorData.type === 'character') {
-      //this._prepareCharacterData(actorData);
+      actorData.type = 'player';
+      actorData.villainy = false;
+    }
+    if (actorData.type === 'encounter') {
+      actorData.type = 'tough';
+      actorData.villainy = true;
     }
     super.prepareData();
   }
@@ -24,13 +29,15 @@ export class BoLActor extends Actor {
 
   /* -------------------------------------------- */
   updateResourcesData( ) {
-    let newVitality = 10 + this.data.data.attributes.vigor.value + this.data.data.resources.hp.bonus
-    if ( this.data.data.resources.hp.max != newVitality) {
-      this.update( {'data.resources.hp.max': newVitality} );
-    }
-    let newPower = 10 + this.data.data.attributes.mind.value + this.data.data.resources.power.bonus
-    if ( this.data.data.resources.power.max != newPower) {
-      this.update( {'data.resources.power.max': newPower} );
+    if ( this.type == 'character') {
+      let newVitality = 10 + this.data.data.attributes.vigor.value + this.data.data.resources.hp.bonus
+      if ( this.data.data.resources.hp.max != newVitality) {
+        this.update( {'data.resources.hp.max': newVitality} );
+      }
+      let newPower = 10 + this.data.data.attributes.mind.value + this.data.data.resources.power.bonus
+      if ( this.data.data.resources.power.max != newPower) {
+        this.update( {'data.resources.power.max': newPower} );
+      }
     }
   }
 
@@ -125,6 +132,35 @@ export class BoLActor extends Actor {
 
   get misc() {
     return this.itemData.filter(i => i.type === "item" && i.data.category === "equipment" && (i.data.subtype === "other" ||i.data.subtype === "container" ||i.data.subtype === "scroll" || i.data.subtype === "jewel"));
+  }
+  
+  heroReroll( ) {
+    if (this.type == 'character') {
+      return this.data.data.resources.hero.value > 0;
+    } else {
+      if (this.data.data.type == 'adversary') {
+        return this.data.data.resources.hero.value > 0;
+      }
+    }
+    return false
+  }
+
+  getResourcesFromType() {
+    let resources = {};
+    if (this.type == 'encounter') {
+      resources['hp'] = this.data.data.resources.hp;
+      if (this.data.data.type != 'base') {
+        resources['faith'] = this.data.data.resources.faith
+        resources['power'] = this.data.data.resources.power
+      }
+      if (this.data.data.type == 'adversary') {
+        resources['hero'] = duplicate(this.data.data.resources.hero)
+        resources['hero'].label = "BOL.resources.villainy"
+      }
+    } else {
+      resources = this.data.data.resources;
+    }
+    return resources
   }
 
   buildFeatures(){

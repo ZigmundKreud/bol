@@ -17,6 +17,13 @@ BOL.damageValues = {
     "d6BB" : "d6B + dé bonus",
 }
 
+BOL.damageMultiplier = {
+  "1": "x1",
+  "2": "x2",
+  "3": "x3",
+  "4": "x4",
+}
+
 BOL.equipmentSlots = {
     "none" : "BOL.equipmentSlots.none",
     "head" : "BOL.equipmentSlots.head",
@@ -189,7 +196,8 @@ BOL.itemProperties2 = {
     "throwing" : "BOL.itemProperty.throwing",
     "activable" : "BOL.itemProperty.activable",
     "powder" : "BOL.itemProperty.powder",
-    "damage" : "BOL.itemProperty.damage"
+    "damage" : "BOL.itemProperty.damage",
+    "difficulty": "BOL.itemProperty.difficulty"
 }
 
 BOL.itemStats = {

@@ -115,7 +115,7 @@ export class BoLActorSheet extends ActorSheet {
     formData.details = this.actor.details;
     formData.attributes = this.actor.attributes;
     formData.aptitudes = this.actor.aptitudes;
-    formData.resources = this.actor.resources;
+    formData.resources = this.actor.getResourcesFromType();
     formData.equipment = this.actor.equipment;
     formData.weapons = this.actor.weapons;
     formData.protections = this.actor.protections;

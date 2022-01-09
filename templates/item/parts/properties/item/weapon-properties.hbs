@@ -116,6 +116,18 @@
     </div>
 </div>
 <div class="form-group">
+    <label class="property-label">{{localize "BOL.itemProperty.damageMultiplier"}}</label>
+    <div class="form-fields center">
+        <select class="field-value" name="data.properties.damageMultiplier" data-dtype="String">
+            {{#select data.properties.damageMultiplier}}
+                {{#each config.damageMultiplier as |value id|}}
+                    <option value="{{id}}">{{value}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+    </div>
+</div>
+<div class="form-group">
     <label class="property-label">{{localize "BOL.itemProperty.damageSpecial"}}</label>
     <div class="form-fields center">
         <label class="checkbox">

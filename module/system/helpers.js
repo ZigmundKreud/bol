@@ -4,6 +4,10 @@ export const registerHandlebarsHelpers = function () {
         return val == null;
     });
 
+    Handlebars.registerHelper('exists', function (val) {
+      return val != null && val != undefined;
+    });
+
     Handlebars.registerHelper('isEmpty', function (list) {
         if (list) return list.length == 0;
         else return 0;

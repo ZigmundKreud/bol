@@ -5,6 +5,8 @@
             <label class="header-field-label flex2">Nom</label><br/>
             <input class="charname  flex6" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
         </div>
+        
+        {{#if (eq data.type "player")}}
         <div class="header-field-group flexrow">
             <label class="header-field-label flex2">Experience</label><br/>
             <div class="header-field-group flex3">
@@ -15,7 +17,19 @@
                 <label class="header-field-label flex1" style="font-size: 1.5em; color:#606060;">&nbsp;Totale</label><br/>
                 <input class="header-field-value flex1" type="text" name="data.xp.total" value="{{numberFormat data.xp.total decimals=0 sign=false}}" data-dtype="Number"/><br/>
             </div>
-
         </div>
+        {{else}}
+        <div class="header-field-group flexrow">
+          <label class="header-field-label flex2">Type : </label><br/>
+            <select class="field-value" name="data.type" data-dtype="String">
+            {{#select data.type}}
+            <option value="base">Piétaille</option>
+            <option value="tough">Coriace</option>
+            <option value="adversary">Adversaire</option>
+            {{/select}}
+            </select>
+        </div>
+        {{/if}}
+
     </div>
 </header>

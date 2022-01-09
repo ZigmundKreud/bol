@@ -109,6 +109,7 @@
             "key": "power",
             "label": "BOL.resources.power",
             "value": 0,
+            "bonus": 0,
             "max": 0
           }
         }
@@ -116,7 +117,7 @@
     },
     "character": {
       "templates": [ "base" ],
-      "type": "npc",
+      "type": "player",
       "villainy": false,
       "xp": {
         "key": "xp",
@@ -134,6 +135,7 @@
     "encounter": {
       "templates": [ "base" ],
       "type": "tough",
+      "villainy": false,
       "size": "",
       "environment": ""
     }

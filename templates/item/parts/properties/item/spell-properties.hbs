@@ -1,0 +1,27 @@
+<h3 class="form-header">{{localize "BOL.ui.spellProperties"}}</h3>
+<div class="form-group">
+    <div class="form-fields center">
+      <label class="property-label">{{localize "BOL.ui.difficulty"}}</label>
+      <input class="field-value" type="text" name="data.properties.difficulty" value="{{data.properties.difficulty}}" data-dtype="Number"/>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="form-fields center">
+      <label class="property-label">{{localize "BOL.ui.duration"}}</label>
+      <input class="field-value" type="text" name="data.properties.duration" value="{{data.properties.duration}}" data-dtype="String"/>
+    </div>
+</div>
+
+<div class="form-group">
+  <div class="form-fields center">
+      <label class="checkbox">
+          <input class="field-value" type="checkbox" name="data.properties.spellkeep" {{checked data.properties.spellkeep}}> {{localize "BOL.ui.spellkeep"}}
+      </label>
+    </div>
+    <div class="form-fields center">
+      <label class="checkbox">
+          <input class="field-value" type="checkbox" name="data.properties.concentrate" {{checked data.properties.concentrate}}> {{localize "BOL.ui.concentrate"}}
+      </label>
+    </div>
+</div>
