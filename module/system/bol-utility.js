@@ -111,6 +111,7 @@ export class BoLUtility {
   static async chatListeners(html) {
     // Damage handling
     html.on("click", '.damage-increase', event => {      
+      event.preventDefault();
       let attackId = event.currentTarget.attributes['data-attack-id'].value;
       let damageMode = event.currentTarget.attributes['data-damage-mode'].value;
       if ( game.user.isGM) {
@@ -120,7 +121,13 @@ export class BoLUtility {
       }
     });
 
+    html.on("click", '.hero-reroll', event => {      
+      event.preventDefault();
+      ui.notifications.warn("Not implemented up to now");
+    } );
+
     html.on("click", '.damage-handling', event => {      
+      event.preventDefault();
       let attackId = event.currentTarget.attributes['data-attack-id'].value;
       let defenseMode = event.currentTarget.attributes['data-defense-mode'].value;
       let weaponId = (event.currentTarget.attributes['data-weapon-id']) ? event.currentTarget.attributes['data-weapon-id'].value : -1
@@ -172,7 +179,7 @@ export class BoLUtility {
       if (attackDef.defenseDone) return; // ?? Why ???
       attackDef.defenseDone = true
       attackDef.defenseMode = defenseMode;
-      
+
       if (defenseMode == 'damage-with-armor') {
         let armorFormula = attackDef.defender.getArmorFormula();        
         attackDef.rollArmor = new Roll(armorFormula)

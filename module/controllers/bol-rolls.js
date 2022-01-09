@@ -89,7 +89,7 @@ export class BoLRoll {
             const adv = html.find('#adv').val();
             const mod = html.find('#mod').val();
             let careers = html.find('#career').val();
-            const career = (careers && careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
+            const career = (!careers || careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
             const isMalus = adv < 0;
             const dicePool = (isMalus) ? 2 - parseInt(adv) : 2 + parseInt(adv);
             const attrValue = eval(`actor.data.data.attributes.${attr}.value`);
@@ -158,7 +158,7 @@ export class BoLRoll {
             }
 
             let careers = html.find('#career').val();
-            const career = (careers && careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
+            const career = (!careers || careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
             const isMalus = adv < 0;
             const dicePool = (isMalus) ? 2 - parseInt(adv) : 2 + parseInt(adv);
             const attrValue = eval(`attackDef.attacker.data.data.attributes.${attr}.value`);
@@ -206,7 +206,7 @@ export class BoLRoll {
             const adv = html.find('#adv').val();
             const mod = html.find('#mod').val();
             let careers = html.find('#career').val();
-            const career = (careers && careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
+            const career = (!careers || careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
             const isMalus = adv < 0;
             const dicePool = (isMalus) ? 2 - parseInt(adv) : 2 + parseInt(adv);
             const aptValue = eval(`actor.data.data.aptitudes.${apt}.value`);
@@ -261,6 +261,7 @@ export class BoLDefaultRoll {
     const tplData = {
       actor: actor,
       label: this._label,
+      reroll: actor.heroReroll(),
       isSuccess: this._isSuccess,
       isFailure: !this._isSuccess,
       isCritical: this._isCritical,
@@ -285,7 +286,7 @@ export class BoLAttackRoll {
     console.log("Attack def",this.attackDef.formula )
     const r = new Roll(this.attackDef.formula);
     await r.roll({ "async": false });
-    //await BoLUtility.showDiceSoNice(r);
+    await BoLUtility.showDiceSoNice(r);
     const activeDice = r.terms[0].results.filter(r => r.active);
     const diceTotal = activeDice.map(r => r.result).reduce((a, b) => a + b);
     this._isSuccess = (r.total >= 9);
@@ -297,16 +298,36 @@ export class BoLAttackRoll {
         flavor: msgFlavor,
         speaker: ChatMessage.getSpeaker({ actor: this.attackDef.attacker }),
         flags: { msgType: "default" }
-      });
+      }).then( this.processResult() );
     });
+  }
 
+  async processDefense() {
+    if (this._isCritical) {
+      ChatMessage.create({
+        alias: this.attackDef.attacker.name,
+        whisper: BoLUtility.getWhisperRecipientsAndGMs(this.attackDef.attacker.name),
+        content: await renderTemplate('systems/bol/templates/chat/rolls/attack-heroic-card.hbs', {
+          attackId: attackDef.id,
+          attacker: attackDef.attacker,
+          defender: attackDef.defender,
+          defenderWeapons: defenderWeapons,
+          damageTotal: attackDef.damageRoll.total
+        })
+      })
+    } else {
+      BoLUtility.sendAttackSuccess( this.attackDef);
+    }
+  }
+
+  async processResult( ) {
     if (this._isSuccess) {
       let attrDamage = this.attackDef.weapon.data.data.properties.damageAttribute;
       let weaponFormula = BoLUtility.getDamageFormula(this.attackDef.weapon.data.data.properties.damage)
       let damageFormula = weaponFormula + "+" + this.attackDef.attacker.data.data.attributes[attrDamage].value;
       this.damageRoll = new Roll(damageFormula);
       await this.damageRoll.roll({ "async": false });
-      //await BoLUtility.showDiceSoNice(this.damageRoll);
+      await BoLUtility.showDiceSoNice(this.damageRoll);
       // Update attackDef object
       this.attackDef.damageFormula = damageFormula;
       this.attackDef.damageRoll = this.damageRoll;
@@ -317,23 +338,8 @@ export class BoLAttackRoll {
           flavor: msgFlavor,
           speaker: ChatMessage.getSpeaker({ actor: this.attackDef.attacker }),
           flags: { msgType: "default" }
-        });
+        }).then( this.processDefense() );
       });
-      if (this._isCritical) {
-          ChatMessage.create({
-            alias: this.attackDef.attacker.name,
-            whisper: BoLUtility.getWhisperRecipientsAndGMs(this.attackDef.attacker.name),
-            content: await renderTemplate('systems/bol/templates/chat/rolls/attack-heroic-card.hbs', {
-              attackId: attackDef.id,
-              attacker: attackDef.attacker,
-              defender: attackDef.defender,
-              defenderWeapons: defenderWeapons,
-              damageTotal: attackDef.damageRoll.total
-            })
-          })
-        } else {
-          BoLUtility.sendAttackSuccess( this.attackDef);
-        }
     }
   }
 
@@ -354,6 +360,7 @@ export class BoLAttackRoll {
         const tplData = {
           actor: actor,
           label: this._label,
+          reroll: actor.heroReroll(),
           isSuccess: this._isSuccess,
           isFailure: !this._isSuccess,
           isCritical: this._isCritical,

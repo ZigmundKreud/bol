@@ -133,6 +133,17 @@ export class BoLActor extends Actor {
   get misc() {
     return this.itemData.filter(i => i.type === "item" && i.data.category === "equipment" && (i.data.subtype === "other" ||i.data.subtype === "container" ||i.data.subtype === "scroll" || i.data.subtype === "jewel"));
   }
+  
+  heroReroll( ) {
+    if (this.type == 'character') {
+      return this.data.data.resources.hero.value > 0;
+    } else {
+      if (this.data.data.type == 'adversary') {
+        return this.data.data.resources.hero.value > 0;
+      }
+    }
+    return false
+  }
 
   getResourcesFromType() {
     let resources = {};
