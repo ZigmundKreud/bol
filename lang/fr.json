@@ -103,6 +103,8 @@
   "BOL.ui.shieldMalus": "Malus de Bouclier",
   "BOL.ui.defenseScore": "Score de Defense",
   "BOL.ui.defender": "Défenseur",
+  "BOL.ui.difficulty": "Difficulté",
+  "BOL.ui.spellProperties": "Propriétés du Sort",
 
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",
@@ -199,6 +201,7 @@
   "BOL.itemProperty.slot" : "Emplacement utilisé",
   "BOL.itemProperty.reload": "Rechargement (Actions)",
   "BOL.itemProperty.weaponSize" : "Classe d'arme",
+  "BOL.itemProperty.difficulty": "Difficulté",
 
   "BOL.itemStat.quantity": "Quantité",
   "BOL.itemStat.weight": "Poids",

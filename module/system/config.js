@@ -189,8 +189,8 @@ BOL.itemProperties2 = {
     "throwing" : "BOL.itemProperty.throwing",
     "activable" : "BOL.itemProperty.activable",
     "powder" : "BOL.itemProperty.powder",
-    "damage" : "BOL.itemProperty.damage"
-    
+    "damage" : "BOL.itemProperty.damage",
+    "difficulty": "BOL.itemProperty.difficulty"
 }
 
 BOL.itemStats = {
