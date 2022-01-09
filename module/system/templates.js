@@ -29,6 +29,7 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/bol/templates/item/parts/properties/feature/flaw-properties.hbs",
         "systems/bol/templates/item/parts/properties/feature/origin-properties.hbs",
         "systems/bol/templates/item/parts/properties/feature/race-properties.hbs",
+        "systems/bol/templates/item/parts/properties/feature/spell-properties.hbs",
         // DIALOGS
         "systems/bol/templates/roll/parts/roll-dialog-modifiers.hbs",
         "systems/bol/templates/roll/parts/roll-dialog-attribute.hbs"

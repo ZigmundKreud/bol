@@ -11,12 +11,15 @@
     </div>
 </div>
 
-{{#if (equals data.category "equipment")}}
+{{#if (eq data.category "equipment")}}
     {{> "systems/bol/templates/item/parts/properties/item/equipment-properties.hbs"}}
 {{/if}}
-{{#if (equals data.category "capacity")}}
+{{#if (eq data.category "capacity")}}
     {{> "systems/bol/templates/item/parts/properties/item/capacity-properties.hbs"}}
 {{/if}}
-{{#if (equals data.category "vehicle")}}
+{{#if (eq data.category "vehicle")}}
     {{> "systems/bol/templates/item/parts/properties/item/vehicle-properties.hbs"}}
+{{/if}}
+{{#if (eq data.category "spell")}}
+    {{> "systems/bol/templates/item/parts/properties/item/spell-properties.hbs"}}
 {{/if}}

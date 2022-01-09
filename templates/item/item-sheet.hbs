@@ -23,10 +23,10 @@
                     {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
                 </div>
                 <div class="tab properties" data-group="primary" data-tab="properties">
-                {{#if (equals item.type "item")}}
+                {{#if (eq item.type "item")}}
                     {{> "systems/bol/templates/item/parts/properties/item-properties.hbs"}}
                 {{/if}}
-                {{#if (equals item.type "feature")}}
+                {{#if (eq item.type "feature")}}
                     {{> "systems/bol/templates/item/parts/properties/feature-properties.hbs"}}
                 {{/if}}
                 </div>

@@ -190,6 +190,7 @@ BOL.itemProperties2 = {
     "activable" : "BOL.itemProperty.activable",
     "powder" : "BOL.itemProperty.powder",
     "damage" : "BOL.itemProperty.damage"
+    
 }
 
 BOL.itemStats = {
