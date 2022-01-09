@@ -381,8 +381,9 @@ export class BoLUtility {
   }
 
   /* -------------------------------------------- */
-  static getDamageFormula(damageString) {
+  static getDamageFormula(damageString, modifier=0, multiplier = 1) {
     if (damageString[0] == 'd') { damageString = "1" + damageString } // Help parsing
+    if (modifier == null) modifier = 0;
     var myReg = new RegExp('(\\d+)[dD]([\\d]+)([MB]*)?([\\+\\d]*)?', 'g');
     let res = myReg.exec(damageString);
     let nbDice = parseInt(res[1]);
@@ -400,7 +401,7 @@ export class BoLUtility {
         modIndex = 4;
       }
     }
-    let formula = nbDice + "d" + res[2] + postForm + ((res[modIndex]) ? res[modIndex] : "");
+    let formula = "(" + nbDice + "d" + res[2] + postForm +  "+" + modifier +") *" + multiplier;
     return formula;
   }
   /* -------------------------------------------- */

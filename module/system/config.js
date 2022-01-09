@@ -17,6 +17,13 @@ BOL.damageValues = {
     "d6BB" : "d6B + dé bonus",
 }
 
+BOL.damageMultiplier = {
+  "1": "x1",
+  "2": "x2",
+  "3": "x3",
+  "4": "x4",
+}
+
 BOL.equipmentSlots = {
     "none" : "BOL.equipmentSlots.none",
     "head" : "BOL.equipmentSlots.head",

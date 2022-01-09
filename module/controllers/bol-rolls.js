@@ -323,8 +323,11 @@ export class BoLAttackRoll {
   async processResult( ) {
     if (this._isSuccess) {
       let attrDamage = this.attackDef.weapon.data.data.properties.damageAttribute;
-      let weaponFormula = BoLUtility.getDamageFormula(this.attackDef.weapon.data.data.properties.damage)
+      let weaponFormula = BoLUtility.getDamageFormula(this.attackDef.weapon.data.data.properties.damage, 
+        this.attackDef.weapon.data.data.properties.damageModifiers,
+        this.attackDef.weapon.data.data.properties.damageMultiplier)
       let damageFormula = weaponFormula + "+" + this.attackDef.attacker.data.data.attributes[attrDamage].value;
+      console.log("Formula", damageFormula)
       this.damageRoll = new Roll(damageFormula);
       await this.damageRoll.roll({ "async": false });
       await BoLUtility.showDiceSoNice(this.damageRoll);
