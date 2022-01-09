@@ -105,6 +105,9 @@
   "BOL.ui.defender": "Défenseur",
   "BOL.ui.difficulty": "Difficulté",
   "BOL.ui.spellProperties": "Propriétés du Sort",
+  "BOL.ui.duration": "Durée", 
+  "BOL.ui.spellkeep": "Prolongation",
+  "BOL.ui.concentrate": "Concentration",
 
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",
