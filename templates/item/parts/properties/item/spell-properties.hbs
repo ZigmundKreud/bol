@@ -25,12 +25,3 @@
       </label>
     </div>
 </div>
-
-<div class="form-group">
-    <div class="form-fields center">
-      <label class="property-label">{{localize "BOL.ui.mandatoryConditions"}}</label>
-      {{#each data.properties.mandatoryconditions as |cond key|}}
-      <input class="field-value" type="text" name="data.properties.mandatoryconditions.{{key}}.text" value="{{cond.text}}" data-dtype="String"/>
-      {{/each}}
-    </div>
-</div>
