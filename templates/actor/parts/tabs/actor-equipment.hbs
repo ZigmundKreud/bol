@@ -15,9 +15,9 @@
             <a class="item-edit">{{item.name}}</a>
         </h4>
         <div class="item-field flex2 center">
-    {{#if item.data.properties.equipable}}
+        {{#if item.data.properties.equipable}}
             <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat "BOL.equipmentSlots." item.data.properties.slot)}}</span>
-    {{/if}}
+       {{/if}}
         </div>
         <div class="item-field group-btns flex1 center">
         {{#if item.data.properties.stackable}}
@@ -50,6 +50,7 @@
     <li class="item flexrow item-header">
         <div class="item-name flex4 left">{{localize "BOL.ui.protections"}}</div>
         <div class="item-field flex2 center">{{localize "BOL.ui.slot"}}</div>
+        <div class="item-field flex1 center">{{localize "BOL.ui.protection"}}</div>
         <div class="item-field flex1 center">{{localize "BOL.ui.qty"}}</div>
         <div class="item-field flex1 center">{{localize "BOL.ui.price"}}</div>
         <div class="item-field flex1 center">{{localize "BOL.ui.equip"}}</div>
@@ -66,6 +67,11 @@
                     <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat "BOL.equipmentSlots." item.data.properties.slot)}}</span>
                 {{/if}}
             </div>
+            <div class="item-field flex2 center">
+                {{#if item.data.properties.equipable}}
+                    <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{data.properties.soak.formula}}</span>
+                {{/if}}
+            </div>            
             <div class="item-field group-btns flex1 center">
                 {{#if item.data.properties.stackable}}
                     <a class="inc-dec-btns" data-operator="minus" data-target="data.quantity" data-incr="1" data-min="0" data-max="{{item.data.properties.stacksize}}"><i class="fas fa-minus-square"></i></a>&nbsp;
