@@ -1,6 +1,8 @@
 import { BoLUtility } from "../system/bol-utility.js";
 
 const __adv2dice = { ["1B"]: 3, ["2B"]: 4, ["2"]: 2, ["1M"]: 3, ["2M"]: 4}
+const _apt2attr = {init: "mind", melee: "agility", ranged: "agility", def: "vigor"}
+
 export class BoLRoll {
   static options() {
     return { classes: ["bol", "dialog"] };
@@ -10,7 +12,9 @@ export class BoLRoll {
     if (adv == 0) return "2"
     return Math.abs(adv) + (adv < 0)?'M':'B';
   }
-
+  static getDefaultAttribute( key ) {
+    return _apt2attr[key]
+  }
   static attributeCheck(actor, actorData, dataset, event) {
     // const elt = $(event.currentTarget)[0];
     // let key = elt.attributes["data-rolling"].value;
@@ -37,7 +41,11 @@ export class BoLRoll {
     // let key = elt.attributes["data-rolling"].value;
     const key = dataset.key;
     const adv = dataset.adv;
+
     let aptitude = eval(`actor.data.data.aptitudes.${key}`);
+    let attrKey = this.getDefaultAttribute(key)
+    let attribute = eval(`actor.data.data.attributes.${attrKey}`);
+
     let label = (aptitude.label) ? game.i18n.localize(aptitude.label) : null;
     let description = actor.name + " - " + game.i18n.localize('BOL.ui.aptitudeCheck') + " - " + game.i18n.localize(aptitude.label);
     return this.displayRollDialog(
@@ -45,6 +53,7 @@ export class BoLRoll {
         mode: "aptitude", 
         actor: actor,
         actorData: actorData,
+        attribute: attribute,
         aptitude: aptitude,
         label: label,
         description: description,
@@ -134,7 +143,8 @@ export class BoLRoll {
             rollData.mod = html.find('#mod').val() || 0;
             let careers = html.find('#career').val();
             rollData.career = (!careers || careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
-
+            rollData.registerInit = (rollData.aptKey == 'init') ?  $('#register-init').is(":checked") : false;
+            
             let shieldMalus = 0;
             if ( rollData.mode == "weapon") {
               const applyShieldMalus = html.find('#applyShieldMalus').val() || false;
@@ -187,6 +197,10 @@ export class BoLDefaultRoll {
     this.rollData.isFumble = (diceTotal === 2);
     this.rollData.isFailure = !this.rollData.isSuccess
     this.rollData.reroll =  this.rollData.actor.heroReroll()
+
+    if (this.rollData.registerInit) {
+      this.rollData.actor.registerInit( r.total, this.rollData.isCritical);
+    }
 
     this._buildChatMessage(this.rollData).then(msgFlavor => {
       r.toMessage({

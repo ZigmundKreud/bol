@@ -7,8 +7,25 @@
             </div>
         </div>
     </header>
-    
+  
+    {{> "systems/bol/templates/dialogs/attribute-roll-part.hbs"}}
+
     {{> "systems/bol/templates/dialogs/aptitude-roll-part.hbs"}}
+
+    {{#if (equals aptitude.key "init" )}}
+      <div class="flexrow" style="margin-bottom: 1px;">
+        <div class="flex1 center bg-darkred">
+            <label for="mod">{{localize 'BOL.ui.registerInit'}}</label>
+        </div>
+        <div class="flex1 center cell">
+          <label class="checkbox">
+            <input class="field-value" type="checkbox" name="register-init" id="register-init" checked />
+          </label>
+        </div>
+    </div>
+
+    {{/if}}
+
 
     {{> "systems/bol/templates/dialogs/adv-roll-part.hbs"}}
 

@@ -244,6 +244,16 @@ export class BoLActor extends Actor {
   }
 
   /*-------------------------------------------- */
+  registerInit(initScore, isCritical, isFumble) {
+    this.update( { 'data.combat.lastinit': initScore, 'data.combat.iscritical': isCritical, 'data.combat.isfumble': isFumble} )
+  }
+
+  /*-------------------------------------------- */
+  getLastInitData() {
+    return this.data.data.combat
+  }
+
+  /*-------------------------------------------- */
   async subHeroPoints( nb) {
     let newHeroP = this.data.data.resources.hero.value - nb;
     newHeroP = (newHeroP < 0 ) ? 0 : newHeroP;

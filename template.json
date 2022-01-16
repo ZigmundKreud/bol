@@ -11,6 +11,12 @@
           "notes": "",
           "languages": []
         },
+        "combat": {
+          "lastinit": 0,
+          "iscritical": false,
+          "isfumble": false,
+          "islegendary": false          
+        },
         "prot": {
           "key": "prot",
           "label": "BOL.aptitudes.prot",

@@ -109,7 +109,8 @@
   "BOL.ui.duration": "Durée", 
   "BOL.ui.spellkeep": "Prolongation",
   "BOL.ui.concentrate": "Concentration",
-
+  "BOL.ui.registerInit": "Enregistrer comme Init. de combat",
+  
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",
   "BOL.featureCategory.careers": "Carrières",

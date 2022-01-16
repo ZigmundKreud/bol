@@ -108,7 +108,8 @@
   "BOL.ui.duration": "Duration", 
   "BOL.ui.spellkeep": "Maintain",
   "BOL.ui.concentrate": "Concentrate",
-  
+  "BOL.ui.registerInit": "Register Init.",
+
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",
   "BOL.featureCategory.careers": "Carrières",
