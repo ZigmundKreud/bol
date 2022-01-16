@@ -54,6 +54,7 @@
   "BOL.ui.roll" : "Utiliser",
   "BOL.ui.equipment" : "Équipement",
   "BOL.ui.equipmentProperties" : "Propriétés d'équipement",
+  "BOL.ui.weaponAttack" : "Attaque d'arme",
   "BOL.ui.weaponProperties" : "Propriétés offensives",
   "BOL.ui.protectionProperties" : "Protection",
   "BOL.ui.magicalProperties" : "Propriétés magiques",

@@ -182,6 +182,7 @@ export class BoLActorSheet extends ActorSheet {
     const dataset = element.dataset;
     const actorData = this.getData();
     const rollType = dataset.rollType;
+    const li = $(event.currentTarget).closest(".item");
     switch(rollType) {
       case "attribute" :
         BoLRoll.attributeCheck(this.actor, actorData, dataset, event);
@@ -191,6 +192,12 @@ export class BoLActorSheet extends ActorSheet {
         break;
       case "weapon": 
         BoLRoll.weaponCheck(this.actor, actorData, dataset, event);
+        break;
+      case "protection": 
+        this.actor.rollProtection(li.data("item-id"))
+        break;
+      case "damage": 
+        this.actor.rollWeaponDamage(li.data("item-id"))
         break;
       default : break;
     }

@@ -30,9 +30,15 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/bol/templates/item/parts/properties/feature/flaw-properties.hbs",
         "systems/bol/templates/item/parts/properties/feature/origin-properties.hbs",
         "systems/bol/templates/item/parts/properties/feature/race-properties.hbs",
+
         // DIALOGS
         "systems/bol/templates/roll/parts/roll-dialog-modifiers.hbs",
-        "systems/bol/templates/roll/parts/roll-dialog-attribute.hbs"
+        "systems/bol/templates/roll/parts/roll-dialog-attribute.hbs",
+        "systems/bol/templates/dialogs/aptitude-roll-part.hbs",
+        "systems/bol/templates/dialogs/attribute-roll-part.hbs",
+        "systems/bol/templates/dialogs/mod-roll-part.hbs",
+        "systems/bol/templates/dialogs/adv-roll-part.hbs",
+        "systems/bol/templates/dialogs/career-roll-part.hbs",
     ];
 
     // Load the template parts

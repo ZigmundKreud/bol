@@ -1,3 +1,5 @@
+import { BoLDefaultRoll } from "../controllers/bol-rolls.js";
+
 /**
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
  * @extends {Actor}
@@ -268,6 +270,27 @@ export class BoLActor extends Actor {
     }
     console.log("Protect Formula", formula)
     return (formula == "") ? 0 :formula;
+  }
+
+  /* -------------------------------------------- */
+  rollProtection( itemId) {
+    let armor = this.data.items.get( itemId )
+    if ( armor ) {
+      let armorFormula = armor.data.data.properties.soak.formula;        
+      let rollArmor = new Roll(armorFormula)
+      rollArmor.roll( {async: false} ).toMessage();
+    }
+  }
+
+  /* -------------------------------------------- */
+  rollWeaponDamage( itemId) {
+    let weapon = this.data.items.get(itemId )
+    if ( weapon ) {
+      console.log("WE", weapon)
+      let r = new BoLDefaultRoll( { id: randomID(16), isSuccess: true, mode: "weapon", weapon: weapon, actor: this} )
+      r.setSuccess(true)
+      r.processResult()
+    }
   }
 
   /* -------------------------------------------- */
