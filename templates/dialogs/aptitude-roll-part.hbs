@@ -1,0 +1,16 @@
+<div class="flexrow" style="margin-bottom: 1px;">
+  <div class="flex1 center bg-darkred">
+    <label for="apt">{{localize 'BOL.ui.aptitude'}}</label>
+  </div>
+  <div class="flex1 center cell">
+    <select class="flex1" name="apt" id="apt" data-type="String">
+      <option value="init" {{#if (equals aptitude.key "init" )}}selected{{/if}}>{{localize 'BOL.aptitudes.init'}}
+      </option>
+      <option value="melee" {{#if (equals aptitude.key "melee" )}}selected{{/if}}>{{localize 'BOL.aptitudes.melee'}}
+      </option>
+      <option value="ranged" {{#if (equals aptitude.key "ranged" )}}selected{{/if}}>{{localize 'BOL.aptitudes.ranged'}}
+      </option>
+      <option value="def" {{#if (equals aptitude.key "def" )}}selected{{/if}}>{{localize 'BOL.aptitudes.def'}}</option>
+    </select>
+  </div>
+</div>

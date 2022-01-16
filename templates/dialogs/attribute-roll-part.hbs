@@ -1,0 +1,13 @@
+    <div class="flexrow" style="margin-bottom: 1px;">
+        <div class="flex1 center bg-darkred">
+            <label for="attr">{{localize 'BOL.ui.attribute'}}</label>
+        </div>
+        <div class="flex1 center cell">
+            <select class="flex1" name="attr" id="attr" data-type="String">
+                <option value="vigor" {{#if (equals attribute.key "vigor")}}selected{{/if}}>{{localize 'BOL.attributes.vigor'}}</option>
+                <option value="agility" {{#if (equals attribute.key "agility")}}selected{{/if}}>{{localize 'BOL.attributes.agility'}}</option>
+                <option value="mind" {{#if (equals attribute.key "mind")}}selected{{/if}}>{{localize 'BOL.attributes.mind'}}</option>
+                <option value="appeal" {{#if (equals attribute.key "appeal")}}selected{{/if}}>{{localize 'BOL.attributes.appeal'}}</option>
+            </select>
+        </div>
+    </div>
