@@ -1,0 +1,12 @@
+    <div class="flexrow" style="margin-bottom: 1px;">
+        <div class="flex1 center bg-darkred">
+            <label for="adv">{{localize 'BOL.ui.advantages'}}</label>
+        </div>
+        <div class="flex1 center cell">
+            <input type="radio" name="adv" value="1B" {{#if (eq adv "1B")}}checked{{/if}}/>2d6B<br />
+            <input type="radio" name="adv" value="2B" {{#if (eq adv "2B")}}checked{{/if}}/>2d6BB<br />
+            <input type="radio" name="adv" value="2" {{#if (eq adv "2")}}checked{{/if}}/>2d6<br />
+            <input type="radio" name="adv" value="1M" {{#if (eq adv "1M")}}checked{{/if}}/>2d6M<br />
+            <input type="radio" name="adv" value="2M" {{#if (eq adv "2M")}}checked{{/if}}/>2d6MM<br />
+        </div>
+    </div>

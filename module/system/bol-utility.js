@@ -1,11 +1,11 @@
+import { BoLDefaultRoll } from "../controllers/bol-rolls.js";
 
 export class BoLUtility {
 
 
   /* -------------------------------------------- */
   static async init() {
-    this.attackStore = {};
-    Hooks.on('renderChatLog', (log, html, data) => BoLUtility.chatListeners(html));
+    this.attackStore = {}
   }
 
   /* -------------------------------------------- */
@@ -23,6 +23,16 @@ export class BoLUtility {
       return it.data;
     }
     return it;
+  }
+
+  /* -------------------------------------------- */
+  static storeRoll(roll) {
+    this.lastRoll = roll
+  }
+
+  /* -------------------------------------------- */
+  static getLastRoll() {
+    return this.lastRoll
   }
 
   /* -------------------------------------------- */
@@ -121,9 +131,13 @@ export class BoLUtility {
       }
     });
 
-    html.on("click", '.hero-reroll', event => {      
+    html.on("click", '.hero-reroll', event => {
       event.preventDefault();
-      ui.notifications.warn("Not implemented up to now");
+
+      let rollData = BoLUtility.getLastRoll()
+      rollData.actor.subHeroPoints(1)
+      let r = new BoLDefaultRoll( rollData )
+      r.roll();
     } );
 
     html.on("click", '.damage-handling', event => {      

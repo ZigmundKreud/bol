@@ -8,9 +8,9 @@ import { preloadHandlebarsTemplates } from "./system/templates.js";
 import { registerHandlebarsHelpers } from "./system/helpers.js";
 import { registerSystemSettings } from "./system/settings.js";
 import registerHooks from "./system/hooks.js";
-// import {DataLoader} from "./system/data.js";
 import { Macros } from "./system/macros.js";
 import { BoLUtility } from "./system/bol-utility.js";
+import { BoLCombatManager } from "./system/bol-combat.js";
 
 Hooks.once('init', async function () {
 
@@ -33,12 +33,13 @@ Hooks.once('init', async function () {
    */
   CONFIG.Combat.initiative = {
     formula: "2d6+@attributes.mind.value+@aptitudes.init.value",
-    decimals: 0
+    decimals: 3
   };
-  0
+  
   // Define custom Entity classes
   CONFIG.Actor.documentClass = BoLActor;
   CONFIG.Item.documentClass = BoLItem;
+  CONFIG.Combat.documentClass = BoLCombatManager;
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);

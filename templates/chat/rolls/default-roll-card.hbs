@@ -13,9 +13,11 @@
         <h2 class="failure"><i class="fas fa-times"></i>&nbsp;{{localize "BOL.ui.failure"}}...</h2>
     {{/if}}
 {{/if}}
+
 <h3><strong>{{description}}</strong></h3> 
+
 {{#if reroll}}
-<a class="button hero-reroll" data-actor-id="{{actor.id}}">Relancer!</a>
+<a class="button hero-reroll" data-roll-id=="{{rollId}}"" data-actor-id="{{actor.id}}">Relancer!</a>
 {{/if}}
 {{!#if hasDescription}}
 <!--<h4>-->

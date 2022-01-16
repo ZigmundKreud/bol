@@ -7,49 +7,15 @@
             </div>
         </div>
     </header>
-    <div class="flexrow" style="margin-bottom: 1px;">
-        <div class="flex1 center bg-darkred">
-            <label for="attr">{{localize 'BOL.ui.attribute'}}</label>
-        </div>
-        <div class="flex1 center cell">
-            <select class="flex1" name="attr" id="attr" data-type="String">
-                <option value="vigor" {{#if (equals attr.key "vigor")}}selected{{/if}}>{{localize 'BOL.attributes.vigor'}}</option>
-                <option value="agility" {{#if (equals attr.key "agility")}}selected{{/if}}>{{localize 'BOL.attributes.agility'}}</option>
-                <option value="mind" {{#if (equals attr.key "mind")}}selected{{/if}}>{{localize 'BOL.attributes.mind'}}</option>
-                <option value="appeal" {{#if (equals attr.key "appeal")}}selected{{/if}}>{{localize 'BOL.attributes.appeal'}}</option>
-            </select>
-        </div>
-    </div>
-    <div class="flexrow" style="margin-bottom: 1px;">
-        <div class="flex1 center bg-darkred">
-            <label for="adv">{{localize 'BOL.ui.advantages'}}</label>
-        </div>
-        <div class="flex1 center cell">
-            <input type="text" class="field-value" name="adv" id="adv" value="{{adv}}" data-type="Number">
-        </div>
-    </div>
-    <div class="flexrow" style="margin-bottom: 1px;">
-        <div class="flex1 center bg-darkred">
-            <label for="mod">{{localize 'BOL.ui.modifiers'}}</label>
-        </div>
-        <div class="flex1 center cell">
-            <input type="text" class="field-value" name="mod" id="mod" value="{{mod}}" data-type="Number">
-        </div>
-    </div>
-    {{#if careers.items}}
-    <div class="flexrow" style="margin-bottom: 1px;">
-        <div class="flex1 center bg-darkred">
-            <label for="mod">{{localize 'BOL.ui.careers'}}</label>
-        </div>
-        <div class="flex1 center cell">
-            <select class="flex1" name="career" id="career" data-type="String" multiple>
-                {{#each careers.items as | career id|}}
-                    <option value="{{career.data.rank}}">{{career.name}} ({{numberFormat career.data.rank decimals=0 sign=true}})</option>
-                {{/each}}
-            </select>
-        </div>
-    </div>
-    {{/if}}
+
+    {{> "systems/bol/templates/dialogs/attribute-roll-part.hbs"}}
+
+    {{> "systems/bol/templates/dialogs/adv-roll-part.hbs"}}
+
+    {{> "systems/bol/templates/dialogs/mod-roll-part.hbs"}}
+
+    {{> "systems/bol/templates/dialogs/career-roll-part.hbs"}}
+
     <!--<div class="flexrow" style="margin-bottom: 1px;">-->
     <!--    <div class="flex1 center bg-darkred">-->
     <!--        <label for="mod">{{!localize 'BOL.ui.boons'}}</label>-->

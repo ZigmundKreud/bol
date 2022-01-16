@@ -54,6 +54,7 @@
   "BOL.ui.roll" : "Utiliser",
   "BOL.ui.equipment" : "Équipement",
   "BOL.ui.equipmentProperties" : "Propiétés d'équipement",
+  "BOL.ui.weaponAttack" : "Weapon attack",
   "BOL.ui.weaponProperties" : "Propiétés offensives",
   "BOL.ui.protectionProperties" : "Protection",
   "BOL.ui.magicalProperties" : "Propriétés magiques",
@@ -107,7 +108,8 @@
   "BOL.ui.duration": "Duration", 
   "BOL.ui.spellkeep": "Maintain",
   "BOL.ui.concentrate": "Concentrate",
-  
+  "BOL.ui.registerInit": "Register Init.",
+
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",
   "BOL.featureCategory.careers": "Carrières",
