@@ -33,9 +33,9 @@ Hooks.once('init', async function () {
    */
   CONFIG.Combat.initiative = {
     formula: "2d6+@attributes.mind.value+@aptitudes.init.value",
-    decimals: 2
+    decimals: 3
   };
-  0
+  
   // Define custom Entity classes
   CONFIG.Actor.documentClass = BoLActor;
   CONFIG.Item.documentClass = BoLItem;

@@ -44,7 +44,7 @@ export class BoLCombatManager extends Combat {
           fvttInit = 6
         } 
       }
-      fvttInit += (cId / 10)
+      fvttInit += (cId / 100)
       await this.updateEmbeddedDocuments("Combatant", [{ _id: ids[cId], initiative: fvttInit }]);
     }
     console.log("TODO : Compute init for actor");
