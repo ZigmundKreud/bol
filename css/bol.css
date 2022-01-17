@@ -267,6 +267,10 @@ a:hover {
 .bol button {
   background: rgba(0, 0, 0, 0.1);
 }
+.chat-button {
+  font-size: 0.8rem;
+}
+
 .bol select {
   box-shadow: none;
   font-size: 14px;
