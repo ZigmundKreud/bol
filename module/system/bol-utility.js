@@ -114,28 +114,40 @@ export class BoLUtility {
       } else {
         BoLUtility.processAttackSuccess(attackDef);
       }
-    }
+    } 
   }
-
+  
   /* -------------------------------------------- */
   static async chatListeners(html) {
+
     // Damage handling
-    html.on("click", '.damage-increase', event => {      
-      event.preventDefault();
-      let attackId = event.currentTarget.attributes['data-attack-id'].value;
-      let damageMode = event.currentTarget.attributes['data-damage-mode'].value;
-      if ( game.user.isGM) {
-        BoLUtility.processDamageIncrease(event, attackId, damageMode)
-      } else {
-        game.socket.emit("system.bol", { msg: "msg_damage_increase", data: {event: event, attackId: attackId, damageMode: damageMode} });
-      }
+    html.on("click", '.chat-damage-apply', event => {      
+      let rollData = BoLUtility.getLastRoll()
+      $(`#${rollData.applyId}`).hide()
+      BoLUtility.sendAttackSuccess(rollData)
     });
 
-    html.on("click", '.hero-reroll', event => {
+    html.on("click", '.chat-damage-roll', event => {      
       event.preventDefault();
-
+      let rollData = BoLUtility.getLastRoll()
+      rollData.damageMode = event.currentTarget.attributes['data-damage-mode'].value;
+      let bolRoll = new BoLDefaultRoll(rollData)
+      bolRoll.rollDamage()
+    });
+    
+    html.on("click", '.transform-heroic-roll', event => {
+      event.preventDefault();
       let rollData = BoLUtility.getLastRoll()
       rollData.actor.subHeroPoints(1)
+      let r = new BoLDefaultRoll( rollData )
+      r.upgradeToCritical();
+    } );
+    
+    html.on("click", '.hero-reroll', event => {
+      event.preventDefault();
+      let rollData = BoLUtility.getLastRoll()
+      rollData.actor.subHeroPoints(1)
+      rollData.reroll = false // Disable reroll option for second roll
       let r = new BoLDefaultRoll( rollData )
       r.roll();
     } );
@@ -145,7 +157,6 @@ export class BoLUtility {
       let attackId = event.currentTarget.attributes['data-attack-id'].value;
       let defenseMode = event.currentTarget.attributes['data-defense-mode'].value;
       let weaponId = (event.currentTarget.attributes['data-weapon-id']) ? event.currentTarget.attributes['data-weapon-id'].value : -1
-      console.log("DEFENSE1", event.currentTarget, attackId, defenseMode, weaponId);
       if ( game.user.isGM) {
         BoLUtility.processDamageHandling(event, attackId, defenseMode, weaponId)
       } else {
@@ -154,31 +165,6 @@ export class BoLUtility {
     });
   }
 
-    /* -------------------------------------------- */
-    static async processDamageIncrease(event, attackId, damageMode ) {
-      if ( !game.user.isGM) {
-        return;
-      }
-      BoLUtility.removeChatMessageId(BoLUtility.findChatMessageId(event.currentTarget));
-  
-      // Only GM process this 
-      let attackDef = this.attackStore[attackId];
-      if (attackDef) {
-        attackDef.damageMode = damageMode;
-        if (defenseMode == 'damage-plus-6') {
-          attackDef.damageRoll.total += 6;
-        }
-        if (defenseMode == 'damage-plus-12') {
-          attackDef.damageRoll.total += 12;
-          attackDef.defender.subHeroPoints(1);
-        }
-        if (defenseMode == 'damage-normal') {
-          // Do nothing !
-        }
-        BoLUtility.sendAttackSuccess( this.attackDef);
-      }
-    }
-  
   /* -------------------------------------------- */
   static async processDamageHandling(event, attackId, defenseMode, weaponId=-1) {
     if ( !game.user.isGM) {
@@ -188,7 +174,7 @@ export class BoLUtility {
 
     //console.log("Damage Handling", event, attackId, defenseMode, weaponId)
     // Only GM process this 
-    let attackDef = this.attackStore[attackId];
+    let attackDef = this.attackStore[attackId]
     if (attackDef) {
       if (attackDef.defenseDone) return; // ?? Why ???
       attackDef.defenseDone = true
@@ -388,9 +374,6 @@ export class BoLUtility {
     }
     if (sockmsg.name == "msg_damage_handling") {
       BoLUtility.processDamageHandling(sockmsg.data.event, sockmsg.data.attackId, sockmsg.data.defenseMode)
-    }
-    if (sockmsg.name == "msg_damage_increase") {
-      BoLUtility.processDamageIncrease(sockmsg.data.event, sockmsg.data.attackId, sockmsg.data.damageMode)
     }
   }
 

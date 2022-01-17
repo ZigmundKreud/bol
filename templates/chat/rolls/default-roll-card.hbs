@@ -16,11 +16,15 @@
 
 <h3><strong>{{description}}</strong></h3> 
 
-{{#if reroll}}
-<a class="button hero-reroll" data-roll-id=="{{rollId}}"" data-actor-id="{{actor.id}}">Relancer!</a>
-{{/if}}
-{{!#if hasDescription}}
-<!--<h4>-->
-<!--    <pre class="rollDescr-line">{{!description}}</pre>-->
-<!--</h4>-->
-{{!/if}}
+<div id="{{optionsId}}">
+  {{#if (and isSuccess weapon)}}
+  {{> "systems/bol/templates/chat/rolls/attack-damage-card.hbs"}}
+  {{/if}}
+
+  {{#if reroll}}
+    <button class="chat-button button hero-reroll" data-roll-id=="{{rollId}}" data-actor-id="{{actor.id}}">Relancer (1 P. Heroisme)</button>
+  {{/if}}
+  {{#if isRealCritical}}
+    <button class="chat-button button transform-heroic-roll" data-roll-id=="{{rollId}}" data-actor-id="{{actor.id}}">Transformer en succes héroique (1 P. Heroisme)</button>
+  {{/if}}
+</div>

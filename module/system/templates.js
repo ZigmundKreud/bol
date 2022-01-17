@@ -32,6 +32,7 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/bol/templates/item/parts/properties/feature/race-properties.hbs",
 
         // DIALOGS
+        "systems/bol/templates/chat/rolls/attack-damage-card.hbs",
         "systems/bol/templates/roll/parts/roll-dialog-modifiers.hbs",
         "systems/bol/templates/roll/parts/roll-dialog-attribute.hbs",
         "systems/bol/templates/dialogs/aptitude-roll-part.hbs",
