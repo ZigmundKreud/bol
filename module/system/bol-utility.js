@@ -381,24 +381,28 @@ export class BoLUtility {
   static getDamageFormula(damageString, modifier=0, multiplier = 1) {
     if (damageString[0] == 'd') { damageString = "1" + damageString } // Help parsing
     if (modifier == null) modifier = 0;
-    var myReg = new RegExp('(\\d+)[dD]([\\d]+)([MB]*)?([\\+\\d]*)?', 'g');
-    let res = myReg.exec(damageString);
-    let nbDice = parseInt(res[1]);
-    let postForm = 'kh' + nbDice;
-    let modIndex = 3;
-    if (res[3]) {
-      if (res[3] == 'M') {
-        postForm = 'kl' + nbDice;
-        nbDice++;
-        modIndex = 4;
+    
+    let formula = damageString
+    if ( damageString.includes("d") ||  damageString.includes("D")) {
+      var myReg = new RegExp('(\\d+)[dD]([\\d]+)([MB]*)?([\\+\\d]*)?', 'g');
+      let res = myReg.exec(damageString);
+      let nbDice = parseInt(res[1]);
+      let postForm = 'kh' + nbDice;
+      let modIndex = 3;
+      if (res[3]) {
+        if (res[3] == 'M') {
+          postForm = 'kl' + nbDice;
+          nbDice++;
+          modIndex = 4;
+        }
+        if (res[3] == 'B') {
+          postForm = 'kh' + nbDice;
+          nbDice++;
+          modIndex = 4;
+        }
       }
-      if (res[3] == 'B') {
-        postForm = 'kh' + nbDice;
-        nbDice++;
-        modIndex = 4;
-      }
+      formula = "(" + nbDice + "d" + res[2] + postForm +  "+" + modifier +") *" + multiplier;
     }
-    let formula = "(" + nbDice + "d" + res[2] + postForm +  "+" + modifier +") *" + multiplier;
     return formula;
   }
   /* -------------------------------------------- */

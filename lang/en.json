@@ -158,6 +158,8 @@
   "BOL.weaponCategory.ranged": "Arme de tir",
   "BOL.weaponCategory.other": "Autre",
 
+  "BOL.itemProperty.damageMultiplier": "Damages Multiplier",
+  "BOL.itemProperty.attackBonusDice": "Attack Bonus Dice",
   "BOL.itemProperty.equipable": "Équipable",
   "BOL.itemProperty.protection": "Protection",
   "BOL.itemProperty.blocking": "Blocage",

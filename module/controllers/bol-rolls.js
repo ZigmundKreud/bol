@@ -105,7 +105,12 @@ export class BoLRoll {
     rollData.id = randomID(16)
 
     // Weapon mode specific management
+    rollData.weaponModifier = 0
+    rollData.attackBonusDice = false
     if (rollData.mode == "weapon") {
+      //console.log("WEAPON", rollData.weapon)
+      rollData.weaponModifier = rollData.weapon.data.data.properties.attackModifiers?? 0;
+      rollData.attackBonusDice = rollData.weapon.data.data.properties.attackBonusDice
       if (rollData.defender) { // If target is selected
         rollData.defence = rollData.defender.defenseValue,
           rollData.shieldBlock = 'none'
@@ -117,8 +122,6 @@ export class BoLRoll {
         }
       }
     }
-
-    console.log("ROL1", rollData)
 
     const rollOptionContent = await renderTemplate(rollOptionTpl, rollData);
     let d = new Dialog({
@@ -154,12 +157,13 @@ export class BoLRoll {
             }
 
             const isMalus = rollData.adv.includes('M');
-            const dicePool = __adv2dice[rollData.adv]
+            let dicePool = __adv2dice[rollData.adv]
+            dicePool += (rollData.attackBonusDice) ? 1 : 0
             //// const dicePool = (isMalus) ? 2 - parseInt(rollData.adv) : 2 + parseInt(rollData.adv);
             const attrValue = (rollData.attrKey) && eval(`rollData.actor.data.data.attributes.${rollData.attrKey}.value`) || 0;
             const aptValue = (rollData.aptKey) && eval(`rollData.actor.data.data.aptitudes.${rollData.aptKey}.value`) || 0
 
-            const modifiers = parseInt(attrValue) + parseInt(aptValue) + parseInt(rollData.mod) + parseInt(rollData.career) - rollData.defence - shieldMalus;
+            const modifiers = rollData.weaponModifier + parseInt(attrValue) + parseInt(aptValue) + parseInt(rollData.mod) + parseInt(rollData.career) - rollData.defence - shieldMalus;
             const formula = (isMalus) ? dicePool + "d6kl2 + " + modifiers : dicePool + "d6kh2 + " + modifiers;
             rollData.formula = formula;
             rollData.modifiers = modifiers
@@ -177,6 +181,7 @@ export class BoLRoll {
 }
 
 export class BoLDefaultRoll {
+  
   constructor(rollData) {
     BoLUtility.storeRoll(rollData)
     this.rollData = rollData

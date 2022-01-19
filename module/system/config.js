@@ -10,6 +10,9 @@ System.debugMode = true;
 export const BOL = {};
 
 BOL.damageValues = {
+    "1": "1",
+    "2": "2",
+    "3": "3",
     "d3" : "d3",
     "d6M" : "d6M (Malus)",
     "d6" : "d6",
