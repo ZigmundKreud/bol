@@ -26,6 +26,10 @@
         <label class="checkbox">
             <input class="field-value" type="checkbox" name="data.properties.ignoreshield" {{checked data.properties.ignoreshield}}> {{localize "BOL.itemProperty.ignoreshield"}}
         </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.attackBonusDice" {{checked data.properties.attackBonusDice}}> {{localize "BOL.itemProperty.attackBonusDice"}}
+        </label>
+        
     {{#if data.properties.ranged}}
         <label class="checkbox">
             <input class="field-value" type="checkbox" name="data.properties.reloadable" {{checked data.properties.reloadable}}> {{localize "BOL.itemProperty.reloadable"}}

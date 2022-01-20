@@ -7,7 +7,7 @@
   "url": "https://github.com/ZigmundKreud/bol",
   "license": "LICENSE.txt",
   "flags": {},
-  "version": "0.9.0.0",
+  "version": "0.9.0.2",
   "templateVersion": 16,
   "minimumCoreVersion": "0.8.6",
   "compatibleCoreVersion": "9",
@@ -89,6 +89,24 @@
       "entity": "Item",
       "tag": "item",
       "type": "Item",
+      "private": false
+    },
+    {
+      "label": "Aides de Jeu",
+      "type": "JournalEntry",
+      "name": "aides-de-jeu",
+      "path": "packs/aides-de-jeu.db",
+      "system": "bol",
+      "entity": "JournalEntry",
+      "private": false
+    },
+    {
+      "label": "Cartes",
+      "type": "Scene",
+      "name": "cartes",
+      "path": "packs/cartes.db",
+      "system": "bol",
+      "entity": "Scene",
       "private": false
     }
   ],
