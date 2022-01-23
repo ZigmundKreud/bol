@@ -1,0 +1,38 @@
+<form class="{{cssClass}}" autocomplete="off">
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+        <div class="row flexrow table-header">
+            <div class="flex1 center">
+                <h3>{{localize 'BOL.ui.makeAlchemy'}}</h3>
+            </div>
+        </div>
+    </header>
+
+    {{> "systems/bol/templates/dialogs/attribute-roll-part.hbs"}}
+
+    {{> "systems/bol/templates/dialogs/adv-roll-part.hbs"}}
+
+    {{> "systems/bol/templates/dialogs/mod-roll-part.hbs"}}
+
+    <div class="flexrow" style="margin-bottom: 1px;">
+        <div class="flex1 center bg-darkred">
+            <label for="mod">{{localize 'BOL.ui.alchemistRank'}}</label>
+        </div>
+        <div class="flex1 center cell">{{careerBonus}}</div>
+    </div>
+
+    <div class="flexrow" style="margin-bottom: 1px;">
+        <div class="flex1 center bg-darkred">
+            <label for="mod">{{localize 'BOL.ui.alchemyCostTotal'}}</label>
+        </div>
+        <div class="flex1 center cell" id="pccost">{{pcCost}}</div>
+    </div>
+
+    <div class="flexrow" style="margin-bottom: 1px;">
+        <div class="flex1 center bg-darkred">
+            <label for="mod">{{localize 'BOL.ui.alchemyCurrent'}}</label>
+        </div>
+        <div class="flex1 center cell" id="pccostcurrent">{{pcCostCurrent}}</div>
+    </div>
+
+</form>

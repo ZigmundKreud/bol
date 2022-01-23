@@ -38,6 +38,11 @@ export class BoLActorSheet extends ActorSheet {
     // Equip/Unequip item
     html.find('.item-equip').click(this._onToggleEquip.bind(this));
 
+    html.find(".inc-dec-btns-alchemy").click((ev) => {
+      const li = $(ev.currentTarget).parents(".item");
+      this.actor.spendAlchemyPoint( li.data("itemId"), 1)
+    })
+
     // Incr./Decr. career ranks
     html.find(".inc-dec-btns").click((ev) => {
       const li = $(ev.currentTarget).parents(".item");
@@ -65,10 +70,6 @@ export class BoLActorSheet extends ActorSheet {
           item.update(update);
         }
       }
-      // const input = html.find("#" + type);
-      // let value = parseInt(input.val(), 10) || 0;
-      // value += operator === "plus" ? 1 : -1;
-      // input.val(value > 0 ? value : 0);
     });
 
 
@@ -110,26 +111,36 @@ export class BoLActorSheet extends ActorSheet {
     const data = super.getData(options);
     const actorData = duplicate(data.data);
     let formData = duplicate(data)
-    formData.config = game.bol.config;
-    formData.data = actorData.data;
-    formData.details = this.actor.details;
-    formData.attributes = this.actor.attributes;
-    formData.aptitudes = this.actor.aptitudes;
-    formData.resources = this.actor.getResourcesFromType();
-    formData.equipment = this.actor.equipment;
-    formData.weapons = this.actor.weapons;
-    formData.protections = this.actor.protections;
-    formData.containers = this.actor.containers;
-    formData.treasure = this.actor.treasure;
+
+    formData.config = game.bol.config
+    formData.data = actorData.data
+    formData.details = this.actor.details
+    formData.attributes = this.actor.attributes
+    formData.aptitudes = this.actor.aptitudes
+    formData.resources = this.actor.getResourcesFromType()
+    formData.equipment = this.actor.equipment
+    formData.weapons = this.actor.weapons
+    formData.protections = this.actor.protections
+    formData.spells = this.actor.spells
+    formData.alchemy = this.actor.alchemy
+    formData.containers = this.actor.containers
+    formData.treasure = this.actor.treasure
+    formData.treasure = this.actor.treasure
+    formData.treasure = this.actor.alchemyrecipe
     formData.vehicles = this.actor.vehicles;
     formData.ammos = this.actor.ammos;
     formData.misc = this.actor.misc;
     formData.combat = this.actor.buildCombat();
-    formData.features = this.actor.buildFeatures();
-    formData.isGM = game.user.isGM;
-    formData.options= this.options,
-    formData.owner= this.document.isOwner,
-    formData.editScore= this.options.editScore,
+    formData.features = this.actor.buildFeatures()
+    formData.isGM = game.user.isGM
+    formData.options= this.options
+    formData.owner= this.document.isOwner
+    formData.editScore= this.options.editScore
+
+    formData.isSorcerer = this.actor.isSorcerer()
+    formData.isAlchemist = this.actor.isAlchemist()
+    formData.isPriest = this.actor.isPriest()
+      
     formData.isGM= game.user.isGM
 
     console.log("ACTORDATA", formData);
@@ -192,6 +203,12 @@ export class BoLActorSheet extends ActorSheet {
         break;
       case "weapon": 
         BoLRoll.weaponCheck(this.actor, actorData, dataset, event);
+        break;
+      case "spell": 
+        BoLRoll.spellCheck(this.actor, actorData, dataset, event);
+        break;
+      case "alchemy": 
+        BoLRoll.alchemyCheck(this.actor, actorData, dataset, event);
         break;
       case "protection": 
         this.actor.rollProtection(li.data("item-id"))

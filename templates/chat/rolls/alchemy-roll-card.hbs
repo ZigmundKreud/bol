@@ -1,0 +1,11 @@
+ <h4><strong>Préparation Alchimique : {{alchemy.name}}</strong></h4>
+<h4><strong>Points de Création Investis : {{pcCostCurrent}}</strong></h4>
+
+{{#if isSuccess}}
+La préparation alchimique a été réalisée avec succès !
+<br>Créez l'item ou l'effet correspondant dans votre Inventaire.
+<br>L'avancement dans la préparation a été remis à 0.
+{{else}}
+La préparation alchimique a échouée !
+<br>L'avancement dans la préparation a été remis à 0.
+{{/if}}

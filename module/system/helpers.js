@@ -63,7 +63,14 @@ export const registerHandlebarsHelpers = function () {
     Handlebars.registerHelper('or3', function (val1, val2, val3) {
         return val1 || val2 || val3;
     });
-
+    
+    Handlebars.registerHelper('for', function(from, to, incr, block) {
+      var accum = '';
+      for(var i = from; i < to; i += incr)
+          accum += block.fn(i);
+      return accum;
+    });
+    
     Handlebars.registerHelper('not', function (cond) {
         return !cond;
     });
@@ -93,6 +100,10 @@ export const registerHandlebarsHelpers = function () {
 
     Handlebars.registerHelper('add', function (a, b) {
         return parseInt(a) + parseInt(b);
+    });
+  
+    Handlebars.registerHelper('sub', function (a, b) {
+      return parseInt(a) - parseInt(b);
     });
 
     Handlebars.registerHelper('valueAtIndex', function (arr, idx) {

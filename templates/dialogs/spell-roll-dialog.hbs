@@ -1,0 +1,66 @@
+<form class="{{cssClass}}" autocomplete="off">
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+        <div class="row flexrow table-header">
+            <div class="flex1 center">
+                <h3>{{localize 'BOL.ui.focusSpell'}}</h3>
+            </div>
+        </div>
+    </header>
+
+    {{> "systems/bol/templates/dialogs/attribute-roll-part.hbs"}}
+
+    {{> "systems/bol/templates/dialogs/adv-roll-part.hbs"}}
+
+    {{> "systems/bol/templates/dialogs/mod-roll-part.hbs"}}
+
+    <div class="flexrow" style="margin-bottom: 1px;">
+        <div class="flex1 center bg-darkred">
+            <label for="mod">{{localize 'BOL.ui.sorcererRank'}}</label>
+        </div>
+        <div class="flex1 center cell">{{careerBonus}}</div>
+    </div>
+
+    <div class="flexrow" style="margin-bottom: 1px;">
+        <div class="flex1 center bg-darkred">
+            <label for="mod">{{localize 'BOL.ui.ppcost'}}</label>
+        </div>
+        <div class="flex1 center cell" id="ppcost">{{ppCost}}</div>
+    </div>
+
+    <div class="flexrow" style="margin-bottom: 1px;">
+        <div class="flex1 center bg-darkred">
+            <label for="mod">{{localize 'BOL.ui.ppAvailable'}}</label>
+        </div>
+        <div class="flex1 center cell">{{ppCurrent}}</div>
+    </div>
+
+    <div class="flexrow" style="margin-bottom: 1px;">
+        <div class="flex1 center bg-darkred">
+            <label for="mod">{{localize 'BOL.ui.mandatoryconditions'}}</label>
+        </div>
+        <div class="flex1 center cell">
+              {{#each spell.data.data.properties.mandatoryconditions as | cond idx|}}
+                {{#if (lt idx @root.spell.data.data.properties.nbmandatoryconditions)}}
+                <label for="mod">{{cond}}</label>
+                {{/if}}
+              {{/each}}
+        </div>
+    </div>
+
+    <div class="flexrow" style="margin-bottom: 1px;">
+        <div class="flex1 center bg-darkred">
+            <label for="mod">{{localize 'BOL.ui.optionnalconditions'}}</label>
+        </div>
+        <div class="flex1 center cell">
+            <select class="flex1" name="optcond" id="optcond" data-type="String" multiple>
+                {{#each spell.data.data.properties.optionnalconditions as | cond idx|}}
+                  {{#if (lt idx @root.spell.data.data.properties.nboptionnalconditions)}}
+                    <option value="{{idx}}">{{cond}}</option>
+                  {{/if}}
+                {{/each}}
+            </select>
+        </div>
+    </div>
+
+</form>

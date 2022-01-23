@@ -117,6 +117,13 @@
             "value": 0,
             "bonus": 0,
             "max": 0
+          },
+          "alchemypoints": {
+            "key": "alchemypoints",
+            "label": "BOL.resources.alchemypoints",
+            "value": 0,
+            "bonus": 0,
+            "max": 0
           }
         }
       }

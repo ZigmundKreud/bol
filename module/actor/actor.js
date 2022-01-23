@@ -109,6 +109,12 @@ export class BoLActor extends Actor {
   get protections() {
     return this.armors.concat(this.helms).concat(this.shields)
   }
+  get spells() {
+    return this.itemData.filter(i => i.type === "item"  && i.data.category === "spell");
+  }
+  get alchemy() {
+    return this.itemData.filter(i => i.type === "item"  && i.data.category === "alchemy");
+  }
   get melee() {
     return this.weapons.filter(i => i.data.properties.melee === true);
   }
@@ -136,6 +142,66 @@ export class BoLActor extends Actor {
     return this.itemData.filter(i => i.type === "item" && i.data.category === "equipment" && (i.data.subtype === "other" ||i.data.subtype === "container" ||i.data.subtype === "scroll" || i.data.subtype === "jewel"));
   }
   
+  isSorcerer( ) {
+    if ( this.careers.find( item => item.data.properties.sorcerer == true) ) 
+      return true
+    return false
+  }
+  isAlchemist( ) {
+    if ( this.careers.find( item => item.data.properties.alchemist == true) ) 
+      return true
+    return false
+  }
+  isPriest( ) {
+    if ( this.careers.find( item => item.data.properties.priest == true) ) 
+      return true
+    return false
+  }
+
+  spendPowerPoint( ppCost ) {
+    let newPP = this.data.data.resources.power.value - ppCost
+    newPP = (newPP<0) ? 0 : newPP
+    this.update( {'data.resources.power.value': newPP})
+  }
+
+  resetAlchemyStatus( alchemyId ) {
+    let alchemy = this.data.items.get( alchemyId)
+    if (alchemy) {
+      this.updateEmbeddedDocuments('Item', [{_id: alchemy.id, 'data.properties.pccurrent': 0}] )
+    }
+  }
+
+  async spendAlchemyPoint( alchemyId, pcCost) {
+    let alchemy = this.data.items.get( alchemyId)
+    if (alchemy) {
+      pcCost = Number(pcCost)?? 0
+      if ( this.data.data.resources.alchemypoints.value >= pcCost) { 
+        let newPC = this.data.data.resources.alchemypoints.value - pcCost
+        newPC = (newPC<0) ? 0 : newPC
+        this.update( {'data.resources.alchemypoints.value': newPC} )
+        newPC = alchemy.data.data.properties.pccurrent + pcCost
+        await this.updateEmbeddedDocuments('Item', [{_id: alchemy.id, 'data.properties.pccurrent': newPC}] )
+      } else {
+        ui.notifications.warn("Plus assez de Points de Création !")
+      }
+    }
+  }  
+
+  getAlchemistBonus() {
+    let sorcerer = this.careers.find( item => item.data.properties.alchemist == true)
+    if (sorcerer) {
+      return sorcerer.data.rank
+    }
+    return 0;
+  }
+  getSorcererBonus() {
+    let sorcerer = this.careers.find( item => item.data.properties.sorcerer == true)
+    if (sorcerer) {
+      return sorcerer.data.rank
+    }
+    return 0;
+  }
+
   heroReroll( ) {
     if (this.type == 'character') {
       return this.data.data.resources.hero.value > 0;

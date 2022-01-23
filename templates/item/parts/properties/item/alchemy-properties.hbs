@@ -1,0 +1,39 @@
+<h3 class="form-header">{{localize "BOL.ui.alchemyProperties"}}</h3>
+
+  <div class="property flexrow">
+      <label class="property-label">{{localize "BOL.ui.alchemyType"}}</label>
+        <select class="field-value" name="data.properties.alchemytype" data-dtype="String">
+            {{#select data.properties.alchemytype}}
+                {{#each config.alchemyType as |value id|}}
+                    <option value="{{id}}">{{localize value}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+  </div>
+
+  <div class="property flexrow">
+      <label class="property-label">{{localize "BOL.ui.difficulty"}}</label>
+      <select name="data.properties.difficulty" value="{{data.properties.difficulty}}">
+            {{#select data.properties.difficulty}}
+            <option value="2">Trés Facile (+2)</option>
+            <option value="1">Facile (+1)</option>
+            <option value="0">Moyenne (0)</option>
+            <option value="-1">Ardue (-1)</option>
+            <option value="-2">Difficile (-2)</option>
+            <option value="-4">Très Difficile (-4)</option>
+            <option value="-6">Impossible (-6)</option>
+            <option value="-8">Héroïque (-8)</option>
+            {{/select}}
+      </select>
+  </div>
+
+  <div class="property flexrow">
+        <label class="property-label">{{localize "BOL.ui.pccost"}}</label>
+        <input class="field-value" type="text" name="data.properties.pccost" value="{{data.properties.pccost}}" data-dtype="Number"/>
+  </div>
+
+  <div class="property flexrow">
+        <label class="property-label">{{localize "BOL.ui.pcnow"}}</label>
+        <input class="field-value" type="text" name="data.properties.pccurrent" value="{{data.properties.pccurrent}}" data-dtype="Number"/>
+  </div>
+

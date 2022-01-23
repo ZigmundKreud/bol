@@ -20,6 +20,12 @@
   {{#if (and isSuccess weapon)}}
   {{> "systems/bol/templates/chat/rolls/attack-damage-card.hbs"}}
   {{/if}}
+  {{#if (and isSuccess spell)}}
+  {{> "systems/bol/templates/chat/rolls/spell-roll-card.hbs"}}
+  {{/if}}
+  {{#if alchemy}}
+  {{> "systems/bol/templates/chat/rolls/alchemy-roll-card.hbs"}}
+  {{/if}}
 
   {{#if reroll}}
     <button class="chat-button button hero-reroll" data-roll-id=="{{rollId}}" data-actor-id="{{actor.id}}">Relancer (1 P. Heroisme)</button>

@@ -12,6 +12,9 @@
                 <a class="item" data-tab="actions">{{localize "BOL.ui.tab.actions"}}</a>
                 <a class="item" data-tab="features">{{localize "BOL.ui.tab.features"}}</a>
                 <a class="item" data-tab="equipment">{{localize "BOL.ui.tab.equipment"}}</a>
+                {{#if (or isSorcerer isAlchemist)}}
+                <a class="item" data-tab="spellalchemy">{{localize "BOL.ui.tab.spellalchemy"}}</a>
+                {{/if}}
                 <a class="item" data-tab="description">{{localize "BOL.ui.tab.description"}}</a>
             </nav>
             {{!-- Sheet Body --}}
@@ -26,6 +29,13 @@
                 <div class="tab features" data-group="primary" data-tab="features">
                     {{> "systems/bol/templates/actor/parts/tabs/actor-features.hbs"}}
                 </div>
+
+                {{#if (or isSorcerer isAlchemist)}}
+                <div class="tab features" data-group="primary" data-tab="spellalchemy">
+                    {{> "systems/bol/templates/actor/parts/tabs/actor-spellalchemy.hbs"}}
+                </div>
+                {{/if}}
+
                 <div class="tab equipment" data-group="primary" data-tab="equipment">
                     {{> "systems/bol/templates/actor/parts/tabs/actor-equipment.hbs"}}
                 </div>

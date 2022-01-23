@@ -14,6 +14,7 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/bol/templates/actor/parts/tabs/actor-actions.hbs",
         "systems/bol/templates/actor/parts/tabs/actor-features.hbs",
         "systems/bol/templates/actor/parts/tabs/actor-equipment.hbs",
+        "systems/bol/templates/actor/parts/tabs/actor-spellalchemy.hbs",
         // ITEMS
         "systems/bol/templates/item/parts/item-header.hbs",
         "systems/bol/templates/item/parts/properties/feature-properties.hbs",
@@ -24,6 +25,7 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/bol/templates/item/parts/properties/item/protection-properties.hbs",
         "systems/bol/templates/item/parts/properties/item/weapon-properties.hbs",
         "systems/bol/templates/item/parts/properties/item/spell-properties.hbs",
+        "systems/bol/templates/item/parts/properties/item/alchemy-properties.hbs",
         "systems/bol/templates/item/parts/properties/item/magical-properties.hbs",
         "systems/bol/templates/item/parts/properties/feature/career-properties.hbs",
         "systems/bol/templates/item/parts/properties/feature/boon-properties.hbs",
@@ -33,6 +35,8 @@ export const preloadHandlebarsTemplates = async function () {
 
         // DIALOGS
         "systems/bol/templates/chat/rolls/attack-damage-card.hbs",
+        "systems/bol/templates/chat/rolls/spell-roll-card.hbs",
+        "systems/bol/templates/chat/rolls/alchemy-roll-card.hbs",
         "systems/bol/templates/roll/parts/roll-dialog-modifiers.hbs",
         "systems/bol/templates/roll/parts/roll-dialog-attribute.hbs",
         "systems/bol/templates/dialogs/aptitude-roll-part.hbs",

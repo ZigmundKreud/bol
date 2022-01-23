@@ -17,18 +17,7 @@ export class BoLItemSheet extends ItemSheet {
     });
   }
 
-  // /** @override */
-  // get template() {
-  //   const path = "systems/bol/templates/item";
-  //   // Return a single sheet for all item types.
-  //   //return `${path}/item-sheet.hbs`;
-  //   // Alternatively, you could use the following return statement to do a
-  //   // unique item sheet by type, like `weapon-sheet.html`.
-  //   return `${path}/item-${this.item.data.type}-sheet.hbs`;
-  // }
-
   /* -------------------------------------------- */
-
   /** @override */
   getData(options) {
     const data = super.getData(options);
@@ -39,7 +28,18 @@ export class BoLItemSheet extends ItemSheet {
     data.category = itemData.category;
     data.itemProperties = this.item.itemProperties;
     data.isGM = game.user.isGM;
-    console.debug("ITEMDATA", data);
+
+    // Dynamic spell fix
+    if (itemData.type == "item" && itemData.data.category == 'spell') {
+      for (let i=0; i<4; i++) {
+        itemData.data.properties.mandatoryconditions[i] = itemData.data.properties.mandatoryconditions[i]?? ""
+      }
+      for (let i=0; i<8; i++) {
+        itemData.data.properties.optionnalconditions[i] = itemData.data.properties.optionnalconditions[i]?? ""
+      }
+    }
+
+    console.log("ITEMDATA", data);
     return data;
   }
 

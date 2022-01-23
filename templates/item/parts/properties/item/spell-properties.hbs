@@ -1,27 +1,97 @@
 <h3 class="form-header">{{localize "BOL.ui.spellProperties"}}</h3>
-<div class="form-group">
-    <div class="form-fields center">
+
+  <div class="property flexrow">
+      <label class="property-label">{{localize "BOL.ui.circle"}}</label>
+        <select class="field-value" name="data.properties.circle" data-dtype="Number">
+            {{#select data.properties.circle}}
+                {{#each config.spellType as |value id|}}
+                    <option value="{{id}}">{{localize value}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+  </div>
+
+  <div class="property flexrow">
       <label class="property-label">{{localize "BOL.ui.difficulty"}}</label>
-      <input class="field-value" type="text" name="data.properties.difficulty" value="{{data.properties.difficulty}}" data-dtype="Number"/>
-    </div>
-</div>
+      <select name="data.properties.difficulty" value="{{data.properties.difficulty}}">
+            {{#select data.properties.difficulty}}
+            <option value="2">Trés Facile (+2)</option>
+            <option value="1">Facile (+1)</option>
+            <option value="0">Moyenne (0)</option>
+            <option value="-1">Ardue (-1)</option>
+            <option value="-2">Difficile (-2)</option>
+            <option value="-4">Très Difficile (-4)</option>
+            <option value="-6">Impossible (-6)</option>
+            <option value="-8">Héroïque (-8)</option>
+            {{/select}}
+      </select>
+  </div>
 
-<div class="form-group">
-    <div class="form-fields center">
-      <label class="property-label">{{localize "BOL.ui.duration"}}</label>
-      <input class="field-value" type="text" name="data.properties.duration" value="{{data.properties.duration}}" data-dtype="String"/>
-    </div>
-</div>
+  <div class="property flexrow">
+        <label class="property-label">{{localize "BOL.ui.ppcost"}}</label>
+        <input class="field-value" type="text" name="data.properties.ppcost" value="{{data.properties.ppcost}}" data-dtype="Number"/>
+  </div>
 
-<div class="form-group">
-  <div class="form-fields center">
-      <label class="checkbox">
-          <input class="field-value" type="checkbox" name="data.properties.spellkeep" {{checked data.properties.spellkeep}}> {{localize "BOL.ui.spellkeep"}}
-      </label>
-    </div>
+  <div class="property flexrow">
+        <label class="property-label">{{localize "BOL.ui.duration"}}</label>
+        <input class="field-value" type="text" name="data.properties.duration" value="{{data.properties.duration}}" data-dtype="String"/>
+  </div>
+
+  <div class="property flexrow">
+    <label class="property-label">{{localize "BOL.ui.mandatoryconditions"}}</label>
+      <select class="field-value" name="data.properties.nbmandatoryconditions" data-dtype="Number">
+          {{#select data.properties.nbmandatoryconditions}}
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          {{/select}}
+      </select>
+  </div>
+
+    {{#each data.properties.mandatoryconditions as |cond idx|}}
+      {{#if (lt idx @root.data.properties.nbmandatoryconditions)}}
+      <div class="property flexrow">
+        <label class="property-label">{{localize "BOL.ui.mandatoryconditions"}} {{add idx 1}}</label>
+        <input class="field-value" type="text" name="data.properties.mandatoryconditions.{{idx}}" value="{{cond}}" data-dtype="String"/>
+      </div>
+      {{/if}}
+    {{/each}}
+
+  <div class="property flexrow">
+    <label class="property-label">{{localize "BOL.ui.optionnalconditions"}}</label>
+      <select class="field-value" name="data.properties.nboptionnalconditions" data-dtype="Number">
+          {{#select data.properties.nboptionnalconditions}}
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          {{/select}}
+      </select>
+  </div>
+
+    {{#each data.properties.optionnalconditions as |cond idx|}}
+      {{#if (lt idx @root.data.properties.nboptionnalconditions)}}
+      <div class="property flexrow">
+        <label class="property-label">{{localize "BOL.ui.optionnalconditions"}} {{add idx 1}}</label>
+        <input class="field-value" type="text" name="data.properties.optionnalconditions.{{idx}}" value="{{cond}}" data-dtype="String"/>
+      </div>
+      {{/if}}
+    {{/each}}
+
+  <div class="property flexrow">
     <div class="form-fields center">
-      <label class="checkbox">
-          <input class="field-value" type="checkbox" name="data.properties.concentrate" {{checked data.properties.concentrate}}> {{localize "BOL.ui.concentrate"}}
-      </label>
-    </div>
-</div>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.spellkeep" {{checked data.properties.spellkeep}}> {{localize "BOL.ui.spellkeep"}}
+        </label>
+      </div>
+      <div class="form-fields center">
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.concentrate" {{checked data.properties.concentrate}}> {{localize "BOL.ui.concentrate"}}
+        </label>
+      </div>
+  </div>

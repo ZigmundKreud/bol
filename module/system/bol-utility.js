@@ -1,5 +1,8 @@
 import { BoLDefaultRoll } from "../controllers/bol-rolls.js";
 
+// Spell circle to min PP cost
+const __circle2minpp = { 0: 0, 1: 2,2: 6, 3: 11}
+
 export class BoLUtility {
 
 
@@ -375,6 +378,14 @@ export class BoLUtility {
     if (sockmsg.name == "msg_damage_handling") {
       BoLUtility.processDamageHandling(sockmsg.data.event, sockmsg.data.attackId, sockmsg.data.defenseMode)
     }
+  } 
+
+  /* -------------------------------------------- */
+  static computeSpellCost( spell, nbOptCond= 0) {
+    let pp = spell.data.data.properties.ppcost
+    let minpp = __circle2minpp[spell.data.data.properties.circle]
+    pp = (pp-nbOptCond<minpp) ? minpp : pp-nbOptCond
+    return pp
   }
 
   /* -------------------------------------------- */

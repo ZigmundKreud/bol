@@ -27,6 +27,20 @@ BOL.damageMultiplier = {
   "4": "x4",
 }
 
+BOL.spellType = {
+  "0": "BOL.spellItem.charm",
+  "1": "BOL.spellItem.circle1",
+  "2": "BOL.spellItem.circle2",
+  "3": "BOL.spellItem.circle3"
+}
+
+BOL.alchemyType = {
+  "common": "BOL.alchemyItem.common",
+  "scarce": "BOL.alchemyItem.scarce",
+  "legend": "BOL.alchemyItem.legend",
+  "mythic": "BOL.alchemyItem.mythic",
+}
+
 BOL.equipmentSlots = {
     "none" : "BOL.equipmentSlots.none",
     "head" : "BOL.equipmentSlots.head",
@@ -115,6 +129,7 @@ BOL.itemCategories = {
     "equipment" : "BOL.itemCategory.equipment",
     "capacity" : "BOL.itemCategory.capacity",
     "spell" : "BOL.itemCategory.spell",
+    "alchemy" : "BOL.itemCategory.alchemy",
     "vehicle" : "BOL.itemCategory.vehicle",
     "other" : "BOL.itemCategory.other"
 }

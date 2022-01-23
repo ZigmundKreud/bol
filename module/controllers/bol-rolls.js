@@ -63,8 +63,6 @@ export class BoLRoll {
   }
 
   static weaponCheck(actor, actorData, dataset, event) {
-    // const elt = $(event.currentTarget)[0];
-    // let key = elt.attributes["data-rolling"].value;
     let target = BoLUtility.getTarget()
     const li = $(event.currentTarget).parents(".item");
     const weapon = actor.items.get(li.data("item-id"));
@@ -85,13 +83,83 @@ export class BoLRoll {
       label: (weapon.name) ? weapon.name : game.i18n.localize('BOL.ui.noWeaponName'),
       description: actor.name + " - " + game.i18n.localize('BOL.ui.weaponAttack'),
       adv: "2",
-
     }
     console.debug("WEAPON!", attackDef, weaponData);
     return this.displayRollDialog(attackDef);
   }
 
+  static alchemyCheck( actor, actorData, dataset, event) {
+    const li = $(event.currentTarget).parents(".item");
+    const alchemy = actor.items.get(li.data("item-id"));
+    if (!alchemy) {
+      ui.notifications.warn("Unable to find Alchemy !");
+      return;
+    }
+    let alchemyData = alchemy.data.data
+    if (alchemyData.properties.pccurrent < alchemyData.properties.pccost) {
+      ui.notifications.warn("Pas assez de Points de Cration investis dans la Préparation !")
+      return
+    }
+
+    let alchemyDef = {
+      mode: "alchemy",
+      actor: actor,
+      actorData: actorData,
+      alchemy: alchemy,
+      attribute: actor.data.data.attributes.mind,
+      careerBonus: actor.getAlchemistBonus(),
+      pcCost: alchemyData.properties.pccost,
+      pcCostCurrent: alchemyData.properties.pccurrent,
+      mod: alchemyData.properties.difficulty,
+      label: alchemy.name,
+      adv: "2",
+      description: actor.name + " - " + game.i18n.localize('BOL.ui.makeAlchemy'),
+    }
+    console.log("ALCHEMY!", alchemyDef);
+    return this.displayRollDialog(alchemyDef);
+  }
+
+  
+  static spellCheck( actor, actorData, dataset, event) {
+    if (actor.data.data.resources.power.value <= 0) {
+      ui.notifications.warn("Plus assez de points de Pouvoir !")
+      return
+    }
+    const li = $(event.currentTarget).parents(".item");
+    const spell = actor.items.get(li.data("item-id"));
+    if (!spell) {
+      ui.notifications.warn("Unable to find spell !");
+      return;
+    }
+    let spellData = spell.data.data;
+    let spellDef = {
+      mode: "spell",
+      actor: actor,
+      actorData: actorData,
+      spell: spell,
+      attribute: actor.data.data.attributes.mind,
+      ppCurrent:  actor.data.data.resources.power.value,
+      careerBonus: actor.getSorcererBonus(),
+      ppCost: spell.data.data.properties.ppcost,
+      mod: spellData.properties.difficulty,
+      label: spell.name,
+      adv: "2",
+      description: actor.name + " - " + game.i18n.localize('BOL.ui.focusSpell'),
+    }
+    console.log("SPELL!", spellDef);
+    return this.displayRollDialog(spellDef);
+  }
+
   /* -------------------------------------------- */
+  static rollDialogListener(html) {
+
+    html.find('#optcond').change((event) => { // Dynamic change of PP cost of spell
+      let pp = BoLUtility.computeSpellCost(this.rollData.spell, event.currentTarget.selectedOptions.length)
+      $('#ppcost').html(pp)
+      this.rollData.ppCost = pp
+    });
+  }
+
   /* ROLL DIALOGS                                 */
   /* -------------------------------------------- */
   static async displayRollDialog(rollData, onEnter = "submit") {
@@ -101,8 +169,10 @@ export class BoLRoll {
     rollData.boons = rollData.actorData.features.boons
     rollData.flaws = rollData.actorData.features.flaws
     rollData.defence = 0
-    rollData.mod = 0
+    rollData.careerBonus = rollData.careerBonus?? 0
+    rollData.mod = rollData.mod?? 0
     rollData.id = randomID(16)
+    this.rollData = rollData
 
     // Weapon mode specific management
     rollData.weaponModifier = 0
@@ -128,6 +198,7 @@ export class BoLRoll {
       title: rollData.label,
       content: rollOptionContent,
       rollData: rollData,
+      render: html => this.rollDialogListener(html),
       buttons: {
         cancel: {
           icon: '<i class="fas fa-times"></i>',
@@ -139,6 +210,11 @@ export class BoLRoll {
           icon: '<i class="fas fa-check"></i>',
           label: game.i18n.localize("BOL.ui.submit"),
           callback: (html) => {
+            if (rollData.mode == 'spell' && rollData.ppCurrent < rollData.ppCost) { // Check PP available
+              ui.notifications.warn("Pas assez de Points de Pouvoir !")
+              return
+            }
+
             rollData.attrKey = html.find('#attr').val();
             rollData.aptKey = html.find('#apt').val();
             rollData.adv = $("input[name='adv']:checked").val() || "2";
@@ -156,14 +232,14 @@ export class BoLRoll {
               }
             }
 
-            const isMalus = rollData.adv.includes('M');
+            const isMalus = rollData.adv.includes('M')
             let dicePool = __adv2dice[rollData.adv]
             dicePool += (rollData.attackBonusDice) ? 1 : 0
-            //// const dicePool = (isMalus) ? 2 - parseInt(rollData.adv) : 2 + parseInt(rollData.adv);
+
             const attrValue = (rollData.attrKey) && eval(`rollData.actor.data.data.attributes.${rollData.attrKey}.value`) || 0;
             const aptValue = (rollData.aptKey) && eval(`rollData.actor.data.data.aptitudes.${rollData.aptKey}.value`) || 0
 
-            const modifiers = rollData.weaponModifier + parseInt(attrValue) + parseInt(aptValue) + parseInt(rollData.mod) + parseInt(rollData.career) - rollData.defence - shieldMalus;
+            const modifiers = rollData.careerBonus + rollData.weaponModifier + parseInt(attrValue) + parseInt(aptValue) + parseInt(rollData.mod) + parseInt(rollData.career) - rollData.defence - shieldMalus;
             const formula = (isMalus) ? dicePool + "d6kl2 + " + modifiers : dicePool + "d6kh2 + " + modifiers;
             rollData.formula = formula;
             rollData.modifiers = modifiers
@@ -176,6 +252,7 @@ export class BoLRoll {
       default: onEnter,
       close: () => { }
     }, this.options());
+
     return d.render(true);
   }
 }
@@ -219,10 +296,14 @@ export class BoLDefaultRoll {
     if (this.rollData.registerInit) {
       this.rollData.actor.registerInit(r.total, this.rollData.isCritical);
     }
+    if (this.rollData.isSuccess && this.rollData.mode == "spell") { // PP cost management
+      this.rollData.actor.spendPowerPoint(this.rollData.ppCost)
+    }
+    if (this.rollData.mode == "alchemy") { // PP cost management
+      this.rollData.actor.resetAlchemyStatus(this.rollData.alchemy.id)
+    }
 
-    console.log("ROLL", this.rollData)
     await this.sendChatMessage()
-
   }
 
   async sendChatMessage() {

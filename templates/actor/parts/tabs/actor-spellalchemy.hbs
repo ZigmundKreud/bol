@@ -1,0 +1,65 @@
+<!--SORTS-->
+{{#if isSorcerer}}
+  <ol class="items-list">
+      <li class="item flexrow item-header">
+          <div class="item-name flex4 left">{{localize "BOL.ui.spells"}}</div>
+          <div class="item-field flex2 center">{{localize "BOL.ui.circle"}}</div>
+          <div class="item-field flex1 center">{{localize "BOL.ui.difficulty"}}</div>
+          <div class="item-field flex1 right"></div>
+      </li>
+  {{#each spells as |item id|}}
+      <li class="item flexrow" data-item-id="{{item._id}}">
+          <h4 class="item-name flex4 left">
+              <div class="item-image"><img src="{{item.img}}" title="{{item.name}}"/></div>
+              <a class="rollable" data-roll-type="spell">{{item.name}}</a>
+          </h4>
+          <div class="item-field flex1 center">
+              <span class="item-field">{{item.data.properties.circle}}</span>
+          </div>
+          <div class="item-field flex1 center">
+              <span class="item-field">{{item.data.properties.difficulty}}</span>
+          </div>
+          <div class="item-field flex1 right">
+              <a class="item-control item-edit" title="{{localize "BOL.ui.edit"}}"><i class="fas fa-square"></i></a>
+              <a class="item-control item-delete" title="{{localize "BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
+          </div>
+  </li>
+  {{/each}}
+  </ol>
+{{/if}}
+
+{{#if isAlchemist}}
+  <ol class="items-list">
+      <li class="item flexrow item-header">
+          <div class="item-name flex4 left">{{localize "BOL.ui.alchemy"}}</div>
+          <div class="item-field flex2 center">{{localize "BOL.ui.type"}}</div>
+          <div class="item-field flex1 center">{{localize "BOL.ui.difficulty"}}</div>
+          <div class="item-field flex1 center">{{localize "BOL.ui.advance"}}</div>
+          <div class="item-field flex1 right"></div>
+      </li>
+  {{#each alchemy as |item id|}}
+      <li class="item flexrow" data-item-id="{{item._id}}">
+          <h4 class="item-name flex4 left">
+              <div class="item-image"><img src="{{item.img}}" title="{{item.name}}"/></div>
+              <a class="rollable" data-roll-type="alchemy">{{item.name}}</a>
+          </h4>
+          <div class="item-field flex1 center">
+              <span class="item-field">{{localize (concat "BOL.alchemyItem." item.data.properties.alchemytype)}}</span>
+          </div>
+          <div class="item-field flex1 center">
+              <span class="item-field">{{item.data.properties.difficulty}}</span>
+          </div>
+          <div class="item-field flex1 center">
+              <span class="item-field">{{item.data.properties.pccurrent}} / {{item.data.properties.pccost}}</span>
+          </div>
+          <div class="item-field flex1 center">
+            <a class="inc-dec-btns-alchemy"><i class="fas fa-plus-square"></i></a>
+          </div>
+          <div class="item-field flex1 right">
+              <a class="item-control item-edit" title="{{localize "BOL.ui.edit"}}"><i class="fas fa-square"></i></a>
+              <a class="item-control item-delete" title="{{localize "BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
+          </div>
+  </li>
+  {{/each}}
+  </ol>
+{{/if}}
