@@ -29,13 +29,22 @@ export class BoLItemSheet extends ItemSheet {
     data.itemProperties = this.item.itemProperties;
     data.isGM = game.user.isGM;
 
-    // Dynamic spell fix
-    if (itemData.type == "item" && itemData.data.category == 'spell') {
-      for (let i=0; i<4; i++) {
-        itemData.data.properties.mandatoryconditions[i] = itemData.data.properties.mandatoryconditions[i]?? ""
+    // Dynamic default data fix/adapt
+    if (itemData.type == "item") {
+      if (!itemData.data.category) {
+        itemData.data.category = "equipment"
       }
-      for (let i=0; i<8; i++) {
-        itemData.data.properties.optionnalconditions[i] = itemData.data.properties.optionnalconditions[i]?? ""
+      if (itemData.data.category == 'spell') {
+        for (let i = 0; i < 4; i++) {
+          itemData.data.properties.mandatoryconditions[i] = itemData.data.properties.mandatoryconditions[i] ?? ""
+        }
+        for (let i = 0; i < 8; i++) {
+          itemData.data.properties.optionnalconditions[i] = itemData.data.properties.optionnalconditions[i] ?? ""
+        }
+      }
+    } else {
+      if (!itemData.data.subtype) {
+        itemData.data.category = "origin"
       }
     }
 
@@ -58,6 +67,7 @@ export class BoLItemSheet extends ItemSheet {
 
   /** @override */
   activateListeners(html) {
+
     super.activateListeners(html);
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
