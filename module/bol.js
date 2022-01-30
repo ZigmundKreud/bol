@@ -77,3 +77,32 @@ Hooks.once('init', async function () {
   //   return str.toLowerCase();
   // });
 });
+
+/* -------------------------------------------- */
+// Register world usage statistics
+function registerUsageCount( registerKey ) {
+  if ( game.user.isGM ) {
+    game.settings.register(registerKey, "world-key", {
+      name: "Unique world key",
+      scope: "world",
+      config: false,
+      type: String
+    });
+
+    let worldKey = game.settings.get(registerKey, "world-key")
+    if ( worldKey == undefined || worldKey == "" ) {
+      worldKey = randomID(32)
+      game.settings.set(registerKey, "world-key", worldKey )
+    }
+    // Simple API counter
+    $.ajax(`https://jdr.lahiette.com/fvtt_appcount/count.php?name="${registerKey}"&worldKey="${worldKey}"&version="${game.release.generation}.${game.release.build}"&system="${game.system.id}"&systemversion="${game.system.data.version}"`)
+    /* -------------------------------------------- */
+  }
+}
+
+/* -------------------------------------------- */
+Hooks.once('ready', async function () {
+  registerUsageCount('bol')
+});
+
+
