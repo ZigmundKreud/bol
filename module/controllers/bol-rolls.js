@@ -344,6 +344,17 @@ export class BoLDefaultRoll {
     });
   }
   
+  getDamageAttributeValue( attrDamage) {
+    let attrDamageValue = 0
+    if ( attrDamage.includes("vigor") ) {
+      attrDamageValue = this.rollData.actor.data.data.attributes.vigor.value 
+      if (attrDamage.includes("half")) {
+        attrDamageValue = Math.floor(attrDamageValue / 2)
+      }
+    }
+    return attrDamageValue
+  }
+
   async rollDamage() {
     if (this.rollData.mode != "weapon") { // Only specific process in Weapon mode
       return;
@@ -358,12 +369,12 @@ export class BoLDefaultRoll {
         if ( this.rollData.damageMode == 'damage-plus-12') {
           bonusDmg = 12
         }
-        console.log("DAMAGE !!!")
-        let attrDamage = this.rollData.weapon.data.data.properties.damageAttribute;
+        let attrDamageValue = this.getDamageAttributeValue(this.rollData.weapon.data.data.properties.damageAttribute)
         let weaponFormula = BoLUtility.getDamageFormula(this.rollData.weapon.data.data.properties.damage,
-          this.rollData.weapon.data.data.properties.damageModifiers,
-          this.rollData.weapon.data.data.properties.damageMultiplier)
-        let damageFormula = weaponFormula + "+" + bonusDmg + ((attrDamage) ? "+" + this.rollData.actor.data.data.attributes[attrDamage].value : "+0");
+            this.rollData.weapon.data.data.properties.damageModifiers,
+            this.rollData.weapon.data.data.properties.damageMultiplier)
+        let damageFormula = weaponFormula + "+" + bonusDmg + "+" + attrDamageValue 
+        console.log("DAMAGE !!!", damageFormula, attrDamageValue)
 
         //console.log("Formula", weaponFormula, damageFormula, this.rollData.weapon.data.data.properties.damage)
         this.rollData.damageFormula = damageFormula

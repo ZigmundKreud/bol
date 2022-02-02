@@ -362,10 +362,9 @@ export class BoLActor extends Actor {
   rollWeaponDamage( itemId) {
     let weapon = this.data.items.get(itemId )
     if ( weapon ) {
-      console.log("WE", weapon)
       let r = new BoLDefaultRoll( { id: randomID(16), isSuccess: true, mode: "weapon", weapon: weapon, actor: this} )
       r.setSuccess(true)
-      r.processResult()
+      r.rollDamage()
     }
   }
 
