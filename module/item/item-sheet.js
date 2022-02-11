@@ -34,6 +34,11 @@ export class BoLItemSheet extends ItemSheet {
       if (!itemData.data.category) {
         itemData.data.category = "equipment"
       }
+      if ( itemData.data.category == "equipment" && itemData.data.properties.equipable) {
+        if (!itemData.data.properties.slot) {
+          itemData.data.properties.slot = "-"
+        }
+      }
       if (itemData.data.category == 'spell') {
         for (let i = 0; i < 4; i++) {
           itemData.data.properties.mandatoryconditions[i] = itemData.data.properties.mandatoryconditions[i] ?? ""

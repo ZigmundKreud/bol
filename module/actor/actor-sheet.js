@@ -52,21 +52,22 @@ export class BoLActorSheet extends ActorSheet {
           const dataset = ev.currentTarget.dataset;
           const operator = dataset.operator;
           const target = dataset.target;
-          const incr = parseInt(dataset.incr);
-          const min = parseInt(dataset.min);
-          const max = parseInt(dataset.max);
+          const incr = parseInt(dataset.incr)
+          const min = parseInt(dataset.min)
+          const max = parseInt(dataset.max) || 10000
           const itemData = item.data;
-          let value = eval("itemData."+target);
+          let value = eval("itemData."+target)
+          value = value || 0
+          console.log("IncDec", item, target, value, operator, min, max)
           if(operator === "minus"){
             if(value >= min + incr) value -= incr;
             else value = min;
           }
-          if(operator === "plus"){
+          if(operator === "plus") {
             if(value <= max - incr) value += incr;
             else value = max;
           }
-          let update = {};
-          update[target] = value;
+          let update = { [`${target}`]: value};
           item.update(update);
         }
       }
