@@ -60,22 +60,8 @@ Hooks.once('init', async function () {
   registerHandlebarsHelpers();
 
   // Register hooks
-  registerHooks();
+  registerHooks()
 
-  // // If you need to add Handlebars helpers, here are a few useful examples:
-  // Handlebars.registerHelper('concat', function() {
-  //   var outStr = '';
-  //   for (var arg in arguments) {
-  //     if (typeof arguments[arg] != 'object') {
-  //       outStr += arguments[arg];
-  //     }
-  //   }
-  //   return outStr;
-  // });
-  //
-  // Handlebars.registerHelper('toLowerCase', function(str) {
-  //   return str.toLowerCase();
-  // });
 });
 
 /* -------------------------------------------- */
@@ -101,8 +87,22 @@ function registerUsageCount( registerKey ) {
 }
 
 /* -------------------------------------------- */
+function welcomeMessage() {
+  ChatMessage.create({
+    user: game.user.id,
+    whisper: [game.user.id],
+    content: `<div id="welcome-message-pegasus"><span class="rdd-roll-part">
+    <strong>Bienvenue dans Barbarians of Lemuria (Ludospherik version)</strong>
+    <p>Les livres nécessaires pour jouer sont disponibles sur le site de l'éditeur : http://www.ludospherik.fr/content/14-barbarians-of-lemuria</p>
+    <p>Bon jeu en Lemurie !</p>
+    ` });
+}
+
+/* -------------------------------------------- */
 Hooks.once('ready', async function () {
   registerUsageCount('bol')
+
+  welcomeMessage()
 });
 
 
