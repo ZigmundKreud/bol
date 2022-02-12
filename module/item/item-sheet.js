@@ -40,6 +40,12 @@ export class BoLItemSheet extends ItemSheet {
         }
       }
       if (itemData.data.category == 'spell') {
+        if(!itemData.data.properties.mandatoryconditions) {
+          itemData.data.properties.mandatoryconditions = []
+        }
+        if(!itemData.data.properties.optionnalconditions) {
+          itemData.data.properties.optionnalconditions = []
+        }
         for (let i = 0; i < 4; i++) {
           itemData.data.properties.mandatoryconditions[i] = itemData.data.properties.mandatoryconditions[i] ?? ""
         }
