@@ -252,7 +252,8 @@ BOL.featureSubtypes = {
     "race" : "BOL.featureSubtypes.race",
     "career" : "BOL.featureSubtypes.career",
     "boon" : "BOL.featureSubtypes.boon",
-    "flaw" : "BOL.featureSubtypes.flaw"
+    "flaw" : "BOL.featureSubtypes.flaw",
+    "language" : "BOL.featureSubtypes.language"
 }
 
 BOL.itemIcons = {

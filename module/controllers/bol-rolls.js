@@ -182,9 +182,10 @@ export class BoLRoll {
       rollData.weaponModifier = rollData.weapon.data.data.properties.attackModifiers?? 0;
       rollData.attackBonusDice = rollData.weapon.data.data.properties.attackBonusDice
       if (rollData.defender) { // If target is selected
-        rollData.defence = rollData.defender.defenseValue,
-          rollData.shieldBlock = 'none'
+        rollData.defence = rollData.defender.defenseValue
+        rollData.shieldBlock = 'none'
         let shields = rollData.defender.shields
+        //console.log("Shields", shields)
         for (let shield of shields) {
           rollData.shieldBlock = (shield.data.properties.blocking.blockingAll) ? 'blockall' : 'blockone';
           rollData.shieldAttackMalus = (shield.data.properties.blocking.malus) ? shield.data.properties.blocking.malus : 1;

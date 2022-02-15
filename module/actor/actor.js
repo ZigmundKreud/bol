@@ -334,9 +334,8 @@ export class BoLActor extends Actor {
 
   /* -------------------------------------------- */
   getArmorFormula( ) {
-    let protectWorn = this.protections.filter( item => item.data.worn);
+    let protectWorn = this.protections.filter( item => item.data.worn)
     let formula = ""
-    console.log("Protections: ", protectWorn)
     for (let protect of protectWorn) {
       if ( protect.data.subtype == 'helm') {
         formula += "+1"  
@@ -345,7 +344,7 @@ export class BoLActor extends Actor {
       }
     }
     console.log("Protect Formula", formula)
-    return (formula == "") ? 0 :formula;
+    return (formula == "") ? "0" :formula;
   }
 
   /* -------------------------------------------- */

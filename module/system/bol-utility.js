@@ -184,9 +184,9 @@ export class BoLUtility {
       attackDef.defenseMode = defenseMode;
 
       if (defenseMode == 'damage-with-armor') {
-        let armorFormula = attackDef.defender.getArmorFormula();        
+        let armorFormula = attackDef.defender.getArmorFormula()        
         attackDef.rollArmor = new Roll(armorFormula)
-        attackDef.rollArmor.roll( {async: false} );
+        attackDef.rollArmor.roll( {async: false} )
         attackDef.armorProtect = (attackDef.rollArmor.total<0) ? 0 : attackDef.rollArmor.total;
         attackDef.finalDamage = attackDef.damageRoll.total - attackDef.armorProtect;
         attackDef.finalDamage = (attackDef.finalDamage<0) ? 0 : attackDef.finalDamage;

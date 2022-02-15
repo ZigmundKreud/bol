@@ -7,7 +7,7 @@
   "url": "https://github.com/ZigmundKreud/bol",
   "license": "LICENSE.txt",
   "flags": {},
-  "version": "1.0.1",
+  "version": "1.0.2",
   "templateVersion": 18,
   "minimumCoreVersion": "0.8.6",
   "compatibleCoreVersion": "9",
@@ -107,6 +107,15 @@
       "path": "packs/cartes.db",
       "system": "bol",
       "entity": "Scene",
+      "private": false
+    },
+    {
+      "label": "Langues",
+      "type": "Item",
+      "name": "languages",
+      "path": "packs/languages.db",
+      "system": "bol",
+      "entity": "Item",
       "private": false
     }
   ],

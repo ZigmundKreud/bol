@@ -140,14 +140,14 @@
   "BOL.featureCategory.careers": "Carrières",
   "BOL.featureCategory.boons": "Avantages",
   "BOL.featureCategory.flaws": "Désavantages",
-  "BOL.featureCategory.languages": "Langages",
+  "BOL.featureCategory.languages": "Langues",
 
   "BOL.featureSubtypes.origin": "Origine",
   "BOL.featureSubtypes.race": "Race",
   "BOL.featureSubtypes.career": "Carrière",
   "BOL.featureSubtypes.boon": "Avantage",
   "BOL.featureSubtypes.flaw": "Désavantage",
-  "BOL.featureSubtypes.language": "Langage",
+  "BOL.featureSubtypes.language": "Langue",
 
   "BOL.itemCategory.object": "Objet",
   "BOL.itemCategory.equipment": "Équipement",
