@@ -225,9 +225,9 @@ export class BoLRoll {
             rollData.career = (!careers || careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)));
             rollData.registerInit = (rollData.aptKey == 'init') ? $('#register-init').is(":checked") : false;
 
-            let shieldMalus = 0;
+            let shieldMalus = 0
             if (rollData.mode == "weapon") {
-              const applyShieldMalus = html.find('#applyShieldMalus').val() || false;
+              const applyShieldMalus = html.find('#applyShieldMalus').val() || false
               if (applyShieldMalus || rollData.shieldBlock == 'blockall') {
                 shieldMalus = rollData.shieldAttackMalus;
               }
@@ -240,7 +240,7 @@ export class BoLRoll {
             const attrValue = (rollData.attrKey) && eval(`rollData.actor.data.data.attributes.${rollData.attrKey}.value`) || 0;
             const aptValue = (rollData.aptKey) && eval(`rollData.actor.data.data.aptitudes.${rollData.aptKey}.value`) || 0
 
-            const modifiers = rollData.careerBonus + rollData.weaponModifier + parseInt(attrValue) + parseInt(aptValue) + parseInt(rollData.mod) + parseInt(rollData.career) - rollData.defence - shieldMalus;
+            const modifiers = rollData.careerBonus + rollData.weaponModifier + parseInt(attrValue) + parseInt(aptValue) + parseInt(rollData.mod) + parseInt(rollData.career) - rollData.defence + shieldMalus;
             const formula = (isMalus) ? dicePool + "d6kl2 + " + modifiers : dicePool + "d6kh2 + " + modifiers;
             rollData.formula = formula;
             rollData.modifiers = modifiers
