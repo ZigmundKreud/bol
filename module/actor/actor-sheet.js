@@ -38,6 +38,10 @@ export class BoLActorSheet extends ActorSheet {
     // Equip/Unequip item
     html.find('.item-equip').click(this._onToggleEquip.bind(this));
 
+    html.find('.create_item').click(ev => {
+      this.actor.createEmbeddedDocuments('Item', [{ name: "Nouvel Equipement", type: "item" }], { renderSheet: true });
+    });
+
     html.find(".inc-dec-btns-alchemy").click((ev) => {
       const li = $(ev.currentTarget).parents(".item");
       this.actor.spendAlchemyPoint( li.data("itemId"), 1)

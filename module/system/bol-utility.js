@@ -416,6 +416,7 @@ export class BoLUtility {
     }
     return formula;
   }
+
   /* -------------------------------------------- */
   static async confirmDelete(actorSheet, li) {
     let itemId = li.data("item-id");
