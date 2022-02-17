@@ -1,10 +1,22 @@
 # Système Foundry pour Barbarians of Lemuria (French version)
 
+## EN
+
 Unofficial system for Barbarians of Lemuria (French version from Ludospherik).
 
-This system has been authorized by Ludospherik ( http://www.ludospherik.fr/ )
+This system has been authorized by Ludospherik ( http://www.ludospherik.fr/ ), thanks to them !
 
-Books are manadtory to play and are available at : http://www.ludospherik.fr/content/14-barbarians-of-lemuria
+Books are manadatory to play and are available at : http://www.ludospherik.fr/content/14-barbarians-of-lemuria
+
+## FR
+
+Système non-officiel pour le JDR Barbarians of Lemuria (Version de Ludospherik).
+
+Ce système a été autorisé par Ludospherik ( http://www.ludospherik.fr/ ), merci à eux !
+
+Les livres du jeu sont nécessaires pour jouer, et sont disponibles ici : http://www.ludospherik.fr/content/14-barbarians-of-lemuria
+
+
 # Credits 
 
 ## US Version
