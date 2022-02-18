@@ -1,62 +1,67 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-    <div class="wrap flexrow">
+  <div class="wrap flexrow">
 
-        {{!-- Sidebar --}}
-        <div class="sidebar flex0">
-            <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" style="border:1px outset lightgray; box-shadow: 5px 5px 5px gray"/>
-        </div>
-
-        <div class="main flex1">
-
-            {{> "systems/bol/templates/actor/parts/actor-header.hbs"}}
-            
-            {{!-- Sheet Tab Navigation --}}
-            <nav class="sheet-tabs tabs" data-group="primary">
-                <a class="item" data-tab="stats">{{localize "BOL.ui.tab.stats"}}</a>
-                <a class="item" data-tab="actions">{{localize "BOL.ui.tab.actions"}}</a>
-                <a class="item" data-tab="features">{{localize "BOL.ui.tab.features"}}</a>
-                <a class="item" data-tab="equipment">{{localize "BOL.ui.tab.equipment"}}</a>
-                {{#if (or isSorcerer isAlchemist)}}
-                <a class="item" data-tab="spellalchemy">{{localize "BOL.ui.tab.spellalchemy"}}</a>
-                {{/if}}
-                <a class="item" data-tab="description">{{localize "BOL.ui.tab.description"}}</a>
-            </nav>
-            {{!-- Sheet Body --}}
-            <section class="sheet-body">
-                <div class="tab stats" data-group="primary" data-tab="stats">{{> "systems/bol/templates/actor/parts/tabs/actor-stats.hbs"}}</div>
-                <div class="tab actions" data-group="primary" data-tab="actions">
-                    {{> "systems/bol/templates/actor/parts/tabs/actor-actions.hbs"}}
-                </div>
-                <div class="tab combat" data-group="primary" data-tab="combat">
-                    {{> "systems/bol/templates/actor/parts/tabs/actor-combat.hbs"}}
-                </div>
-                <div class="tab features" data-group="primary" data-tab="features">
-                    {{> "systems/bol/templates/actor/parts/tabs/actor-features.hbs"}}
-                </div>
-
-                {{#if (or isSorcerer isAlchemist)}}
-                <div class="tab features" data-group="primary" data-tab="spellalchemy">
-                    {{> "systems/bol/templates/actor/parts/tabs/actor-spellalchemy.hbs"}}
-                </div>
-                {{/if}}
-
-                <div class="tab equipment" data-group="primary" data-tab="equipment">
-                    {{> "systems/bol/templates/actor/parts/tabs/actor-equipment.hbs"}}
-                </div>
-                <div class="tab description" data-group="primary" data-tab="description">
-                    {{editor content=data.details.biography target="data.details.biography" button=true owner=owner editable=editable}}
-                </div>
-            </section>
-        </div>
+    {{!-- Sidebar --}}
+    <div class="sidebar flex0">
+      <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"
+        style="border:1px outset lightgray; box-shadow: 5px 5px 5px gray" />
     </div>
-    <div class="bol-footer flexrow">
-        <div class="footer-left flex1">
-            <img src="/systems/bol/ui/banner.webp"/>
+
+    <div class="main flex1">
+
+      {{> "systems/bol/templates/actor/parts/actor-header.hbs"}}
+
+      {{!-- Sheet Tab Navigation --}}
+      <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="stats">{{localize "BOL.ui.tab.stats"}}</a>
+        <a class="item" data-tab="actions">{{localize "BOL.ui.tab.actions"}}</a>
+        <a class="item" data-tab="features">{{localize "BOL.ui.tab.features"}}</a>
+        <a class="item" data-tab="equipment">{{localize "BOL.ui.tab.equipment"}}</a>
+        {{#if (or isSorcerer isAlchemist)}}
+        <a class="item" data-tab="spellalchemy">{{localize "BOL.ui.tab.spellalchemy"}}</a>
+        {{/if}}
+        <a class="item" data-tab="description">{{localize "BOL.ui.tab.description"}}</a>
+      </nav>
+
+      {{!-- Sheet Body --}}
+      <section class="sheet-body">
+        <div class="tab stats" data-group="primary" data-tab="stats">{{>
+          "systems/bol/templates/actor/parts/tabs/actor-stats.hbs"}}</div>
+        <div class="tab actions" data-group="primary" data-tab="actions">
+          {{> "systems/bol/templates/actor/parts/tabs/actor-actions.hbs"}}
         </div>
-        <div class="footer-center flex1"></div>
-        <div class="footer-right flex1">
-            <img src="/systems/bol/ui/banner.webp"/>
+        <div class="tab combat" data-group="primary" data-tab="combat">
+          {{> "systems/bol/templates/actor/parts/tabs/actor-combat.hbs"}}
         </div>
+        <div class="tab features" data-group="primary" data-tab="features">
+          {{> "systems/bol/templates/actor/parts/tabs/actor-features.hbs"}}
+        </div>
+
+        {{#if (or isSorcerer isAlchemist)}}
+        <div class="tab features" data-group="primary" data-tab="spellalchemy">
+          {{> "systems/bol/templates/actor/parts/tabs/actor-spellalchemy.hbs"}}
+        </div>
+        {{/if}}
+
+        <div class="tab equipment" data-group="primary" data-tab="equipment">
+          {{> "systems/bol/templates/actor/parts/tabs/actor-equipment.hbs"}}
+        </div>
+
+        <div class="tab description" data-group="primary" data-tab="description">
+
+          {{> "systems/bol/templates/actor/parts/tabs/actor-biodata.hbs"}}
+
+        </div>
+      </section>
     </div>
+  </div>
+  <div class="bol-footer flexrow">
+    <div class="footer-left flex1">
+      <img src="/systems/bol/ui/banner.webp" />
+    </div>
+    <div class="footer-center flex1"></div>
+    <div class="footer-right flex1">
+      <img src="/systems/bol/ui/banner.webp" />
+    </div>
+  </div>
 </form>
-

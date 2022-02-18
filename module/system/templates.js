@@ -15,6 +15,7 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/bol/templates/actor/parts/tabs/actor-features.hbs",
         "systems/bol/templates/actor/parts/tabs/actor-equipment.hbs",
         "systems/bol/templates/actor/parts/tabs/actor-spellalchemy.hbs",
+        "systems/bol/templates/actor/parts/tabs/actor-biodata.hbs",
         // ITEMS
         "systems/bol/templates/item/parts/item-header.hbs",
         "systems/bol/templates/item/parts/properties/feature-properties.hbs",

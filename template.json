@@ -9,6 +9,12 @@
         "details": {
           "biography": "",
           "notes": "",
+          "height": "",
+          "age": "",
+          "weight": "",
+          "hair": "",
+          "eyes": "",
+          "signs": "",
           "languages": []
         },
         "combat": {
