@@ -1,4 +1,5 @@
 import { BoLDefaultRoll } from "../controllers/bol-rolls.js";
+import { BoLUtility } from "../system/bol-utility.js";
 
 /**
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
@@ -310,9 +311,14 @@ export class BoLActor extends Actor {
   }
 
   /*-------------------------------------------- */
-  manageHealthState() {
-    if (this.data.data.resources.hp.value == 0 ) {
-      // TODO : Message pour depense heroisme
+  async manageHealthState() {
+    if (this.data.data.resources.hp.value <= 0  && this.data.lastHP != this.data.data.resources.hp.value) {
+      this.data.lastHP = this.data.data.resources.hp.value
+      ChatMessage.create({
+        alias: this.name,
+        whisper: BoLUtility.getWhisperRecipientsAndGMs(this.name),
+        content: await renderTemplate('systems/bol/templates/chat/chat-vitality-zero.hbs', { name: this.name, hp: this.data.lastHP} )
+      })
     }
   }
 
