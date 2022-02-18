@@ -133,6 +133,10 @@
   "BOL.ui.alchemyInvest": "Invest Alchemy Points",
   "BOL.ui.alchemyCurrent": "Current Alchemy Points in Object", 
   "BOL.ui.advance": "Status",
+  "BOL.ui.isadvantage": "Provides a bonus dice?",
+  "BOL.ui.bonusmalus": "Additionnal bonus/malus",
+  "BOL.ui.nbdices": "Number of Dices",
+  "BOL.ui.totalmod": "Total Mod.",
 
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",

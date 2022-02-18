@@ -10,10 +10,6 @@
 
     {{> "systems/bol/templates/dialogs/attribute-roll-part.hbs"}}
 
-    {{> "systems/bol/templates/dialogs/adv-roll-part.hbs"}}
-
-    {{> "systems/bol/templates/dialogs/mod-roll-part.hbs"}}
-
     <div class="flexrow" style="margin-bottom: 1px;">
         <div class="flex1 center bg-darkred">
             <label for="mod">{{localize 'BOL.ui.alchemistRank'}}</label>
@@ -34,5 +30,15 @@
         </div>
         <div class="flex1 center cell" id="pccostcurrent">{{pcCostCurrent}}</div>
     </div>
+
+    {{> "systems/bol/templates/dialogs/boons-roll-part.hbs"}}
+
+    {{> "systems/bol/templates/dialogs/flaws-roll-part.hbs"}}
+
+    {{> "systems/bol/templates/dialogs/adv-roll-part.hbs"}}
+
+    {{> "systems/bol/templates/dialogs/mod-roll-part.hbs"}}
+
+    {{> "systems/bol/templates/dialogs/total-roll-part.hbs"}}
 
 </form>

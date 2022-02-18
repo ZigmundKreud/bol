@@ -142,6 +142,13 @@ export class BoLActor extends Actor {
     return this.itemData.filter(i => i.type === "item" && i.data.category === "equipment" && (i.data.subtype === "other" ||i.data.subtype === "container" ||i.data.subtype === "scroll" || i.data.subtype === "jewel"));
   }
   
+  get bonusBoons() {
+    return this.itemData.filter(i => i.type === "feature" && i.data.subtype === "boon" && i.data.properties.isbonusdice);
+  }
+  get malusFlaws() {
+    return this.itemData.filter(i => i.type === "feature" && i.data.subtype === "flaw" && i.data.properties.ismalusdice);
+  }
+
   isSorcerer( ) {
     if ( this.careers.find( item => item.data.properties.sorcerer == true) ) 
       return true

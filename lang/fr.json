@@ -134,6 +134,11 @@
   "BOL.ui.alchemyInvest": "Points de Création investis",
   "BOL.ui.alchemyCurrent": "Points de Création actuel dans la Préparation", 
   "BOL.ui.advance": "Avancement",
+  "BOL.ui.isbonusdice": "Fourni un dé bonus?",
+  "BOL.ui.ismalusdice": "Fourni un dé malus?",
+  "BOL.ui.bonusmalus": "Dés Bonus/Malus additionnels",
+  "BOL.ui.nbdices": "Nombre de dés",
+  "BOL.ui.totalmod": "Total Mod.",
   
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",

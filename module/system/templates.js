@@ -45,6 +45,9 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/bol/templates/dialogs/mod-roll-part.hbs",
         "systems/bol/templates/dialogs/adv-roll-part.hbs",
         "systems/bol/templates/dialogs/career-roll-part.hbs",
+        "systems/bol/templates/dialogs/boons-roll-part.hbs",
+        "systems/bol/templates/dialogs/flaws-roll-part.hbs",
+        "systems/bol/templates/dialogs/total-roll-part.hbs",        
     ];
 
     // Load the template parts

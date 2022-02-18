@@ -18,9 +18,9 @@
 {{!#if (equals data.subtype "race")}}
     {{!> "systems/bol/templates/item/parts/properties/feature/race-properties.hbs"}}
 {{!/if}}
-{{!#if (equals data.subtype "boon")}}
-    {{!> "systems/bol/templates/item/parts/properties/feature/boon-properties.hbs"}}
-{{!/if}}
-{{!#if (equals data.subtype "flaw")}}
-    {{!> "systems/bol/templates/item/parts/properties/feature/flaw-properties.hbs"}}
-{{!/if}}
+{{#if (equals data.subtype "boon")}}
+    {{> "systems/bol/templates/item/parts/properties/feature/boon-properties.hbs"}}
+{{/if}}
+{{#if (equals data.subtype "flaw")}}
+    {{> "systems/bol/templates/item/parts/properties/feature/flaw-properties.hbs"}}
+{{/if}}

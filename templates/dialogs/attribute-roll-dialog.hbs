@@ -10,34 +10,16 @@
 
     {{> "systems/bol/templates/dialogs/attribute-roll-part.hbs"}}
 
+    {{> "systems/bol/templates/dialogs/career-roll-part.hbs"}}
+
+    {{> "systems/bol/templates/dialogs/boons-roll-part.hbs"}}
+
+    {{> "systems/bol/templates/dialogs/flaws-roll-part.hbs"}}
+
     {{> "systems/bol/templates/dialogs/adv-roll-part.hbs"}}
 
     {{> "systems/bol/templates/dialogs/mod-roll-part.hbs"}}
 
-    {{> "systems/bol/templates/dialogs/career-roll-part.hbs"}}
+    {{> "systems/bol/templates/dialogs/total-roll-part.hbs"}}
 
-    <!--<div class="flexrow" style="margin-bottom: 1px;">-->
-    <!--    <div class="flex1 center bg-darkred">-->
-    <!--        <label for="mod">{{!localize 'BOL.ui.boons'}}</label>-->
-    <!--    </div>-->
-    <!--    <div class="flex1 center cell">-->
-    <!--        <select class="flex1" name="boon" id="boon" data-type="String" multiple>-->
-    <!--            {{!#each boons.items as | boon id|}}-->
-    <!--                <option value="{{!boon._id}}">{{!boon.name}}</option>-->
-    <!--            {{!/each}}-->
-    <!--        </select>-->
-    <!--    </div>-->
-    <!--</div>-->
-    <!--<div class="flexrow" style="margin-bottom: 1px;">-->
-    <!--    <div class="flex1 center bg-darkred">-->
-    <!--        <label for="mod">{{!localize 'BOL.ui.flaws'}}</label>-->
-    <!--    </div>-->
-    <!--    <div class="flex1 center cell">-->
-    <!--        <select class="flex1" name="flaw" id="flaw" data-type="String" multiple>-->
-    <!--            {{!#each flaws.items as | flaw id|}}-->
-    <!--                <option value="{{!flaw._id}}">{{flaw.name}}</option>-->
-    <!--            {{!/each}}-->
-    <!--        </select>-->
-    <!--    </div>-->
-    <!--</div>-->
 </form>
