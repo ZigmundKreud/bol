@@ -81,8 +81,8 @@ function registerUsageCount( registerKey ) {
       game.settings.set(registerKey, "world-key", worldKey )
     }
     // Simple API counter
-    $.ajax(`https://jdr.lahiette.com/fvtt_appcount/count.php?name="${registerKey}"&worldKey="${worldKey}"&version="${game.release.generation}.${game.release.build}"&system="${game.system.id}"&systemversion="${game.system.data.version}"`)
-    /* -------------------------------------------- */
+    let regURL = `https://www.uberwald.me/fvtt_appcount/count.php?name="${registerKey}"&worldKey="${worldKey}"&version="${game.release.generation}.${game.release.build}"&system="${game.system.id}"&systemversion="${game.system.data.version}"`
+    $.ajax(regURL)
   }
 }
 
