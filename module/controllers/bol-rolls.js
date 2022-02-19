@@ -123,11 +123,10 @@ export class BoLRoll {
       attrValue: actor.data.data.attributes.mind.value,
       aptValue: 0,
       careerBonus: actor.getAlchemistBonus(),
-      pcCost: alchemyData.properties.pccost,
-      pcCostCurrent: alchemyData.properties.pccurrent,
-      mod: alchemyData.properties.difficulty,
+      pcCost: Number(alchemyData.properties.pccost),
+      pcCostCurrent: Number(alchemyData.properties.pccurrent),
+      mod: Number(alchemyData.properties.difficulty),
       label: alchemy.name,
-      adv: "2",
       description: actor.name + " - " + game.i18n.localize('BOL.ui.makeAlchemy'),
     }
     console.log("ALCHEMY!", alchemyDef);
@@ -156,12 +155,11 @@ export class BoLRoll {
       attribute: actor.data.data.attributes.mind,
       attrValue: actor.data.data.attributes.mind.value,
       aptValue: 0,
-      ppCurrent: actor.data.data.resources.power.value,
+      ppCurrent: Number(actor.data.data.resources.power.value),
       careerBonus: actor.getSorcererBonus(),
-      ppCost: spell.data.data.properties.ppcost,
-      mod: spellData.properties.difficulty,
+      ppCost: Number(spell.data.data.properties.ppcost),
+      mod: Number(spellData.properties.difficulty),
       label: spell.name,
-      adv: "2",
       description: actor.name + " - " + game.i18n.localize('BOL.ui.focusSpell'),
     }
     console.log("SPELL!", spellDef);
