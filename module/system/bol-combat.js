@@ -25,7 +25,8 @@ export class BoLCombatManager extends Combat {
       const combatant = this.combatants.get(ids[cId]);
       let fvttInit = 5
       if (combatant.actor.type == 'character') {
-        let initData = combatant.actor.getLastInitData();
+        let initData = combatant.actor.getLastInitData()
+        console.log("Init data !!!", initData)
         if (initData.isLegendary) {
           fvttInit = 10
         } else if (initData.isCritical) {

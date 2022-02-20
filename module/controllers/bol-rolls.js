@@ -94,7 +94,6 @@ export class BoLRoll {
       mod: 0,
       label: (weapon.name) ? weapon.name : game.i18n.localize('BOL.ui.noWeaponName'),
       description: actor.name + " - " + game.i18n.localize('BOL.ui.weaponAttack'),
-      adv: "2",
     }
     console.debug("WEAPON!", attackDef, weaponData);
     return this.displayRollDialog(attackDef);
@@ -313,8 +312,8 @@ export class BoLRoll {
               ui.notifications.warn("Pas assez de Points de Pouvoir !")
               return
             }
-
-            rollData.registerInit = (rollData.aptKey == 'init') ? $('#register-init').is(":checked") : false;
+            
+            rollData.registerInit = (rollData.aptitude && rollData.aptitude.key == 'init') ? $('#register-init').is(":checked") : false;
 
             const isMalus = rollData.mDice > 0 
             rollData.nbDice += (rollData.attackBonusDice) ? 1 : 0
@@ -374,7 +373,7 @@ export class BoLDefaultRoll {
     }
 
     if (this.rollData.registerInit) {
-      this.rollData.actor.registerInit(r.total, this.rollData.isCritical);
+      this.rollData.actor.registerInit(r.total, this.rollData.isCritical, this.rollData.isFumble)
     }
     if (this.rollData.isSuccess && this.rollData.mode == "spell") { // PP cost management
       this.rollData.actor.spendPowerPoint(this.rollData.ppCost)

@@ -312,13 +312,16 @@ export class BoLActor extends Actor {
 
   /*-------------------------------------------- */
   async manageHealthState() {
-    if (this.data.data.resources.hp.value <= 0  && this.data.lastHP != this.data.data.resources.hp.value) {
-      this.data.lastHP = this.data.data.resources.hp.value
-      ChatMessage.create({
-        alias: this.name,
-        whisper: BoLUtility.getWhisperRecipientsAndGMs(this.name),
-        content: await renderTemplate('systems/bol/templates/chat/chat-vitality-zero.hbs', { name: this.name, hp: this.data.lastHP} )
-      })
+    let lastHP = await this.getFlag("world", "lastHP")
+    if ( lastHP != this.data.data.resources.hp.value ) {
+      await this.setFlag("world", "lastHP", this.data.data.resources.hp.value)
+      if (this.data.data.resources.hp.value <= 0 ) {
+        ChatMessage.create({
+          alias: this.name,
+          whisper: BoLUtility.getWhisperRecipientsAndGMs(this.name),
+          content: await renderTemplate('systems/bol/templates/chat/chat-vitality-zero.hbs', { name: this.name, hp: this.data.data.resources.hp.value} )
+        })
+      }
     }
   }
 

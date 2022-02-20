@@ -151,6 +151,7 @@
   "BOL.featureSubtypes.boon": "Avantage",
   "BOL.featureSubtypes.flaw": "Désavantage",
   "BOL.featureSubtypes.language": "Langage",
+  "BOL.featureSubtypes.gods": "Faith & Gods",
 
   "BOL.itemCategory.object": "Objet",
   "BOL.itemCategory.equipment": "Équipement",

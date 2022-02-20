@@ -139,7 +139,7 @@
   "BOL.ui.bonusmalus": "Dés Bonus/Malus additionnels",
   "BOL.ui.nbdices": "Nombre de dés",
   "BOL.ui.totalmod": "Total Mod.",
-  
+
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",
   "BOL.featureCategory.careers": "Carrières",
@@ -153,6 +153,7 @@
   "BOL.featureSubtypes.boon": "Avantage",
   "BOL.featureSubtypes.flaw": "Désavantage",
   "BOL.featureSubtypes.language": "Langue",
+  "BOL.featureSubtypes.gods": "Dieux & Foi",
 
   "BOL.itemCategory.object": "Objet",
   "BOL.itemCategory.equipment": "Équipement",
