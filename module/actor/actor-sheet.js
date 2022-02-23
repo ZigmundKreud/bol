@@ -3,6 +3,7 @@
  * @extends {ActorSheet}
  */
 import {BoLRoll} from "../controllers/bol-rolls.js";
+import { BoLUtility } from "../system/bol-utility.js";
 
 export class BoLActorSheet extends ActorSheet {
 
@@ -34,7 +35,7 @@ export class BoLActorSheet extends ActorSheet {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.items.get(li.data("itemId"));
       item.sheet.render(true);
-    });
+    })
     // Equip/Unequip item
     html.find('.item-equip').click(this._onToggleEquip.bind(this));
 
@@ -135,12 +136,13 @@ export class BoLActorSheet extends ActorSheet {
     formData.vehicles = this.actor.vehicles;
     formData.ammos = this.actor.ammos;
     formData.misc = this.actor.misc;
-    formData.combat = this.actor.buildCombat();
+    formData.combat = this.actor.buildCombat()
     formData.features = this.actor.buildFeatures()
     formData.isGM = game.user.isGM
     formData.options= this.options
     formData.owner= this.document.isOwner
     formData.editScore= this.options.editScore
+    formData.useBougette = BoLUtility.getUseBougette()
 
     formData.isSorcerer = this.actor.isSorcerer()
     formData.isAlchemist = this.actor.isAlchemist()

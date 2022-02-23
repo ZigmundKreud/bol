@@ -138,6 +138,9 @@
       "templates": [ "base" ],
       "type": "player",
       "villainy": false,
+      "bougette": {
+        "state": "nomoney"
+      },
       "xp": {
         "key": "xp",
         "label": "BOL.traits.xp",

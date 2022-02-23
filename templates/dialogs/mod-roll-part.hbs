@@ -1,22 +1,43 @@
-    <div class="flexrow" style="margin-bottom: 1px;">
-        <div class="flex1 center bg-darkred">
-            <label for="mod">{{localize 'BOL.ui.modifiers'}}</label>
-        </div>
-        <div class="flex1 center cell">
-          <select name="mod" id="mod"  value="{{mod}}">
-            {{#select mod}}
-            <option value="4">Inmanquable (+4)</option>
-            <option value="2">Trés Facile (+2)</option>
-            <option value="1">Facile (+1)</option>
-            <option value="0">Moyenne (0)</option>
-            <option value="-1">Ardue (-1)</option>
-            <option value="-2">Difficile (-2)</option>
-            <option value="-4">Très Difficile (-4)</option>
-            <option value="-6">Impossible (-6)</option>
-            <option value="-8">Héroïque (-8)</option>
-            <option value="-10">Mythique (-10)</option>
-            <option value="-12">Divine (-12)</option>
-            {{/select}}
-          </select>
-        </div>
-    </div>
+{{#if isRanged}}
+<div class="flexrow" style="margin-bottom: 1px;">
+  <div class="flex1 center bg-darkred">
+    <label for="modRanged">{{localize 'BOL.ui.rangeModifiers'}}</label>
+  </div>
+  <div class="flex1 center cell">
+    <select name="modRanged" id="modRanged" value="{{mod}}">
+      {{#select modRanged}}
+      <option value="1">Bout portant (+1)</option>
+      <option value="0">Courte (0)</option>
+      <option value="-1">Moyenne (-1)</option>
+      <option value="-2">Longue (-2)</option>
+      <option value="-4">Très longue (-4)</option>
+      <option value="-6">Extrême (-6)</option>
+      <option value="-8">Maximale (-8)</option>
+      {{/select}}
+    </select>
+  </div>
+</div>
+{{/if}}
+
+<div class="flexrow" style="margin-bottom: 1px;">
+  <div class="flex1 center bg-darkred">
+    <label for="mod">{{localize 'BOL.ui.modifiers'}}</label>
+  </div>
+  <div class="flex1 center cell">
+    <select name="mod" id="mod" value="{{mod}}">
+      {{#select mod}}
+      <option value="4">Inmanquable (+4)</option>
+      <option value="2">Trés Facile (+2)</option>
+      <option value="1">Facile (+1)</option>
+      <option value="0">Moyenne (0)</option>
+      <option value="-1">Ardue (-1)</option>
+      <option value="-2">Difficile (-2)</option>
+      <option value="-4">Très Difficile (-4)</option>
+      <option value="-6">Impossible (-6)</option>
+      <option value="-8">Héroïque (-8)</option>
+      <option value="-10">Mythique (-10)</option>
+      <option value="-12">Divine (-12)</option>
+      {{/select}}
+    </select>
+  </div>
+</div>

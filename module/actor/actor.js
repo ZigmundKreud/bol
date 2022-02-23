@@ -10,10 +10,7 @@ export class BoLActor extends Actor {
   /** @override */
   prepareData() {
     const actorData = this.data;
-    // console.log(actorData);
-    // const data = actorData.data;
-    // const flags = actorData.flags;
-    // Make separate methods for each Actor type (character, npc, etc.) to keep things organized.
+
     if (actorData.type === 'character') {
       actorData.type = 'player';
       actorData.villainy = false;
@@ -356,7 +353,19 @@ export class BoLActor extends Actor {
       if ( protect.data.subtype == 'helm') {
         formula += "+1"  
       } else if ( protect.data.subtype == 'armor') {
-        formula += "+" + protect.data.properties.soak.formula;
+        if ( BoLUtility.this.getRollArmor() ) {
+          if ( !protect.data.properties.soak.formula || protect.data.properties.soak.formula=="") {
+            ui.notifications.warn(`L'armure ${protect.name} n'a pas de formule pour la protection !`)        
+          } else { 
+            formula += "+" + protect.data.properties.soak.formula
+          }
+        }  else  {
+          if ( protect.data.properties.soak.value == undefined  ) {
+            ui.notifications.warn(`L'armure ${protect.name} n'a pas de valeur fixe pour la protection !`)        
+          } else { 
+            formula +=  "+ " + protect.data.properties.soak.value
+          }
+        }
       }
     }
     console.log("Protect Formula", formula)

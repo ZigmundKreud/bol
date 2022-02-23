@@ -6,7 +6,6 @@ import { BoLItemSheet } from "./item/item-sheet.js";
 import { System, BOL } from "./system/config.js";
 import { preloadHandlebarsTemplates } from "./system/templates.js";
 import { registerHandlebarsHelpers } from "./system/helpers.js";
-import { registerSystemSettings } from "./system/settings.js";
 import registerHooks from "./system/hooks.js";
 import { Macros } from "./system/macros.js";
 import { BoLUtility } from "./system/bol-utility.js";
@@ -50,9 +49,6 @@ Hooks.once('init', async function () {
   // Inot useful stuff
   BoLUtility.init();
   
-  // Register System Settings
-  registerSystemSettings();
-
   // Preload Handlebars Templates
   await preloadHandlebarsTemplates();
 
@@ -95,6 +91,7 @@ function welcomeMessage() {
     <strong>Bienvenue dans Barbarians of Lemuria (Ludospherik version)</strong>
     <p>Les livres nécessaires pour jouer sont disponibles sur le site de l'éditeur : http://www.ludospherik.fr/content/14-barbarians-of-lemuria</p>
     <p>Bon jeu en Lemurie !</p>
+    <p>Tout le support et le suivi de ce système es disponible via le Discord Foundry FR : https://discord.gg/pPSDNJk </p>
     ` });
 }
 

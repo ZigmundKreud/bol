@@ -1,14 +1,48 @@
 import { BoLDefaultRoll } from "../controllers/bol-rolls.js";
 
 // Spell circle to min PP cost
-const __circle2minpp = { 0: 0, 1: 2,2: 6, 3: 11}
+const __circle2minpp = { 0: 0, 1: 2, 2: 6, 3: 11 }
 
 export class BoLUtility {
 
 
   /* -------------------------------------------- */
-  static async init() {
+  static init() {
     this.attackStore = {}
+
+    game.settings.register("bol", "rollArmor", {
+      name: "Effectuer des jets pour les armures",
+      hint: "Effectue un jet de dés pour les armures (valeur fixe si désactivé)",
+      scope: "world",
+      config: true,
+      default: true,
+      type: Boolean,
+      onChange: lang => window.location.reload()
+    });
+    game.settings.register("bol", "useBougette", {
+      name: "Utiliser la Bougette (règle fan-made)",
+      hint: "Utilise un indicateur de Bougette, comme décrit dans l'aide de jeu Gold&Glory du RatierBretonnien (https://www.lahiette.com/leratierbretonnien/)",
+      scope: "world",
+      config: true,
+      default: false,
+      type: Boolean,
+      onChange: lang => window.location.reload()
+    });
+
+    this.rollArmor = game.settings.get("bol", "rollArmor") // Roll armor or not
+    this.useBougette = game.settings.get("bol", "useBougette") // Use optionnal bougette rules
+
+    console.log("UTIL", this)
+  }
+
+
+  /* -------------------------------------------- */
+  static getRollArmor() {
+    return this.rollArmor
+  }
+  /* -------------------------------------------- */
+  static getUseBougette() {
+    return this.useBougette
   }
 
   /* -------------------------------------------- */
@@ -117,60 +151,60 @@ export class BoLUtility {
       } else {
         BoLUtility.processAttackSuccess(attackDef);
       }
-    } 
+    }
   }
-  
+
   /* -------------------------------------------- */
   static async chatListeners(html) {
 
     // Damage handling
-    html.on("click", '.chat-damage-apply', event => {      
+    html.on("click", '.chat-damage-apply', event => {
       let rollData = BoLUtility.getLastRoll()
       $(`#${rollData.applyId}`).hide()
       BoLUtility.sendAttackSuccess(rollData)
     });
 
-    html.on("click", '.chat-damage-roll', event => {      
+    html.on("click", '.chat-damage-roll', event => {
       event.preventDefault();
       let rollData = BoLUtility.getLastRoll()
       rollData.damageMode = event.currentTarget.attributes['data-damage-mode'].value;
       let bolRoll = new BoLDefaultRoll(rollData)
       bolRoll.rollDamage()
     });
-    
+
     html.on("click", '.transform-heroic-roll', event => {
       event.preventDefault();
       let rollData = BoLUtility.getLastRoll()
       rollData.actor.subHeroPoints(1)
-      let r = new BoLDefaultRoll( rollData )
+      let r = new BoLDefaultRoll(rollData)
       r.upgradeToCritical();
-    } );
-    
+    });
+
     html.on("click", '.hero-reroll', event => {
       event.preventDefault();
       let rollData = BoLUtility.getLastRoll()
       rollData.actor.subHeroPoints(1)
       rollData.reroll = false // Disable reroll option for second roll
-      let r = new BoLDefaultRoll( rollData )
+      let r = new BoLDefaultRoll(rollData)
       r.roll();
-    } );
+    });
 
-    html.on("click", '.damage-handling', event => {      
+    html.on("click", '.damage-handling', event => {
       event.preventDefault();
       let attackId = event.currentTarget.attributes['data-attack-id'].value;
       let defenseMode = event.currentTarget.attributes['data-defense-mode'].value;
       let weaponId = (event.currentTarget.attributes['data-weapon-id']) ? event.currentTarget.attributes['data-weapon-id'].value : -1
-      if ( game.user.isGM) {
+      if (game.user.isGM) {
         BoLUtility.processDamageHandling(event, attackId, defenseMode, weaponId)
       } else {
-        game.socket.emit("system.bol", { msg: "msg_damage_handling", data: {event: event, attackId: attackId, defenseMode: defenseMode, weaponId: weaponId} });
+        game.socket.emit("system.bol", { msg: "msg_damage_handling", data: { event: event, attackId: attackId, defenseMode: defenseMode, weaponId: weaponId } });
       }
     });
   }
 
   /* -------------------------------------------- */
-  static async processDamageHandling(event, attackId, defenseMode, weaponId=-1) {
-    if ( !game.user.isGM) {
+  static async processDamageHandling(event, attackId, defenseMode, weaponId = -1) {
+    if (!game.user.isGM) {
       return;
     }
     BoLUtility.removeChatMessageId(BoLUtility.findChatMessageId(event.currentTarget));
@@ -184,12 +218,12 @@ export class BoLUtility {
       attackDef.defenseMode = defenseMode;
 
       if (defenseMode == 'damage-with-armor') {
-        let armorFormula = attackDef.defender.getArmorFormula()        
+        let armorFormula = attackDef.defender.getArmorFormula()
         attackDef.rollArmor = new Roll(armorFormula)
-        attackDef.rollArmor.roll( {async: false} )
-        attackDef.armorProtect = (attackDef.rollArmor.total<0) ? 0 : attackDef.rollArmor.total;
+        attackDef.rollArmor.roll({ async: false })
+        attackDef.armorProtect = (attackDef.rollArmor.total < 0) ? 0 : attackDef.rollArmor.total;
         attackDef.finalDamage = attackDef.damageRoll.total - attackDef.armorProtect;
-        attackDef.finalDamage = (attackDef.finalDamage<0) ? 0 : attackDef.finalDamage;
+        attackDef.finalDamage = (attackDef.finalDamage < 0) ? 0 : attackDef.finalDamage;
         attackDef.defender.sufferDamage(attackDef.finalDamage);
       }
       if (defenseMode == 'damage-without-armor') {
@@ -197,21 +231,21 @@ export class BoLUtility {
         attackDef.defender.sufferDamage(attackDef.finalDamage);
       }
       if (defenseMode == 'hero-reduce-damage') {
-        let armorFormula = attackDef.defender.getArmorFormula();        
+        let armorFormula = attackDef.defender.getArmorFormula();
         attackDef.rollArmor = new Roll(armorFormula)
-        attackDef.rollArmor.roll( {async: false} );
-        attackDef.armorProtect = (attackDef.rollArmor.total<0) ? 0 : attackDef.rollArmor.total;
+        attackDef.rollArmor.roll({ async: false });
+        attackDef.armorProtect = (attackDef.rollArmor.total < 0) ? 0 : attackDef.rollArmor.total;
         attackDef.rollHero = new Roll("1d6");
-        attackDef.rollHero.roll( {async: false} );
+        attackDef.rollHero.roll({ async: false });
         attackDef.finalDamage = attackDef.damageRoll.total - attackDef.rollHero.total - attackDef.armorProtect;
-        attackDef.finalDamage = (attackDef.finalDamage<0) ? 0 : attackDef.finalDamage;
+        attackDef.finalDamage = (attackDef.finalDamage < 0) ? 0 : attackDef.finalDamage;
         attackDef.defender.sufferDamage(attackDef.finalDamage);
         attackDef.defender.subHeroPoints(1);
       }
       if (defenseMode == 'hero-in-extremis') {
         attackDef.finalDamage = 0;
         attackDef.weaponHero = attackDef.defender.weapons.find(item => item._id == weaponId);
-        attackDef.defender.deleteEmbeddedDocuments("Item", [ weaponId ]);
+        attackDef.defender.deleteEmbeddedDocuments("Item", [weaponId]);
       }
       ChatMessage.create({
         alias: attackDef.defender.name,
@@ -221,7 +255,7 @@ export class BoLUtility {
           attacker: attackDef.attacker,
           rollArmor: attackDef.rollArmor,
           rollHero: attackDef.rollHero,
-          weaponHero : attackDef.weaponHero,
+          weaponHero: attackDef.weaponHero,
           armorProtect: attackDef.armorProtect,
           defender: attackDef.defender,
           defenseMode: attackDef.defenseMode,
@@ -264,11 +298,11 @@ export class BoLUtility {
 
   /* -------------------------------------------- */
   static removeChatMessageId(messageId) {
-    if (messageId){
+    if (messageId) {
       game.messages.get(messageId)?.delete();
     }
   }
-  
+
   static findChatMessageId(current) {
     return BoLUtility.getChatMessageId(BoLUtility.findChatMessage(current));
   }
@@ -378,23 +412,29 @@ export class BoLUtility {
     if (sockmsg.name == "msg_damage_handling") {
       BoLUtility.processDamageHandling(sockmsg.data.event, sockmsg.data.attackId, sockmsg.data.defenseMode)
     }
-  } 
+  }
 
   /* -------------------------------------------- */
-  static computeSpellCost( spell, nbOptCond= 0) {
+  static computeSpellCost(spell, nbOptCond = 0) {
     let pp = spell.data.data.properties.ppcost
     let minpp = __circle2minpp[spell.data.data.properties.circle]
-    pp = (pp-nbOptCond<minpp) ? minpp : pp-nbOptCond
+    pp = (pp - nbOptCond < minpp) ? minpp : pp - nbOptCond
     return pp
   }
 
   /* -------------------------------------------- */
-  static getDamageFormula(damageString, modifier=0, multiplier = 1) {
+  static getDamageFormula(weaponData) {
+    let damageString = weaponData.properties.damage
+    let modifier = weaponData.properties.damageModifiers ?? 0
+    let multiplier = weaponData.properties.damageMultiplier ?? 1
+
     if (damageString[0] == 'd') { damageString = "1" + damageString } // Help parsing
     if (modifier == null) modifier = 0;
-    
+
+    let reroll = (weaponData.properties.damageReroll1) ? "r1" : "" // Reroll 1 option
+
     let formula = damageString
-    if ( damageString.includes("d") ||  damageString.includes("D")) {
+    if (damageString.includes("d") || damageString.includes("D")) {
       var myReg = new RegExp('(\\d+)[dD]([\\d]+)([MB]*)?([\\+\\d]*)?', 'g');
       let res = myReg.exec(damageString);
       let nbDice = parseInt(res[1]);
@@ -412,7 +452,7 @@ export class BoLUtility {
           modIndex = 4;
         }
       }
-      formula = "(" + nbDice + "d" + res[2] + postForm +  "+" + modifier +") *" + multiplier;
+      formula = "(" + nbDice + "d" + res[2] + reroll + postForm + "+" + modifier + ") *" + multiplier;
     }
     return formula;
   }

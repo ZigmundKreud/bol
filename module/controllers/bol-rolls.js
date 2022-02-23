@@ -75,15 +75,17 @@ export class BoLRoll {
       ui.notifications.warn("Unable to find weapon !");
       return;
     }
-    let weaponData = weapon.data.data;
+    let weaponData = weapon.data.data
     let attribute =  eval(`actor.data.data.attributes.${weaponData.properties.attackAttribute}`)
     let aptitude = eval(`actor.data.data.aptitudes.${weaponData.properties.attackAptitude}`)
     
+    console.debug("WEAPON!", weaponData)
     let attackDef = {
       mode: "weapon",
       actor: actor,
       actorData: actorData,
       weapon: weapon,
+      isRanged: weaponData.properties.ranged || weaponData.properties.throwing,
       target: target,
       careerBonus: 0,
       defender: (target) ? game.actors.get(target.data.actorId) : undefined,
@@ -92,10 +94,10 @@ export class BoLRoll {
       attrValue: attribute.value,
       aptValue: aptitude.value,
       mod: 0,
+      modRanged: 0,
       label: (weapon.name) ? weapon.name : game.i18n.localize('BOL.ui.noWeaponName'),
       description: actor.name + " - " + game.i18n.localize('BOL.ui.weaponAttack'),
     }
-    console.debug("WEAPON!", attackDef, weaponData);
     return this.displayRollDialog(attackDef);
   }
 
@@ -177,7 +179,7 @@ export class BoLRoll {
     }
 
     $('#roll-modifier').val( this.rollData.attrValue + "+" + this.rollData.aptValue + "+" + this.rollData.careerBonus + "+" + this.rollData.mod + "+" +
-        this.rollData.weaponModifier + "-" + this.rollData.defence + "+" + this.rollData.shieldMalus )
+         this.rollData.modRanged + "+" + this.rollData.weaponModifier + "-" + this.rollData.defence + "+" + this.rollData.shieldMalus )
   }
 
   /* -------------------------------------------- */
@@ -193,6 +195,10 @@ export class BoLRoll {
 
     html.find('#mod').change((event) => {
       this.rollData.mod = Number(event.currentTarget.value) 
+      this.updateTotalDice()
+    })
+    html.find('#modRanged').change((event) => {
+      this.rollData.modRanged = Number(event.currentTarget.value) 
       this.updateTotalDice()
     })
 
@@ -264,6 +270,7 @@ export class BoLRoll {
       rollData.shieldMalus = 0
     }
     rollData.careerBonus = rollData.careerBonus ?? 0
+    rollData.modRanged = rollData.modRanged ?? 0
     rollData.mod = rollData.mod ?? 0
     rollData.id = randomID(16)
 
@@ -449,17 +456,16 @@ export class BoLDefaultRoll {
           bonusDmg = 12
         }
         let attrDamageValue = this.getDamageAttributeValue(this.rollData.weapon.data.data.properties.damageAttribute)
-        let weaponFormula = BoLUtility.getDamageFormula(this.rollData.weapon.data.data.properties.damage,
-          this.rollData.weapon.data.data.properties.damageModifiers,
-          this.rollData.weapon.data.data.properties.damageMultiplier)
+        let weaponFormula = BoLUtility.getDamageFormula(this.rollData.weapon.data.data)
+
         let damageFormula = weaponFormula + "+" + bonusDmg + "+" + attrDamageValue
         console.log("DAMAGE !!!", damageFormula, attrDamageValue)
 
         //console.log("Formula", weaponFormula, damageFormula, this.rollData.weapon.data.data.properties.damage)
         this.rollData.damageFormula = damageFormula
         this.rollData.damageRoll = new Roll(damageFormula)
-        this.rollData.damageTotal = this.rollData.damageRoll.total
         await this.rollData.damageRoll.roll({ "async": false })
+        this.rollData.damageTotal = this.rollData.damageRoll.total
       }
       $(`#${this.rollData.optionsId}`).hide() // Hide the options roll buttons
       this.sendDamageMessage()

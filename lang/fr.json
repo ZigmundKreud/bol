@@ -139,6 +139,9 @@
   "BOL.ui.bonusmalus": "Dés Bonus/Malus additionnels",
   "BOL.ui.nbdices": "Nombre de dés",
   "BOL.ui.totalmod": "Total Mod.",
+  "BOL.ui.rangeModifiers": "Mod. de Portée",
+  "BOL.ui.money": "Bougette",
+  "BOL.ui.moneyTitle": "Or et Piecettes",
 
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",
@@ -146,6 +149,12 @@
   "BOL.featureCategory.boons": "Avantages",
   "BOL.featureCategory.flaws": "Désavantages",
   "BOL.featureCategory.languages": "Langues",
+
+  "BOL.bougette.nomoney": "A sec",
+  "BOL.bougette.tolive": "De quoi vivre",  
+  "BOL.bougette.easylife": "A l'aise",
+  "BOL.bougette.luxury" : "Luxe&Volupté",
+  "BOL.bougette.rich": "Richissime",
 
   "BOL.featureSubtypes.origin": "Origine",
   "BOL.featureSubtypes.race": "Race",

@@ -271,4 +271,12 @@ BOL.actorIcons = {
     "loot": "icons/containers/bags/sack-simple-leather-brown.webp"
 }
 
+BOL.bougetteState = {
+  "nomoney": "BOL.bougette.nomoney",
+  "tolive": "BOL.bougette.tolive",
+  "easylife": "BOL.bougette.easylife",
+  "luxury": "BOL.bougette.luxury",
+  "rich": "BOL.bougette.rich"
+}
+
 BOL.debug = false;

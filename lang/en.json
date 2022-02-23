@@ -137,6 +137,9 @@
   "BOL.ui.bonusmalus": "Additionnal bonus/malus",
   "BOL.ui.nbdices": "Number of Dices",
   "BOL.ui.totalmod": "Total Mod.",
+  "BOL.ui.rangeModifiers": "Range modifier",
+  "BOL.ui.money": "Bougette",
+  "BOL.ui.moneyTitle": "Gold & Treasure",
 
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",
@@ -152,6 +155,12 @@
   "BOL.featureSubtypes.flaw": "Désavantage",
   "BOL.featureSubtypes.language": "Langage",
   "BOL.featureSubtypes.gods": "Faith & Gods",
+  
+  "BOL.bougette.nomoney": "Nothing",
+  "BOL.bougette.tolive": "To live",  
+  "BOL.bougette.easylife": "Easy Life",
+  "BOL.bougette.luxury" : "Luxury life",
+  "BOL.bougette.rich": "Rich!",
 
   "BOL.itemCategory.object": "Objet",
   "BOL.itemCategory.equipment": "Équipement",

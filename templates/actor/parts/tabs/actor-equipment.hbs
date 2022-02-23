@@ -1,336 +1,394 @@
 <!--ARMES-->
 <button class="create_item">Créer un Equipement</button>
 
+{{#if useBougette}}
 <ol class="items-list">
-    <li class="item flexrow item-header">
-        <div class="item-name flex4 left">{{localize "BOL.ui.weapons"}}</div>
-        <div class="item-field flex2 center">{{localize "BOL.ui.slot"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.qty"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.price"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.equip"}}</div>
-        <div class="item-field flex1 right"></div>
-    </li>
-{{#each weapons as |item id|}}
-    <li class="item flexrow" data-item-id="{{item._id}}">
-        <h4 class="item-name flex4 left">
-            <div class="item-image"><img src="{{item.img}}" title="{{item.name}}"/></div>
-            <a class="item-edit">{{item.name}}</a>
-        </h4>
-        <div class="item-field flex2 center">
-        {{#if item.data.properties.equipable}}
-            <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat "BOL.equipmentSlots." item.data.properties.slot)}}</span>
-       {{/if}}
-        </div>
-        <div class="item-field group-btns flex1 center">
-        {{#if item.data.properties.stackable}}
-            <a class="inc-dec-btns" data-operator="minus" data-target="data.quantity" data-incr="1" data-min="0" data-max="{{item.data.properties.stacksize}}"><i class="fas fa-minus-square"></i></a>&nbsp;
-            <span class="item-field">{{item.data.quantity}}</span>&nbsp;
-            <a class="inc-dec-btns" data-operator="plus" data-target="data.quantity" data-incr="1" data-min="0" data-max="{{item.data.properties.stacksize}}"><i class="fas fa-plus-square"></i></a>
-        {{/if}}
-        </div>
-        <div class="item-field flex1 center">
-            <span class="item-field">{{item.data.price}}</span>
-        </div>
-        <div class="item-field flex1 center">
-            {{#if data.properties.equipable}}
-                {{#if data.worn}}
-                    <span class="item-field"><a class="item-control item-equip" title="{{localize "BOL.ui.unequip"}}"><i class="fas fa-shield-alt"></i></a></span>
-                {{else}}
-                    <span class="item-field"><a class="item-control item-equip" title="{{localize "BOL.ui.equip"}}" style="color:lightgray;"><i class="fas fa-shield-alt"></i></a></span>
-                {{/if}}
-            {{/if}}
-        </div>
-        <div class="item-field flex1 right">
-            <a class="item-control item-delete" title="{{localize "BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
-        </div>
-</li>
-{{/each}}
+  <li class="item flexrow item-header">
+    <div class="item-name flex4 left">{{localize "BOL.ui.moneyTitle"}}</div>
+    <div class="item-name flex4 left">&nbsp;</div>
+  </li>
+  <li class="item flexrow" data-item-id="{{item._id}}">
+    <h4 class="item-name flex4 left">
+      <div class="item-image"><img src="icons/containers/bags/coinpouch-simple-leather-brown.webp" title="{{localize "BOL.ui.money"}}" /></div>
+      {{localize "BOL.ui.money"}}
+    </h4>
+    <select class="field-value" name="data.bougette.state" data-dtype="String">
+      {{#select data.bougette.state}}
+      {{#each config.bougetteState as |value id|}}
+      <option value="{{id}}">{{localize value}}</option>
+      {{/each}}
+      {{/select}}
+    </select>
+  </li>
+</ol>
+{{/if}}
+
+<ol class="items-list">
+  <li class="item flexrow item-header">
+    <div class="item-name flex4 left">{{localize "BOL.ui.weapons"}}</div>
+    <div class="item-field flex2 center">{{localize "BOL.ui.slot"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.qty"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.price"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.equip"}}</div>
+    <div class="item-field flex1 right"></div>
+  </li>
+  {{#each weapons as |item id|}}
+  <li class="item flexrow" data-item-id="{{item._id}}">
+    <h4 class="item-name flex4 left">
+      <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" /></div>
+      <a class="item-edit">{{item.name}}</a>
+    </h4>
+    <div class="item-field flex2 center">
+      {{#if item.data.properties.equipable}}
+      <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat
+        "BOL.equipmentSlots." item.data.properties.slot)}}</span>
+      {{/if}}
+    </div>
+    <div class="item-field group-btns flex1 center">
+      {{#if item.data.properties.stackable}}
+      <a class="inc-dec-btns" data-operator="minus" data-target="data.quantity" data-incr="1" data-min="0"
+        data-max="{{item.data.properties.stacksize}}"><i class="fas fa-minus-square"></i></a>&nbsp;
+      <span class="item-field">{{item.data.quantity}}</span>&nbsp;
+      <a class="inc-dec-btns" data-operator="plus" data-target="data.quantity" data-incr="1" data-min="0"
+        data-max="{{item.data.properties.stacksize}}"><i class="fas fa-plus-square"></i></a>
+      {{/if}}
+    </div>
+    <div class="item-field flex1 center">
+      <span class="item-field">{{item.data.price}}</span>
+    </div>
+    <div class="item-field flex1 center">
+      {{#if data.properties.equipable}}
+      {{#if data.worn}}
+      <span class="item-field"><a class="item-control item-equip" title="{{localize " BOL.ui.unequip"}}"><i
+            class="fas fa-shield-alt"></i></a></span>
+      {{else}}
+      <span class="item-field"><a class="item-control item-equip" title="{{localize " BOL.ui.equip"}}"
+          style="color:lightgray;"><i class="fas fa-shield-alt"></i></a></span>
+      {{/if}}
+      {{/if}}
+    </div>
+    <div class="item-field flex1 right">
+      <a class="item-control item-delete" title="{{localize " BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
+    </div>
+  </li>
+  {{/each}}
 </ol>
 
 <!--PROTECTIONS-->
 <ol class="items-list">
-    <li class="item flexrow item-header">
-        <div class="item-name flex4 left">{{localize "BOL.ui.protections"}}</div>
-        <div class="item-field flex2 center">{{localize "BOL.ui.slot"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.protection"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.qty"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.price"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.equip"}}</div>
-        <div class="item-field flex1 right"></div>
-    </li>
-    {{#each protections as |item id|}}
-        <li class="item flexrow" data-item-id="{{item._id}}">
-            <h4 class="item-name flex4 left">
-                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}"/></div>
-                <a class="item-edit">{{item.name}}</a>
-            </h4>
-            <div class="item-field flex2 center">
-                {{#if item.data.properties.equipable}}
-                    <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat "BOL.equipmentSlots." item.data.properties.slot)}}</span>
-                {{/if}}
-            </div>
-            <div class="item-field flex2 center">
-                {{#if item.data.properties.equipable}}
-                    <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{data.properties.soak.formula}}</span>
-                {{/if}}
-            </div>            
-            <div class="item-field group-btns flex1 center">
-                {{#if item.data.properties.stackable}}
-                    <a class="inc-dec-btns" data-operator="minus" data-target="data.quantity" data-incr="1" data-min="0" data-max="{{item.data.properties.stacksize}}"><i class="fas fa-minus-square"></i></a>&nbsp;
-                    <span class="item-field">{{item.data.quantity}}</span>&nbsp;
-                    <a class="inc-dec-btns" data-operator="plus" data-target="data.quantity" data-incr="1" data-min="0" data-max="{{item.data.properties.stacksize}}"><i class="fas fa-plus-square"></i></a>
-                {{/if}}
-            </div>
-            <div class="item-field flex1 center">
-                <span class="item-field">{{item.data.price}}</span>
-            </div>
-            <div class="item-field flex1 center">
-                {{#if data.properties.equipable}}
-                    {{#if data.worn}}
-                        <span class="item-field"><a class="item-control item-equip" title="{{localize "BOL.ui.unequip"}}"><i class="fas fa-shield-alt"></i></a></span>
-                    {{else}}
-                        <span class="item-field"><a class="item-control item-equip" title="{{localize "BOL.ui.equip"}}" style="color:lightgray;"><i class="fas fa-shield-alt"></i></a></span>
-                    {{/if}}
-                {{/if}}
-            </div>
-            <div class="item-field flex1 right">
-                <a class="item-control item-delete" title="{{localize "BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
-            </div>
-        </li>
-    {{/each}}
+  <li class="item flexrow item-header">
+    <div class="item-name flex4 left">{{localize "BOL.ui.protections"}}</div>
+    <div class="item-field flex2 center">{{localize "BOL.ui.slot"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.protection"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.qty"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.price"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.equip"}}</div>
+    <div class="item-field flex1 right"></div>
+  </li>
+  {{#each protections as |item id|}}
+  <li class="item flexrow" data-item-id="{{item._id}}">
+    <h4 class="item-name flex4 left">
+      <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" /></div>
+      <a class="item-edit">{{item.name}}</a>
+    </h4>
+    <div class="item-field flex2 center">
+      {{#if item.data.properties.equipable}}
+      <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat
+        "BOL.equipmentSlots." item.data.properties.slot)}}</span>
+      {{/if}}
+    </div>
+    <div class="item-field flex2 center">
+      {{#if item.data.properties.equipable}}
+      <span class="item-field"
+        style="font-size: smaller; font-style: italic; color:#4b4a44">{{data.properties.soak.formula}}</span>
+      {{/if}}
+    </div>
+    <div class="item-field group-btns flex1 center">
+      {{#if item.data.properties.stackable}}
+      <a class="inc-dec-btns" data-operator="minus" data-target="data.quantity" data-incr="1" data-min="0"
+        data-max="{{item.data.properties.stacksize}}"><i class="fas fa-minus-square"></i></a>&nbsp;
+      <span class="item-field">{{item.data.quantity}}</span>&nbsp;
+      <a class="inc-dec-btns" data-operator="plus" data-target="data.quantity" data-incr="1" data-min="0"
+        data-max="{{item.data.properties.stacksize}}"><i class="fas fa-plus-square"></i></a>
+      {{/if}}
+    </div>
+    <div class="item-field flex1 center">
+      <span class="item-field">{{item.data.price}}</span>
+    </div>
+    <div class="item-field flex1 center">
+      {{#if data.properties.equipable}}
+      {{#if data.worn}}
+      <span class="item-field"><a class="item-control item-equip" title="{{localize " BOL.ui.unequip"}}"><i
+            class="fas fa-shield-alt"></i></a></span>
+      {{else}}
+      <span class="item-field"><a class="item-control item-equip" title="{{localize " BOL.ui.equip"}}"
+          style="color:lightgray;"><i class="fas fa-shield-alt"></i></a></span>
+      {{/if}}
+      {{/if}}
+    </div>
+    <div class="item-field flex1 right">
+      <a class="item-control item-delete" title="{{localize " BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
+    </div>
+  </li>
+  {{/each}}
 </ol>
 
 <!--MUNITIONS-->
 <ol class="items-list">
-    <li class="item flexrow item-header">
-        <div class="item-name flex4 left">{{localize "BOL.ui.ammos"}}</div>
-        <div class="item-field flex2 center">{{localize "BOL.ui.slot"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.qty"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.price"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.equip"}}</div>
-        <div class="item-field flex1 right"></div>
-    </li>
-    {{#each ammos as |item id|}}
-        <li class="item flexrow" data-item-id="{{item._id}}">
-            <h4 class="item-name flex4 left">
-                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}"/></div>
-                <a class="item-edit">{{item.name}}</a>
-            </h4>
-            <div class="item-field flex2 center">
-                {{#if item.data.properties.equipable}}
-                    <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat "BOL.equipmentSlots." item.data.properties.slot)}}</span>
-                {{/if}}
-            </div>
-            <div class="item-field group-btns flex1 center">
-                {{#if item.data.properties.stackable}}
-                    <a class="inc-dec-btns" data-operator="minus" data-target="data.quantity" data-incr="1" data-min="0" data-max="{{item.data.properties.stacksize}}"><i class="fas fa-minus-square"></i></a>&nbsp;
-                    <span class="item-field">{{item.data.quantity}}</span>&nbsp;
-                    <a class="inc-dec-btns" data-operator="plus" data-target="data.quantity" data-incr="1" data-min="0" data-max="{{item.data.properties.stacksize}}"><i class="fas fa-plus-square"></i></a>
-                {{/if}}
-            </div>
-            <div class="item-field flex1 center">
-                <span class="item-field">{{item.data.price}}</span>
-            </div>
-            <div class="item-field flex1 center">
-                {{#if data.properties.equipable}}
-                    {{#if data.worn}}
-                        <span class="item-field"><a class="item-control item-equip" title="{{localize "BOL.ui.unequip"}}"><i class="fas fa-shield-alt"></i></a></span>
-                    {{else}}
-                        <span class="item-field"><a class="item-control item-equip" title="{{localize "BOL.ui.equip"}}" style="color:lightgray;"><i class="fas fa-shield-alt"></i></a></span>
-                    {{/if}}
-                {{/if}}
-            </div>
-            <div class="item-field flex1 right">
-                <a class="item-control item-delete" title="{{localize "BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
-            </div>
-        </li>
-    {{/each}}
+  <li class="item flexrow item-header">
+    <div class="item-name flex4 left">{{localize "BOL.ui.ammos"}}</div>
+    <div class="item-field flex2 center">{{localize "BOL.ui.slot"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.qty"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.price"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.equip"}}</div>
+    <div class="item-field flex1 right"></div>
+  </li>
+  {{#each ammos as |item id|}}
+  <li class="item flexrow" data-item-id="{{item._id}}">
+    <h4 class="item-name flex4 left">
+      <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" /></div>
+      <a class="item-edit">{{item.name}}</a>
+    </h4>
+    <div class="item-field flex2 center">
+      {{#if item.data.properties.equipable}}
+      <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat
+        "BOL.equipmentSlots." item.data.properties.slot)}}</span>
+      {{/if}}
+    </div>
+    <div class="item-field group-btns flex1 center">
+      {{#if item.data.properties.stackable}}
+      <a class="inc-dec-btns" data-operator="minus" data-target="data.quantity" data-incr="1" data-min="0"
+        data-max="{{item.data.properties.stacksize}}"><i class="fas fa-minus-square"></i></a>&nbsp;
+      <span class="item-field">{{item.data.quantity}}</span>&nbsp;
+      <a class="inc-dec-btns" data-operator="plus" data-target="data.quantity" data-incr="1" data-min="0"
+        data-max="{{item.data.properties.stacksize}}"><i class="fas fa-plus-square"></i></a>
+      {{/if}}
+    </div>
+    <div class="item-field flex1 center">
+      <span class="item-field">{{item.data.price}}</span>
+    </div>
+    <div class="item-field flex1 center">
+      {{#if data.properties.equipable}}
+      {{#if data.worn}}
+      <span class="item-field"><a class="item-control item-equip" title="{{localize " BOL.ui.unequip"}}"><i
+            class="fas fa-shield-alt"></i></a></span>
+      {{else}}
+      <span class="item-field"><a class="item-control item-equip" title="{{localize " BOL.ui.equip"}}"
+          style="color:lightgray;"><i class="fas fa-shield-alt"></i></a></span>
+      {{/if}}
+      {{/if}}
+    </div>
+    <div class="item-field flex1 right">
+      <a class="item-control item-delete" title="{{localize " BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
+    </div>
+  </li>
+  {{/each}}
 </ol>
 
 <!--CONTENEURS-->
 <ol class="items-list">
-    <li class="item flexrow item-header">
-        <div class="item-name flex4 left">{{localize "BOL.ui.containers"}}</div>
-        <div class="item-field flex2 center">{{localize "BOL.ui.slot"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.qty"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.price"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.equip"}}</div>
-        <div class="item-field flex1 right"></div>
-    </li>
-    {{#each containers as |item id|}}
-        <li class="item flexrow" data-item-id="{{item._id}}">
-            <h4 class="item-name flex4 left">
-                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}"/></div>
-                <a class="item-edit">{{item.name}}</a>
-            </h4>
-            <div class="item-field flex2 center">
-                {{#if item.data.properties.equipable}}
-                    <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat "BOL.equipmentSlots." item.data.properties.slot)}}</span>
-                {{/if}}
-            </div>
-            <div class="item-field group-btns flex1 center">
-                {{#if item.data.properties.stackable}}
-                    <a class="inc-dec-btns" data-operator="minus" data-target="data.quantity" data-incr="1" data-min="0" data-max="{{item.data.properties.stacksize}}"><i class="fas fa-minus-square"></i></a>&nbsp;
-                    <span class="item-field">{{item.data.quantity}}</span>&nbsp;
-                    <a class="inc-dec-btns" data-operator="plus" data-target="data.quantity" data-incr="1" data-min="0" data-max="{{item.data.properties.stacksize}}"><i class="fas fa-plus-square"></i></a>
-                {{/if}}
-            </div>
-            <div class="item-field flex1 center">
-                <span class="item-field">{{item.data.price}}</span>
-            </div>
-            <div class="item-field flex1 center">
-                {{#if data.properties.equipable}}
-                    {{#if data.worn}}
-                        <span class="item-field"><a class="item-control item-equip" title="{{localize "BOL.ui.unequip"}}"><i class="fas fa-shield-alt"></i></a></span>
-                    {{else}}
-                        <span class="item-field"><a class="item-control item-equip" title="{{localize "BOL.ui.equip"}}" style="color:lightgray;"><i class="fas fa-shield-alt"></i></a></span>
-                    {{/if}}
-                {{/if}}
-            </div>
-            <div class="item-field flex1 right">
-                <a class="item-control item-delete" title="{{localize "BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
-            </div>
-        </li>
-    {{/each}}
+  <li class="item flexrow item-header">
+    <div class="item-name flex4 left">{{localize "BOL.ui.containers"}}</div>
+    <div class="item-field flex2 center">{{localize "BOL.ui.slot"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.qty"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.price"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.equip"}}</div>
+    <div class="item-field flex1 right"></div>
+  </li>
+  {{#each containers as |item id|}}
+  <li class="item flexrow" data-item-id="{{item._id}}">
+    <h4 class="item-name flex4 left">
+      <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" /></div>
+      <a class="item-edit">{{item.name}}</a>
+    </h4>
+    <div class="item-field flex2 center">
+      {{#if item.data.properties.equipable}}
+      <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat
+        "BOL.equipmentSlots." item.data.properties.slot)}}</span>
+      {{/if}}
+    </div>
+    <div class="item-field group-btns flex1 center">
+      {{#if item.data.properties.stackable}}
+      <a class="inc-dec-btns" data-operator="minus" data-target="data.quantity" data-incr="1" data-min="0"
+        data-max="{{item.data.properties.stacksize}}"><i class="fas fa-minus-square"></i></a>&nbsp;
+      <span class="item-field">{{item.data.quantity}}</span>&nbsp;
+      <a class="inc-dec-btns" data-operator="plus" data-target="data.quantity" data-incr="1" data-min="0"
+        data-max="{{item.data.properties.stacksize}}"><i class="fas fa-plus-square"></i></a>
+      {{/if}}
+    </div>
+    <div class="item-field flex1 center">
+      <span class="item-field">{{item.data.price}}</span>
+    </div>
+    <div class="item-field flex1 center">
+      {{#if data.properties.equipable}}
+      {{#if data.worn}}
+      <span class="item-field"><a class="item-control item-equip" title="{{localize " BOL.ui.unequip"}}"><i
+            class="fas fa-shield-alt"></i></a></span>
+      {{else}}
+      <span class="item-field"><a class="item-control item-equip" title="{{localize " BOL.ui.equip"}}"
+          style="color:lightgray;"><i class="fas fa-shield-alt"></i></a></span>
+      {{/if}}
+      {{/if}}
+    </div>
+    <div class="item-field flex1 right">
+      <a class="item-control item-delete" title="{{localize " BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
+    </div>
+  </li>
+  {{/each}}
 </ol>
 
 <!--TRESOR-->
 <ol class="items-list">
-    <li class="item flexrow item-header">
-        <div class="item-name flex4 left">{{localize "BOL.ui.treasure"}}</div>
-        <div class="item-field flex2 center">{{localize "BOL.ui.slot"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.qty"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.price"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.equip"}}</div>
-        <div class="item-field flex1 right"></div>
-    </li>
-    {{#each treasure as |item id|}}
-        <li class="item flexrow" data-item-id="{{item._id}}">
-            <h4 class="item-name flex4 left">
-                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}"/></div>
-                <a class="item-edit">{{item.name}}</a>
-            </h4>
-            <div class="item-field flex2 center">
-                {{#if item.data.properties.equipable}}
-                    <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat "BOL.equipmentSlots." item.data.properties.slot)}}</span>
-                {{/if}}
-            </div>
-            <div class="item-field group-btns flex1 center">
-                {{#if item.data.properties.stackable}}
-                    <a class="inc-dec-btns" data-operator="minus" data-target="data.quantity" data-incr="1" data-min="0" data-max="{{item.data.properties.stacksize}}"><i class="fas fa-minus-square"></i></a>&nbsp;
-                    <span class="item-field">{{item.data.quantity}}</span>&nbsp;
-                    <a class="inc-dec-btns" data-operator="plus" data-target="data.quantity" data-incr="1" data-min="0" data-max="{{item.data.properties.stacksize}}"><i class="fas fa-plus-square"></i></a>
-                {{/if}}
-            </div>
-            <div class="item-field flex1 center">
-                <span class="item-field">{{item.data.price}}</span>
-            </div>
-            <div class="item-field flex1 center">
-                {{#if data.properties.equipable}}
-                    {{#if data.worn}}
-                        <span class="item-field"><a class="item-control item-equip" title="{{localize "BOL.ui.unequip"}}"><i class="fas fa-shield-alt"></i></a></span>
-                    {{else}}
-                        <span class="item-field"><a class="item-control item-equip" title="{{localize "BOL.ui.equip"}}" style="color:lightgray;"><i class="fas fa-shield-alt"></i></a></span>
-                    {{/if}}
-                {{/if}}
-            </div>
-            <div class="item-field flex1 right">
-                <a class="item-control item-delete" title="{{localize "BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
-            </div>
-        </li>
-    {{/each}}
+  <li class="item flexrow item-header">
+    <div class="item-name flex4 left">{{localize "BOL.ui.treasure"}}</div>
+    <div class="item-field flex2 center">{{localize "BOL.ui.slot"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.qty"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.price"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.equip"}}</div>
+    <div class="item-field flex1 right"></div>
+  </li>
+  {{#each treasure as |item id|}}
+  <li class="item flexrow" data-item-id="{{item._id}}">
+    <h4 class="item-name flex4 left">
+      <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" /></div>
+      <a class="item-edit">{{item.name}}</a>
+    </h4>
+    <div class="item-field flex2 center">
+      {{#if item.data.properties.equipable}}
+      <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat
+        "BOL.equipmentSlots." item.data.properties.slot)}}</span>
+      {{/if}}
+    </div>
+    <div class="item-field group-btns flex1 center">
+      {{#if item.data.properties.stackable}}
+      <a class="inc-dec-btns" data-operator="minus" data-target="data.quantity" data-incr="1" data-min="0"
+        data-max="{{item.data.properties.stacksize}}"><i class="fas fa-minus-square"></i></a>&nbsp;
+      <span class="item-field">{{item.data.quantity}}</span>&nbsp;
+      <a class="inc-dec-btns" data-operator="plus" data-target="data.quantity" data-incr="1" data-min="0"
+        data-max="{{item.data.properties.stacksize}}"><i class="fas fa-plus-square"></i></a>
+      {{/if}}
+    </div>
+    <div class="item-field flex1 center">
+      <span class="item-field">{{item.data.price}}</span>
+    </div>
+    <div class="item-field flex1 center">
+      {{#if data.properties.equipable}}
+      {{#if data.worn}}
+      <span class="item-field"><a class="item-control item-equip" title="{{localize " BOL.ui.unequip"}}"><i
+            class="fas fa-shield-alt"></i></a></span>
+      {{else}}
+      <span class="item-field"><a class="item-control item-equip" title="{{localize " BOL.ui.equip"}}"
+          style="color:lightgray;"><i class="fas fa-shield-alt"></i></a></span>
+      {{/if}}
+      {{/if}}
+    </div>
+    <div class="item-field flex1 right">
+      <a class="item-control item-delete" title="{{localize " BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
+    </div>
+  </li>
+  {{/each}}
 </ol>
 
 <!--VEHICULES-->
 <ol class="items-list">
-    <li class="item flexrow item-header">
-        <div class="item-name flex4 left">{{localize "BOL.ui.vehicles"}}</div>
-        <div class="item-field flex2 center">{{localize "BOL.ui.slot"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.qty"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.price"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.equip"}}</div>
-        <div class="item-field flex1 right"></div>
-    </li>
-    {{#each vehicles as |item id|}}
-        <li class="item flexrow" data-item-id="{{item._id}}">
-            <h4 class="item-name flex4 left">
-                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}"/></div>
-                <a class="item-edit">{{item.name}}</a>
-            </h4>
-            <div class="item-field flex2 center">
-                {{#if item.data.properties.equipable}}
-                    <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat "BOL.equipmentSlots." item.data.properties.slot)}}</span>
-                {{/if}}
-            </div>
-            <div class="item-field group-btns flex1 center">
-                {{#if item.data.properties.stackable}}
-                    <a class="inc-dec-btns" data-operator="minus" data-target="data.quantity" data-incr="1" data-min="0" data-max="{{item.data.properties.stacksize}}"><i class="fas fa-minus-square"></i></a>&nbsp;
-                    <span class="item-field">{{item.data.quantity}}</span>&nbsp;
-                    <a class="inc-dec-btns" data-operator="plus" data-target="data.quantity" data-incr="1" data-min="0" data-max="{{item.data.properties.stacksize}}"><i class="fas fa-plus-square"></i></a>
-                {{/if}}
-            </div>
-            <div class="item-field flex1 center">
-                <span class="item-field">{{item.data.price}}</span>
-            </div>
-            <div class="item-field flex1 center">
-                {{#if data.properties.equipable}}
-                    {{#if data.worn}}
-                        <span class="item-field"><a class="item-control item-equip" title="{{localize "BOL.ui.unequip"}}"><i class="fas fa-shield-alt"></i></a></span>
-                    {{else}}
-                        <span class="item-field"><a class="item-control item-equip" title="{{localize "BOL.ui.equip"}}" style="color:lightgray;"><i class="fas fa-shield-alt"></i></a></span>
-                    {{/if}}
-                {{/if}}
-            </div>
-            <div class="item-field flex1 right">
-                <a class="item-control item-delete" title="{{localize "BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
-            </div>
-        </li>
-    {{/each}}
+  <li class="item flexrow item-header">
+    <div class="item-name flex4 left">{{localize "BOL.ui.vehicles"}}</div>
+    <div class="item-field flex2 center">{{localize "BOL.ui.slot"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.qty"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.price"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.equip"}}</div>
+    <div class="item-field flex1 right"></div>
+  </li>
+  {{#each vehicles as |item id|}}
+  <li class="item flexrow" data-item-id="{{item._id}}">
+    <h4 class="item-name flex4 left">
+      <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" /></div>
+      <a class="item-edit">{{item.name}}</a>
+    </h4>
+    <div class="item-field flex2 center">
+      {{#if item.data.properties.equipable}}
+      <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat
+        "BOL.equipmentSlots." item.data.properties.slot)}}</span>
+      {{/if}}
+    </div>
+    <div class="item-field group-btns flex1 center">
+      {{#if item.data.properties.stackable}}
+      <a class="inc-dec-btns" data-operator="minus" data-target="data.quantity" data-incr="1" data-min="0"
+        data-max="{{item.data.properties.stacksize}}"><i class="fas fa-minus-square"></i></a>&nbsp;
+      <span class="item-field">{{item.data.quantity}}</span>&nbsp;
+      <a class="inc-dec-btns" data-operator="plus" data-target="data.quantity" data-incr="1" data-min="0"
+        data-max="{{item.data.properties.stacksize}}"><i class="fas fa-plus-square"></i></a>
+      {{/if}}
+    </div>
+    <div class="item-field flex1 center">
+      <span class="item-field">{{item.data.price}}</span>
+    </div>
+    <div class="item-field flex1 center">
+      {{#if data.properties.equipable}}
+      {{#if data.worn}}
+      <span class="item-field"><a class="item-control item-equip" title="{{localize " BOL.ui.unequip"}}"><i
+            class="fas fa-shield-alt"></i></a></span>
+      {{else}}
+      <span class="item-field"><a class="item-control item-equip" title="{{localize " BOL.ui.equip"}}"
+          style="color:lightgray;"><i class="fas fa-shield-alt"></i></a></span>
+      {{/if}}
+      {{/if}}
+    </div>
+    <div class="item-field flex1 right">
+      <a class="item-control item-delete" title="{{localize " BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
+    </div>
+  </li>
+  {{/each}}
 </ol>
 
 <!--DIVERS-->
 <ol class="items-list">
-    <li class="item flexrow item-header">
-        <div class="item-name flex4 left">{{localize "BOL.ui.misc"}}</div>
-        <div class="item-field flex2 center">{{localize "BOL.ui.slot"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.qty"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.price"}}</div>
-        <div class="item-field flex1 center">{{localize "BOL.ui.equip"}}</div>
-        <div class="item-field flex1 right"></div>
-    </li>
-    {{#each misc as |item id|}}
-        <li class="item flexrow" data-item-id="{{item._id}}">
-            <h4 class="item-name flex4 left">
-                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}"/></div>
-                <a class="item-edit">{{item.name}}</a>
-            </h4>
-            <div class="item-field flex2 center">
-                {{#if item.data.properties.equipable}}
-                    <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat "BOL.equipmentSlots." item.data.properties.slot)}}</span>
-                {{/if}}
-            </div>
-            <div class="item-field group-btns flex1 center">
-                {{#if item.data.properties.stackable}}
-                    <a class="inc-dec-btns" data-operator="minus" data-target="data.quantity" data-incr="1" data-min="0" data-max="{{item.data.properties.stacksize}}"><i class="fas fa-minus-square"></i></a>&nbsp;
-                    <span class="item-field">{{item.data.quantity}}</span>&nbsp;
-                    <a class="inc-dec-btns" data-operator="plus" data-target="data.quantity" data-incr="1" data-min="0" data-max="{{item.data.properties.stacksize}}"><i class="fas fa-plus-square"></i></a>
-                {{/if}}
-            </div>
-            <div class="item-field flex1 center">
-                <span class="item-field">{{item.data.price}}</span>
-            </div>
-            <div class="item-field flex1 center">
-                {{#if data.properties.equipable}}
-                    {{#if data.worn}}
-                        <span class="item-field"><a class="item-control item-equip" title="{{localize "BOL.ui.unequip"}}"><i class="fas fa-shield-alt"></i></a></span>
-                    {{else}}
-                        <span class="item-field"><a class="item-control item-equip" title="{{localize "BOL.ui.equip"}}" style="color:lightgray;"><i class="fas fa-shield-alt"></i></a></span>
-                    {{/if}}
-                {{/if}}
-            </div>
-            <div class="item-field flex1 right">
-                <a class="item-control item-delete" title="{{localize "BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
-            </div>
-        </li>
-    {{/each}}
+  <li class="item flexrow item-header">
+    <div class="item-name flex4 left">{{localize "BOL.ui.misc"}}</div>
+    <div class="item-field flex2 center">{{localize "BOL.ui.slot"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.qty"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.price"}}</div>
+    <div class="item-field flex1 center">{{localize "BOL.ui.equip"}}</div>
+    <div class="item-field flex1 right"></div>
+  </li>
+  {{#each misc as |item id|}}
+  <li class="item flexrow" data-item-id="{{item._id}}">
+    <h4 class="item-name flex4 left">
+      <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" /></div>
+      <a class="item-edit">{{item.name}}</a>
+    </h4>
+    <div class="item-field flex2 center">
+      {{#if item.data.properties.equipable}}
+      <span class="item-field" style="font-size: smaller; font-style: italic; color:#4b4a44">{{localize (concat
+        "BOL.equipmentSlots." item.data.properties.slot)}}</span>
+      {{/if}}
+    </div>
+    <div class="item-field group-btns flex1 center">
+      {{#if item.data.properties.stackable}}
+      <a class="inc-dec-btns" data-operator="minus" data-target="data.quantity" data-incr="1" data-min="0"
+        data-max="{{item.data.properties.stacksize}}"><i class="fas fa-minus-square"></i></a>&nbsp;
+      <span class="item-field">{{item.data.quantity}}</span>&nbsp;
+      <a class="inc-dec-btns" data-operator="plus" data-target="data.quantity" data-incr="1" data-min="0"
+        data-max="{{item.data.properties.stacksize}}"><i class="fas fa-plus-square"></i></a>
+      {{/if}}
+    </div>
+    <div class="item-field flex1 center">
+      <span class="item-field">{{item.data.price}}</span>
+    </div>
+    <div class="item-field flex1 center">
+      {{#if data.properties.equipable}}
+      {{#if data.worn}}
+      <span class="item-field"><a class="item-control item-equip" title="{{localize " BOL.ui.unequip"}}"><i
+            class="fas fa-shield-alt"></i></a></span>
+      {{else}}
+      <span class="item-field"><a class="item-control item-equip" title="{{localize " BOL.ui.equip"}}"
+          style="color:lightgray;"><i class="fas fa-shield-alt"></i></a></span>
+      {{/if}}
+      {{/if}}
+    </div>
+    <div class="item-field flex1 right">
+      <a class="item-control item-delete" title="{{localize " BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
+    </div>
+  </li>
+  {{/each}}
 </ol>
