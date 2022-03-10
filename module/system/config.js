@@ -254,7 +254,18 @@ BOL.featureSubtypes = {
     "boon" : "BOL.featureSubtypes.boon",
     "flaw" : "BOL.featureSubtypes.flaw",
     "language" : "BOL.featureSubtypes.language",
-    "godsfaith" : "BOL.featureSubtypes.gods"
+    "godsfaith" : "BOL.featureSubtypes.gods",
+    "fightoption" : "BOL.featureSubtypes.fightOption"
+}
+
+BOL.fightOptionTypes = {
+  "armordefault": "BOL.fightOptionTypes.armor",
+  "intrepid": "BOL.fightOptionTypes.intrepid",
+  "twoweaponsdef": "BOL.fightOptionTypes.twoweaponsdef",
+  "twoweaponsatt": "BOL.fightOptionTypes.twoweaponsatt",
+  "fulldefense": "BOL.fightOptionTypes.fulldefense",
+  "defense": "BOL.fightOptionTypes.defense",
+  "attack": "BOL.fightOptionTypes.attack",
 }
 
 BOL.itemIcons = {

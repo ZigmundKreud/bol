@@ -48,7 +48,18 @@ export class BoLCombatManager extends Combat {
       fvttInit += (cId / 100)
       await this.updateEmbeddedDocuments("Combatant", [{ _id: ids[cId], initiative: fvttInit }]);
     }
-    console.log("TODO : Compute init for actor");
   }
+
+  /************************************************************************************/
+  nextRound() {
+    let combatants = this.combatants.contents
+    for (let c of combatants) {
+      let actor = game.actors.get( c.data.actorId )
+      //actor.clearRoundModifiers()
+    }
+    super.nextRound()
+  }
+
+
 }
   

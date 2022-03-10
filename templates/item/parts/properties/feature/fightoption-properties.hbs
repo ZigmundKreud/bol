@@ -1,0 +1,19 @@
+<h3 class="form-header">{{localize "BOL.ui.fightOption"}}</h3>
+
+<div class="form-group">
+    <label class="property-label">{{localize "BOL.ui.fightOptionType"}}</label>
+    <div class="form-fields">
+        <select name="data.properties.fightoptiontype" data-dtype="String">
+            {{#select data.properties.fightoptiontype}}
+                {{#each config.fightOptionTypes as |item id|}}
+                    <option value="{{id}}">{{localize item}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+    </div>
+</div>
+  <div class="property flexrow">
+    <label class="property-label">{{localize "BOL.ui.activated"}}</label>
+    <input class="field-value" type="checkbox" name="data.properties.activated" {{checked data.properties.activated}}>
+  </div>
+

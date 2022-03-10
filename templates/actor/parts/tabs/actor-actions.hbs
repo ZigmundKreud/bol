@@ -6,6 +6,7 @@
                 {{#if blocking}}<div class="item-field">{{localize "BOL.ui.blocking"}}</div>{{/if}}
                 {{#if weapon}}<div class="item-field">{{localize "BOL.ui.damages"}}</div>{{/if}}
                 {{#if ranged}}<div class="item-field">{{localize "BOL.ui.range"}}</div>{{else}}<div class="item-field"></div>{{/if}}
+                {{#if options}}<div class="item-field">{{localize "BOL.ui.status"}}</div>{{else}}<div class="item-field"></div>{{/if}}
             </li>
             {{#each combatType.items as |item id|}}
                 <li class="item flexrow" data-item-id="{{item._id}}">
@@ -15,6 +16,15 @@
                     {{#if ../blocking}}<div class="item-field">{{item.data.properties.blocking.malus}}</div>{{/if}}
                     {{#if ../weapon}}<div class="item-field"><a class="rollable" data-roll-type="damage">{{item.data.properties.damage}}</a></div>{{/if}}
                     {{#if ../ranged}}<div class="item-field">{{item.data.properties.range}}</div>{{else}}<div class="item-field"></div>{{/if}}
+                    {{#if ../options}}<div class="item-field">
+                      {{#if item.data.properties.activated}}
+                        <a class="toggle-fight-option">{{localize "BOL.ui.toactivated"}}</a>
+                      {{else}}
+                        <a class="toggle-fight-option">{{localize "BOL.ui.todeactivated"}}</a>
+                      {{/if}}
+                      </div>{{else}}
+                      <div class="item-field"></div>
+                      {{/if}}
                 </li>
             {{/each}}
         </ol>

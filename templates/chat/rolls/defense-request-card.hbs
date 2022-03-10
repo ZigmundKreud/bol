@@ -1,6 +1,10 @@
 <img class="chat-icon" src="{{defender.img}}" alt="{{defender.name}}"/>
 Va encaisser {{damageTotal}} dégats !
 
+{{#if damagesIgnoresArmor}}
+<br>C'est une attaque au défaut de l'armure : vous devez encaisser SANS la protection de l'armure !
+{{/if}}
+
 <button class="damage-handling" data-defense-mode="damage-with-armor" data-attack-id="{{attackId}}">Encaisser avec la protection de l'armure</button>
 <button class="damage-handling" data-defense-mode="damage-without-armor" data-attack-id="{{attackId}}">Encaisser sans la protection de l'armure</button>
 

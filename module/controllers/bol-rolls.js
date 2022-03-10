@@ -3,39 +3,47 @@ import { BoLUtility } from "../system/bol-utility.js";
 const __adv2dice = { ["1B"]: 3, ["2B"]: 4, ["2"]: 2, ["1M"]: 3, ["2M"]: 4 }
 const _apt2attr = { init: "mind", melee: "agility", ranged: "agility", def: "vigor" }
 
+/* -------------------------------------------- */
 export class BoLRoll {
+  
+  /* -------------------------------------------- */
   static options() {
     return { classes: ["bol", "dialog"], width: 480, height: 540 };
   }
 
+  /* -------------------------------------------- */
   static convertToAdv(adv) {
     if (adv == 0) return "2"
     return Math.abs(adv) + (adv < 0) ? 'M' : 'B';
   }
+  /* -------------------------------------------- */
   static getDefaultAttribute(key) {
     return _apt2attr[key]
   }
+  
   /* -------------------------------------------- */
   static attributeCheck(actor, actorData, dataset, event) {
-    const key = dataset.key;
-    const adv = dataset.adv;
-    let attribute = eval(`actor.data.data.attributes.${key}`);
-    let label = (attribute.label) ? game.i18n.localize(attribute.label) : null;
-    let description = actor.name + " - " + game.i18n.localize('BOL.ui.attributeCheck') + " - " + game.i18n.localize(attribute.label);
-    return this.displayRollDialog(
-      {
-        mode: "attribute",
-        actor: actor,
-        actorData: actorData,
-        attribute: attribute,
-        attrValue: attribute.value,
-        aptValue: 0,
-        label: label,
-        careerBonus: 0,
-        description: description,
-        adv: this.convertToAdv(adv),
-        mod: 0
-      });
+    const key = dataset.key
+    const adv = dataset.adv
+
+    let attribute = eval(`actor.data.data.attributes.${key}`)
+    let label = (attribute.label) ? game.i18n.localize(attribute.label) : null
+    let description = actor.name + " - " + game.i18n.localize('BOL.ui.attributeCheck') + " - " + game.i18n.localize(attribute.label)
+
+    let rollData = {
+      mode: "attribute",
+      actor: actor,
+      actorData: actorData,
+      attribute: attribute,
+      attrValue: attribute.value,
+      aptValue: 0,
+      label: label,
+      careerBonus: 0,
+      description: description,
+      adv: this.convertToAdv(adv),
+      mod: 0
+    }
+    return this.displayRollDialog( rollData )
   }
 
   /* -------------------------------------------- */
@@ -69,24 +77,31 @@ export class BoLRoll {
   /* -------------------------------------------- */
   static weaponCheck(actor, actorData, dataset, event) {
     let target = BoLUtility.getTarget()
-    const li = $(event.currentTarget).parents(".item");
-    const weapon = actor.items.get(li.data("item-id"));
+    const li = $(event.currentTarget).parents(".item")
+    const weapon = actor.items.get(li.data("item-id"))
     if (!weapon) {
-      ui.notifications.warn("Unable to find weapon !");
+      ui.notifications.warn("Unable to find weapon !")
       return;
     }
     let weaponData = weapon.data.data
     let attribute =  eval(`actor.data.data.attributes.${weaponData.properties.attackAttribute}`)
     let aptitude = eval(`actor.data.data.aptitudes.${weaponData.properties.attackAptitude}`)
     
-    console.debug("WEAPON!", weaponData)
-    let attackDef = {
+    // Manage specific case
+    let fightOption= actor.getActiveFightOption()
+    if ( fightOption && fightOption.data.fightoptiontype == "fulldefense") {
+      ui.notifications.warn(`{{actor.name}} est en Défense Totale ! Il ne peut pas attaquer ce round.`)
+      return
+    }
+    // Build the roll structure
+    let rolldata = {
       mode: "weapon",
       actor: actor,
       actorData: actorData,
       weapon: weapon,
       isRanged: weaponData.properties.ranged || weaponData.properties.throwing,
       target: target,
+      fightOption: fightOption,
       careerBonus: 0,
       defender: (target) ? game.actors.get(target.data.actorId) : undefined,
       attribute: attribute,
@@ -98,7 +113,7 @@ export class BoLRoll {
       label: (weapon.name) ? weapon.name : game.i18n.localize('BOL.ui.noWeaponName'),
       description: actor.name + " - " + game.i18n.localize('BOL.ui.weaponAttack'),
     }
-    return this.displayRollDialog(attackDef);
+    return this.displayRollDialog(rolldata)
   }
 
   /* -------------------------------------------- */
@@ -179,7 +194,36 @@ export class BoLRoll {
     }
 
     $('#roll-modifier').val( this.rollData.attrValue + "+" + this.rollData.aptValue + "+" + this.rollData.careerBonus + "+" + this.rollData.mod + "+" +
-         this.rollData.modRanged + "+" + this.rollData.weaponModifier + "-" + this.rollData.defence + "+" + this.rollData.shieldMalus )
+         this.rollData.modRanged + "+" + this.rollData.weaponModifier + "-" + this.rollData.defence + "-" + this.rollData.modArmorMalus + "-" + 
+         this.rollData.shieldMalus + "+" + this.rollData.attackModifier )
+  }
+  
+  /* -------------------------------------------- */
+  static preProcessFightOption( rollData) {
+    rollData.damagesIgnoresArmor = false  // Always reset flags
+    rollData.modArmorMalus = 0
+    rollData.attackModifier = 0
+
+    let fgItem = rollData.fightOption
+    if (fgItem ) {
+      console.log(fgItem)
+      if (fgItem.data.properties.fightoptiontype == "armordefault") {
+        rollData.modArmorMalus = rollData.armorMalus // Activate the armor malus
+        rollData.damagesIgnoresArmor = true
+      }
+      if (fgItem.data.properties.fightoptiontype == "intrepid") {
+        rollData.attackModifier += 2
+      }
+      if (fgItem.data.properties.fightoptiontype == "defense") {
+        rollData.attackModifier += -1
+      }
+      if (fgItem.data.properties.fightoptiontype == "attack") {
+        rollData.attackModifier += 1
+      }
+      if (fgItem.data.properties.fightoptiontype == "twoweaponsdef" || fgItem.data.properties.fightoptiontype == "twoweaponsatt") {
+        rollData.attackModifier += -1
+      }
+    }
   }
 
   /* -------------------------------------------- */
@@ -250,15 +294,37 @@ export class BoLRoll {
     })
   }
 
+  /* -------------------------------------------- */
+  static preProcessWeapon( rollData) {
+    if (rollData.mode == "weapon") {
+      rollData.weaponModifier = rollData.weapon.data.data.properties.attackModifiers ?? 0;
+      rollData.attackBonusDice = rollData.weapon.data.data.properties.attackBonusDice
+      if (rollData.defender) { // If target is selected
+        rollData.defence = rollData.defender.defenseValue
+        rollData.armorMalus = rollData.defender.armorMalusValue
+        rollData.shieldBlock = 'none'
+        let shields = rollData.defender.shields
+        for (let shield of shields) {
+          rollData.shieldBlock = (shield.data.properties.blocking.blockingAll) ? 'blockall' : 'blockone';
+          rollData.shieldAttackMalus = (shield.data.properties.blocking.malus) ? shield.data.properties.blocking.malus : 1;
+          rollData.applyShieldMalus = false
+        }
+      }
+    }
+  }
+
   /* ROLL DIALOGS                                 */
   /* -------------------------------------------- */
   static async displayRollDialog(rollData, onEnter = "submit") {
 
+    // initialize default flags/values
     const rollOptionTpl = `systems/bol/templates/dialogs/${rollData.mode}-roll-dialog.hbs`
     rollData.careers = rollData.actorData.features.careers
     rollData.boons = rollData.actor.bonusBoons
     rollData.flaws = rollData.actor.malusFlaws
     rollData.defence = 0
+    rollData.attackModifier = 0 // Used for fight options
+    rollData.modArmorMalus = 0 // Used for fight options
     rollData.bDice   = 0
     rollData.mDice   = 0
     rollData.nbBoons = 0
@@ -273,31 +339,17 @@ export class BoLRoll {
     rollData.modRanged = rollData.modRanged ?? 0
     rollData.mod = rollData.mod ?? 0
     rollData.id = randomID(16)
-
-    // Weapon mode specific management
     rollData.weaponModifier = 0
     rollData.attackBonusDice = false
-
-    // Saves
+    rollData.armorMalus = 0
+    // Specific stuff 
+    this.preProcessWeapon(rollData)
+    this.preProcessFightOption(rollData)
+    // Save
     this.rollData = rollData
     console.log("ROLLDATA", rollData)
 
-    if (rollData.mode == "weapon") {
-      rollData.weaponModifier = rollData.weapon.data.data.properties.attackModifiers ?? 0;
-      rollData.attackBonusDice = rollData.weapon.data.data.properties.attackBonusDice
-      if (rollData.defender) { // If target is selected
-        rollData.defence = rollData.defender.defenseValue
-        rollData.shieldBlock = 'none'
-        let shields = rollData.defender.shields
-        //console.log("Shields", shields)
-        for (let shield of shields) {
-          rollData.shieldBlock = (shield.data.properties.blocking.blockingAll) ? 'blockall' : 'blockone';
-          rollData.shieldAttackMalus = (shield.data.properties.blocking.malus) ? shield.data.properties.blocking.malus : 1;
-          rollData.applyShieldMalus = false
-        }
-      }
-    }
-
+    // Then display+process the dialog
     const rollOptionContent = await renderTemplate(rollOptionTpl, rollData);
     let d = new Dialog({
       title: rollData.label,
@@ -325,7 +377,7 @@ export class BoLRoll {
             const isMalus = rollData.mDice > 0 
             rollData.nbDice += (rollData.attackBonusDice) ? 1 : 0
 
-            const modifiers = rollData.attrValue + rollData.aptValue + rollData.careerBonus + rollData.mod + rollData.weaponModifier - rollData.defence + rollData.shieldMalus
+            const modifiers = rollData.attrValue + rollData.aptValue + rollData.careerBonus + rollData.mod + rollData.weaponModifier - rollData.defence - rollData.modArmorMalus + rollData.shieldMalus + rollData.attackModifier
             const formula = (isMalus) ? rollData.nbDice + "d6kl2 + " + modifiers : rollData.nbDice + "d6kh2 + " + modifiers
             rollData.formula = formula
             rollData.modifiers = modifiers
@@ -365,15 +417,16 @@ export class BoLDefaultRoll {
 
   async roll() {
 
-    const r = new Roll(this.rollData.formula);
-    await r.roll({ "async": false });
-    const activeDice = r.terms[0].results.filter(r => r.active);
-    const diceTotal = activeDice.map(r => r.result).reduce((a, b) => a + b);
+    const r = new Roll(this.rollData.formula)
+    // console.log("Roll formula", this.rollData.formula)
+    await r.roll({ "async": false })
+    const activeDice = r.terms[0].results.filter(r => r.active)
+    const diceTotal = activeDice.map(r => r.result).reduce((a, b) => a + b)
     this.rollData.roll = r
-    this.rollData.isSuccess = (r.total >= 9);
+    this.rollData.isSuccess = (r.total >= 9)
     this.rollData.isCritical = (diceTotal === 12)
     this.rollData.isRealCritical = (diceTotal === 12)
-    this.rollData.isFumble = (diceTotal === 2);
+    this.rollData.isFumble = (diceTotal === 2)
     this.rollData.isFailure = !this.rollData.isSuccess
     if (this.rollData.reroll == undefined) {
       this.rollData.reroll = this.rollData.actor.heroReroll()
@@ -456,10 +509,10 @@ export class BoLDefaultRoll {
           bonusDmg = 12
         }
         let attrDamageValue = this.getDamageAttributeValue(this.rollData.weapon.data.data.properties.damageAttribute)
-        let weaponFormula = BoLUtility.getDamageFormula(this.rollData.weapon.data.data)
+        let weaponFormula = BoLUtility.getDamageFormula(this.rollData.weapon.data.data, this.rollData.fightOption )
 
         let damageFormula = weaponFormula + "+" + bonusDmg + "+" + attrDamageValue
-        console.log("DAMAGE !!!", damageFormula, attrDamageValue)
+        console.log("DAMAGE !!!", damageFormula, attrDamageValue, this.rollData)
 
         //console.log("Formula", weaponFormula, damageFormula, this.rollData.weapon.data.data.properties.damage)
         this.rollData.damageFormula = damageFormula
@@ -474,7 +527,7 @@ export class BoLDefaultRoll {
 
   _buildDamageChatMessage(rollData) {
     const rollMessageTpl = 'systems/bol/templates/chat/rolls/damage-roll-card.hbs';
-    return renderTemplate(rollMessageTpl, rollData);
+    return renderTemplate(rollMessageTpl, rollData)
   }
 
   _buildChatMessage(rollData) {

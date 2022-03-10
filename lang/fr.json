@@ -142,6 +142,14 @@
   "BOL.ui.rangeModifiers": "Mod. de Portée",
   "BOL.ui.money": "Bougette",
   "BOL.ui.moneyTitle": "Or et Piecettes",
+  "BOL.ui.fightOption": "Options de Combat",
+  "BOL.ui.none": "Aucune",
+  "BOL.ui.fightOptionType": "Types d'options de Combat",
+  "BOL.ui.activated": "Active",
+  "BOL.ui.deactivated": "Inactive",
+  "BOL.ui.toactivated": "Active (>Désactiver)",
+  "BOL.ui.todeactivated": "Inactive (>Activer)",
+  "BOL.ui.status": "Statut",
 
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",
@@ -149,7 +157,8 @@
   "BOL.featureCategory.boons": "Avantages",
   "BOL.featureCategory.flaws": "Désavantages",
   "BOL.featureCategory.languages": "Langues",
-
+  "BOL.featureCategory.fightoptions": "Options de Combat",
+  
   "BOL.bougette.nomoney": "A sec",
   "BOL.bougette.tolive": "De quoi vivre",  
   "BOL.bougette.easylife": "A l'aise",
@@ -163,6 +172,15 @@
   "BOL.featureSubtypes.flaw": "Désavantage",
   "BOL.featureSubtypes.language": "Langue",
   "BOL.featureSubtypes.gods": "Dieux & Foi",
+  "BOL.featureSubtypes.fightOption": "Option de Combat",
+  
+  "BOL.fightOptionTypes.armor": "Attaque au défaut d'armure",
+  "BOL.fightOptionTypes.intrepid": "Attaque intrépide",
+  "BOL.fightOptionTypes.twoweaponsdef": "Combat à 2 armes (Défense)",
+  "BOL.fightOptionTypes.twoweaponsatt": "Combat à 2 armes (Attaque)",
+  "BOL.fightOptionTypes.fulldefense": "Défense totale",
+  "BOL.fightOptionTypes.defense": "Posture défensive",
+  "BOL.fightOptionTypes.attack": "Posture offensive",
 
   "BOL.itemCategory.object": "Objet",
   "BOL.itemCategory.equipment": "Équipement",
@@ -177,7 +195,8 @@
   "BOL.combatCategory.shields": "Boucliers",
   "BOL.combatCategory.melee": "Armes de contact",
   "BOL.combatCategory.ranged": "Armes à distance",
-
+  "BOL.combatCategory.fightOptions": "Options de combat",
+  
   "BOL.equipmentCategory.weapon": "Arme",
   "BOL.equipmentCategory.armor": "Armure",
   "BOL.equipmentCategory.protection": "Protection",

@@ -139,7 +139,7 @@ export class BoLUtility {
     chatGM.whisper = this.getUsers(user => user.isGM);
     chatGM.content = "Blind message of " + game.user.name + "<br>" + chatOptions.content;
     console.log("blindMessageToGM", chatGM);
-    game.socket.emit("system.fvtt-fragged-kingdom", { msg: "msg_gm_chat_message", data: chatGM });
+    game.socket.emit("system.bol", { msg: "msg_gm_chat_message", data: chatGM });
   }
 
   /* -------------------------------------------- */
@@ -336,53 +336,6 @@ export class BoLUtility {
   }
 
   /* -------------------------------------------- */
-  static async rollBoL(rollData) {
-
-    // Dice bonus/malus selection
-    let nbDice = 2;
-    let d6BM = 0;
-    let mode = "";
-    if (rollData.d6Malus > rollData.d6Bonus) {
-      d6BM = rollData.d6Malus - rollData.d6Bonus;
-      mode = "kl2";
-    }
-    if (rollData.d6Bonus > rollData.d6Malus) {
-      d6BM = rollData.d6Bonus - rollData.d6Malus;
-      mode = "kh2";
-    }
-    nbDice += d6BM;
-
-    // Final modifier 
-    let modifier = Number(rollData.bonusMalus);
-    if (rollData.mode == 'career') {
-      modifier += Number(rollData.attributes[rollData.rollAttribute].value) + Number(rollData.career.data.rank);
-    } else if (rollData.mode == 'attribute') {
-      modifier += rollData.attribute.value;
-    } else if (rollData.mode == 'weapon') {
-      modifier += Number(rollData.attributes[rollData.rollAttribute].value) + Number(rollData.aptitude.value) + Number(rollData.rangeModifier);
-      modifier -= rollData.defender.data.aptitudes.def.value;
-    }
-
-    let formula = nbDice + "d6" + mode + "+" + modifier;
-
-    console.log("Going to roll ", formula, rollData.attributes, rollData.rollAttribute);
-    let myRoll = new Roll(formula).roll({ async: false });
-    await this.showDiceSoNice(myRoll, game.settings.get("core", "rollMode"));
-    rollData.roll = myRoll;
-    rollData.formula = formula;
-    rollData.modifier = modifier;
-    rollData.nbDice = nbDice;
-    rollData.finalScore = myRoll.total;
-
-    let actor = game.actors.get(rollData.actorId);
-    actor.saveRollData(rollData);
-
-    this.createChatWithRollMode(rollData.alias, {
-      content: await renderTemplate(`systems/bol/templates/chat/chat-generic-result.hbs`, rollData)
-    });
-  }
-
-  /* -------------------------------------------- */
   static async processAttackSuccess(attackDef) {
     if (!game.user.isGM) { // Only GM process this
       return;
@@ -399,9 +352,10 @@ export class BoLUtility {
         attacker: attackDef.attacker,
         defender: attackDef.defender,
         defenderWeapons: defenderWeapons,
-        damageTotal: attackDef.damageRoll.total
+        damageTotal: attackDef.damageRoll.total,
+        damagesIgnoresArmor: attackDef.damagesIgnoresArmor,
       })
-    });
+    })
   }
 
   /* -------------------------------------------- */
@@ -423,7 +377,8 @@ export class BoLUtility {
   }
 
   /* -------------------------------------------- */
-  static getDamageFormula(weaponData) {
+  static getDamageFormula(weaponData, fightOption) {
+    let upgradeDamage = (fightOption && fightOption.data.properties.fightoptiontype == "twoweaponsatt")
     let damageString = weaponData.properties.damage
     let modifier = weaponData.properties.damageModifiers ?? 0
     let multiplier = weaponData.properties.damageMultiplier ?? 1
@@ -435,26 +390,33 @@ export class BoLUtility {
 
     let formula = damageString
     if (damageString.includes("d") || damageString.includes("D")) {
-      var myReg = new RegExp('(\\d+)[dD]([\\d]+)([MB]*)?([\\+\\d]*)?', 'g');
-      let res = myReg.exec(damageString);
-      let nbDice = parseInt(res[1]);
-      let postForm = 'kh' + nbDice;
-      let modIndex = 3;
+      var myReg = new RegExp('(\\d+)[dD]([\\d]+)([MB]*)?([\\+\\d]*)?', 'g')
+      let res = myReg.exec(damageString)
+      let nbDice = parseInt(res[1])
+      let postForm = 'kh' + nbDice
+      let modIndex = 3
+      // Upgrade damage if needed
+      if ( upgradeDamage && ( !res[3] || res[3]=="") ) {
+        res[3] = "B"  // Upgrade to bonus
+      }
       if (res[3]) {
+        if ( upgradeDamage && res[3] == 'M') {
+          res[3] = "" // Disable lamlus for upgradeDamage
+        }
         if (res[3] == 'M') {
-          postForm = 'kl' + nbDice;
-          nbDice++;
-          modIndex = 4;
+          postForm = 'kl' + nbDice
+          nbDice++
+          modIndex = 4
         }
         if (res[3] == 'B') {
-          postForm = 'kh' + nbDice;
-          nbDice++;
-          modIndex = 4;
+          postForm = 'kh' + nbDice
+          nbDice++
+          modIndex = 4
         }
       }
-      formula = "(" + nbDice + "d" + res[2] + reroll + postForm + "+" + modifier + ") *" + multiplier;
+      formula = "(" + nbDice + "d" + res[2] + reroll + postForm + "+" + modifier + ") *" + multiplier
     }
-    return formula;
+    return formula
   }
 
   /* -------------------------------------------- */

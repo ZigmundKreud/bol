@@ -12,9 +12,9 @@
 {{#if (equals data.subtype "career")}}
     {{> "systems/bol/templates/item/parts/properties/feature/career-properties.hbs"}}
 {{/if}}
-{{!#if (equals data.subtype "origin")}}
-    {{!> "systems/bol/templates/item/parts/properties/feature/origin-properties.hbs"}}
-{{!/if}}
+{{#if (equals data.subtype "fightoption")}}
+    {{> "systems/bol/templates/item/parts/properties/feature/fightoption-properties.hbs"}}
+{{/if}}
 {{!#if (equals data.subtype "race")}}
     {{!> "systems/bol/templates/item/parts/properties/feature/race-properties.hbs"}}
 {{!/if}}

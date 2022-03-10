@@ -23,11 +23,6 @@ export class BoLActor extends Actor {
   }
 
   /* -------------------------------------------- */
-  //_onUpdate(changed, options, user) {
-    //    
-  //}
-
-  /* -------------------------------------------- */
   updateResourcesData( ) {
     if ( this.type == 'character') {
       let newVitality = 10 + this.data.data.attributes.vigor.value + this.data.data.resources.hp.bonus
@@ -50,22 +45,92 @@ export class BoLActor extends Actor {
 
   /* -------------------------------------------- */
   get itemData(){
-    return Array.from(this.data.items.values()).map(i => i.data);
+    return Array.from(this.data.items.values()).map(i => i.data)
   }
   get details() {
-    return this.data.data.details;
+    return this.data.data.details
   }
   get attributes() {
-    return Object.values(this.data.data.attributes);
+    return Object.values(this.data.data.attributes)
   }
   get aptitudes() {
-    return Object.values(this.data.data.aptitudes);
+    return Object.values(this.data.data.aptitudes)
   }
+  /* -------------------------------------------- */
   get defenseValue() {
-    return this.data.data.aptitudes.def.value;
+    let defMod = 0
+    let fo = this.getActiveFightOption()
+    if (fo && fo.data.properties.fightoptiontype == "intrepid" ) {
+      defMod += -2
+    }
+    if (fo && fo.data.properties.fightoptiontype == "fulldefense" ) {
+      defMod += 2
+    }
+    if (fo && fo.data.properties.fightoptiontype == "twoweaponsdef" && !fo.data.properties.used) {
+      defMod += 1
+      this.updateEmbeddedDocuments("Item", [ {_id: fo._id, 'data.properties.used': true}] )
+    }
+    if (fo && fo.data.properties.fightoptiontype == "defense" ) {
+      defMod += 1
+    }
+    if (fo && fo.data.properties.fightoptiontype == "attack" ) {
+      defMod += -1
+    }
+    return this.data.data.aptitudes.def.value + defMod
   }
+
+  /* -------------------------------------------- */
+  getActiveFightOption( ) {
+    let it = this.itemData.find(i => i.type === "feature" && i.data.subtype === "fightoption" && i.data.properties.activated)
+    if (it) {
+      return duplicate(it)
+    }
+    return undefined
+  }
+  
+  /* -------------------------------------------- */
+  async toggleFightOption( itemId) {
+    let fightOption = this.data.items.get(itemId)
+    let state
+    let updates = []
+
+  if ( fightOption) {
+      fightOption = duplicate(fightOption)
+      if (fightOption.data.properties.activated) {
+        state = false
+      } else {
+        state = true
+      }
+      updates.push( {_id: fightOption._id, 'data.properties.activated': state} ) // Update the selected one
+      await this.updateEmbeddedDocuments("Item", updates) // Apply all changes
+      // Then notify 
+      ChatMessage.create({
+        alias: this.name,
+        whisper: BoLUtility.getWhisperRecipientsAndGMs(this.name),
+        content: await renderTemplate('systems/bol/templates/chat/chat-activate-fight-option.hbs', { name: this.name, img: fightOption.img, foName: fightOption.name, state: state} )
+      })
+
+    }
+  }
+
+  /* -------------------------------------------- */
+  get armorMalusValue() { // used for Fight Options
+    for(let armor of this.armors) {
+      if (armor.data.properties.armorQuality.includes("light"))  {
+        return 1
+      }
+      if (armor.data.properties.armorQuality.includes("medium"))  {
+        return 2
+      }
+      if (armor.data.properties.armorQuality.includes("heavy"))  {
+        return 3
+      }
+    }
+    return 0
+  }
+
   get resources() {
-    return Object.values(this.data.data.resources);
+    return Object.values(this.data.data.resources)
   }
   get boons() {
     return this.itemData.filter(i => i.type === "feature" && i.data.subtype === "boon");
@@ -83,13 +148,16 @@ export class BoLActor extends Actor {
     return this.itemData.filter(i => i.type === "feature" && i.data.subtype === "race");
   }
   get languages() {
-    return this.itemData.filter(i => i.type === "feature" && i.data.subtype === "language");
+    return this.itemData.filter(i => i.type === "feature" && i.data.subtype === "language")
+  }
+  get fightoptions() {
+    return this.itemData.filter(i => i.type === "feature" && i.data.subtype === "fightoption")
   }
   get features() {
-    return this.itemData.filter(i => i.type === "feature");
+    return this.itemData.filter(i => i.type === "feature")
   }
   get equipment() {
-    return this.itemData.filter(i => i.type === "item");
+    return this.itemData.filter(i => i.type === "item")
   }
   get armors() {
     return this.itemData.filter(i => i.type === "item"  && i.data.category === "equipment" && i.data.subtype === "armor");
@@ -100,7 +168,7 @@ export class BoLActor extends Actor {
   get shields() {
     return this.itemData.filter(i => i.type === "item" && i.data.category === "equipment" && i.data.subtype === "shield");
   }
-
+  
   get weapons() {
     return this.itemData.filter(i => i.type === "item" && i.data.category === "equipment" && i.data.subtype === "weapon");
   }
@@ -267,9 +335,15 @@ export class BoLActor extends Actor {
         "label": "BOL.featureCategory.languages",
         "ranked": false,
         "items": this.languages
+      },
+      "fightoptions": {
+        "label": "BOL.featureCategory.fightoptions",
+        "ranked": false,
+        "items": this.fightoptions
       }
-    };
+    }
   }
+  
   buildCombat(){
     return {
       "melee" : {
@@ -278,6 +352,7 @@ export class BoLActor extends Actor {
         "protection" : false,
         "blocking" : false,
         "ranged" : false,
+        "options": false,
         "items" : this.melee
       },
       "ranged" : {
@@ -286,6 +361,7 @@ export class BoLActor extends Actor {
         "protection" : false,
         "blocking" : false,
         "ranged" : true,
+        "options": false,
         "items" : this.ranged
       },
       "protections" : {
@@ -294,6 +370,7 @@ export class BoLActor extends Actor {
         "protection" : true,
         "blocking" : false,
         "ranged" : false,
+        "options": false,
         "items" : this.protections
       },
       "shields" : {
@@ -302,9 +379,19 @@ export class BoLActor extends Actor {
         "protection" : false,
         "blocking" : true,
         "ranged" : false,
+        "options": false,
         "items" : this.shields
+      },
+      "fightoptions" : {
+        "label" : "BOL.combatCategory.fightOptions",
+        "weapon" : false,
+        "protection" : false,
+        "blocking" : false,
+        "ranged" : false,
+        "options": true,
+        "items" : this.fightoptions
       }
-    };
+    }
   }
 
   /*-------------------------------------------- */

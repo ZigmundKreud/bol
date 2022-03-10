@@ -140,6 +140,14 @@
   "BOL.ui.rangeModifiers": "Range modifier",
   "BOL.ui.money": "Bougette",
   "BOL.ui.moneyTitle": "Gold & Treasure",
+  "BOL.ui.fightOption": "Fight Options",
+  "BOL.ui.none": "None",
+  "BOL.ui.fightOptionType": "Fight Options types",
+  "BOL.ui.activated": "Activated",
+  "BOL.ui.deactivated": "Deactivated",
+  "BOL.ui.status": "Status",
+  "BOL.ui.toactivated": "Active (>Désactiver)",
+  "BOL.ui.todeactivated": "Inactive (>Activer)",
 
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",
@@ -147,6 +155,7 @@
   "BOL.featureCategory.boons": "Avantages",
   "BOL.featureCategory.flaws": "Désavantages",
   "BOL.featureCategory.languages": "Langages",
+  "BOL.featureCategory.fightoptions": "Fight Options",
 
   "BOL.featureSubtypes.origin": "Origine",
   "BOL.featureSubtypes.race": "Race",
@@ -155,12 +164,21 @@
   "BOL.featureSubtypes.flaw": "Désavantage",
   "BOL.featureSubtypes.language": "Langage",
   "BOL.featureSubtypes.gods": "Faith & Gods",
-  
+  "BOL.featureSubtypes.fightOption": "Combat Option",
+
   "BOL.bougette.nomoney": "Nothing",
   "BOL.bougette.tolive": "To live",  
   "BOL.bougette.easylife": "Easy Life",
   "BOL.bougette.luxury" : "Luxury life",
   "BOL.bougette.rich": "Rich!",
+
+  "BOL.fightOptionTypes.armor": "Attaque au défaut d'armure",
+  "BOL.fightOptionTypes.intrepid": "Attaque intrépide",
+  "BOL.fightOptionTypes.twoweaponsdef": "Combat à 2 armes (Défense)",
+  "BOL.fightOptionTypes.twoweaponsatt": "Combat à 2 armes (Attaque)",
+  "BOL.fightOptionTypes.fulldefense": "Défense totale",
+  "BOL.fightOptionTypes.defense": "Posture défensive",
+  "BOL.fightOptionTypes.attack": "Posture offensive",
 
   "BOL.itemCategory.object": "Objet",
   "BOL.itemCategory.equipment": "Équipement",
@@ -175,6 +193,7 @@
   "BOL.combatCategory.shields": "Boucliers",
   "BOL.combatCategory.melee": "Armes de contact",
   "BOL.combatCategory.ranged": "Armes à distance",
+  "BOL.combatCategory.fightOptions": "Fight options",
 
   "BOL.equipmentCategory.weapon": "Arme",
   "BOL.equipmentCategory.armor": "Armure",

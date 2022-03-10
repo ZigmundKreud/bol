@@ -1,20 +1,29 @@
-<img class="chat-icon" src="{{actor.img}}" alt="{{actor.name}}"/>
-{{#if isSuccess}}
-    {{#if isCritical}}
-        <h2 class="success critical"><i class="fas fa-check-double"></i>&nbsp;{{localize "BOL.ui.critical"}}...</h2>
-    {{else}}
-        <h2 class="success"><i class="fas fa-check"></i>&nbsp;{{localize "BOL.ui.success"}}...</h2>
-    {{/if}}
-{{/if}}
-{{#if isFailure}}
-    {{#if isFumble}}
-        <h2 class="failure fumble"><i class="fas fa-skull-crossbones"></i>&nbsp;{{localize "BOL.ui.fumble"}}...</h2>
-    {{else}}
-        <h2 class="failure"><i class="fas fa-times"></i>&nbsp;{{localize "BOL.ui.failure"}}...</h2>
-    {{/if}}
-{{/if}}
+<div>
+  {{#if isSuccess}}
+      {{#if isCritical}}
+          <h2 class="success critical"><i class="fas fa-check-double"></i>&nbsp;{{localize "BOL.ui.critical"}}...
+      {{else}}
+          <h2 class="success"><i class="fas fa-check"></i>&nbsp;{{localize "BOL.ui.success"}}...
+      {{/if}}
+  {{/if}}
+  {{#if isFailure}}
+      {{#if isFumble}}
+          <h2 class="failure fumble"><i class="fas fa-skull-crossbones"></i>&nbsp;{{localize "BOL.ui.fumble"}}...
+      {{else}}
+          <h2 class="failure"><i class="fas fa-times"></i>&nbsp;{{localize "BOL.ui.failure"}}...
+      {{/if}}
+  {{/if}}
+    <img class="chat-icon" src="{{actor.img}}" alt="{{actor.name}}"/>
+  </h2>
+</div>
 
 <h3><strong>{{description}}</strong></h3> 
+
+{{#if fightOption}}
+<div>
+  Option de combat : {{fightOption.name}}
+</div>
+{{/if}}
 
 <div id="{{optionsId}}">
   {{#if (and isSuccess weapon)}}
@@ -33,4 +42,5 @@
   {{#if isRealCritical}}
     <button class="chat-button button transform-heroic-roll" data-roll-id=="{{rollId}}" data-actor-id="{{actor.id}}">Transformer en succes héroique (1 P. Heroisme)</button>
   {{/if}}
+  <br>
 </div>

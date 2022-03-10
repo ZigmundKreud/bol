@@ -42,7 +42,12 @@ export class BoLActorSheet extends ActorSheet {
     html.find('.create_item').click(ev => {
       this.actor.createEmbeddedDocuments('Item', [{ name: "Nouvel Equipement", type: "item" }], { renderSheet: true });
     });
-
+    
+    html.find(".toggle-fight-option").click((ev) => {
+      const li = $(ev.currentTarget).parents(".item")
+      this.actor.toggleFightOption( li.data("itemId") )
+    })
+    
     html.find(".inc-dec-btns-alchemy").click((ev) => {
       const li = $(ev.currentTarget).parents(".item");
       this.actor.spendAlchemyPoint( li.data("itemId"), 1)
@@ -97,17 +102,6 @@ export class BoLActorSheet extends ActorSheet {
     // Rollable abilities.
     html.find('.rollable').click(this._onRoll.bind(this));
 
-    // html.find('.roll-attribute').click(ev => {
-    //   this.actor.rollAttributeAptitude( $(ev.currentTarget).data("attr-key") );
-    // });
-    // html.find('.roll-career').click(ev => {
-    //   const li = $(ev.currentTarget).parents(".item");
-    //   this.actor.rollCareer( li.data("itemId") );
-    // });
-    // html.find('.roll-weapon').click(ev => {
-    //   const li = $(ev.currentTarget).parents(".item");
-    //   this.actor.rollWeapon( li.data("itemId") );
-    // });
   }
 
   /* -------------------------------------------- */
@@ -131,11 +125,11 @@ export class BoLActorSheet extends ActorSheet {
     formData.alchemy = this.actor.alchemy
     formData.containers = this.actor.containers
     formData.treasure = this.actor.treasure
-    formData.treasure = this.actor.treasure
-    formData.treasure = this.actor.alchemyrecipe
-    formData.vehicles = this.actor.vehicles;
-    formData.ammos = this.actor.ammos;
-    formData.misc = this.actor.misc;
+    formData.alchemyrecipe = this.actor.alchemyrecipe
+    formData.vehicles = this.actor.vehicles
+    formData.fightoptions = this.actor.fightoptions
+    formData.ammos = this.actor.ammos
+    formData.misc = this.actor.misc
     formData.combat = this.actor.buildCombat()
     formData.features = this.actor.buildFeatures()
     formData.isGM = game.user.isGM
@@ -148,9 +142,9 @@ export class BoLActorSheet extends ActorSheet {
     formData.isAlchemist = this.actor.isAlchemist()
     formData.isPriest = this.actor.isPriest()
       
-    formData.isGM= game.user.isGM
+    formData.isGM = game.user.isGM
 
-    console.log("ACTORDATA", formData);
+    console.log("ACTORDATA", formData)
     return formData;
   }
   /* -------------------------------------------- */

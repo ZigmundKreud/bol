@@ -617,6 +617,14 @@ a:hover {
   color: darkred;
   font-weight: bold;
 }
+h2.good {
+  color: darkgreen;
+  font-weight: bold;
+}
+h2.bad {
+  color: darkred;
+  font-weight: bold;
+}
 .message-header h2.roll {
   color: darkslategrey;
   font-weight: bold;
@@ -934,4 +942,7 @@ body.system-bol img#logo {
   margin: 3px;
   width: 64px;
   height: 64px;
+}
+.dialog-button {
+  max-height: 2rem;
 }

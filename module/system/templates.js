@@ -33,6 +33,7 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/bol/templates/item/parts/properties/feature/flaw-properties.hbs",
         "systems/bol/templates/item/parts/properties/feature/origin-properties.hbs",
         "systems/bol/templates/item/parts/properties/feature/race-properties.hbs",
+        "systems/bol/templates/item/parts/properties/feature/fightoption-properties.hbs",
 
         // DIALOGS
         "systems/bol/templates/chat/rolls/attack-damage-card.hbs",
@@ -47,7 +48,8 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/bol/templates/dialogs/career-roll-part.hbs",
         "systems/bol/templates/dialogs/boons-roll-part.hbs",
         "systems/bol/templates/dialogs/flaws-roll-part.hbs",
-        "systems/bol/templates/dialogs/total-roll-part.hbs",        
+        "systems/bol/templates/dialogs/total-roll-part.hbs",   
+        "systems/bol/templates/dialogs/fightoptions-roll-part.hbs",
     ];
 
     // Load the template parts
