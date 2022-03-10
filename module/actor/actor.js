@@ -56,6 +56,17 @@ export class BoLActor extends Actor {
   get aptitudes() {
     return Object.values(this.data.data.aptitudes)
   }
+
+  /* -------------------------------------------- */
+  clearRoundModifiers( ) { // Process data/items that are finished at end of a round
+    let foList = this.fightoptions
+    for(let fo of foList) {
+      if (fo.data.properties.used) {
+        this.updateEmbeddedDocuments("Item", [ {_id: fo._id, 'data.properties.used': false}] )
+      }
+    }
+  }
+
   /* -------------------------------------------- */
   get defenseValue() {
     let defMod = 0

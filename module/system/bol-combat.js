@@ -55,7 +55,7 @@ export class BoLCombatManager extends Combat {
     let combatants = this.combatants.contents
     for (let c of combatants) {
       let actor = game.actors.get( c.data.actorId )
-      //actor.clearRoundModifiers()
+      actor.clearRoundModifiers()
     }
     super.nextRound()
   }
