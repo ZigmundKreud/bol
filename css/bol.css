@@ -946,3 +946,39 @@ body.system-bol img#logo {
 .dialog-button {
   max-height: 2rem;
 }
+.xp-next {
+  color: darkgrey;
+  font-size: 1.0rem;
+  border: 1px solid #4b4a44;
+  box-shadow: 1px 1px 1px gray;
+  border-radius: 100px;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/** Tooltip section */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+.tooltip-container .tooltiptext {
+  text-align: center;  
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  /* Fade in tooltip */
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background-color: #f2f3a2a0;
+  padding: 4px;
+  width: 4rem;
+  border-radius: 25%;
+  border-width: 1px;
+  transform: translate(-40%, -60%);
+}
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip-container:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}

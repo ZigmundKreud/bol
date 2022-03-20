@@ -2,7 +2,7 @@
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-import {BoLRoll} from "../controllers/bol-rolls.js";
+import { BoLRoll } from "../controllers/bol-rolls.js";
 import { BoLUtility } from "../system/bol-utility.js";
 
 export class BoLActorSheet extends ActorSheet {
@@ -42,23 +42,23 @@ export class BoLActorSheet extends ActorSheet {
     html.find('.create_item').click(ev => {
       this.actor.createEmbeddedDocuments('Item', [{ name: "Nouvel Equipement", type: "item" }], { renderSheet: true });
     });
-    
+
     html.find(".toggle-fight-option").click((ev) => {
       const li = $(ev.currentTarget).parents(".item")
-      this.actor.toggleFightOption( li.data("itemId") )
+      this.actor.toggleFightOption(li.data("itemId"))
     })
-    
+
     html.find(".inc-dec-btns-alchemy").click((ev) => {
       const li = $(ev.currentTarget).parents(".item");
-      this.actor.spendAlchemyPoint( li.data("itemId"), 1)
+      this.actor.spendAlchemyPoint(li.data("itemId"), 1)
     })
 
     // Incr./Decr. career ranks
     html.find(".inc-dec-btns").click((ev) => {
       const li = $(ev.currentTarget).parents(".item");
-      if(li){
+      if (li) {
         const item = this.actor.items.get(li.data("itemId"));
-        if(item){
+        if (item) {
           const dataset = ev.currentTarget.dataset;
           const operator = dataset.operator;
           const target = dataset.target;
@@ -66,18 +66,18 @@ export class BoLActorSheet extends ActorSheet {
           const min = parseInt(dataset.min)
           const max = parseInt(dataset.max) || 10000
           const itemData = item.data;
-          let value = eval("itemData."+target)
+          let value = eval("itemData." + target)
           value = value || 0
           console.log("IncDec", item, target, value, operator, min, max)
-          if(operator === "minus"){
-            if(value >= min + incr) value -= incr;
+          if (operator === "minus") {
+            if (value >= min + incr) value -= incr;
             else value = min;
           }
-          if(operator === "plus") {
-            if(value <= max - incr) value += incr;
+          if (operator === "plus") {
+            if (value <= max - incr) value += incr;
             else value = max;
           }
-          let update = { [`${target}`]: value};
+          let update = { [`${target}`]: value };
           item.update(update);
         }
       }
@@ -94,7 +94,7 @@ export class BoLActorSheet extends ActorSheet {
           this.actor.deleteEmbeddedDocuments("Item", [li.data("itemId")])
           li.slideUp(200, () => this.render(false));
         },
-        no: () => {},
+        no: () => { },
         defaultYes: false,
       });
     });
@@ -133,15 +133,15 @@ export class BoLActorSheet extends ActorSheet {
     formData.combat = this.actor.buildCombat()
     formData.features = this.actor.buildFeatures()
     formData.isGM = game.user.isGM
-    formData.options= this.options
-    formData.owner= this.document.isOwner
-    formData.editScore= this.options.editScore
+    formData.options = this.options
+    formData.owner = this.document.isOwner
+    formData.editScore = this.options.editScore
     formData.useBougette = BoLUtility.getUseBougette()
 
     formData.isSorcerer = this.actor.isSorcerer()
     formData.isAlchemist = this.actor.isAlchemist()
     formData.isPriest = this.actor.isPriest()
-      
+
     formData.isGM = game.user.isGM
 
     console.log("ACTORDATA", formData)
@@ -190,34 +190,44 @@ export class BoLActorSheet extends ActorSheet {
    */
   _onRoll(event) {
     event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-    const actorData = this.getData();
-    const rollType = dataset.rollType;
-    const li = $(event.currentTarget).closest(".item");
-    switch(rollType) {
-      case "attribute" :
+    const element = event.currentTarget
+    const dataset = element.dataset
+    const actorData = this.getData()
+    const rollType = dataset.rollType
+    const li = $(event.currentTarget).closest(".item")
+    switch (rollType) {
+      case "attribute":
         BoLRoll.attributeCheck(this.actor, actorData, dataset, event);
         break;
-      case "aptitude" :
+      case "aptitude":
         BoLRoll.aptitudeCheck(this.actor, actorData, dataset, event);
         break;
-      case "weapon": 
+      case "weapon":
         BoLRoll.weaponCheck(this.actor, actorData, dataset, event);
         break;
-      case "spell": 
+      case "spell":
         BoLRoll.spellCheck(this.actor, actorData, dataset, event);
         break;
-      case "alchemy": 
+      case "alchemy":
         BoLRoll.alchemyCheck(this.actor, actorData, dataset, event);
         break;
-      case "protection": 
+      case "protection":
         this.actor.rollProtection(li.data("item-id"))
         break;
-      case "damage": 
+      case "damage":
         this.actor.rollWeaponDamage(li.data("item-id"))
         break;
-      default : break;
+      case "aptitudexp":
+        this.actor.incAptitudeXP(dataset.key)
+        break;
+      case "attributexp":
+        this.actor.incAttributeXP(dataset.key)
+        break;
+      case "careerxp":
+        this.actor.incCareerXP( li.data("item-id"))
+        break;
+
+      default: break;
     }
   }
 

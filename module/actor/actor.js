@@ -98,7 +98,55 @@ export class BoLActor extends Actor {
     }
     return undefined
   }
-  
+
+  /* -------------------------------------------- */
+  incAttributeXP( key)  {
+    let attr = duplicate(this.data.data.attributes[key])
+    if (attr) {
+      let nextXP = (attr.value == -1) ? 2 : attr.value + (attr.value+1)
+      let xp = duplicate(this.data.data.xp)
+      if ( xp.total - xp.spent >= nextXP) {
+        attr.value += 1
+        xp.spent += nextXP
+        this.update( { [`data.attributes.${key}`]: attr, [`data.xp`]: xp } )
+      } else {
+        ui.notifications.warn("Pas assez de points d'expérience !")
+      }
+    }
+  }
+
+  /* -------------------------------------------- */
+  incAptitudeXP( key)  {
+    let apt = duplicate(this.data.data.aptitudes[key])
+    if (apt) {
+      let nextXP = (apt.value == -1) ? 1 : apt.value + 2
+      let xp = duplicate(this.data.data.xp)
+      if ( xp.total - xp.spent >= nextXP) {
+        apt.value += 1
+        xp.spent += nextXP
+        this.update( { [`data.aptitudes.${key}`]: apt, [`data.xp`]: xp } )
+      } else {
+        ui.notifications.warn("Pas assez de points d'expérience !")
+      }
+    }
+  }
+  /* -------------------------------------------- */
+  incCareerXP( itemId) {
+    let career = this.data.items.get( itemId )
+    if (career) {
+      career = duplicate(career)
+      let nextXP = career.data.rank + 1
+      let xp = duplicate(this.data.data.xp)
+      if ( xp.total - xp.spent >= nextXP) {
+        xp.spent += nextXP
+        this.update( { [`data.xp`]: xp } )
+        this.updateEmbeddedDocuments( 'Item', [ { _id: career._id, 'data.rank': career.data.rank + 1 } ])
+      } else {
+        ui.notifications.warn("Pas assez de points d'expérience !")
+      }
+    }
+  }
+
   /* -------------------------------------------- */
   async toggleFightOption( itemId) {
     let fightOption = this.data.items.get(itemId)

@@ -39,53 +39,49 @@ export const registerHandlebarsHelpers = function () {
 
     Handlebars.registerHelper('gt', function (val1, val2) {
         return val1 > val2;
-    });
+    })
 
     Handlebars.registerHelper('lt', function (val1, val2) {
         return val1 < val2;
-    });
+    })
 
     Handlebars.registerHelper('gte', function (val1, val2) {
         return val1 >= val2;
-    });
+    })
 
     Handlebars.registerHelper('lte', function (val1, val2) {
         return val1 <= val2;
-    });
+    })
     Handlebars.registerHelper('and', function (val1, val2) {
         return val1 && val2;
-    });
-
+    })
     Handlebars.registerHelper('or', function (val1, val2) {
         return val1 || val2;
-    });
+    })
 
     Handlebars.registerHelper('or3', function (val1, val2, val3) {
         return val1 || val2 || val3;
-    });
+    })
     
     Handlebars.registerHelper('for', function(from, to, incr, block) {
       var accum = '';
       for(var i = from; i < to; i += incr)
           accum += block.fn(i);
       return accum;
-    });
+    })
     
     Handlebars.registerHelper('not', function (cond) {
         return !cond;
-    });
-
+    })
     Handlebars.registerHelper('count', function (list) {
         return list.length;
-    });
-
+    })
     Handlebars.registerHelper('isEnabled', function (configKey) {
         return game.settings.get("bol", configKey);
-    });
-
+    })
     Handlebars.registerHelper('split', function (str, separator, keep) {
         return str.split(separator)[keep];
-    });
+    })
 
     // If you need to add Handlebars helpers, here are a few useful examples:
     Handlebars.registerHelper('concat', function () {
@@ -96,32 +92,30 @@ export const registerHandlebarsHelpers = function () {
             }
         }
         return outStr;
-    });
+    })
 
     Handlebars.registerHelper('add', function (a, b) {
         return parseInt(a) + parseInt(b);
     });
-  
+    Handlebars.registerHelper('mul', function (a, b) {
+      return parseInt(a) * parseInt(b);
+    })
     Handlebars.registerHelper('sub', function (a, b) {
       return parseInt(a) - parseInt(b);
-    });
-
+    })
     Handlebars.registerHelper('valueAtIndex', function (arr, idx) {
         return arr[idx];
-    });
-
+    })
     Handlebars.registerHelper('includesKey', function (items, type, key) {
         // console.log(items);
         return items.filter(i => i.type === type).map(i => i.data.key).includes(key);
-    });
-
+    })
     Handlebars.registerHelper('includes', function (array, val) {
         return array.includes(val);
-    });
-
+    })
     Handlebars.registerHelper('eval', function (expr) {
         return eval(expr);
-    });
+    })
 
     
 
