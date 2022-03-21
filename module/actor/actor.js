@@ -455,14 +455,15 @@ export class BoLActor extends Actor {
 
   /*-------------------------------------------- */
   async manageHealthState() {
-    let lastHP = await this.getFlag("world", "lastHP")
+    let hpID = "lastHP"+this.id
+    let lastHP = await this.getFlag("world", hpID )
     if ( lastHP != this.data.data.resources.hp.value ) {
-      await this.setFlag("world", "lastHP", this.data.data.resources.hp.value)
+      await this.setFlag("world", hpID, this.data.data.resources.hp.value)
       if (this.data.data.resources.hp.value <= 0 ) {
         ChatMessage.create({
           alias: this.name,
           whisper: BoLUtility.getWhisperRecipientsAndGMs(this.name),
-          content: await renderTemplate('systems/bol/templates/chat/chat-vitality-zero.hbs', { name: this.name, hp: this.data.data.resources.hp.value} )
+          content: await renderTemplate('systems/bol/templates/chat/chat-vitality-zero.hbs', { name: this.name, img: this.img, hp: this.data.data.resources.hp.value} )
         })
       }
     }
@@ -499,7 +500,7 @@ export class BoLActor extends Actor {
       if ( protect.data.subtype == 'helm') {
         formula += "+1"  
       } else if ( protect.data.subtype == 'armor') {
-        if ( BoLUtility.this.getRollArmor() ) {
+        if ( BoLUtility.getRollArmor() ) {
           if ( !protect.data.properties.soak.formula || protect.data.properties.soak.formula=="") {
             ui.notifications.warn(`L'armure ${protect.name} n'a pas de formule pour la protection !`)        
           } else { 
