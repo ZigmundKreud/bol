@@ -982,3 +982,43 @@ body.system-bol img#logo {
   visibility: visible;
   opacity: 1;
 }
+
+/** HUD SECTION */
+.tokenhudext {
+	display: flex; 
+	flex: 0 !important;
+  font-family: CaslonPro;
+  font-weight: 600;
+}
+.tokenhudext.left {
+  justify-content: flex-start;
+  flex-direction: column;
+  position: absolute;
+  top: 2.75rem;
+  right: 4rem;
+}
+.tokenhudext.right {
+  justify-content: flex-start;
+  flex-direction: column;
+  position: absolute;
+  top: 2.75rem;
+  left: 4rem;
+}
+.control-icon.tokenhudicon {
+  width: fit-content;
+  height: fit-content;
+  min-width: 6rem;
+  flex-basis: auto;
+  padding: 0;
+  line-height: 1rem;
+  margin: 0.25rem;
+}
+.control-icon.tokenhudicon.right {
+  margin-left: 8px;
+}
+#token-hud .status-effects.active{
+  z-index: 2;
+}
+.bol-hud-menu label {
+  font-size: 0.75rem;
+}

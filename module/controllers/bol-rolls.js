@@ -1,6 +1,5 @@
 import { BoLUtility } from "../system/bol-utility.js";
 
-const __adv2dice = { ["1B"]: 3, ["2B"]: 4, ["2"]: 2, ["1M"]: 3, ["2M"]: 4 }
 const _apt2attr = { init: "mind", melee: "agility", ranged: "agility", def: "vigor" }
 
 /* -------------------------------------------- */
@@ -12,56 +11,44 @@ export class BoLRoll {
   }
 
   /* -------------------------------------------- */
-  static convertToAdv(adv) {
-    if (adv == 0) return "2"
-    return Math.abs(adv) + (adv < 0) ? 'M' : 'B';
-  }
-  /* -------------------------------------------- */
   static getDefaultAttribute(key) {
     return _apt2attr[key]
   }
   
   /* -------------------------------------------- */
-  static attributeCheck(actor, actorData, dataset, event) {
-    const key = dataset.key
-    const adv = dataset.adv
+  static attributeCheck(actor, key ) {
 
     let attribute = eval(`actor.data.data.attributes.${key}`)
     let label = (attribute.label) ? game.i18n.localize(attribute.label) : null
-    let description = actor.name + " - " + game.i18n.localize('BOL.ui.attributeCheck') + " - " + game.i18n.localize(attribute.label)
+    let description = game.i18n.localize('BOL.ui.attributeCheck') + " - " + game.i18n.localize(attribute.label)
 
     let rollData = {
       mode: "attribute",
       actor: actor,
-      actorData: actorData,
       attribute: attribute,
       attrValue: attribute.value,
       aptValue: 0,
       label: label,
       careerBonus: 0,
       description: description,
-      adv: this.convertToAdv(adv),
       mod: 0
     }
     return this.displayRollDialog( rollData )
   }
 
   /* -------------------------------------------- */
-  static aptitudeCheck(actor, actorData, dataset, event) {
-    const key = dataset.key;
-    const adv = dataset.adv;
+  static aptitudeCheck(actor, key ) {
 
-    let aptitude = eval(`actor.data.data.aptitudes.${key}`);
+    let aptitude = eval(`actor.data.data.aptitudes.${key}`)
     let attrKey = this.getDefaultAttribute(key)
-    let attribute = eval(`actor.data.data.attributes.${attrKey}`);
+    let attribute = eval(`actor.data.data.attributes.${attrKey}`)
 
     let label = (aptitude.label) ? game.i18n.localize(aptitude.label) : null;
-    let description = actor.name + " - " + game.i18n.localize('BOL.ui.aptitudeCheck') + " - " + game.i18n.localize(aptitude.label);
+    let description = game.i18n.localize('BOL.ui.aptitudeCheck') + " - " + game.i18n.localize(aptitude.label);
     return this.displayRollDialog(
       {
         mode: "aptitude",
         actor: actor,
-        actorData: actorData,
         attribute: attribute,
         aptitude: aptitude,
         attrValue: attribute.value,
@@ -69,20 +56,15 @@ export class BoLRoll {
         label: label,
         careerBonus: 0,
         description: description,
-        adv: this.convertToAdv(adv),
         mod: 0
       });
   }
 
   /* -------------------------------------------- */
-  static weaponCheck(actor, actorData, dataset, event) {
+  static weaponCheckWithWeapon(actor, weapon) {
+    
     let target = BoLUtility.getTarget()
-    const li = $(event.currentTarget).parents(".item")
-    const weapon = actor.items.get(li.data("item-id"))
-    if (!weapon) {
-      ui.notifications.warn("Unable to find weapon !")
-      return;
-    }
+    
     let weaponData = weapon.data.data
     let attribute =  eval(`actor.data.data.attributes.${weaponData.properties.attackAttribute}`)
     let aptitude = eval(`actor.data.data.aptitudes.${weaponData.properties.attackAptitude}`)
@@ -97,7 +79,6 @@ export class BoLRoll {
     let rolldata = {
       mode: "weapon",
       actor: actor,
-      actorData: actorData,
       weapon: weapon,
       isRanged: weaponData.properties.ranged || weaponData.properties.throwing,
       target: target,
@@ -111,13 +92,23 @@ export class BoLRoll {
       mod: 0,
       modRanged: 0,
       label: (weapon.name) ? weapon.name : game.i18n.localize('BOL.ui.noWeaponName'),
-      description: actor.name + " - " + game.i18n.localize('BOL.ui.weaponAttack'),
+      description: game.i18n.localize('BOL.ui.weaponAttack') + " : " + weapon.name,
     }
     return this.displayRollDialog(rolldata)
   }
+  /* -------------------------------------------- */
+  static weaponCheck(actor, event) {
+    const li = $(event.currentTarget).parents(".item")
+    const weapon = actor.items.get(li.data("item-id"))
+    if (!weapon) {
+      ui.notifications.warn("Unable to find weapon !")
+      return
+    }
+    return this.weaponCheckWithWeapon(actor, weapon)
+  }
 
   /* -------------------------------------------- */
-  static alchemyCheck(actor, actorData, dataset, event) {
+  static alchemyCheck(actor, event) {
     const li = $(event.currentTarget).parents(".item");
     const alchemy = actor.items.get(li.data("item-id"));
     if (!alchemy) {
@@ -133,7 +124,6 @@ export class BoLRoll {
     let alchemyDef = {
       mode: "alchemy",
       actor: actor,
-      actorData: actorData,
       alchemy: alchemy,
       attribute: actor.data.data.attributes.mind,
       attrValue: actor.data.data.attributes.mind.value,
@@ -143,7 +133,7 @@ export class BoLRoll {
       pcCostCurrent: Number(alchemyData.properties.pccurrent),
       mod: Number(alchemyData.properties.difficulty),
       label: alchemy.name,
-      description: actor.name + " - " + game.i18n.localize('BOL.ui.makeAlchemy'),
+      description: game.i18n.localize('BOL.ui.makeAlchemy') + "+" + alchemy.name,
     }
     console.log("ALCHEMY!", alchemyDef);
     return this.displayRollDialog(alchemyDef);
@@ -151,7 +141,7 @@ export class BoLRoll {
 
 
   /* -------------------------------------------- */
-  static spellCheck(actor, actorData, dataset, event) {
+  static spellCheck(actor, event) {
     if (actor.data.data.resources.power.value <= 0) {
       ui.notifications.warn("Plus assez de points de Pouvoir !")
       return
@@ -166,7 +156,6 @@ export class BoLRoll {
     let spellDef = {
       mode: "spell",
       actor: actor,
-      actorData: actorData,
       spell: spell,
       attribute: actor.data.data.attributes.mind,
       attrValue: actor.data.data.attributes.mind.value,
@@ -176,7 +165,7 @@ export class BoLRoll {
       ppCost: Number(spell.data.data.properties.ppcost),
       mod: Number(spellData.properties.difficulty),
       label: spell.name,
-      description: actor.name + " - " + game.i18n.localize('BOL.ui.focusSpell'),
+      description: game.i18n.localize('BOL.ui.focusSpell') + " : " + spell.name,
     }
     console.log("SPELL!", spellDef);
     return this.displayRollDialog(spellDef);
@@ -319,7 +308,7 @@ export class BoLRoll {
 
     // initialize default flags/values
     const rollOptionTpl = `systems/bol/templates/dialogs/${rollData.mode}-roll-dialog.hbs`
-    rollData.careers = rollData.actorData.features.careers
+    rollData.careers = rollData.actor.careers
     rollData.boons = rollData.actor.bonusBoons
     rollData.flaws = rollData.actor.malusFlaws
     rollData.defence = 0

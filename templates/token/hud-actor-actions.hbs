@@ -1,0 +1,10 @@
+<div class="control-icon bol-action ">
+  <img class="bol-hud-togglebutton" src="icons/svg/sword.svg" width="36" height="36" title="Action" />
+  <div class="bol-hud-list tokenhudext right">
+    {{#each actionsList as |action key|}}
+    <div class="control-icon tokenhudicon bol-hud-menu" data-action-index="{{key}}" title="{{action.name}}">
+      <label>{{action.name}}</label>
+    </div>
+    {{/each}}
+  </div>
+</div>

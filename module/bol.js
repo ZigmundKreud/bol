@@ -1,16 +1,19 @@
+/* -------------------------------------------- */
 // Import Modules
-import { BoLActor } from "./actor/actor.js";
-import { BoLActorSheet } from "./actor/actor-sheet.js";
-import { BoLItem } from "./item/item.js";
-import { BoLItemSheet } from "./item/item-sheet.js";
-import { System, BOL } from "./system/config.js";
-import { preloadHandlebarsTemplates } from "./system/templates.js";
-import { registerHandlebarsHelpers } from "./system/helpers.js";
-import registerHooks from "./system/hooks.js";
-import { Macros } from "./system/macros.js";
-import { BoLUtility } from "./system/bol-utility.js";
-import { BoLCombatManager } from "./system/bol-combat.js";
+import { BoLActor } from "./actor/actor.js"
+import { BoLActorSheet } from "./actor/actor-sheet.js"
+import { BoLItem } from "./item/item.js"
+import { BoLItemSheet } from "./item/item-sheet.js"
+import { System, BOL } from "./system/config.js"
+import { preloadHandlebarsTemplates } from "./system/templates.js"
+import { registerHandlebarsHelpers } from "./system/helpers.js"
+import registerHooks from "./system/hooks.js"
+import { Macros } from "./system/macros.js"
+import { BoLUtility } from "./system/bol-utility.js"
+import { BoLCombatManager } from "./system/bol-combat.js"
+import { BoLTokenHud } from "./system/bol-action-hud.js"
 
+/* -------------------------------------------- */
 Hooks.once('init', async function () {
 
   game.bol = {
@@ -47,8 +50,9 @@ Hooks.once('init', async function () {
   Items.registerSheet("bol", BoLItemSheet, { makeDefault: true });
 
   // Inot useful stuff
-  BoLUtility.init();
-  
+  BoLUtility.init()
+  BoLTokenHud.init()
+
   // Preload Handlebars Templates
   await preloadHandlebarsTemplates();
 

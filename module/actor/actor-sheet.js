@@ -192,24 +192,23 @@ export class BoLActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget
     const dataset = element.dataset
-    const actorData = this.getData()
     const rollType = dataset.rollType
     const li = $(event.currentTarget).closest(".item")
     switch (rollType) {
       case "attribute":
-        BoLRoll.attributeCheck(this.actor, actorData, dataset, event);
+        BoLRoll.attributeCheck(this.actor, dataset.key, event)
         break;
       case "aptitude":
-        BoLRoll.aptitudeCheck(this.actor, actorData, dataset, event);
+        BoLRoll.aptitudeCheck(this.actor, dataset.key, event)
         break;
       case "weapon":
-        BoLRoll.weaponCheck(this.actor, actorData, dataset, event);
+        BoLRoll.weaponCheck(this.actor, event)
         break;
       case "spell":
-        BoLRoll.spellCheck(this.actor, actorData, dataset, event);
+        BoLRoll.spellCheck(this.actor, event)
         break;
       case "alchemy":
-        BoLRoll.alchemyCheck(this.actor, actorData, dataset, event);
+        BoLRoll.alchemyCheck(this.actor, event)
         break;
       case "protection":
         this.actor.rollProtection(li.data("item-id"))

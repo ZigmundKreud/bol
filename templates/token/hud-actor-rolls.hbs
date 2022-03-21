@@ -1,0 +1,10 @@
+<div class="control-icon bol-roll ">
+  <img class="bol-hud-togglebutton" src="icons/svg/dice-target.svg" width="36" height="36" title="Jets" />
+  <div class="bol-hud-list tokenhudext left">
+    {{#each rollsList as |roll key|}}
+    <div class="control-icon tokenhudicon bol-hud-menu" data-roll-index="{{key}}" title="{{localize roll.name}}">
+      <label>{{ localize roll.name}}</label>
+    </div>
+    {{/each}}
+  </div>
+</div>
