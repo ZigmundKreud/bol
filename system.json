@@ -3,12 +3,18 @@
   "title": "Barbarians of Lemuria",
   "description": "The Barbarians of Lemuria system for FoundryVTT!",
   "author": "Zigmund,LeRatierBretonnien",
-  "authors": ["Zigmund", "LeRatierBretonnien"],
+  "authors": [
+    {
+      "name": "Zigmund"
+    },
+    {
+      "name": "LeRatierBretonnien"
+    }
+  ],
   "url": "https://github.com/ZigmundKreud/bol",
   "license": "LICENSE.txt",
   "flags": {},
-  "version": "1.2.6",
-  "templateVersion": 22,
+  "version": "1.2.7",
   "minimumCoreVersion": "0.8.6",
   "compatibleCoreVersion": "9",
   "scripts": [],
@@ -36,60 +42,60 @@
       "label": "Avantages",
       "system": "bol",
       "path": "./packs/boons.db",
-      "entity": "Item",
       "tag": "boon",
       "type": "Item",
-      "private": false
+      "private": false,
+      "entity": "Item"
     },
     {
       "name": "flaws",
       "label": "Désavantages",
       "system": "bol",
       "path": "./packs/flaws.db",
-      "entity": "Item",
       "tag": "flaw",
       "type": "Item",
-      "private": false
+      "private": false,
+      "entity": "Item"
     },
     {
       "name": "careers",
       "label": "Carrières héroïques",
       "system": "bol",
       "path": "./packs/careers.db",
-      "entity": "Item",
       "tag": "career",
       "type": "Item",
-      "private": false
+      "private": false,
+      "entity": "Item"
     },
     {
       "name": "origins",
       "label": "Origines",
       "system": "bol",
       "path": "./packs/origins.db",
-      "entity": "Item",
       "tag": "origin",
       "type": "Item",
-      "private": false
+      "private": false,
+      "entity": "Item"
     },
     {
       "name": "races",
       "label": "Races",
       "system": "bol",
       "path": "./packs/races.db",
-      "entity": "Item",
       "tag": "race",
       "type": "Item",
-      "private": false
+      "private": false,
+      "entity": "Item"
     },
     {
       "name": "equipment",
       "label": "Equipement",
       "system": "bol",
       "path": "./packs/equipment.db",
-      "entity": "Item",
       "tag": "item",
       "type": "Item",
-      "private": false
+      "private": false,
+      "entity": "Item"
     },
     {
       "label": "Aides de Jeu",
@@ -97,8 +103,8 @@
       "name": "aides-de-jeu",
       "path": "packs/aides-de-jeu.db",
       "system": "bol",
-      "entity": "JournalEntry",
-      "private": false
+      "private": false,
+      "entity": "JournalEntry"
     },
     {
       "label": "Cartes",
@@ -106,8 +112,8 @@
       "name": "cartes",
       "path": "packs/cartes.db",
       "system": "bol",
-      "entity": "Scene",
-      "private": false
+      "private": false,
+      "entity": "Scene"
     },
     {
       "label": "Langues",
@@ -115,8 +121,8 @@
       "name": "languages",
       "path": "packs/languages.db",
       "system": "bol",
-      "entity": "Item",
-      "private": false
+      "private": false,
+      "entity": "Item"
     },
     {
       "label": "Sorts",
@@ -124,8 +130,8 @@
       "name": "spells",
       "path": "packs/spells.db",
       "system": "bol",
-      "entity": "Item",
-      "private": false
+      "private": false,
+      "entity": "Item"
     },
     {
       "label": "Dieux",
@@ -133,8 +139,8 @@
       "name": "godsfaith",
       "path": "packs/godsfaith.db",
       "system": "bol",
-      "entity": "Item",
-      "private": false
+      "private": false,
+      "entity": "Item"
     },
     {
       "label": "Options de Combat",
@@ -142,8 +148,8 @@
       "name": "fightoptions",
       "path": "packs/fightoptions.db",
       "system": "bol",
-      "entity": "Item",
-      "private": false
+      "private": false,
+      "entity": "Item"
     }
   ],
   "system": [],

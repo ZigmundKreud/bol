@@ -1,11 +1,11 @@
-    {{#if careers.items}}
+    {{#if careers}}
     <div class="flexrow" style="margin-bottom: 1px;">
         <div class="flex1 center bg-darkred">
             <label for="mod">{{localize 'BOL.ui.careers'}}</label>
         </div>
         <div class="flex1 center cell">
             <select class="flex1" name="career" id="career" data-type="String" multiple>
-                {{#each careers.items as | career id|}}
+                {{#each careers as | career id|}}
                     <option value="{{career.data.rank}}">{{career.name}} ({{numberFormat career.data.rank decimals=0 sign=true}})</option>
                 {{/each}}
             </select>
