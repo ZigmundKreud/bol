@@ -190,10 +190,11 @@ export class BoLUtility {
     });
 
     html.on("click", '.damage-handling', event => {
-      event.preventDefault();
-      let attackId = event.currentTarget.attributes['data-attack-id'].value;
-      let defenseMode = event.currentTarget.attributes['data-defense-mode'].value;
+      event.preventDefault()
+      let attackId = event.currentTarget.attributes['data-attack-id'].value
+      let defenseMode = event.currentTarget.attributes['data-defense-mode'].value
       let weaponId = (event.currentTarget.attributes['data-weapon-id']) ? event.currentTarget.attributes['data-weapon-id'].value : -1
+      console.log("Process handling !!! -> socket emit")
       if (game.user.isGM) {
         BoLUtility.processDamageHandling(event, attackId, defenseMode, weaponId)
       } else {
@@ -209,7 +210,7 @@ export class BoLUtility {
     }
     BoLUtility.removeChatMessageId(BoLUtility.findChatMessageId(event.currentTarget));
 
-    //console.log("Damage Handling", event, attackId, defenseMode, weaponId)
+    console.log("Damage Handling", event, attackId, defenseMode, weaponId)
     // Only GM process this 
     let attackDef = this.attackStore[attackId]
     if (attackDef) {
@@ -365,6 +366,7 @@ export class BoLUtility {
       BoLUtility.processAttackSuccess(sockmsg.data);
     }
     if (sockmsg.name == "msg_damage_handling") {
+      console.log("Msg received !!!!")
       BoLUtility.processDamageHandling(sockmsg.data.event, sockmsg.data.attackId, sockmsg.data.defenseMode)
     }
   }

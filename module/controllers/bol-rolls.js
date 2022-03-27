@@ -4,7 +4,7 @@ const _apt2attr = { init: "mind", melee: "agility", ranged: "agility", def: "vig
 
 /* -------------------------------------------- */
 export class BoLRoll {
-  
+
   /* -------------------------------------------- */
   static options() {
     return { classes: ["bol", "dialog"], width: 480, height: 540 };
@@ -14,9 +14,9 @@ export class BoLRoll {
   static getDefaultAttribute(key) {
     return _apt2attr[key]
   }
-  
+
   /* -------------------------------------------- */
-  static attributeCheck(actor, key ) {
+  static attributeCheck(actor, key) {
 
     let attribute = eval(`actor.data.data.attributes.${key}`)
     let label = (attribute.label) ? game.i18n.localize(attribute.label) : null
@@ -31,13 +31,15 @@ export class BoLRoll {
       label: label,
       careerBonus: 0,
       description: description,
+      armorAgiMalus: actor.getArmorAgiMalus(),
+      armorInitMalus: actor.getArmorAgiMalus(),
       mod: 0
     }
-    return this.displayRollDialog( rollData )
+    return this.displayRollDialog(rollData)
   }
 
   /* -------------------------------------------- */
-  static aptitudeCheck(actor, key ) {
+  static aptitudeCheck(actor, key) {
 
     let aptitude = eval(`actor.data.data.aptitudes.${key}`)
     let attrKey = this.getDefaultAttribute(key)
@@ -53,6 +55,8 @@ export class BoLRoll {
         aptitude: aptitude,
         attrValue: attribute.value,
         aptValue: aptitude.value,
+        armorAgiMalus: actor.getArmorAgiMalus(),
+        armorInitMalus: actor.getArmorAgiMalus(),
         label: label,
         careerBonus: 0,
         description: description,
@@ -62,16 +66,16 @@ export class BoLRoll {
 
   /* -------------------------------------------- */
   static weaponCheckWithWeapon(actor, weapon) {
-    
+
     let target = BoLUtility.getTarget()
-    
+
     let weaponData = weapon.data.data
-    let attribute =  eval(`actor.data.data.attributes.${weaponData.properties.attackAttribute}`)
+    let attribute = eval(`actor.data.data.attributes.${weaponData.properties.attackAttribute}`)
     let aptitude = eval(`actor.data.data.aptitudes.${weaponData.properties.attackAptitude}`)
-    
+
     // Manage specific case
-    let fightOption= actor.getActiveFightOption()
-    if ( fightOption && fightOption.data.fightoptiontype == "fulldefense") {
+    let fightOption = actor.getActiveFightOption()
+    if (fightOption && fightOption.data.fightoptiontype == "fulldefense") {
       ui.notifications.warn(`{{actor.name}} est en Défense Totale ! Il ne peut pas attaquer ce round.`)
       return
     }
@@ -89,6 +93,8 @@ export class BoLRoll {
       aptitude: aptitude,
       attrValue: attribute.value,
       aptValue: aptitude.value,
+      armorAgiMalus: actor.getArmorAgiMalus(),
+      armorInitMalus: actor.getArmorAgiMalus(),
       mod: 0,
       modRanged: 0,
       label: (weapon.name) ? weapon.name : game.i18n.localize('BOL.ui.noWeaponName'),
@@ -132,6 +138,8 @@ export class BoLRoll {
       pcCost: Number(alchemyData.properties.pccost),
       pcCostCurrent: Number(alchemyData.properties.pccurrent),
       mod: Number(alchemyData.properties.difficulty),
+      armorAgiMalus: actor.getArmorAgiMalus(),
+      armorInitMalus: actor.getArmorAgiMalus(),
       label: alchemy.name,
       description: game.i18n.localize('BOL.ui.makeAlchemy') + "+" + alchemy.name,
     }
@@ -162,8 +170,11 @@ export class BoLRoll {
       aptValue: 0,
       ppCurrent: Number(actor.data.data.resources.power.value),
       careerBonus: actor.getSorcererBonus(),
+      ppCostArmor: actor.getPPCostArmor(),
       ppCost: Number(spell.data.data.properties.ppcost),
       mod: Number(spellData.properties.difficulty),
+      armorAgiMalus: actor.getArmorAgiMalus(),
+      armorInitMalus: actor.getArmorAgiMalus(),
       label: spell.name,
       description: game.i18n.localize('BOL.ui.focusSpell') + " : " + spell.name,
     }
@@ -173,28 +184,32 @@ export class BoLRoll {
 
   /* -------------------------------------------- */
   static updateTotalDice() {
-    this.rollData.bmDice =  this.rollData.nbBoons - this.rollData.nbFlaws + this.rollData.bDice - this.rollData.mDice
+
+    this.updateArmorMalus(this.rollData)
+    this.updatePPCost(this.rollData)
+
+    this.rollData.bmDice = this.rollData.nbBoons - this.rollData.nbFlaws + this.rollData.bDice - this.rollData.mDice
     this.rollData.nbDice = 2 + Math.abs(this.rollData.bmDice)
-    if (this.rollData.bmDice == 0 ) {
-      $('#roll-nbdice').val( "2" )
-    } else { 
-      let letter = (this.rollData.bmDice > 0) ? "B" : "M" 
-      $('#roll-nbdice').val( "2 + " + String(Math.abs(this.rollData.bmDice)) + letter )
+    if (this.rollData.bmDice == 0) {
+      $('#roll-nbdice').val("2")
+    } else {
+      let letter = (this.rollData.bmDice > 0) ? "B" : "M"
+      $('#roll-nbdice').val("2 + " + String(Math.abs(this.rollData.bmDice)) + letter)
     }
 
-    $('#roll-modifier').val( this.rollData.attrValue + "+" + this.rollData.aptValue + "+" + this.rollData.careerBonus + "+" + this.rollData.mod + "+" +
-         this.rollData.modRanged + "+" + this.rollData.weaponModifier + "-" + this.rollData.defence + "-" + this.rollData.modArmorMalus + "-" + 
-         this.rollData.shieldMalus + "+" + this.rollData.attackModifier )
+    $('#roll-modifier').val(this.rollData.attrValue + "+" + this.rollData.aptValue + "+" + this.rollData.careerBonus + "+" + this.rollData.mod + "+" +
+      this.rollData.modRanged + "+" + this.rollData.weaponModifier + "-" + this.rollData.defence + "-" + this.rollData.modArmorMalus + "-" +
+      this.rollData.shieldMalus + "+" + this.rollData.attackModifier + "+" + this.rollData.appliedArmorMalus)
   }
-  
+
   /* -------------------------------------------- */
-  static preProcessFightOption( rollData) {
+  static preProcessFightOption(rollData) {
     rollData.damagesIgnoresArmor = false  // Always reset flags
     rollData.modArmorMalus = 0
     rollData.attackModifier = 0
 
     let fgItem = rollData.fightOption
-    if (fgItem ) {
+    if (fgItem) {
       console.log(fgItem)
       if (fgItem.data.properties.fightoptiontype == "armordefault") {
         rollData.modArmorMalus = rollData.armorMalus // Activate the armor malus
@@ -214,41 +229,62 @@ export class BoLRoll {
       }
     }
   }
-
   /* -------------------------------------------- */
+  static updateArmorMalus(rollData) {
+    rollData.appliedArmorMalus = 0
+    if (rollData.attribute.key == "agility") {
+      $("#armor-agi-malus").show()
+      rollData.appliedArmorMalus += rollData.armorAgiMalus
+    } else {
+      $("#armor-agi-malus").hide()
+    }
+    if (rollData.aptitude && rollData.aptitude.key == "init") {
+      $("#armor-init-malus").show()
+      rollData.appliedArmorMalus += rollData.armorInitMalus
+    } else {
+      $("#armor-init-malus").hide()
+    }
+  }
+
+  /* ------------------------------ -------------- */
+  static updatePPCost(rollData) {
+    $('#ppcost').html(rollData.ppCost + " + Armor(" + rollData.ppCostArmor + ")=" + Number(rollData.ppCost + rollData.ppCostArmor))
+  }
+
+  /* ------------------------------ -------------- */
   static rollDialogListener(html) {
-    
+
     this.updateTotalDice()
-    
+
     html.find('#optcond').change((event) => { // Dynamic change of PP cost of spell
       let pp = BoLUtility.computeSpellCost(this.rollData.spell, event.currentTarget.selectedOptions.length)
-      $('#ppcost').html(pp)
       this.rollData.ppCost = pp
+      this.updatePPCost( this.rollData)
     })
 
     html.find('#mod').change((event) => {
-      this.rollData.mod = Number(event.currentTarget.value) 
+      this.rollData.mod = Number(event.currentTarget.value)
       this.updateTotalDice()
     })
     html.find('#modRanged').change((event) => {
-      this.rollData.modRanged = Number(event.currentTarget.value) 
+      this.rollData.modRanged = Number(event.currentTarget.value)
       this.updateTotalDice()
     })
 
-    html.find('#attr').change((event) => { 
+    html.find('#attr').change((event) => {
       let attrKey = event.currentTarget.value
       this.rollData.attribute = duplicate(this.rollData.actor.data.data.attributes[attrKey])
       this.rollData.attrValue = this.rollData.actor.data.data.attributes[attrKey].value
       this.updateTotalDice()
-    } )
-    html.find('#apt').change((event) => { 
+    })
+    html.find('#apt').change((event) => {
       let aptKey = event.currentTarget.value
       this.rollData.aptitude = duplicate(this.rollData.actor.data.data.aptitudes[aptKey])
       this.rollData.aptValue = this.rollData.actor.data.data.aptitudes[aptKey].value
       this.updateTotalDice()
-    } )
+    })
 
-    html.find('#applyShieldMalus').click( (event) => {
+    html.find('#applyShieldMalus').click((event) => {
       if (event.currentTarget.checked) {
         this.rollData.shieldMalus = this.rollData.shieldAttackMalus
       } else {
@@ -256,35 +292,35 @@ export class BoLRoll {
       }
     })
 
-    html.find('#career').change((event) => { 
+    html.find('#career').change((event) => {
       let careers = $('#career').val()
-      this.rollData.careerBonus = (!careers || careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)))     
+      this.rollData.careerBonus = (!careers || careers.length == 0) ? 0 : Math.max(...careers.map(i => parseInt(i)))
       this.updateTotalDice()
     })
-    html.find('#boon').change((event) => { 
+    html.find('#boon').change((event) => {
       let boons = $('#boon').val()
-      this.rollData.nbBoons = (!boons || boons.length == 0) ? 0 : Math.max(...boons.map(i => parseInt(i)))     
+      this.rollData.nbBoons = (!boons || boons.length == 0) ? 0 : Math.max(...boons.map(i => parseInt(i)))
       this.updateTotalDice()
     })
-    html.find('#flaw').change((event) => { 
+    html.find('#flaw').change((event) => {
       let flaws = $('#flaw').val()
-      this.rollData.nbFlaws = (!flaws || flaws.length == 0) ? 0 : Math.max(...flaws.map(i => parseInt(i)))  
+      this.rollData.nbFlaws = (!flaws || flaws.length == 0) ? 0 : Math.max(...flaws.map(i => parseInt(i)))
       this.updateTotalDice()
     })
     html.find('.bdice').click((event) => {
       this.rollData.mDice = 0
-      this.rollData.bDice = Number(event.currentTarget.value)    
+      this.rollData.bDice = Number(event.currentTarget.value)
       this.updateTotalDice()
     })
-    html.find('.mdice').click((event) => { 
+    html.find('.mdice').click((event) => {
       this.rollData.bDice = 0
-      this.rollData.mDice = Number(event.currentTarget.value)    
+      this.rollData.mDice = Number(event.currentTarget.value)
       this.updateTotalDice()
     })
   }
 
   /* -------------------------------------------- */
-  static preProcessWeapon( rollData) {
+  static preProcessWeapon(rollData) {
     if (rollData.mode == "weapon") {
       rollData.weaponModifier = rollData.weapon.data.data.properties.attackModifiers ?? 0;
       rollData.attackBonusDice = rollData.weapon.data.data.properties.attackBonusDice
@@ -314,11 +350,11 @@ export class BoLRoll {
     rollData.defence = 0
     rollData.attackModifier = 0 // Used for fight options
     rollData.modArmorMalus = 0 // Used for fight options
-    rollData.bDice   = 0
-    rollData.mDice   = 0
+    rollData.bDice = 0
+    rollData.mDice = 0
     rollData.nbBoons = 0
     rollData.nbFlaws = 0
-    rollData.nbDice  = 0
+    rollData.nbDice = 0
     if (rollData.shieldBlock == 'blockall') {
       rollData.shieldMalus = rollData.shieldAttackMalus;
     } else {
@@ -334,6 +370,8 @@ export class BoLRoll {
     // Specific stuff 
     this.preProcessWeapon(rollData)
     this.preProcessFightOption(rollData)
+    this.updateArmorMalus(rollData)
+    this.updatePPCost(rollData)
     // Save
     this.rollData = rollData
     console.log("ROLLDATA", rollData)
@@ -360,13 +398,13 @@ export class BoLRoll {
               ui.notifications.warn("Pas assez de Points de Pouvoir !")
               return
             }
-            
+
             rollData.registerInit = (rollData.aptitude && rollData.aptitude.key == 'init') ? $('#register-init').is(":checked") : false;
 
-            const isMalus = rollData.mDice > 0 
+            const isMalus = rollData.mDice > 0
             rollData.nbDice += (rollData.attackBonusDice) ? 1 : 0
 
-            const modifiers = rollData.attrValue + rollData.aptValue + rollData.careerBonus + rollData.mod + rollData.weaponModifier - rollData.defence - rollData.modArmorMalus + rollData.shieldMalus + rollData.attackModifier
+            const modifiers = rollData.attrValue + rollData.aptValue + rollData.careerBonus + rollData.mod + rollData.weaponModifier - rollData.defence - rollData.modArmorMalus + rollData.shieldMalus + rollData.attackModifier + rollData.appliedArmorMalus
             const formula = (isMalus) ? rollData.nbDice + "d6kl2 + " + modifiers : rollData.nbDice + "d6kh2 + " + modifiers
             rollData.formula = formula
             rollData.modifiers = modifiers
@@ -384,6 +422,7 @@ export class BoLRoll {
   }
 }
 
+/* -------------------------------------------- */
 export class BoLDefaultRoll {
 
   constructor(rollData) {
@@ -404,6 +443,7 @@ export class BoLDefaultRoll {
     this.rollData.applyId = randomID(16)
   }
 
+  /* -------------------------------------------- */
   async roll() {
 
     const r = new Roll(this.rollData.formula)
@@ -425,7 +465,7 @@ export class BoLDefaultRoll {
       this.rollData.actor.registerInit(r.total, this.rollData.isCritical, this.rollData.isFumble)
     }
     if (this.rollData.isSuccess && this.rollData.mode == "spell") { // PP cost management
-      this.rollData.actor.spendPowerPoint(this.rollData.ppCost)
+      this.rollData.actor.spendPowerPoint(this.rollData.ppCost + this.rollData.ppCostArmor)
     }
     if (this.rollData.mode == "alchemy") { // PP cost management
       this.rollData.actor.resetAlchemyStatus(this.rollData.alchemy.id)
@@ -434,6 +474,7 @@ export class BoLDefaultRoll {
     await this.sendChatMessage()
   }
 
+  /* -------------------------------------------- */
   async sendChatMessage() {
     this._buildChatMessage(this.rollData).then(msgFlavor => {
       this.rollData.roll.toMessage({
@@ -445,6 +486,7 @@ export class BoLDefaultRoll {
     });
   }
 
+  /* -------------------------------------------- */
   upgradeToCritical() {
     // Force to Critical roll
     this.rollData.isCritical = true
@@ -457,10 +499,12 @@ export class BoLDefaultRoll {
     this.sendChatMessage()
   }
 
+  /* -------------------------------------------- */
   setSuccess(flag) {
     this.rollData.isSuccess = flag
   }
 
+  /* -------------------------------------------- */
   async sendDamageMessage() {
     this._buildDamageChatMessage(this.rollData).then(msgFlavor => {
       this.rollData.damageRoll.toMessage({
@@ -472,6 +516,7 @@ export class BoLDefaultRoll {
     });
   }
 
+  /* -------------------------------------------- */
   getDamageAttributeValue(attrDamage) {
     let attrDamageValue = 0
     if (attrDamage.includes("vigor")) {
@@ -483,6 +528,7 @@ export class BoLDefaultRoll {
     return attrDamageValue
   }
 
+  /* -------------------------------------------- */
   async rollDamage() {
     if (this.rollData.mode != "weapon") { // Only specific process in Weapon mode
       return;
@@ -498,7 +544,7 @@ export class BoLDefaultRoll {
           bonusDmg = 12
         }
         let attrDamageValue = this.getDamageAttributeValue(this.rollData.weapon.data.data.properties.damageAttribute)
-        let weaponFormula = BoLUtility.getDamageFormula(this.rollData.weapon.data.data, this.rollData.fightOption )
+        let weaponFormula = BoLUtility.getDamageFormula(this.rollData.weapon.data.data, this.rollData.fightOption)
 
         let damageFormula = weaponFormula + "+" + bonusDmg + "+" + attrDamageValue
         console.log("DAMAGE !!!", damageFormula, attrDamageValue, this.rollData)
@@ -514,11 +560,13 @@ export class BoLDefaultRoll {
     }
   }
 
+  /* -------------------------------------------- */
   _buildDamageChatMessage(rollData) {
     const rollMessageTpl = 'systems/bol/templates/chat/rolls/damage-roll-card.hbs';
     return renderTemplate(rollMessageTpl, rollData)
   }
 
+  /* -------------------------------------------- */
   _buildChatMessage(rollData) {
     const rollMessageTpl = 'systems/bol/templates/chat/rolls/default-roll-card.hbs';
     return renderTemplate(rollMessageTpl, rollData);

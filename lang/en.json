@@ -148,6 +148,8 @@
   "BOL.ui.status": "Status",
   "BOL.ui.toactivated": "Active (>Désactiver)",
   "BOL.ui.todeactivated": "Inactive (>Activer)",
+  "BOL.ui.armorAgiMalus": "Armor+Shield Malus (Agi)", 
+  "BOL.ui.armorInitMalus": "Armor Malus (Init)", 
 
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",

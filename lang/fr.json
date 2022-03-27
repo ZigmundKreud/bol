@@ -150,6 +150,8 @@
   "BOL.ui.toactivated": "Active (>Désactiver)",
   "BOL.ui.todeactivated": "Inactive (>Activer)",
   "BOL.ui.status": "Statut",
+  "BOL.ui.armorAgiMalus": "Malus d'Armure+Bouclier (Agi)", 
+  "BOL.ui.armorInitMalus": "Malus d'Armure (Init)", 
 
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",

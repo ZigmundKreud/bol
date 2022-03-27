@@ -92,8 +92,18 @@ a:hover {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+.roll-box {
+  border-width: 1px;
+  border-color: #000000;
+  margin-bottom: 2px;
+}
 .hide {
   display: none;
+}
+ul.no-bullets {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
 }
 .ellipsis {
   text-overflow: ellipsis;

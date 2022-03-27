@@ -12,14 +12,14 @@
 
     {{> "systems/bol/templates/dialogs/aptitude-roll-part.hbs"}}
 
-    <div class="flexrow" style="margin-bottom: 1px;">
+    <div class="flexrow roll-box" >
         <div class="flex1 center bg-darkred">
             <label for="mod">{{localize 'BOL.ui.targetDefence'}}</label>
         </div>
         <div class="flex1 center cell">{{defence}}</div>
     </div>
       {{#if (eq shieldBlock 'blockall')}}
-      <div class="flexrow" style="margin-bottom: 1px;">
+      <div class="flexrow roll-box" >
           <div class="flex1 center bg-darkred">
               <label for="mod">{{localize 'BOL.ui.shieldMalus'}}</label>
           </div>
@@ -27,7 +27,7 @@
       </div>
       {{/if}}
       {{#if (eq shieldBlock 'blockone')}}
-      <div class="flexrow" style="margin-bottom: 1px;">
+      <div class="flexrow roll-box" >
           <div class="flex1 center bg-darkred">
               <label for="mod">{{localize 'BOL.ui.shieldMalus'}}</label>
           </div>

@@ -10,41 +10,43 @@
 
     {{> "systems/bol/templates/dialogs/attribute-roll-part.hbs"}}
 
-    <div class="flexrow" style="margin-bottom: 1px;">
+    <div class="flexrow roll-box">
         <div class="flex1 center bg-darkred">
             <label for="mod">{{localize 'BOL.ui.sorcererRank'}}</label>
         </div>
         <div class="flex1 center cell">{{careerBonus}}</div>
     </div>
 
-    <div class="flexrow" style="margin-bottom: 1px;">
+    <div class="flexrow roll-box" >
         <div class="flex1 center bg-darkred">
             <label for="mod">{{localize 'BOL.ui.ppcost'}}</label>
         </div>
         <div class="flex1 center cell" id="ppcost">{{ppCost}}</div>
     </div>
 
-    <div class="flexrow" style="margin-bottom: 1px;">
+    <div class="flexrow roll-box" >
         <div class="flex1 center bg-darkred">
             <label for="mod">{{localize 'BOL.ui.ppAvailable'}}</label>
         </div>
         <div class="flex1 center cell">{{ppCurrent}}</div>
     </div>
 
-    <div class="flexrow" style="margin-bottom: 1px;">
+    <div class="flexrow roll-box" >
         <div class="flex1 center bg-darkred">
             <label for="mod">{{localize 'BOL.ui.mandatoryconditions'}}</label>
         </div>
         <div class="flex1 center cell">
+          <ul class="no-bullets">
               {{#each spell.data.data.properties.mandatoryconditions as | cond idx|}}
                 {{#if (lt idx @root.spell.data.data.properties.nbmandatoryconditions)}}
-                <label for="mod">{{cond}}</label>
+                <li><label for="mod">{{cond}}</label></li>
                 {{/if}}
               {{/each}}
+            </ul>
         </div>
     </div>
 
-    <div class="flexrow" style="margin-bottom: 1px;">
+    <div class="flexrow roll-box" >
         <div class="flex1 center bg-darkred">
             <label for="mod">{{localize 'BOL.ui.optionnalconditions'}}</label>
         </div>

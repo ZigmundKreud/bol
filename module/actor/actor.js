@@ -172,7 +172,7 @@ export class BoLActor extends Actor {
     }
   }
 
-  /* -------------------------------------------- */
+  /*-------------------------------------------- */
   get armorMalusValue() { // used for Fight Options
     for (let armor of this.armors) {
       if (armor.data.properties.armorQuality.includes("light")) {
@@ -290,12 +290,52 @@ export class BoLActor extends Actor {
     return false
   }
 
+  /*-------------------------------------------- */
+  getPPCostArmor() {
+    let armors = this.armors
+    let ppCostArmor = 0
+    for (let armor of armors) {
+      if (armor.data.worn) {
+        ppCostArmor += Number(armor.data.properties.modifiers.powercost) || 0
+      }
+    }
+    return ppCostArmor
+  }
+  /*-------------------------------------------- */
+  getArmorAgiMalus() {
+    let malusAgi = 0
+    for (let armor of this.armors) {
+      if (armor.data.worn) {
+        malusAgi += Number(armor.data.properties.modifiers.agility) || 0
+      }
+    }
+    for (let shield of this.shields) {
+      if (shield.data.worn) {
+        malusAgi += Number(shield.data.properties.modifiers.agility) || 0
+      }
+    }
+    return malusAgi
+  }
+  /*-------------------------------------------- */
+  getArmorInitMalus() {
+    let armors = this.armors
+    let malusInit = 0
+    for (let armor of armors) {
+      if (armor.data.worn) {
+        malusInit += Number(armor.data.properties.modifiers.init) || 0
+      }
+    }
+    return malusInit
+  }
+
+  /*-------------------------------------------- */
   spendPowerPoint(ppCost) {
     let newPP = this.data.data.resources.power.value - ppCost
     newPP = (newPP < 0) ? 0 : newPP
     this.update({ 'data.resources.power.value': newPP })
   }
 
+  /*-------------------------------------------- */
   resetAlchemyStatus(alchemyId) {
     let alchemy = this.data.items.get(alchemyId)
     if (alchemy) {
@@ -303,6 +343,7 @@ export class BoLActor extends Actor {
     }
   }
 
+  /*-------------------------------------------- */
   async spendAlchemyPoint(alchemyId, pcCost) {
     let alchemy = this.data.items.get(alchemyId)
     if (alchemy) {
@@ -456,14 +497,14 @@ export class BoLActor extends Actor {
   /*-------------------------------------------- */
   buildRollList() {
     let rolls = []
-    for ( let key in this.data.data.attributes) {
+    for (let key in this.data.data.attributes) {
       let attr = this.data.data.attributes[key]
-      rolls.push( { key: key, value: attr.value, name: attr.label, type: "attribute"})
+      rolls.push({ key: key, value: attr.value, name: attr.label, type: "attribute" })
     }
-    for ( let key in this.data.data.aptitudes) {
-      if ( key != "def") {
+    for (let key in this.data.data.aptitudes) {
+      if (key != "def") {
         let apt = this.data.data.aptitudes[key]
-        rolls.push( { key: key, value: apt.value, name: apt.label, type: "aptitude"})
+        rolls.push({ key: key, value: apt.value, name: apt.label, type: "aptitude" })
       }
     }
     return rolls
