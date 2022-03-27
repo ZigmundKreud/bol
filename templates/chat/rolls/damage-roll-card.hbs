@@ -1,9 +1,14 @@
 <img class="chat-icon" src="{{weapon.img}}" alt="{{weapon.name}}"/>
 <h3><strong>Dommages de {{weapon.name}} : {{damageRoll.total}}</strong></h3>
-
-{{#if target}}
-<div id="{{applyId}}">
-  <button class="chat-damage-apply" data-attack-id="{{id}}">Appliquer les dommages à la cible</button>
-</div>  
-<br>
+{{#if defender}}
+  <h3><strong>Cible : {{defender.name}}</strong></h3>
 {{/if}}
+
+<div class="actions-section">
+  {{#if target}}
+  <div id="{{applyId}}">
+    <button class="chat-damage-apply" data-attack-id="{{id}}">Appliquer les dommages à la cible</button>
+  </div>  
+  <br>
+  {{/if}}
+</div>  

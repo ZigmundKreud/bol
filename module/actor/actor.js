@@ -304,23 +304,17 @@ export class BoLActor extends Actor {
   /*-------------------------------------------- */
   getArmorAgiMalus() {
     let malusAgi = 0
-    for (let armor of this.armors) {
+    for (let armor of this.protections) {
       if (armor.data.worn) {
         malusAgi += Number(armor.data.properties.modifiers.agility) || 0
-      }
-    }
-    for (let shield of this.shields) {
-      if (shield.data.worn) {
-        malusAgi += Number(shield.data.properties.modifiers.agility) || 0
       }
     }
     return malusAgi
   }
   /*-------------------------------------------- */
   getArmorInitMalus() {
-    let armors = this.armors
     let malusInit = 0
-    for (let armor of armors) {
+    for (let armor of this.protections) {
       if (armor.data.worn) {
         malusInit += Number(armor.data.properties.modifiers.init) || 0
       }

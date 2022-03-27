@@ -14,6 +14,7 @@ export class BoLActorSheet extends ActorSheet {
       template: "systems/bol/templates/actor/actor-sheet.hbs",
       width: 600,
       height: 600,
+      dragDrop: [{ dragSelector: ".items-list .item", dropSelector: null }],
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "stats" }]
     });
   }

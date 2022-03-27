@@ -32,7 +32,7 @@ export class BoLRoll {
       careerBonus: 0,
       description: description,
       armorAgiMalus: actor.getArmorAgiMalus(),
-      armorInitMalus: actor.getArmorAgiMalus(),
+      armorInitMalus: actor.getArmorInitMalus(),
       mod: 0
     }
     return this.displayRollDialog(rollData)
@@ -56,12 +56,12 @@ export class BoLRoll {
         attrValue: attribute.value,
         aptValue: aptitude.value,
         armorAgiMalus: actor.getArmorAgiMalus(),
-        armorInitMalus: actor.getArmorAgiMalus(),
+        armorInitMalus: actor.getArmorInitMalus(),
         label: label,
         careerBonus: 0,
         description: description,
         mod: 0
-      });
+      })
   }
 
   /* -------------------------------------------- */
@@ -94,7 +94,7 @@ export class BoLRoll {
       attrValue: attribute.value,
       aptValue: aptitude.value,
       armorAgiMalus: actor.getArmorAgiMalus(),
-      armorInitMalus: actor.getArmorAgiMalus(),
+      armorInitMalus: actor.getArmorInitMalus(),
       mod: 0,
       modRanged: 0,
       label: (weapon.name) ? weapon.name : game.i18n.localize('BOL.ui.noWeaponName'),
@@ -139,7 +139,7 @@ export class BoLRoll {
       pcCostCurrent: Number(alchemyData.properties.pccurrent),
       mod: Number(alchemyData.properties.difficulty),
       armorAgiMalus: actor.getArmorAgiMalus(),
-      armorInitMalus: actor.getArmorAgiMalus(),
+      armorInitMalus: actor.getArmorInitMalus(),
       label: alchemy.name,
       description: game.i18n.localize('BOL.ui.makeAlchemy') + "+" + alchemy.name,
     }
@@ -147,20 +147,9 @@ export class BoLRoll {
     return this.displayRollDialog(alchemyDef);
   }
 
-
   /* -------------------------------------------- */
-  static spellCheck(actor, event) {
-    if (actor.data.data.resources.power.value <= 0) {
-      ui.notifications.warn("Plus assez de points de Pouvoir !")
-      return
-    }
-    const li = $(event.currentTarget).parents(".item");
-    const spell = actor.items.get(li.data("item-id"));
-    if (!spell) {
-      ui.notifications.warn("Unable to find spell !");
-      return;
-    }
-    let spellData = spell.data.data;
+  static spellCheckWithSpell( actor, spell ) {
+    let spellData = spell.data.data
     let spellDef = {
       mode: "spell",
       actor: actor,
@@ -174,12 +163,27 @@ export class BoLRoll {
       ppCost: Number(spell.data.data.properties.ppcost),
       mod: Number(spellData.properties.difficulty),
       armorAgiMalus: actor.getArmorAgiMalus(),
-      armorInitMalus: actor.getArmorAgiMalus(),
+      armorInitMalus: actor.getArmorInitMalus(),
       label: spell.name,
       description: game.i18n.localize('BOL.ui.focusSpell') + " : " + spell.name,
     }
-    console.log("SPELL!", spellDef);
-    return this.displayRollDialog(spellDef);
+    console.log("SPELL!", spellDef)
+    return this.displayRollDialog(spellDef)
+  }
+
+  /* -------------------------------------------- */
+  static spellCheck(actor, event) {
+    if (actor.data.data.resources.power.value <= 0) {
+      ui.notifications.warn("Plus assez de points de Pouvoir !")
+      return
+    }
+    const li = $(event.currentTarget).parents(".item")
+    const spell = actor.items.get(li.data("item-id"))
+    if (!spell) {
+      ui.notifications.warn("Impossible de trouver ce sort !")
+      return
+    }
+    return this.spellCheckWithSpell( actor, spell)
   }
 
   /* -------------------------------------------- */
@@ -347,6 +351,7 @@ export class BoLRoll {
     rollData.careers = rollData.actor.careers
     rollData.boons = rollData.actor.bonusBoons
     rollData.flaws = rollData.actor.malusFlaws
+    rollData.rollOwnerID = rollData.actor.id
     rollData.defence = 0
     rollData.attackModifier = 0 // Used for fight options
     rollData.modArmorMalus = 0 // Used for fight options
@@ -455,6 +460,8 @@ export class BoLDefaultRoll {
     this.rollData.isSuccess = (r.total >= 9)
     this.rollData.isCritical = (diceTotal === 12)
     this.rollData.isRealCritical = (diceTotal === 12)
+    this.rollData.isHeroic = (diceTotal === 12)
+    this.rollData.isLegendary = false
     this.rollData.isFumble = (diceTotal === 2)
     this.rollData.isFailure = !this.rollData.isSuccess
     if (this.rollData.reroll == undefined) {
@@ -479,26 +486,41 @@ export class BoLDefaultRoll {
     this._buildChatMessage(this.rollData).then(msgFlavor => {
       this.rollData.roll.toMessage({
         user: game.user.id,
+        rollMode: game.settings.get("core", "rollMode"),
+        //whisper: BoLUtility.getWhisperRecipientsAndGMs(this.rollData.actor.name),
         flavor: msgFlavor,
         speaker: ChatMessage.getSpeaker({ actor: this.rollData.actor }),
-        flags: { msgType: "default" }
       })
-    });
+    })
   }
 
   /* -------------------------------------------- */
-  upgradeToCritical() {
+  upgradeToLegendary() {
     // Force to Critical roll
     this.rollData.isCritical = true
+    this.rollData.isLegendary = true
     this.rollData.isRealCritical = false
     this.rollData.isSuccess = true
     this.rollData.isFailure = false
-    this.rollData.reroll = false
     this.rollData.roll = new Roll("12+" + this.rollData.modifiers)
     this.rollData.reroll = false
     this.sendChatMessage()
   }
 
+  /* -------------------------------------------- */
+  upgradeToHeroic() {
+    // Force to Critical roll
+    this.rollData.isCritical = true
+    this.rollData.isHeroic = true
+    this.rollData.isLegendary = false
+    this.rollData.isRealCritical = false
+    this.rollData.isSuccess = true
+    this.rollData.isFailure = false
+    this.rollData.roll = new Roll("12+" + this.rollData.modifiers)
+    this.rollData.reroll = false
+    this.sendChatMessage()
+  }
+  
   /* -------------------------------------------- */
   setSuccess(flag) {
     this.rollData.isSuccess = flag
@@ -510,7 +532,7 @@ export class BoLDefaultRoll {
       this.rollData.damageRoll.toMessage({
         user: game.user.id,
         flavor: msgFlavor,
-        speaker: ChatMessage.getSpeaker({ actor: this.rollData.actor }),
+        speaker: ChatMessage.getSpeaker({ actor: this.rollData.actors }),
         flags: { msgType: "default" }
       })
     });

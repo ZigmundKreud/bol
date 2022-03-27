@@ -32,7 +32,6 @@ export class BoLUtility {
     this.rollArmor = game.settings.get("bol", "rollArmor") // Roll armor or not
     this.useBougette = game.settings.get("bol", "useBougette") // Use optionnal bougette rules
 
-    console.log("UTIL", this)
   }
 
 
@@ -128,6 +127,17 @@ export class BoLUtility {
     return undefined;
   }
   /* -------------------------------------------- */
+  static getOtherWhisperRecipients( name) {
+    let users = []
+    for( let user of game.users) {
+      if ( !user.isGM && user.name != name) {
+        users.push( user.data._id)
+      }
+    }
+    return users
+  }
+    
+  /* -------------------------------------------- */
   static getWhisperRecipientsAndGMs(name) {
     let recep1 = ChatMessage.getWhisperRecipients(name) || [];
     return recep1.concat(ChatMessage.getWhisperRecipients('GM'));
@@ -155,8 +165,24 @@ export class BoLUtility {
   }
 
   /* -------------------------------------------- */
+  static async chatMessageHandler(message, html, data) {
+    const chatCard = html.find('.flavor-text')
+    if (chatCard.length > 0) {
+      // If the user is the message author or the actor owner, proceed
+      const actor = game.actors.get(data.message.speaker.actor)
+      console.log("FOUND 1!!! ", actor)
+      if (actor && actor.isOwner) return
+      else if (game.user.isGM || data.author.id === game.user.id) return
+  
+      const divButtons = chatCard.find('.actions-section')
+      console.log("FOUND 2!! ", divButtons)
+      divButtons.hide()
+    }
+  }
+  
+  /* -------------------------------------------- */
   static async chatListeners(html) {
-
+    
     // Damage handling
     html.on("click", '.chat-damage-apply', event => {
       let rollData = BoLUtility.getLastRoll()
@@ -172,13 +198,21 @@ export class BoLUtility {
       bolRoll.rollDamage()
     });
 
+    html.on("click", '.transform-legendary-roll', event => {
+      event.preventDefault();
+      let rollData = BoLUtility.getLastRoll()
+      rollData.actor.subHeroPoints(1)
+      let r = new BoLDefaultRoll(rollData)
+      r.upgradeToLegendary()
+    })
+
     html.on("click", '.transform-heroic-roll', event => {
       event.preventDefault();
       let rollData = BoLUtility.getLastRoll()
       rollData.actor.subHeroPoints(1)
       let r = new BoLDefaultRoll(rollData)
-      r.upgradeToCritical();
-    });
+      r.upgradeToHeroic()
+    })
 
     html.on("click", '.hero-reroll', event => {
       event.preventDefault();

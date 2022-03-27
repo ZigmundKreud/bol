@@ -12,6 +12,7 @@ import { Macros } from "./system/macros.js"
 import { BoLUtility } from "./system/bol-utility.js"
 import { BoLCombatManager } from "./system/bol-combat.js"
 import { BoLTokenHud } from "./system/bol-action-hud.js"
+import { BoLHotbar } from "./system/bol-hotbar.js"
 
 /* -------------------------------------------- */
 Hooks.once('init', async function () {
@@ -19,6 +20,7 @@ Hooks.once('init', async function () {
   game.bol = {
     BoLActor,
     BoLItem,
+    BoLHotbar,
     macros: Macros,
     config: BOL
   };
@@ -52,6 +54,7 @@ Hooks.once('init', async function () {
   // Inot useful stuff
   BoLUtility.init()
   BoLTokenHud.init()
+  BoLHotbar.init()
 
   // Preload Handlebars Templates
   await preloadHandlebarsTemplates();

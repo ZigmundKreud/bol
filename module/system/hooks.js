@@ -14,7 +14,8 @@ export default function registerHooks() {
         html.find("img").attr("src", "systems/bol/ui/pause2.webp")
     }))
 
-    Hooks.on('renderChatLog', (log, html, data) => BoLUtility.chatListeners(html));
+    Hooks.on('renderChatLog', (log, html, data) => BoLUtility.chatListeners(html))
+    Hooks.on('renderChatMessage', (message, html, data) => BoLUtility.chatMessageHandler(message, html, data))
 
     /**
      * Create a macro when dropping an entity on the hotbar

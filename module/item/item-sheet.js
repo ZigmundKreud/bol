@@ -12,7 +12,7 @@ export class BoLItemSheet extends ItemSheet {
       classes: ["bol", "sheet", "item"],
       template: "systems/bol/templates/item/item-sheet.hbs",
       width: 650,
-      height: 750,
+      height: 780,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
     });
   }
