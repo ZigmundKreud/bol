@@ -149,17 +149,17 @@ export class BoLUtility {
     chatGM.whisper = this.getUsers(user => user.isGM);
     chatGM.content = "Blind message of " + game.user.name + "<br>" + chatOptions.content;
     console.log("blindMessageToGM", chatGM);
-    game.socket.emit("system.bol", { msg: "msg_gm_chat_message", data: chatGM });
+    game.socket.emit("system.bol", { name: "msg_gm_chat_message", data: chatGM });
   }
 
   /* -------------------------------------------- */
   static sendAttackSuccess(attackDef) {
-    if (attackDef.target) {
+    if (attackDef.targetId) {
       // Broadcast to GM or process it directly in case of GM defense
       if (!game.user.isGM) {
-        game.socket.emit("system.bol", { msg: "msg_attack_success", data: attackDef });
+        game.socket.emit("system.bol", { name: "msg_attack_success", data: duplicate(attackDef) })
       } else {
-        BoLUtility.processAttackSuccess(attackDef);
+        BoLUtility.processAttackSuccess(attackDef)
       }
     }
   }
@@ -170,7 +170,7 @@ export class BoLUtility {
     if (chatCard.length > 0) {
       // If the user is the message author or the actor owner, proceed
       const actor = game.actors.get(data.message.speaker.actor)
-      console.log("FOUND 1!!! ", actor)
+      //console.log("FOUND 1!!! ", actor)
       if (actor && actor.isOwner) return
       else if (game.user.isGM || data.author.id === game.user.id) return
   
@@ -201,7 +201,8 @@ export class BoLUtility {
     html.on("click", '.transform-legendary-roll', event => {
       event.preventDefault();
       let rollData = BoLUtility.getLastRoll()
-      rollData.actor.subHeroPoints(1)
+      let actor = game.actors.get( rollData.actorId)
+      actor.subHeroPoints(1)
       let r = new BoLDefaultRoll(rollData)
       r.upgradeToLegendary()
     })
@@ -209,7 +210,8 @@ export class BoLUtility {
     html.on("click", '.transform-heroic-roll', event => {
       event.preventDefault();
       let rollData = BoLUtility.getLastRoll()
-      rollData.actor.subHeroPoints(1)
+      let actor = game.actors.get( rollData.actorId)
+      actor.subHeroPoints(1)
       let r = new BoLDefaultRoll(rollData)
       r.upgradeToHeroic()
     })
@@ -217,7 +219,8 @@ export class BoLUtility {
     html.on("click", '.hero-reroll', event => {
       event.preventDefault();
       let rollData = BoLUtility.getLastRoll()
-      rollData.actor.subHeroPoints(1)
+      let actor = game.actors.get( rollData.actorId)
+      actor.subHeroPoints(1)
       rollData.reroll = false // Disable reroll option for second roll
       let r = new BoLDefaultRoll(rollData)
       r.roll();
@@ -228,11 +231,12 @@ export class BoLUtility {
       let attackId = event.currentTarget.attributes['data-attack-id'].value
       let defenseMode = event.currentTarget.attributes['data-defense-mode'].value
       let weaponId = (event.currentTarget.attributes['data-weapon-id']) ? event.currentTarget.attributes['data-weapon-id'].value : -1
-      console.log("Process handling !!! -> socket emit")
       if (game.user.isGM) {
+        console.log("Process handling !!! -> GM direct damage handling")
         BoLUtility.processDamageHandling(event, attackId, defenseMode, weaponId)
       } else {
-        game.socket.emit("system.bol", { msg: "msg_damage_handling", data: { event: event, attackId: attackId, defenseMode: defenseMode, weaponId: weaponId } });
+        console.log("Process handling !!! -> socket emit")
+        game.socket.emit("system.bol", { name: "msg_damage_handling", data: { event: event, attackId: attackId, defenseMode: defenseMode, weaponId: weaponId } });
       }
     });
   }
@@ -247,27 +251,30 @@ export class BoLUtility {
     console.log("Damage Handling", event, attackId, defenseMode, weaponId)
     // Only GM process this 
     let attackDef = this.attackStore[attackId]
-    if (attackDef) {
-      if (attackDef.defenseDone) return; // ?? Why ???
+    if (attackDef && attackDef.defenderId) {
+      if (attackDef.defenseDone) {
+        return
+      } // ?? Why ???
       attackDef.defenseDone = true
       attackDef.defenseMode = defenseMode;
+      let defender = game.actors.get(attackDef.defenderId)
 
       if (defenseMode == 'damage-with-armor') {
-        let armorFormula = attackDef.defender.getArmorFormula()
+        let armorFormula = defender.getArmorFormula()
         attackDef.rollArmor = new Roll(armorFormula)
         attackDef.rollArmor.roll( { async: false } )
         console.log("Armor roll ", attackDef.rollArmor)
         attackDef.armorProtect = (attackDef.rollArmor.total < 0) ? 0 : attackDef.rollArmor.total;
         attackDef.finalDamage = attackDef.damageRoll.total - attackDef.armorProtect;
         attackDef.finalDamage = (attackDef.finalDamage < 0) ? 0 : attackDef.finalDamage;
-        attackDef.defender.sufferDamage(attackDef.finalDamage);
+        defender.sufferDamage(attackDef.finalDamage);
       }
       if (defenseMode == 'damage-without-armor') {
         attackDef.finalDamage = attackDef.damageRoll.total;
-        attackDef.defender.sufferDamage(attackDef.finalDamage);
+        defender.sufferDamage(attackDef.finalDamage);
       }
       if (defenseMode == 'hero-reduce-damage') {
-        let armorFormula = attackDef.defender.getArmorFormula();
+        let armorFormula = defender.getArmorFormula();
         attackDef.rollArmor = new Roll(armorFormula)
         attackDef.rollArmor.roll({ async: false });
         attackDef.armorProtect = (attackDef.rollArmor.total < 0) ? 0 : attackDef.rollArmor.total;
@@ -275,17 +282,17 @@ export class BoLUtility {
         attackDef.rollHero.roll({ async: false });
         attackDef.finalDamage = attackDef.damageRoll.total - attackDef.rollHero.total - attackDef.armorProtect;
         attackDef.finalDamage = (attackDef.finalDamage < 0) ? 0 : attackDef.finalDamage;
-        attackDef.defender.sufferDamage(attackDef.finalDamage);
-        attackDef.defender.subHeroPoints(1);
+        defender.sufferDamage(attackDef.finalDamage);
+        defender.subHeroPoints(1);
       }
       if (defenseMode == 'hero-in-extremis') {
         attackDef.finalDamage = 0;
-        attackDef.weaponHero = attackDef.defender.weapons.find(item => item._id == weaponId);
-        attackDef.defender.deleteEmbeddedDocuments("Item", [weaponId]);
+        attackDef.weaponHero = defender.weapons.find(item => item._id == weaponId);
+        defender.deleteEmbeddedDocuments("Item", [weaponId]);
       }
       ChatMessage.create({
-        alias: attackDef.defender.name,
-        whisper: BoLUtility.getWhisperRecipientsAndGMs(attackDef.defender.name),
+        alias: defender.name,
+        whisper: BoLUtility.getWhisperRecipientsAndGMs(defender.name),
         content: await renderTemplate('systems/bol/templates/chat/rolls/defense-result-card.hbs', {
           attackId: attackDef.id,
           attacker: attackDef.attacker,
@@ -293,7 +300,7 @@ export class BoLUtility {
           rollHero: attackDef.rollHero,
           weaponHero: attackDef.weaponHero,
           armorProtect: attackDef.armorProtect,
-          defender: attackDef.defender,
+          defender: defender,
           defenseMode: attackDef.defenseMode,
           finalDamage: attackDef.finalDamage
         })
@@ -365,7 +372,7 @@ export class BoLUtility {
   static getTarget() {
     if (game.user.targets && game.user.targets.size == 1) {
       for (let target of game.user.targets) {
-        return target;
+        return target
       }
     }
     return undefined;
@@ -373,20 +380,22 @@ export class BoLUtility {
 
   /* -------------------------------------------- */
   static async processAttackSuccess(attackDef) {
-    if (!game.user.isGM) { // Only GM process this
-      return;
+    console.log("Attack success processing", attackDef)
+    if (!game.user.isGM || !attackDef.defenderId) { // Only GM process this
+      return
     }
     // Build and send the defense message to the relevant people (ie GM + defender)
-    let defenderWeapons = attackDef.defender.weapons;
+    let defender = game.actors.get(attackDef.defenderId)
+    let defenderWeapons = defender.weapons
     console.log("DEF WEP", attackDef)
-    this.attackStore[attackDef.id] = attackDef; // Store !
+    this.attackStore[attackDef.id] = attackDef // Store !
     ChatMessage.create({
-      alias: attackDef.defender.name,
-      whisper: BoLUtility.getWhisperRecipientsAndGMs(attackDef.defender.name),
+      alias: defender.name,
+      whisper: BoLUtility.getWhisperRecipientsAndGMs(defender.name),
       content: await renderTemplate('systems/bol/templates/chat/rolls/defense-request-card.hbs', {
         attackId: attackDef.id,
         attacker: attackDef.attacker,
-        defender: attackDef.defender,
+        defender: defender,
         defenderWeapons: defenderWeapons,
         damageTotal: attackDef.damageRoll.total,
         damagesIgnoresArmor: attackDef.damagesIgnoresArmor,
@@ -397,10 +406,9 @@ export class BoLUtility {
   /* -------------------------------------------- */
   static onSocketMessage(sockmsg) {
     if (sockmsg.name == "msg_attack_success") {
-      BoLUtility.processAttackSuccess(sockmsg.data);
+      BoLUtility.processAttackSuccess(sockmsg.data)
     }
     if (sockmsg.name == "msg_damage_handling") {
-      console.log("Msg received !!!!")
       BoLUtility.processDamageHandling(sockmsg.data.event, sockmsg.data.attackId, sockmsg.data.defenseMode)
     }
   }

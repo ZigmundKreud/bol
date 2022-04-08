@@ -24,7 +24,7 @@ export class BoLRoll {
 
     let rollData = {
       mode: "attribute",
-      actor: actor,
+      actorId: actor.id,
       attribute: attribute,
       attrValue: attribute.value,
       aptValue: 0,
@@ -35,6 +35,7 @@ export class BoLRoll {
       armorInitMalus: actor.getArmorInitMalus(),
       mod: 0
     }
+    console.log(">>>>>>>>>>", rollData, actor)
     return this.displayRollDialog(rollData)
   }
 
@@ -50,7 +51,7 @@ export class BoLRoll {
     return this.displayRollDialog(
       {
         mode: "aptitude",
-        actor: actor,
+        actorId: actor.id,
         attribute: attribute,
         aptitude: aptitude,
         attrValue: attribute.value,
@@ -82,13 +83,13 @@ export class BoLRoll {
     // Build the roll structure
     let rolldata = {
       mode: "weapon",
-      actor: actor,
+      actorId: actor.id,
       weapon: weapon,
       isRanged: weaponData.properties.ranged || weaponData.properties.throwing,
-      target: target,
+      targetId: target?.id,
       fightOption: fightOption,
       careerBonus: 0,
-      defender: (target) ? game.actors.get(target.data.actorId) : undefined,
+      defenderId: target?.data?.actorId,
       attribute: attribute,
       aptitude: aptitude,
       attrValue: attribute.value,
@@ -129,7 +130,7 @@ export class BoLRoll {
 
     let alchemyDef = {
       mode: "alchemy",
-      actor: actor,
+      actorId: actor.id,
       alchemy: alchemy,
       attribute: actor.data.data.attributes.mind,
       attrValue: actor.data.data.attributes.mind.value,
@@ -152,7 +153,7 @@ export class BoLRoll {
     let spellData = spell.data.data
     let spellDef = {
       mode: "spell",
-      actor: actor,
+      actorId: actor.id,
       spell: spell,
       attribute: actor.data.data.attributes.mind,
       attrValue: actor.data.data.attributes.mind.value,
@@ -277,14 +278,16 @@ export class BoLRoll {
 
     html.find('#attr').change((event) => {
       let attrKey = event.currentTarget.value
-      this.rollData.attribute = duplicate(this.rollData.actor.data.data.attributes[attrKey])
-      this.rollData.attrValue = this.rollData.actor.data.data.attributes[attrKey].value
+      let actor = game.actors.get( this.rollData.actorId)
+      this.rollData.attribute = duplicate(actor.data.data.attributes[attrKey])
+      this.rollData.attrValue = actor.data.data.attributes[attrKey].value
       this.updateTotalDice()
     })
     html.find('#apt').change((event) => {
       let aptKey = event.currentTarget.value
-      this.rollData.aptitude = duplicate(this.rollData.actor.data.data.aptitudes[aptKey])
-      this.rollData.aptValue = this.rollData.actor.data.data.aptitudes[aptKey].value
+      let actor = game.actors.get( this.rollData.actorId)
+      this.rollData.aptitude = duplicate(actor.data.data.aptitudes[aptKey])
+      this.rollData.aptValue = actor.data.data.aptitudes[aptKey].value
       this.updateTotalDice()
     })
 
@@ -348,10 +351,12 @@ export class BoLRoll {
 
     // initialize default flags/values
     const rollOptionTpl = `systems/bol/templates/dialogs/${rollData.mode}-roll-dialog.hbs`
-    rollData.careers = rollData.actor.careers
-    rollData.boons = rollData.actor.bonusBoons
-    rollData.flaws = rollData.actor.malusFlaws
-    rollData.rollOwnerID = rollData.actor.id
+
+    let actor = game.actors.get( rollData.actorId )
+    rollData.careers = actor.careers
+    rollData.boons = actor.bonusBoons
+    rollData.flaws = actor.malusFlaws
+    rollData.rollOwnerID = actor.id
     rollData.defence = 0
     rollData.attackModifier = 0 // Used for fight options
     rollData.modArmorMalus = 0 // Used for fight options
@@ -464,18 +469,20 @@ export class BoLDefaultRoll {
     this.rollData.isLegendary = false
     this.rollData.isFumble = (diceTotal === 2)
     this.rollData.isFailure = !this.rollData.isSuccess
-    if (this.rollData.reroll == undefined) {
-      this.rollData.reroll = this.rollData.actor.heroReroll()
-    }
 
+    let actor = game.actors.get( this.rollData.actorId)
+    if (this.rollData.reroll == undefined) {
+      this.rollData.reroll = actor.heroReroll()
+    }
+    
     if (this.rollData.registerInit) {
-      this.rollData.actor.registerInit(r.total, this.rollData.isCritical, this.rollData.isFumble)
+      actor.registerInit(r.total, this.rollData.isCritical, this.rollData.isFumble)
     }
     if (this.rollData.isSuccess && this.rollData.mode == "spell") { // PP cost management
-      this.rollData.actor.spendPowerPoint(this.rollData.ppCost + this.rollData.ppCostArmor)
+      actor.spendPowerPoint(this.rollData.ppCost + this.rollData.ppCostArmor)
     }
     if (this.rollData.mode == "alchemy") { // PP cost management
-      this.rollData.actor.resetAlchemyStatus(this.rollData.alchemy.id)
+      actor.resetAlchemyStatus(this.rollData.alchemy.id)
     }
 
     await this.sendChatMessage()
@@ -483,13 +490,14 @@ export class BoLDefaultRoll {
 
   /* -------------------------------------------- */
   async sendChatMessage() {
+    let actor = game.actors.get( this.rollData.actorId)
     this._buildChatMessage(this.rollData).then(msgFlavor => {
       this.rollData.roll.toMessage({
         user: game.user.id,
         rollMode: game.settings.get("core", "rollMode"),
         //whisper: BoLUtility.getWhisperRecipientsAndGMs(this.rollData.actor.name),
         flavor: msgFlavor,
-        speaker: ChatMessage.getSpeaker({ actor: this.rollData.actor }),
+        speaker: ChatMessage.getSpeaker({ actor: actor }),
       })
     })
   }
@@ -528,11 +536,12 @@ export class BoLDefaultRoll {
 
   /* -------------------------------------------- */
   async sendDamageMessage() {
+    let actor = game.actors.get( this.rollData.actorId)
     this._buildDamageChatMessage(this.rollData).then(msgFlavor => {
       this.rollData.damageRoll.toMessage({
         user: game.user.id,
         flavor: msgFlavor,
-        speaker: ChatMessage.getSpeaker({ actor: this.rollData.actors }),
+        speaker: ChatMessage.getSpeaker({ actor: actor }),
         flags: { msgType: "default" }
       })
     });
@@ -541,8 +550,9 @@ export class BoLDefaultRoll {
   /* -------------------------------------------- */
   getDamageAttributeValue(attrDamage) {
     let attrDamageValue = 0
+    let actor = game.actors.get( this.rollData.actorId)
     if (attrDamage.includes("vigor")) {
-      attrDamageValue = this.rollData.actor.data.data.attributes.vigor.value
+      attrDamageValue = actor.data.data.attributes.vigor.value
       if (attrDamage.includes("half")) {
         attrDamageValue = Math.floor(attrDamageValue / 2)
       }

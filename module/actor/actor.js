@@ -513,7 +513,7 @@ export class BoLActor extends Actor {
   async manageHealthState() {
     let hpID = "lastHP" + this.id
     let lastHP = await this.getFlag("world", hpID)
-    if (lastHP != this.data.data.resources.hp.value) {
+    if (lastHP != this.data.data.resources.hp.value && this.isOwner ) {
       await this.setFlag("world", hpID, this.data.data.resources.hp.value)
       if (this.data.data.resources.hp.value <= 0) {
         ChatMessage.create({
