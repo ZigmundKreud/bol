@@ -16,6 +16,8 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/bol/templates/actor/parts/tabs/actor-equipment.hbs",
         "systems/bol/templates/actor/parts/tabs/actor-spellalchemy.hbs",
         "systems/bol/templates/actor/parts/tabs/actor-biodata.hbs",
+        "systems/bol/templates/actor/parts/tabs/creature-stats.hbs",
+        "systems/bol/templates/actor/parts/tabs/creature-actions.hbs",
         // ITEMS
         "systems/bol/templates/item/parts/item-header.hbs",
         "systems/bol/templates/item/parts/properties/feature-properties.hbs",
@@ -39,8 +41,6 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/bol/templates/chat/rolls/attack-damage-card.hbs",
         "systems/bol/templates/chat/rolls/spell-roll-card.hbs",
         "systems/bol/templates/chat/rolls/alchemy-roll-card.hbs",
-        "systems/bol/templates/roll/parts/roll-dialog-modifiers.hbs",
-        "systems/bol/templates/roll/parts/roll-dialog-attribute.hbs",
         "systems/bol/templates/dialogs/aptitude-roll-part.hbs",
         "systems/bol/templates/dialogs/attribute-roll-part.hbs",
         "systems/bol/templates/dialogs/mod-roll-part.hbs",

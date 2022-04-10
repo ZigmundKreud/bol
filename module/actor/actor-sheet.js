@@ -120,6 +120,7 @@ export class BoLActorSheet extends ActorSheet {
     formData.aptitudes = this.actor.aptitudes
     formData.resources = this.actor.getResourcesFromType()
     formData.equipment = this.actor.equipment
+    formData.equipmentCreature = this.actor.equipmentCreature
     formData.weapons = this.actor.weapons
     formData.protections = this.actor.protections
     formData.spells = this.actor.spells
@@ -132,6 +133,7 @@ export class BoLActorSheet extends ActorSheet {
     formData.ammos = this.actor.ammos
     formData.misc = this.actor.misc
     formData.combat = this.actor.buildCombat()
+    formData.combatCreature = this.actor.buildCombatCreature()
     formData.features = this.actor.buildFeatures()
     formData.isGM = game.user.isGM
     formData.options = this.options

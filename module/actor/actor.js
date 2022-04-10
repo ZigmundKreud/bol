@@ -218,6 +218,9 @@ export class BoLActor extends Actor {
   get equipment() {
     return this.itemData.filter(i => i.type === "item")
   }
+  get equipmentCreature() {
+    return this.itemData.filter(i => i.type === "item" &&  i.data.category === "equipment" && (( i.data.subtype === "weapon" && i.data.properties.natural === true) || (i.data.subtype === "armor"))  )
+  }
   get armors() {
     return this.itemData.filter(i => i.type === "item" && i.data.category === "equipment" && i.data.subtype === "armor");
   }
@@ -242,6 +245,9 @@ export class BoLActor extends Actor {
   }
   get melee() {
     return this.weapons.filter(i => i.data.properties.melee === true);
+  }
+  get natural() {
+    return this.weapons.filter(i => i.data.properties.natural === true);
   }
   get ranged() {
     return this.weapons.filter(i => i.data.properties.ranged === true);
@@ -485,6 +491,29 @@ export class BoLActor extends Actor {
         "options": true,
         "items": this.fightoptions
       }
+    }
+  }
+
+  buildCombatCreature() {
+    return {
+      "natural": {
+        "label": "BOL.combatCategory.natural",
+        "weapon": true,
+        "protection": false,
+        "blocking": false,
+        "ranged": false,
+        "options": false,
+        "items": this.natural
+      },
+      "protections": {
+        "label": "BOL.combatCategory.protections",
+        "weapon": false,
+        "protection": true,
+        "blocking": false,
+        "ranged": false,
+        "options": false,
+        "items": this.protections
+      },
     }
   }
 

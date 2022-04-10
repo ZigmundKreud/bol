@@ -201,8 +201,11 @@ export class BoLRoll {
       let letter = (this.rollData.bmDice > 0) ? "B" : "M"
       $('#roll-nbdice').val("2 + " + String(Math.abs(this.rollData.bmDice)) + letter)
     }
-
-    $('#roll-modifier').val(this.rollData.attrValue + "+" + this.rollData.aptValue + "+" + this.rollData.careerBonus + "+" + this.rollData.mod + "+" +
+    let rollbase = this.rollData.attrValue + "+" + this.rollData.aptValue
+    if ( this.rollData.weapon && this.rollData.weapon.data.data.properties.onlymodifier ) {
+      rollbase = ""
+    }
+    $('#roll-modifier').val(rollbase + "+" + this.rollData.careerBonus + "+" + this.rollData.mod + "+" +
       this.rollData.modRanged + "+" + this.rollData.weaponModifier + "-" + this.rollData.defence + "-" + this.rollData.modArmorMalus + "-" +
       this.rollData.shieldMalus + "+" + this.rollData.attackModifier + "+" + this.rollData.appliedArmorMalus)
   }
@@ -414,7 +417,11 @@ export class BoLRoll {
             const isMalus = rollData.mDice > 0
             rollData.nbDice += (rollData.attackBonusDice) ? 1 : 0
 
-            const modifiers = rollData.attrValue + rollData.aptValue + rollData.careerBonus + rollData.mod + rollData.weaponModifier - rollData.defence - rollData.modArmorMalus + rollData.shieldMalus + rollData.attackModifier + rollData.appliedArmorMalus
+            let rollbase = rollData.attrValue + rollData.aptValue
+            if ( rollData.weapon && rollData.weapon.data.data.properties.onlymodifier ) {
+              rollbase = 0
+            }        
+            const modifiers = rollbase + rollData.careerBonus + rollData.mod + rollData.weaponModifier - rollData.defence - rollData.modArmorMalus + rollData.shieldMalus + rollData.attackModifier + rollData.appliedArmorMalus
             const formula = (isMalus) ? rollData.nbDice + "d6kl2 + " + modifiers : rollData.nbDice + "d6kh2 + " + modifiers
             rollData.formula = formula
             rollData.modifiers = modifiers
