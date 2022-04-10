@@ -1,4 +1,4 @@
-{{#each combat as |combatType id|}}
+{{#each combatCreature as |combatType id|}}
         <ol class="items-list">
             <li class="item flexrow item-header">
                 <div class="item-name flex2">{{localize combatType.label}}</div>
@@ -14,9 +14,7 @@
                     <h4 class="item-name flex2">{{#if ../weapon}}<a class="rollable" data-roll-type="weapon">{{/if}}{{item.name}}{{#if ../weapon}}</a>{{/if}}</h4>
                     {{#if ../protection}}<div class="item-field"><a class="rollable" data-roll-type="protection">{{item.data.properties.soak.formula}}</a> / {{item.data.properties.soak.value}}</div>{{/if}}
                     {{#if ../blocking}}<div class="item-field">{{item.data.properties.blocking.malus}}</div>{{/if}}
-                    {{#if ../weapon}}<div class="item-field"><a class="rollable" data-roll-type="damage">
-                      {{item.data.properties.damage}}+{{item.data.properties.damageModifiers}} x{{item.data.properties.damageMultiplier}}
-                      </a></div>{{/if}}
+                    {{#if ../weapon}}<div class="item-field"><a class="rollable" data-roll-type="damage">{{item.data.properties.damage}}+{{item.data.properties.damageModifiers}} x{{item.data.properties.damageMultiplier}}</a></div>{{/if}}
                     {{#if ../ranged}}<div class="item-field">{{item.data.properties.range}}</div>{{else}}<div class="item-field"></div>{{/if}}
                     {{#if ../options}}<div class="item-field">
                       {{#if item.data.properties.activated}}
@@ -26,8 +24,39 @@
                       {{/if}}
                       </div>{{else}}
                       <div class="item-field"></div>
+                      <div class="item-field flex1 right">
+                        <a class="item-control item-edit" title="{{localize "BOL.ui.edit"}}"><i class="fas fa-square"></i></a>
+                        <a class="item-control item-delete" title="{{localize "BOL.ui.delete"}}"><i class="fas fa-trash"></i></a>
+                      </div>
                       {{/if}}
                 </li>
             {{/each}}
         </ol>
+{{/each}}
+
+
+{{#each features as | features key|}}
+    {{#if (gt (count features.items) 0)}}
+        <ol class="items-list">
+            <li class="item flexrow item-header">
+                <div class="item-name flex4 left">{{localize features.label}}</div>
+                {{#if ranked}}
+                    <div class="item-field flex2 center">{{localize "BOL.ui.rank"}}</div>
+                {{/if}}
+                <div class="item-field flex1 right"></div>
+            </li>
+            {{#each features.items as |item id|}}
+                <li class="item flexrow" data-item-id="{{item._id}}">
+                    <h4 class="item-name flex4 left">
+                        <div class="item-image {{#if (equals key "careers")}}roll-career{{/if}}"><img src="{{item.img}}" title="{{item.name}}"/></div>
+                        <a class="item-edit">{{item.name}}</a>
+                    </h4>
+                    <div class="item-field flex1 right">
+                        <a class="item-control item-log" title="Log Item"><i class="far fa-comment"></i></a>
+                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                    </div>
+                </li>
+            {{/each}}
+        </ol>
+    {{/if}}
 {{/each}}

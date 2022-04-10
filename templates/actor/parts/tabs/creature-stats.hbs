@@ -1,0 +1,32 @@
+<div class="attributes flexrow">
+    {{#each data.attributes as |attribute id|}}
+      {{#if (ne id "appeal")}}
+        <div class="attribute stat flex1 flex-group-center {{key}}">
+            <label class="stat-label"><a class="rollable" data-roll-type="attribute" data-roll="2d6+@attributes.{{key}}.value" data-adv="0" data-key="{{key}}">{{localize label}}</a></label><br/>
+            <input class="stat-value rounded" type="text" name="data.attributes.{{key}}.value" value="{{numberFormat value decimals=0 sign=true}}" data-dtype="Number"/><br/>
+            <span  class="stat-roll rollable"  title="2d6"  data-roll-type="attribute" data-roll="2d6+@attributes.{{key}}.value" data-adv="0" data-key="{{key}}">
+              <i class="darkgreen fas fa-dice"></i>
+            </span>
+        </div>
+      {{/if}}
+    {{/each}}
+</div>
+<hr/>
+<div class="aptitudes flexrow">
+  <div class="aptitude stat flex1 flex-group-center">
+    <div class="stat-label"><a class="rollable" data-roll-type="aptitude" data-roll="2d6+@aptitudes.def.value" data-adv="0" data-key="def">{{localize "BOL.aptitudes.def"}}</a></label><br/>
+      <input class="stat-value rounded-border" type="text" name="data.aptitudes.def.value" value="{{numberFormat aptitudes.3.value decimals=0 sign=true}}" data-dtype="Number"/><br/>
+      <span class="stat-roll rollable" title="2d6" data-roll-type="aptitude" data-roll="2d6+@aptitudes.def.value" data-adv="0" data-key="def">
+        <i class="darkgreen fas fa-dice"></i>
+      </span>
+    </div>
+  </div>
+</div>
+<hr/>
+<div class="resources flexrow">
+    <div class="resource stat flex1 flex-group-center">
+      <label class="stat-label">{{localize "BOL.resources.hp"}}</label><br/>
+      <input class="stat-value" type="text" name="data.resources.hp.value" value="{{numberFormat resources.hp.value decimals=0 sign=false}}" data-dtype="Number"/>
+      <input class="stat-max" type="text" name="data.resources.hp.max" value="{{numberFormat resources.hp.max decimals=0 sign=false}}" data-dtype="Number"/>
+    </div>
+</div>

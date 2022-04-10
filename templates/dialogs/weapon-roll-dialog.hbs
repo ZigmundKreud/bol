@@ -8,9 +8,18 @@
         </div>
     </header>
 
-    {{> "systems/bol/templates/dialogs/attribute-roll-part.hbs"}}
-
-    {{> "systems/bol/templates/dialogs/aptitude-roll-part.hbs"}}
+    {{#if weapon.data.data.properties.onlymodifier}}
+    {{else}}
+      {{> "systems/bol/templates/dialogs/attribute-roll-part.hbs"}}
+      {{> "systems/bol/templates/dialogs/aptitude-roll-part.hbs"}}  
+    {{/if}}
+    
+    <div class="flexrow roll-box" >
+        <div class="flex1 center bg-darkred">
+            <label for="mod">{{localize 'BOL.ui.attackValue'}}</label>
+        </div>
+        <div class="flex1 center cell">{{weapon.data.data.properties.attackModifiers}}</div>
+    </div>
 
     <div class="flexrow roll-box" >
         <div class="flex1 center bg-darkred">

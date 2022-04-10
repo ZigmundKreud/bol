@@ -150,6 +150,7 @@
   "BOL.ui.todeactivated": "Inactive (>Activer)",
   "BOL.ui.armorAgiMalus": "Armor+Shield Malus (Agi)", 
   "BOL.ui.armorInitMalus": "Armor Malus (Init)", 
+  "BOL.ui.attackValue": "Attack value",
 
   "BOL.featureCategory.origins": "Origines",
   "BOL.featureCategory.races": "Races",
@@ -196,6 +197,7 @@
   "BOL.combatCategory.melee": "Armes de contact",
   "BOL.combatCategory.ranged": "Armes à distance",
   "BOL.combatCategory.fightOptions": "Fight options",
+  "BOL.combatCategory.natural": "Natural Weapons",
 
   "BOL.equipmentCategory.weapon": "Arme",
   "BOL.equipmentCategory.armor": "Armure",
@@ -278,6 +280,8 @@
   "BOL.itemProperty.reload": "Rechargement (Actions)",
   "BOL.itemProperty.weaponSize" : "Classe d'arme",
   "BOL.itemProperty.difficulty": "Difficulty",
+  "BOL.itemProperty.natural": "Natural weapon",
+  "BOL.itemProperty.onlymodifier": "Modifier only (ie creatures attacks)",
 
   "BOL.itemStat.quantity": "Quantité",
   "BOL.itemStat.weight": "Poids",
@@ -355,5 +359,19 @@
 
   "BOL.notification.MacroMultipleTokensSelected": "Vous avez sélectionné plusieurs tokens",
   "BOL.notification.MacroNoActorAvailable": "Aucun acteur n'a pu être ciblé",
-  "BOL.notification.MacroNoTokenSelected": "Vous devez sélectionner un token"
+  "BOL.notification.MacroNoTokenSelected": "Vous devez sélectionner un token",
+
+  "BOL.size.tiny": "Tiny",
+  "BOL.size.verysmall": "Very Small",
+  "BOL.size.small" : "Small",
+  "BOL.size.medium" : "Medium",
+  "BOL.size.large" : "Large",
+  "BOL.size.verylarge": "Very Large",
+  "BOL.size.huge" :"Huge",
+  "BOL.size.massive" : "Massive",
+  "BOL.size.enormous": "Enormous",
+  "BOL.size.gigantic": "Gigantic",
+  "BOL.size.immense": "Immense",
+  "BOL.size.colossal": "Colossal"
+
 }

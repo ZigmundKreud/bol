@@ -11,6 +11,9 @@
         <label class="checkbox">
             <input class="field-value" type="checkbox" name="data.properties.throwing" {{checked data.properties.throwing}}> {{localize "BOL.itemProperty.throwing"}}
         </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.natural" {{checked data.properties.natural}}> {{localize "BOL.itemProperty.natural"}}
+        </label>
     </div>
 </div>
 <hr/>
@@ -29,6 +32,10 @@
         <label class="checkbox">
             <input class="field-value" type="checkbox" name="data.properties.attackBonusDice" {{checked data.properties.attackBonusDice}}> {{localize "BOL.itemProperty.attackBonusDice"}}
         </label>
+        <label class="checkbox">
+            <input class="field-value" type="checkbox" name="data.properties.onlymodifier" {{checked data.properties.onlymodifier}}> {{localize "BOL.itemProperty.onlymodifier"}}
+        </label>
+
         
     {{#if data.properties.ranged}}
         <label class="checkbox">
@@ -46,30 +53,32 @@
     </div>
 </div>
 <hr/>
-<div class="form-group">
-    <label class="property-label">{{localize "BOL.itemProperty.attackAttribute"}}</label>
-    <div class="form-fields center">
-        <select class="field-value" name="data.properties.attackAttribute" data-dtype="String">
-            {{#select data.properties.attackAttribute}}
-                {{#each config.attackAttributes as |value id|}}
-                    <option value="{{id}}">{{localize value}}</option>
-                {{/each}}
-            {{/select}}
-        </select>
-    </div>
-</div>
-<div class="form-group">
-    <label class="property-label">{{localize "BOL.itemProperty.attackAptitude"}}</label>
-    <div class="form-fields center">
-        <select class="field-value" name="data.properties.attackAptitude" data-dtype="String">
-            {{#select data.properties.attackAptitude}}
-                {{#each config.attackAptitudes as |value id|}}
-                    <option value="{{id}}">{{localize value}}</option>
-                {{/each}}
-            {{/select}}
-        </select>
-    </div>
-</div>
+{{#if (not data.properties.onlymodifier)}}
+  <div class="form-group">
+      <label class="property-label">{{localize "BOL.itemProperty.attackAttribute"}}</label>
+      <div class="form-fields center">
+          <select class="field-value" name="data.properties.attackAttribute" data-dtype="String">
+              {{#select data.properties.attackAttribute}}
+                  {{#each config.attackAttributes as |value id|}}
+                      <option value="{{id}}">{{localize value}}</option>
+                  {{/each}}
+              {{/select}}
+          </select>
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="property-label">{{localize "BOL.itemProperty.attackAptitude"}}</label>
+      <div class="form-fields center">
+          <select class="field-value" name="data.properties.attackAptitude" data-dtype="String">
+              {{#select data.properties.attackAptitude}}
+                  {{#each config.attackAptitudes as |value id|}}
+                      <option value="{{id}}">{{localize value}}</option>
+                  {{/each}}
+              {{/select}}
+          </select>
+      </div>
+  </div>
+{{/if}}
 <div class="form-group">
     <label class="property-label">{{localize "BOL.itemProperty.attackModifiers"}}</label>
     <div class="form-fields center">

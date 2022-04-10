@@ -1,23 +1,38 @@
 <ol class="items-list">
-  <li class="item flexrow item-header">
-    <div class="item-name left">Taille </div>
-    <div class="item-field flex2 left"><input type="text" name="data.details.height" value="{{data.details.height}}"></div>
-    <div class="item-name right">Poids </div>
-    <div class="item-field flex2 "><input type="text" name="data.details.weight" value="{{data.details.weight}}"></div>
-    <div class="item-name  right">Age </div>
-    <div class="item-field flex2 "><input type="text" name="data.details.age" value="{{data.details.age}}"></div>
-  </li>
-  <li class="item flexrow item-header">
-    <div class="item-name left">Cheveux </div>
-    <div class="item-field flex2 left"><input type="text" name="data.details.hait" value="{{data.details.hait}}"></div>
-    <div class="item-name right">Yeux </div>
-    <div class="item-field flex2 "><input type="text" name="data.details.eyes" value="{{data.details.eyes}}"></div>
-  </li>
-  <li class="item flexrow item-header">
-    <div class="item-name left">Signes distinctifs </div>
-    <div class="item-field flex2 left"><input type="text" name="data.details.signs" value="{{data.details.signs}}"></div>
-  </li>
-</ol>
+  {{#if (ne data.type "creature")}}      
+    <li class="item flexrow item-header">
+      <div class="item-name left">Taille </div>
+      <div class="item-field flex2 left"><input type="text" name="data.details.height" value="{{data.details.height}}"></div>
+      <div class="item-name right">Poids </div>
+      <div class="item-field flex2 "><input type="text" name="data.details.weight" value="{{data.details.weight}}"></div>
+      <div class="item-name  right">Age </div>
+      <div class="item-field flex2 "><input type="text" name="data.details.age" value="{{data.details.age}}"></div>
+    </li>
+    <li class="item flexrow item-header">
+      <div class="item-name left">Cheveux </div>
+      <div class="item-field flex2 left"><input type="text" name="data.details.hait" value="{{data.details.hait}}"></div>
+      <div class="item-name right">Yeux </div>
+      <div class="item-field flex2 "><input type="text" name="data.details.eyes" value="{{data.details.eyes}}"></div>
+    </li>
+    <li class="item flexrow item-header">
+      <div class="item-name left">Signes distinctifs </div>
+      <div class="item-field flex2 left"><input type="text" name="data.details.signs" value="{{data.details.signs}}"></div>
+    </li>
+  {{else}}
+    <li class="item flexrow item-header">
+      <div class="item-name left">Taille </div>
+      <div class="form-fields center">
+        <select class="field-value size" name="data.details.size" data-dtype="String">
+            {{#select data.details.size}}
+                {{#each config.creatureSize as |value id|}}
+                    <option value="{{id}}">{{localize value}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+      </div>
+    </li>
+  {{/if}}
+  </ol>
 <ol class="items-list">
   <li class="item flexrow item-header">
     <div class="item-name flex4 left">Description</div>
