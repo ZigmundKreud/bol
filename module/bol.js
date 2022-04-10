@@ -97,8 +97,9 @@ function welcomeMessage() {
     content: `<div id="welcome-message-pegasus"><span class="rdd-roll-part">
     <strong>Bienvenue dans Barbarians of Lemuria (Ludospherik version)</strong>
     <p>Les livres nécessaires pour jouer sont disponibles sur le site de l'éditeur : http://www.ludospherik.fr/content/14-barbarians-of-lemuria</p>
-    <p>Bon jeu en Lemurie !</p>
+    <p>Les cartes intégrées au système le sont grace à l'aimable autorisation de leur auteur Guillaume Tavernier et des éditions Ludospherik. Merci à eux !. 
     <p>Tout le support et le suivi de ce système es disponible via le Discord Foundry FR : https://discord.gg/pPSDNJk </p>
+    <p>Bon jeu en Lemurie !</p>
     ` });
 }
 
