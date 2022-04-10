@@ -290,4 +290,19 @@ BOL.bougetteState = {
   "rich": "BOL.bougette.rich"
 }
 
+BOL.creatureSize = {
+  "tiny": "BOL.size.tiny",
+  "verysmall": "BOL.size.verysmall",
+  "small": "BOL.size.small",
+  "medium": "BOL.size.medium",
+  "large": "BOL.size.large",
+  "verylarge": "BOL.size.verylarge",
+  "huge": "BOL.size.huge",
+  "massive": "BOL.size.massive",
+  "enormous": "BOL.size.enormous",
+  "gigantic": "BOL.size.gigantic",
+  "immense": "BOL.size.immense",
+  "colossal": "BOL.size.colossal"
+}
+
 BOL.debug = false;
