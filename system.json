@@ -72,8 +72,7 @@
       "path": "./packs/careers.db",
       "tag": "career",
       "type": "Item",
-      "private": false,
-      "entity": "Item"
+      "private": false
     },
     {
       "name": "origins",
