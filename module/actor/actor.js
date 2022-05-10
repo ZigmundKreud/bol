@@ -589,7 +589,7 @@ export class BoLActor extends Actor {
           if (!protect.data.properties.soak.formula || protect.data.properties.soak.formula == "") {
             ui.notifications.warn(`L'armure ${protect.name} n'a pas de formule pour la protection !`)
           } else {
-            formula += "+" + protect.data.properties.soak.formula
+            formula += "+" + " max(" + protect.data.properties.soak.formula +",0)"
           }
         } else {
           if (protect.data.properties.soak.value == undefined) {
@@ -608,9 +608,9 @@ export class BoLActor extends Actor {
   rollProtection(itemId) {
     let armor = this.data.items.get(itemId)
     if (armor) {
-      let armorFormula = armor.data.data.properties.soak.formula;
+      let armorFormula = "max("+armor.data.data.properties.soak.formula + ", 0)"
       let rollArmor = new Roll(armorFormula)
-      rollArmor.roll({ async: false }).toMessage();
+      rollArmor.roll({ async: false }).toMessage()
     }
   }
 
@@ -618,7 +618,7 @@ export class BoLActor extends Actor {
   rollWeaponDamage(itemId) {
     let weapon = this.data.items.get(itemId)
     if (weapon) {
-      let r = new BoLDefaultRoll({ id: randomID(16), isSuccess: true, mode: "weapon", weapon: weapon, actor: this })
+      let r = new BoLDefaultRoll({ id: randomID(16), isSuccess: true, mode: "weapon", weapon: weapon, actorId: this.id, actor: this })
       r.setSuccess(true)
       r.rollDamage()
     }

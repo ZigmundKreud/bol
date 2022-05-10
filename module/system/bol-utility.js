@@ -274,16 +274,16 @@ export class BoLUtility {
         defender.sufferDamage(attackDef.finalDamage);
       }
       if (defenseMode == 'hero-reduce-damage') {
-        let armorFormula = defender.getArmorFormula();
+        let armorFormula = defender.getArmorFormula()
         attackDef.rollArmor = new Roll(armorFormula)
-        attackDef.rollArmor.roll({ async: false });
-        attackDef.armorProtect = (attackDef.rollArmor.total < 0) ? 0 : attackDef.rollArmor.total;
-        attackDef.rollHero = new Roll("1d6");
-        attackDef.rollHero.roll({ async: false });
-        attackDef.finalDamage = attackDef.damageRoll.total - attackDef.rollHero.total - attackDef.armorProtect;
-        attackDef.finalDamage = (attackDef.finalDamage < 0) ? 0 : attackDef.finalDamage;
-        defender.sufferDamage(attackDef.finalDamage);
-        defender.subHeroPoints(1);
+        attackDef.rollArmor.roll({ async: false })
+        attackDef.armorProtect = (attackDef.rollArmor.total < 0) ? 0 : attackDef.rollArmor.total
+        attackDef.rollHero = new Roll("1d6")
+        attackDef.rollHero.roll({ async: false })
+        attackDef.finalDamage = attackDef.damageRoll.total - attackDef.rollHero.total - attackDef.armorProtect
+        attackDef.finalDamage = (attackDef.finalDamage < 0) ? 0 : attackDef.finalDamage
+        defender.sufferDamage(attackDef.finalDamage)
+        defender.subHeroPoints(1)
       }
       if (defenseMode == 'hero-in-extremis') {
         attackDef.finalDamage = 0;

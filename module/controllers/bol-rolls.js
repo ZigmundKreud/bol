@@ -555,9 +555,10 @@ export class BoLDefaultRoll {
   }
 
   /* -------------------------------------------- */
-  getDamageAttributeValue(attrDamage) {
+  getDamageAttributeValue(attrDamage, actorId = undefined) {
     let attrDamageValue = 0
-    let actor = game.actors.get( this.rollData.actorId)
+    
+    let actor = game.actors.get( (actorId) ? actorId: this.rollData.actorId)
     if (attrDamage.includes("vigor")) {
       attrDamageValue = actor.data.data.attributes.vigor.value
       if (attrDamage.includes("half")) {
