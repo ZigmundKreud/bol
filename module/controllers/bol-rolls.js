@@ -25,6 +25,7 @@ export class BoLRoll {
     let rollData = {
       mode: "attribute",
       actorId: actor.id,
+      img: actor.img,
       attribute: attribute,
       attrValue: attribute.value,
       aptValue: 0,
@@ -52,6 +53,7 @@ export class BoLRoll {
       {
         mode: "aptitude",
         actorId: actor.id,
+        img: actor.img,
         attribute: attribute,
         aptitude: aptitude,
         attrValue: attribute.value,
@@ -84,6 +86,7 @@ export class BoLRoll {
     let rolldata = {
       mode: "weapon",
       actorId: actor.id,
+      img: actor.img,
       weapon: weapon,
       isRanged: weaponData.properties.ranged || weaponData.properties.throwing,
       targetId: target?.id,
@@ -131,6 +134,7 @@ export class BoLRoll {
     let alchemyDef = {
       mode: "alchemy",
       actorId: actor.id,
+      img: actor.img,
       alchemy: alchemy,
       attribute: actor.data.data.attributes.mind,
       attrValue: actor.data.data.attributes.mind.value,
@@ -154,6 +158,7 @@ export class BoLRoll {
     let spellDef = {
       mode: "spell",
       actorId: actor.id,
+      img: actor.img,
       spell: spell,
       attribute: actor.data.data.attributes.mind,
       attrValue: actor.data.data.attributes.mind.value,

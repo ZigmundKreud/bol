@@ -1,9 +1,13 @@
 <div>
   {{#if isSuccess}}
-      {{#if isCritical}}
-          <h2 class="success critical"><i class="fas fa-check-double"></i>&nbsp;{{localize "BOL.ui.critical"}}...
+      {{#if isLegendary}}
+          <h2 class="success critical"><i class="fas fa-check-double"></i>&nbsp;{{localize "BOL.ui.criticallegend"}}...
       {{else}}
-          <h2 class="success"><i class="fas fa-check"></i>&nbsp;{{localize "BOL.ui.success"}}...
+        {{#if isCritical}}
+            <h2 class="success critical"><i class="fas fa-check-double"></i>&nbsp;{{localize "BOL.ui.critical"}}...
+        {{else}}
+            <h2 class="success"><i class="fas fa-check"></i>&nbsp;{{localize "BOL.ui.success"}}...
+        {{/if}}
       {{/if}}
   {{/if}}
   {{#if isFailure}}
@@ -13,7 +17,7 @@
           <h2 class="failure"><i class="fas fa-times"></i>&nbsp;{{localize "BOL.ui.failure"}}...
       {{/if}}
   {{/if}}
-    <img class="chat-icon" src="{{actor.img}}" alt="{{actor.name}}"/>
+    <img class="chat-icon" src="{{img}}" alt="{{actor.name}}"/>
   </h2>
 </div>
 
@@ -36,7 +40,7 @@
     {{#if alchemy}}
     {{> "systems/bol/templates/chat/rolls/alchemy-roll-card.hbs"}}
     {{/if}}
-
+    
     {{#if reroll}}
       <button class="chat-button button hero-reroll" data-roll-id=="{{rollId}}" data-actor-id="{{actor.id}}">{{localize "BOL.chat.reroll"}}</button>
     {{/if}}
