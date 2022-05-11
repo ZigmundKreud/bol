@@ -15,14 +15,14 @@
       <label class="property-label">{{localize "BOL.ui.difficulty"}}</label>
       <select name="data.properties.difficulty" value="{{data.properties.difficulty}}">
             {{#select data.properties.difficulty}}
-            <option value="2">Trés Facile (+2)</option>
-            <option value="1">Facile (+1)</option>
-            <option value="0">Moyenne (0)</option>
-            <option value="-1">Ardue (-1)</option>
-            <option value="-2">Difficile (-2)</option>
-            <option value="-4">Très Difficile (-4)</option>
-            <option value="-6">Impossible (-6)</option>
-            <option value="-8">Héroïque (-8)</option>
+              <option value="2">{{localize "BOL.dialog.veryeasy"}}</option>
+              <option value="1">{{localize "BOL.dialog.easy"}}</option>
+              <option value="0">{{localize "BOL.dialog.moderate"}}</option>
+              <option value="-1">{{localize "BOL.dialog.hard"}}</option>
+              <option value="-2">{{localize "BOL.dialog.tough"}}</option>
+              <option value="-4">{{localize "BOL.dialog.demanding"}}</option>
+              <option value="-6">{{localize "BOL.dialog.formidable"}}</option>
+              <option value="-8">{{localize "BOL.dialog.heroic"}}</option>
             {{/select}}
       </select>
   </div>

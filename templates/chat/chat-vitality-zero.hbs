@@ -6,17 +6,17 @@
 <div class="flexrow">
   
   {{#if (eq hp 0)}}
-    La Vitalité de {{name}} est {{hp}} : il va s'écrouler au sol et sombrer dans l'inconscience !
-    <br>Vous pouvez dépenser 1 Point d'Héroisme pour reprendre vos esprits pendant 1 round. 
-    <br>Dans ce cas votre vitalité remonte à son maximum divisé par 2 (arrondi au supérieur).
+  {{localize "BOL.chat.vitalityzero" name=name hp=hp}}
+    <br>{{localize "BOL.chat.vitalityheroism"}}
+    <br>{{localize "BOL.chat.vitalityheroismhint"}}
   {{else}}
-    La Vitalité de {{name}} est de {{hp}} ! Il est mourant ...
-    <br>Vous pouvez cependant dépenser 1 Point d'Héroisme pour Défier la Mort (cf. page 58). 
+    {{localize "BOL.chat.vitalitydying" name=name hp=hp}}
+    <br>{{localize "BOL.chat.vitalitydyingheroism"}}
   {{/if}}
 
   {{#if (lt hp -5)}}
-  <br><strong>{{name}} est mort ! </strong>
-  <br>Que son nom soit honoré sur les champs de batailles de Lémurie !
+  <br><strong>{{localize "BOL.chat.isdead" name=name}}</strong>
+  <br>{{localize "BOL.chat.epitaph"}}
   {{/if}} 
 
 </div>

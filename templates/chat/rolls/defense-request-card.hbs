@@ -1,18 +1,18 @@
 <img class="chat-icon" src="{{defender.img}}" alt="{{defender.name}}"/>
-{{defender.name}} va encaisser {{damageTotal}} dégats !
+{{localize "BOL.chat.hurttitle" name=defender.name damageTotal=damageTotal}}
 
 {{#if damagesIgnoresArmor}}
-<br>C'est une attaque au défaut de l'armure : vous devez encaisser SANS la protection de l'armure !
+<br>{{localize "BOL.chat.armordefault"}}
 {{/if}}
 
-<button class="damage-handling" data-defense-mode="damage-with-armor" data-attack-id="{{attackId}}">Encaisser avec la protection de l'armure</button>
-<button class="damage-handling" data-defense-mode="damage-without-armor" data-attack-id="{{attackId}}">Encaisser sans la protection de l'armure</button>
+<button class="damage-handling" data-defense-mode="damage-with-armor" data-attack-id="{{attackId}}">{{localize "BOL.chat.witharmor"}}</button>
+<button class="damage-handling" data-defense-mode="damage-without-armor" data-attack-id="{{attackId}}">{{localize "BOL.chat.withoutarmor"}}</button>
 
 {{#if defender.data.data.resources.hero.value}}
-<button class="damage-handling" data-defense-mode="hero-reduce-damage" data-attack-id="{{attackId}}">Juste une égratignure (1 Point d'Héroisme)</button>
+<button class="damage-handling" data-defense-mode="hero-reduce-damage" data-attack-id="{{attackId}}">{{localize "BOL.chat.shakeoff"}}</button>
 
 {{#each defenderWeapons as |weapon idx|}}
-<button class="damage-handling" data-defense-mode="hero-in-extremis" data-attack-id="{{@root.attackId}}" data-weapon-id="{{weapon._id}}">Parade in Extremis avec {{weapon.name}} (1 Point d'Héroisme)</button>
+<button class="damage-handling" data-defense-mode="hero-in-extremis" data-attack-id="{{@root.attackId}}" data-weapon-id="{{weapon._id}}">{{localize "BOL.chat.splinteredshield" name=weapon.name}}</button>
 {{/each}}
 
 {{/if}}

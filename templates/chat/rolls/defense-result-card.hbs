@@ -1,23 +1,22 @@
 <img class="chat-icon" src="{{defender.img}}" alt="{{defender.name}}"/>
-<h3>Dégats subis par {{defender.name}}</h3>
+<h3>{{localize "BOL.chat.damagesummary" name=name}}</h3>
 <ul>
   <li>
   {{#if (eq defenseMode "damage-with-armor")}}
-  Protection de l'armure : {{armorProtect}}.
+  {{localize "BOL.chat.protectvalue"}} : {{armorProtect}}.
   {{/if}}
   {{#if (eq defenseMode "damage-without-armor")}}
-  Aucune protection d'armure !
+  {{localize "BOL.chat.noprotectvalue"}}
   {{/if}}
   {{#if (eq defenseMode "hero-reduce-damage")}}
-  Protection de l'armure : {{armorProtect}}.
-  Un point d'héroisme dépensé, pour une réduction des dommages supplémentaire de {{rollHero.total}}.
+  {{localize "BOL.chat.protectvalue"}} : {{armorProtect}}.
+  {{localize "BOL.chat.heroreducedamage" total=rollHero.total}}
   {{/if}}
   {{#if (eq defenseMode "hero-in-extremis")}}
-  Aucun dommage encaissé, grâce à la parade in-extremis avec {{weaponHero.name}}. L'arme a été détruite pendant cette parade !
-  Un point d'héroisme a également été dépensé.
+  {{localize "BOL.chat.herosplintered" name=weaponHero.name}}  
   {{/if}}
 </li>
 <li>
-Encaissement final : {{finalDamage}} dégats !
+  {{localize "BOL.chat.finaldamage" finalDamage=finalDamage}}
 </li>
 </ul>

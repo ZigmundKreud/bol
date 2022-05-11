@@ -5,10 +5,9 @@
 
 <div class="flexrow">
   {{#if state}}
-    {{name}} active son option de combat {{foName}} pour ce round !
+    {{localize "BOL.chat.fightactive" name=name foName=foName}}
   {{else}}
-    {{name}} désactive son option de combat {{foName}} pour ce round !
+    {{localize "BOL.chat.fightunactive" name=name foName=foName}}
   {{/if}}
-
 </div>
 

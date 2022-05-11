@@ -1,7 +1,7 @@
 
-  <button class="chat-damage-roll" data-damage-mode="normal-damage" data-attack-id="{{id}}">Lancer les dommages</button>
+  <button class="chat-damage-roll" data-damage-mode="normal-damage" data-attack-id="{{id}}">{{localize "BOL.chat.rolldamage"}}</button>
   
   {{#if isCritical}}
-    <button class="chat-damage-roll" data-damage-mode="damage-plus-6" data-attack-id="{{id}}">Lancer les dommages +6</button>
-    <button class="chat-damage-roll" data-damage-mode="damage-plus-12" data-attack-id="{{id}}">Dommages +12 (1 Pt. d'Heroisme)</button>
+    <button class="chat-damage-roll" data-damage-mode="damage-plus-6" data-attack-id="{{id}}">{{localize "BOL.chat.rolldamage6"}}</button>
+    <button class="chat-damage-roll" data-damage-mode="damage-plus-12" data-attack-id="{{id}}">{{localize "BOL.chat.rolldamage12"}}</button>
   {{/if}}

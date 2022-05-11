@@ -1,13 +1,13 @@
 <img class="chat-icon" src="{{weapon.img}}" alt="{{weapon.name}}"/>
-<h3><strong>Dommages de {{weapon.name}} : {{damageRoll.total}}</strong></h3>
+<h3><strong>{{localize "BOL.chat.damageresult" name=weapon.name total=damageRoll.total}}</strong></h3>
 {{#if defender}}
-  <h3><strong>Cible : {{defender.name}}</strong></h3>
+  <h3><strong>{{localize "BOL.chat.damagetarget" target=defender.name}}</strong></h3>
 {{/if}}
 
 <div class="actions-section">
   {{#if targetId}}
   <div id="{{applyId}}">
-    <button class="chat-damage-apply" data-attack-id="{{id}}">Appliquer les dommages à la cible</button>
+    <button class="chat-damage-apply" data-attack-id="{{id}}">{{localize "BOL.chat.applydamagetotarget"}}</button>
   </div>  
   <br>
   {{/if}}

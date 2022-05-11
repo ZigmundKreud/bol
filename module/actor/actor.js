@@ -27,11 +27,11 @@ export class BoLActor extends Actor {
     if (this.type == 'character') {
       let newVitality = 10 + this.data.data.attributes.vigor.value + this.data.data.resources.hp.bonus
       if (this.data.data.resources.hp.max != newVitality) {
-        this.update({ 'data.resources.hp.max': newVitality });
+        this.update({ 'data.resources.hp.max': newVitality })
       }
       let newPower = 10 + this.data.data.attributes.mind.value + this.data.data.resources.power.bonus
       if (this.data.data.resources.power.max != newPower) {
-        this.update({ 'data.resources.power.max': newPower });
+        this.update({ 'data.resources.power.max': newPower })
       }
     }
   }

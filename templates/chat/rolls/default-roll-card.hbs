@@ -22,7 +22,7 @@
 <div class="actions-section">
   {{#if fightOption}}
   <div>
-    Option de combat : {{fightOption.name}}
+    {{localize "BOL.chat.fightoption"}} : {{fightOption.name}}
   </div>
   {{/if}}
 
@@ -38,14 +38,14 @@
     {{/if}}
 
     {{#if reroll}}
-      <button class="chat-button button hero-reroll" data-roll-id=="{{rollId}}" data-actor-id="{{actor.id}}">Relancer (1 P. Heroisme)</button>
+      <button class="chat-button button hero-reroll" data-roll-id=="{{rollId}}" data-actor-id="{{actor.id}}">{{localize "BOL.chat.reroll"}}</button>
     {{/if}}
     {{#if (and isSuccess (not isCritical))}}
-      <button class="chat-button button transform-heroic-roll" data-roll-id=="{{rollId}}" data-actor-id="{{actor.id}}">Transformer en succés Héroïque (1 P. Héroisme)</button>
+      <button class="chat-button button transform-heroic-roll" data-roll-id=="{{rollId}}" data-actor-id="{{actor.id}}">{{localize "BOL.chat.toheroic"}}</button>
     {{/if}}
 
     {{#if isRealCritical}}
-      <button class="chat-button button transform-legendary-roll" data-roll-id=="{{rollId}}" data-actor-id="{{actor.id}}">Transformer en succes Légendaire (1 P. Heroisme)</button>
+      <button class="chat-button button transform-legendary-roll" data-roll-id=="{{rollId}}" data-actor-id="{{actor.id}}">{{localize "BOL.chat.tolegend"}}</button>
     {{/if}}
     <br>
   </div>

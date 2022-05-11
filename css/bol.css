@@ -855,10 +855,29 @@ body.system-bol img#logo {
   font-weight: bold;
   color: #4b4a44;
 }
+.bol.sheet.actor .bonus-text {
+  margin-top: 6px;
+}
 .bol.sheet.actor .stat-value {
   font-size: 1.5rem;
   font-weight: bold;
   color: darkred;
+}
+.bol.sheet.actor .resource-bonus {
+  font-weight: bold;
+  color: darkred;
+}
+.bol.sheet.actor .resources-value {
+  background-color:#2a2a2a30;
+  border-color: #003c1e;
+  margin-top: 4px;
+  border-radius: 0.5rem;
+}
+.bol.sheet.actor .resources-novalue {
+  background-color:#2a2a2a00;
+  border-color: #003c1e;
+  margin-top: 4px;
+  border-radius: 0.5rem;
 }
 .bol.sheet.actor .stat-roll {
   font-size: 1.5rem;
