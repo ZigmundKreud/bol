@@ -444,6 +444,12 @@
   "BOL.ui.bioeyes": "Eyes",
   "BOL.ui.biosigns": "Signs",
   "BOL.ui.biodescription": "Description",
-  "BOL.ui.bionotes": "Notes"
+  "BOL.ui.bionotes": "Notes",
+
+  "BOL.chat.welcome1": "Welcome to Barbarians of Lemuria (Ludospherik version)",
+  "BOL.chat.welcome2": "Books are necessary to play, and ca be found here : http://www.ludospherik.fr/content/14-barbarians-of-lemuria",
+  "BOL.chat.welcome3": "The integrated maps are authorized by Guillaume Tavernier and Ludospherik. Thanks to them !.",
+  "BOL.chat.welcome4": "All support for this system is available on this Discord server : https://discord.gg/pPSDNJk",
+  "BOL.chat.welcome5": "Good game in Lemuria !"
 
 }

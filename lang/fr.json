@@ -421,7 +421,12 @@
   "BOL.ui.bioeyes": "Yeux",
   "BOL.ui.biosigns": "Signes distinctifs",
   "BOL.ui.biodescription": "Description",
-  "BOL.ui.bionotes": "Notes"
+  "BOL.ui.bionotes": "Notes",
 
+  "BOL.chat.welcome1": "Bienvenue dans Barbarians of Lemuria (Ludospherik version)",
+  "BOL.chat.welcome2": "Les livres nécessaires pour jouer sont disponibles sur le site de l'éditeur : http://www.ludospherik.fr/content/14-barbarians-of-lemuria",
+  "BOL.chat.welcome3": "Les cartes intégrées au système le sont grace à l'aimable autorisation de leur auteur Guillaume Tavernier et des éditions Ludospherik. Merci à eux !.",
+  "BOL.chat.welcome4": "Tout le support et le suivi de ce système est disponible via le Discord Foundry FR : https://discord.gg/pPSDNJk",
+  "BOL.chat.welcome5": "Bon jeu en Lemurie !"
 
 } 

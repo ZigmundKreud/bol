@@ -95,12 +95,12 @@ function welcomeMessage() {
     user: game.user.id,
     whisper: [game.user.id],
     content: `<div id="welcome-message-pegasus"><span class="rdd-roll-part">
-    <strong>Bienvenue dans Barbarians of Lemuria (Ludospherik version)</strong>
-    <p>Les livres nécessaires pour jouer sont disponibles sur le site de l'éditeur : http://www.ludospherik.fr/content/14-barbarians-of-lemuria</p>
-    <p>Les cartes intégrées au système le sont grace à l'aimable autorisation de leur auteur Guillaume Tavernier et des éditions Ludospherik. Merci à eux !. 
-    <p>Tout le support et le suivi de ce système es disponible via le Discord Foundry FR : https://discord.gg/pPSDNJk </p>
-    <p>Bon jeu en Lemurie !</p>
-    ` });
+    <strong>` + game.i18n.localize("BOL.chat.welcome1") + `</strong><p>` +
+    game.i18n.localize("BOL.chat.welcome2") + "<p>" +
+    game.i18n.localize("BOL.chat.welcome3") + "<p>" +
+    game.i18n.localize("BOL.chat.welcome4") + "</p>" +
+    game.i18n.localize("BOL.chat.welcome5") + "</p>"  
+  } )
 }
 
 /* -------------------------------------------- */
