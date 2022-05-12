@@ -435,6 +435,18 @@
   "BOL.dialog.long": "Weit (-2)",
   "BOL.dialog.distant": "Sehr Weit (-4)",
   "BOL.dialog.extreme": "Extrem Weit (-6)",
-  "BOL.dialog.utmost": "Maximale Reichweite (-8)"
+  "BOL.dialog.utmost": "Maximale Reichweite (-8)",
 
+  "BOL.ui.name": "Name",
+  "BOL.ui.xp": "Erfahrung",
+  "BOL.ui.xpspent": "Ausgegeben",
+  "BOL.ui.xptotal": "Insgesamt",
+  "BOL.ui.biosize": "Größe",
+  "BOL.ui.bioweight": "Gewicht",
+  "BOL.ui.bioage": "Alter",
+  "BOL.ui.biohair": "Haare",
+  "BOL.ui.bioeyes": "Augen",
+  "BOL.ui.biosigns": "Erkennungszeichen",
+  "BOL.ui.biodescription": "Beschreibung",
+  "BOL.ui.bionotes": "Notizen"
 }
