@@ -408,5 +408,20 @@
   "BOL.dialog.long": "Longue (-2)",
   "BOL.dialog.distant": "Très longue (-4)",
   "BOL.dialog.extreme": "Extrême (-6)",
-  "BOL.dialog.utmost": "Maximale (-8)"
+  "BOL.dialog.utmost": "Maximale (-8)",
+
+  "BOL.ui.name": "Nom",
+  "BOL.ui.xp": "Experience",
+  "BOL.ui.xpspent": "Dépensée",
+  "BOL.ui.xptotal": "Totale",
+  "BOL.ui.biosize": "Taille",
+  "BOL.ui.bioweight": "Poids",
+  "BOL.ui.bioage": "Age",
+  "BOL.ui.biohair": "Cheveux",
+  "BOL.ui.bioeyes": "Yeux",
+  "BOL.ui.biosigns": "Signes distinctifs",
+  "BOL.ui.biodescription": "Description",
+  "BOL.ui.bionotes": "Notes"
+
+
 } 

@@ -426,10 +426,24 @@
   "BOL.dialog.divine": "Divine (-12)",
 
   "BOL.dialog.pointblank": "Point blank (+1)",
-  "BOL.dialog.close": "Clos e(0)",
+  "BOL.dialog.close": "Close (0)",
   "BOL.dialog.medium": "Medium (-1))",
   "BOL.dialog.long": "Long (-2)",
   "BOL.dialog.distant": "Distant (-4)",
   "BOL.dialog.extreme": "Extreme (-6)",
-  "BOL.dialog.utmost": "Utmost (-8)"  
+  "BOL.dialog.utmost": "Utmost (-8)",  
+
+  "BOL.ui.name": "Name",
+  "BOL.ui.xp": "Experience",
+  "BOL.ui.xpspent": "Spent",
+  "BOL.ui.xptotal": "Total",
+  "BOL.ui.biosize": "Size",
+  "BOL.ui.bioweight": "Weight",
+  "BOL.ui.bioage": "Age",
+  "BOL.ui.biohair": "Hair",
+  "BOL.ui.bioeyes": "Eyes",
+  "BOL.ui.biosigns": "Signs",
+  "BOL.ui.biodescription": "Description",
+  "BOL.ui.bionotes": "Notes"
+
 }
