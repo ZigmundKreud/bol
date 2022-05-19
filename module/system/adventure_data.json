@@ -1,155 +1,191 @@
 {
   "titre1": [
     {
+      "prefix": "la",
       "name": "Prophétie"
     },
     {
+      "prefix": "les",
       "name": "Grottes",
       "isLieu": true
     },
     {
+      "prefix": "les",
       "name": "Collines",
       "isLieu": true
     },
     {
+      "prefix": "les",
       "name": "Voleurs",
       "isEnnemi": true,
       "isCarriere": true
     },
     {
+      "prefix": "les",
       "name": "Sorcier(s)",
       "isEnnemi": true,
       "isCarriere": true
     },
     {
+      "prefix": "la",
       "name": "Bataille"
     },
     {
+      "prefix": "la",
       "name": "Légende"
     },
     {
+      "prefix": "la",
       "name": "Tour",
       "isLieu": true
     },
     {
+      "prefix": "l'",
       "name": "Ile",
       "isLieu": true
     },
     {
+      "prefix": "les",
       "name": "Pirates",
       "isEnnemi": true,
       "isCarriere": true
     },
     {
+      "prefix": "les",
       "name": "Druide(s)",
       "isEnnemi": true,
       "isCarriere": true
     },
     {
+      "prefix": "le",
       "name": "Navire",
       "isCarriere": false
     },
     {
+      "prefix": "la",
       "name": "Couronne",
       "isObjet": true
     },
     {
+      "prefix": "la",
       "name": "Cité",
       "isLieu": true
     },
     {
+      "prefix": "le",
       "name": "Désert",
       "isLieu": true
     },
     {
+      "prefix": "les",
       "name": "Bête(s)",
       "isEnnemi": true,
       "isLieu": false
     },
     {
+      "prefix": "les",
       "name": "Démon(s)",
       "isEnnemi": true,
       "isLieu": false
     },
     {
+      "prefix": "le",
       "name": "Trésor",
       "isObjet": true
     },
     {
+      "prefix": "l'",
       "name": "Epée",
       "isObjet": true
     },
     {
+      "prefix": "l'",
       "name": "Arène",
       "isLieu": true
     },
     {
+      "prefix": "les",
       "name": "Marais",
       "isLieu": true
     },
     {
+      "prefix": "les",
       "name": "Seigneur(s)",
       "isEnnemi": true,
       "isLieu": false
     },
     {
+      "prefix": "les",
       "name": "Assassin(s)",
       "isEnnemi": true,
       "isCarriere": true
     },
     {
+      "prefix": "le",
       "name": "Culte",
       "isEnnemi": true,
       "isCarriere": false
     },
     {
+      "prefix": "le",
       "name": "Secret",
       "isCarriere": false
     },
     {
+      "prefix": "le",
       "name": "Palais",
       "isLieu": true
     },
     {
+      "prefix": "la",
       "name": "Mer",
       "isLieu": true
     },
     {
+      "prefix": "les",
       "name": "Barbares",
       "isEnnemi": true,
       "isCarriere": true
     },
     {
+      "prefix": "le",
       "name": "Manuscrit",
       "isObjet": true
     },
     {
+      "prefix": "les",
       "name": "Plaines",
       "isLieu": true
     },
     {
+      "prefix": "le",
       "name": "Sang",
       "isLieu": false
     },
     {
+      "prefix": "la",
       "name": "Tombe",
       "isLieu": true
     },
     {
+      "prefix": "la",
       "name": "Forêt",
       "isLieu": true
     },
     {
+      "prefix": "les",
       "name": "Esclaves",
       "isEnnemi": true,
       "isCarriere": true
     },
     {
+      "prefix": "les",
       "name": "Mendiant(s)",
       "isEnnemi": true,
       "isCarriere": true
     },
     {
+      "prefix": "les",
       "name": "Montagnes",
       "isCarriereLieu": true
     }
@@ -334,5 +370,251 @@
       "name": "la Mer Inconnue",
       "isLieu": true
     }
+  ],
+  "mission": [
+    {
+      "name": "d’attaquer un lieu."
+    },
+    {
+      "name": "de détruire un certain objet."
+    },
+    {
+      "name": "de kidnapper quelqu’un."
+    },
+    {
+      "name": "d’obtenir une certaine chose."
+    },
+    {
+      "name": "d’explorer un lieu."
+    },
+    {
+      "name": "de sauver une personne."
+    },
+    {
+      "name": "d’échapper à quelqu’un."
+    },
+    {
+      "name": "de fuir un lieu."
+    },
+    {
+      "name": "de trouver une personne."
+    },
+    {
+      "name": "de trouver un lieu."
+    },
+    {
+      "name": "de trouver  chose."
+    },
+    {
+      "name": "de protéger une personne."
+    },
+    {
+      "name": "de protéger un lieu."
+    },
+    {
+      "name": "de protéger  chose."
+    },
+    {
+      "name": "de dérober une certaine chose."
+    },
+    {
+      "name": "de tuer une personne."
+    },
+    {
+      "name": "de détruire une chose."
+    },
+    {
+      "name": "d’escorter une personne."
+    },
+    {
+      "name": "de transporter une chose."
+    }
+  ],
+  "carriere": [
+    "Noble",
+    "Acrobate",
+    "Sorcier",
+    "Alchimiste",
+    "Esclave",
+    "Courtisane",
+    "Médecin",
+    "Marin",
+    "Érudit",
+    "Mendiant",
+    "Scribe",
+    "Poète",
+    "Forgeron",
+    "Prêtre",
+    "Danseur",
+    "Marchand",
+    "Pilote des airs",
+    "Fermier"
+  ],
+  "lieux1": [
+    "Palais",
+    "Donjon",
+    "Ruines",
+    "Sanctuaire",
+    "Crypte",
+    "Forteresse",
+    "Tombeau",
+    "Grottes",
+    "Tour",
+    "Antre",
+    "Île",
+    "Montagne"
+  ],
+  "lieux2": [
+    "de la mort.",
+    "de la destruction.",
+    "du désespoir.",
+    "des morts-vivants.",
+    "du sage.",
+    "de l'or.",
+    "de la tempête.",
+    "de la terreur.",
+    "descannibales.",
+    "du désespoir.",
+    "des Rois-Sorciers.",
+    "des âmes perdues."
+  ],
+  "objets1": [
+    "Livre",
+    "Anneau",
+    "Coupe",
+    "Joyau",
+    "Casque",
+    "Parchemin",
+    "Couronne",
+    "Sceau",
+    "Cristal",
+    "Crâne",
+    "Épée",
+    "Bâton"
+  ],
+  "objets2": [
+    "des sept sceaux.",
+    "de l'éternelle douleur.",
+    "du sang bouillonnant.",
+    "de la mort hideuse.",
+    "du pouvoir suprême.",
+    "du serpent sournois.",
+    "du plaisir infini.",
+    "de la richesse illusoire.",
+    "de la cruelle trahison.",
+    "du froid funeste.",
+    "des spectres inapaisés.",
+    "du mystère."
+  ],
+  "motivation": [
+    "c’est le genre de choses que fait Krongar.",
+    "sinon il finira en prison.",
+    "il est victime d’un chantage.",
+    "il a trouvé une carte.",
+    "il a été maudit.",
+    "il a eu une vision (peut-être un soir de beuverie).",
+    "il a été engagé pour le faire.",
+    "il a surpris une conversation.",
+    "il a lu quelque chose dans un ancien manuscrit.",
+    "il est tombé accidentellement dans cette affaire.",
+    "il cherche à assouvir une vengeance.",
+    "il a ,été dupé."
+  ],
+  "rival": [
+    "un poète obsédé.",
+    "un prince (esse) guerrier.",
+    "un ministre corrompu.",
+    "un sectateur fanatique.",
+    "un noble arrogant.",
+    "un étrange alchimiste.",
+    "un sorcier maléfique.",
+    "un druide cruel.",
+    "un marchand cupide.",
+    "un brigand sans foi ni loi.",
+    "un démon sanguinaire.",
+    "un fantôme errant."
+  ],
+  "dieu": [
+    "Tharungozoth",
+    "Yrzlak",
+    "Dyr",
+    "Knothakon",
+    "Hadron",
+    "Shazzadion",
+    "Chiomalla",
+    "Sa’Tel",
+    "Morgazzon",
+    "Hurm",
+    "Afyra",
+    "Grondil",
+    "Zaggath",
+    "Zalkyr",
+    "Fillana",
+    "Lilandra",
+    "Zylidith",
+    "Quathoomar",
+    "Iondal",
+    "Piandra",
+    "Nemmereth",
+    "Charkond",
+    "Karyzon",
+    "Zarymphyxos",
+    "Kryphondus"
+  ],
+  "complique1": [
+    "c’est toujours comme ça avec Krongar !",
+    "la situation réveille chez Krongar des peurs ancestrales.",
+    "un usurier et ses hommes de main veulent récupérer leur argent.",
+    "une grave épidémie ravage la région.",
+    "Krongar est traqué pour un crime passé.",
+    "les actions d’un groupe de rebelles rendent la région peu sûre.",
+    "des hordes de guerriers envahissent la région pour la conquérir",
+    "un(e) ancien(ne) admirateur (trice) éconduit(e) cherche à se venger.",
+    "la loi locale est très sévère et interdit une chose nécessaire à l’accomplissement de la mission.",
+    "un(e) admirateur (trice) inattendu(e) déclare son amour.",
+    "un rival qui fut défait autrefois réapparaît et met son grain de sel.",
+    "la folie de Morgazzon fait des ravages dans la  région."
+  ],
+  "obstacle": [
+    "d’un ancien secret.",
+    "d’un long voyage.",
+    "d’une malédiction.",
+    "d’un voleur rusé.",
+    "d’une forte troupe de soldats.",
+    "d’un énorme monstre.",
+    "d’une horde de monstres.",
+    "d’un manque de temps.",
+    "de gardes et de pièges magiques.",
+    "d’une catastrophe naturelle sur le point de se produire.",
+    "d’une énigme à résoudre.",
+    "d’une bataille à gagner."
+  ],
+  "retournement": [
+    "L’ennemi est en fait Krongar lui-même, venu d’une autre réalité !",
+    "Toute cette histoire était un piège machiavélique !",
+    "L’ennemi est en fait un vieil ami ou un allié qui a comploté dans l’ombre !",
+    "Krongar est contraint de s’associer à un rival pour accomplir la mission !",
+    "Tout ce qui semblait ordinaire se révèle en fait surnaturel !",
+    "L’ennemi est en fait le père, la mère, le frère ou la sœur de Krongar !",
+    "Une toute autre mission attend en fait notre héros !",
+    "Parfois, il n’y a pas de retournement de situation !",
+    "i la mission est accomplie, cela entraînera de terribles répercussions !",
+    "Le destin offre à Krongar une chance d’améliorer les choses, et il est renvoyé dans le temps au début de l’aventure. La saga  recommence, mais cette fois sans retournement de situation !",
+    "Un ami ou un allié a trahi Krongar !",
+    "Les dieux sont furieux et lui imposent d'autres tâches"
+  ],
+  "recompense": [
+    "Rien du tout ! On s’est joué de lui !",
+    "Beaucoup moins qu’escompté.",
+    "Beaucoup moins qu’escompté, mais il gagne au moins la reconnaissance d’une personne haut placée.",
+    "Beaucoup moins qu’escompté, mais il est marqué par les dieux (avantage).",
+    "La récompense escomptée.",
+    "La récompense escomptée, et il est marqué par les dieux (avantage).",
+    "La récompense escomptée, ainsi que la reconnaissance d’une personne haut placée.",
+    "Plus qu’escompté.",
+    "Plus qu’escompté, ainsi que la reconnaissance d’une personne haut placée.",
+    "Plus qu’escompté, et il est marqué par les dieux (avantage).",
+    "Plus qu’escompté, ainsi que la reconnaissance d’une personne haut placée, et il est marqué par les dieux (avantage).",
+    "Une promotion... Longue vie au roi Krongar !"
   ]
 }
