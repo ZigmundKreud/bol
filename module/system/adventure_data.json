@@ -1,0 +1,338 @@
+{
+  "titre1": [
+    {
+      "name": "Prophétie"
+    },
+    {
+      "name": "Grottes",
+      "isLieu": true
+    },
+    {
+      "name": "Collines",
+      "isLieu": true
+    },
+    {
+      "name": "Voleurs",
+      "isEnnemi": true,
+      "isCarriere": true
+    },
+    {
+      "name": "Sorcier(s)",
+      "isEnnemi": true,
+      "isCarriere": true
+    },
+    {
+      "name": "Bataille"
+    },
+    {
+      "name": "Légende"
+    },
+    {
+      "name": "Tour",
+      "isLieu": true
+    },
+    {
+      "name": "Ile",
+      "isLieu": true
+    },
+    {
+      "name": "Pirates",
+      "isEnnemi": true,
+      "isCarriere": true
+    },
+    {
+      "name": "Druide(s)",
+      "isEnnemi": true,
+      "isCarriere": true
+    },
+    {
+      "name": "Navire",
+      "isCarriere": false
+    },
+    {
+      "name": "Couronne",
+      "isObjet": true
+    },
+    {
+      "name": "Cité",
+      "isLieu": true
+    },
+    {
+      "name": "Désert",
+      "isLieu": true
+    },
+    {
+      "name": "Bête(s)",
+      "isEnnemi": true,
+      "isLieu": false
+    },
+    {
+      "name": "Démon(s)",
+      "isEnnemi": true,
+      "isLieu": false
+    },
+    {
+      "name": "Trésor",
+      "isObjet": true
+    },
+    {
+      "name": "Epée",
+      "isObjet": true
+    },
+    {
+      "name": "Arène",
+      "isLieu": true
+    },
+    {
+      "name": "Marais",
+      "isLieu": true
+    },
+    {
+      "name": "Seigneur(s)",
+      "isEnnemi": true,
+      "isLieu": false
+    },
+    {
+      "name": "Assassin(s)",
+      "isEnnemi": true,
+      "isCarriere": true
+    },
+    {
+      "name": "Culte",
+      "isEnnemi": true,
+      "isCarriere": false
+    },
+    {
+      "name": "Secret",
+      "isCarriere": false
+    },
+    {
+      "name": "Palais",
+      "isLieu": true
+    },
+    {
+      "name": "Mer",
+      "isLieu": true
+    },
+    {
+      "name": "Barbares",
+      "isEnnemi": true,
+      "isCarriere": true
+    },
+    {
+      "name": "Manuscrit",
+      "isObjet": true
+    },
+    {
+      "name": "Plaines",
+      "isLieu": true
+    },
+    {
+      "name": "Sang",
+      "isLieu": false
+    },
+    {
+      "name": "Tombe",
+      "isLieu": true
+    },
+    {
+      "name": "Forêt",
+      "isLieu": true
+    },
+    {
+      "name": "Esclaves",
+      "isEnnemi": true,
+      "isCarriere": true
+    },
+    {
+      "name": "Mendiant(s)",
+      "isEnnemi": true,
+      "isCarriere": true
+    },
+    {
+      "name": "Montagnes",
+      "isCarriereLieu": true
+    }
+  ],
+  "titre2": [
+    {
+      "prefix": "du",
+      "name": "mal"
+    },
+    {
+      "prefix": "et le",
+      "name": "Roi Maussade",
+      "isEnnemi": true
+    },
+    {
+      "prefix": "et la",
+      "name": "pestilence",
+      "isEnnemi": false
+    },
+    {
+      "prefix": "de",
+      "name": "Malakut",
+      "isLieu": true
+    },
+    {
+      "prefix": "d'",
+      "name": "Halakh",
+      "isLieu": true
+    },
+    {
+      "prefix": "d'",
+      "name": "Hyrdral",
+      "isLieu": true
+    },
+    {
+      "prefix": "des",
+      "name": "esprits abandonnés",
+      "isEnnemi": true
+    },
+    {
+      "prefix": "du",
+      "name": "chaos",
+      "isEnnemi": true
+    },
+    {
+      "prefix": "de la",
+      "name": "folie",
+      "isEnnemi": false
+    },
+    {
+      "prefix": "de",
+      "name": "Satarla",
+      "isLieu": true
+    },
+    {
+      "prefix": "d'",
+      "name": "Urceb",
+      "isLieu": true
+    },
+    {
+      "prefix": "des",
+      "name": "Terres Désolées",
+      "isLieu": true
+    },
+    {
+      "prefix": "de la",
+      "name": "mort",
+      "isLieu": false
+    },
+    {
+      "prefix": "des",
+      "name": "idoles impies",
+      "isObjet": true
+    },
+    {
+      "prefix": "des",
+      "name": "ténèbres",
+      "isObjet": false
+    },
+    {
+      "prefix": "de",
+      "name": "Parsool",
+      "isLieu": true
+    },
+    {
+      "prefix": "de",
+      "name": "Qiddesh",
+      "isLieu": true
+    },
+    {
+      "prefix": "de",
+      "name": "Kasht",
+      "isLieu": true
+    },
+    {
+      "prefix": "de la ",
+      "name": "falalité",
+      "isLieu": false
+    },
+    {
+      "prefix": "du",
+      "name": "Nécromant",
+      "isEnnemi": true
+    },
+    {
+      "prefix": "du",
+      "name": "Néant",
+      "isEnnemi": false
+    },
+    {
+      "prefix": "de",
+      "name": "Lysor",
+      "isLieu": true
+    },
+    {
+      "prefix": "d'",
+      "name": "Oosal",
+      "isLieu": true
+    },
+    {
+      "prefix": "de",
+      "name": "Thulé",
+      "isLieu": true
+    },
+    {
+      "prefix": "du",
+      "name": "désespoir",
+      "isLieu": false
+    },
+    {
+      "prefix": "du",
+      "name": "Dieu Bouffi",
+      "isEnnemi": true
+    },
+    {
+      "prefix": "du",
+      "name": "silence",
+      "isEnnemi": false
+    },
+    {
+      "prefix": "de",
+      "name": "Tyrus",
+      "isLieu": true
+    },
+    {
+      "prefix": "d'",
+      "name": "Ygddar",
+      "isLieu": true
+    },
+    {
+      "prefix": "de",
+      "name": "la Côte de Feu",
+      "isLieu": true
+    },
+    {
+      "prefix": "des",
+      "name": "ombres cruelles",
+      "isLieu": false
+    },
+    {
+      "prefix": "de la",
+      "name": "poussière écarlate",
+      "isLieu": false
+    },
+    {
+      "prefix": "du",
+      "name": "destin",
+      "isLieu": false
+    },
+    {
+      "prefix": "du",
+      "name": "Valgard",
+      "isLieu": true
+    },
+    {
+      "prefix": "de",
+      "name": "Qeb",
+      "isLieu": true
+    },
+    {
+      "prefix": "de",
+      "name": "la Mer Inconnue",
+      "isLieu": true
+    }
+  ]
+}
