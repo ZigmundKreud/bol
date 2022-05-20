@@ -14,6 +14,7 @@ import { BoLCombatManager } from "./system/bol-combat.js"
 import { BoLTokenHud } from "./system/bol-action-hud.js"
 import { BoLHotbar } from "./system/bol-hotbar.js"
 import { BoLAdventureGenerator } from "./system/bol-adventure-generator.js"
+import { BoLCommands} from "./system/bol-commands.js"
 
 /* -------------------------------------------- */
 Hooks.once('init', async function () {
@@ -29,7 +30,7 @@ Hooks.once('init', async function () {
   // Game socket 
   game.socket.on("system.bol", sockmsg => {
     BoLUtility.onSocketMessage(sockmsg);
-  });
+  })
 
 
   /**
@@ -56,6 +57,8 @@ Hooks.once('init', async function () {
   BoLUtility.init()
   BoLTokenHud.init()
   BoLHotbar.init()
+  BoLCommands.init()
+  BoLAdventureGenerator.init()
 
   // Preload Handlebars Templates
   await preloadHandlebarsTemplates();
@@ -109,8 +112,6 @@ Hooks.once('ready', async function () {
   registerUsageCount('bol')
 
   welcomeMessage()
-
-  BoLAdventureGenerator.init()
-});
+})
 
 
