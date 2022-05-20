@@ -79,7 +79,7 @@ export class BoLAdventureGenerator {
       alias: this.name,
       whisper: BoLUtility.getUsers(user => user.isGM),
       content: await renderTemplate('systems/bol/templates/chat/chat-adventure-result.hbs', 
-      { name: "Aventure !", img: "", story : story})
+      { name: "Aventure !", img: "icons/commodities/gems/gem-cluster-red.webp", story : story})
     })
 
   }
