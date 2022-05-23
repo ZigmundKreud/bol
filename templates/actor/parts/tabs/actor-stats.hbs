@@ -54,7 +54,7 @@
             {{#if (eq @root.data.type 'player')}}
               {{#if (exists bonus)}}
               <span class="flexrow"><label class="stat-max bonus-text">Bonus</label><input class="resource-bonus resources-value" type="text" name="data.resources.{{key}}.bonus" value="{{numberFormat bonus decimals=0 sign=false}}" data-dtype="Number"/></span>
-              {else}
+              {{else}}
               <span class="flexrow"><label class="stat-max resources-value">&nbsp;</label><input class="resource-bonus resources-novalue" type="text" value="" disabled></span>
               {{/if}}
             {{/if}}
