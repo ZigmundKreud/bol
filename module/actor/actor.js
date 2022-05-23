@@ -212,6 +212,9 @@ export class BoLActor extends Actor {
   get fightoptions() {
     return this.itemData.filter(i => i.type === "feature" && i.data.subtype === "fightoption")
   }
+  get godsfaith() {
+    return this.itemData.filter(i => i.type === "feature" && i.data.subtype === "godsfaith")
+  }
   get features() {
     return this.itemData.filter(i => i.type === "feature")
   }
@@ -440,6 +443,11 @@ export class BoLActor extends Actor {
         "label": "BOL.featureCategory.fightoptions",
         "ranked": false,
         "items": this.fightoptions
+      },
+      "godsfaith": {
+        "label": "BOL.featureSubtypes.gods",
+        "ranked": false,
+        "items": this.godsfaith
       }
     }
   }
@@ -535,7 +543,7 @@ export class BoLActor extends Actor {
 
   /*-------------------------------------------- */
   buildListeActions() {
-    return this.melee.concat(this.ranged)
+    return this.melee.concat(this.ranged).concat(this.natural)
   }
 
   /*-------------------------------------------- */
@@ -573,8 +581,8 @@ export class BoLActor extends Actor {
 
   /*-------------------------------------------- */
   async sufferDamage(damage) {
-    let newHP = this.data.data.resources.hp.value - damage;
-    await this.update({ 'data.resources.hp.value': newHP });
+    let newHP = this.data.data.resources.hp.value - damage
+    await this.update({ 'data.resources.hp.value': newHP }) 
   }
 
   /* -------------------------------------------- */

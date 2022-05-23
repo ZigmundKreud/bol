@@ -256,8 +256,9 @@ export class BoLUtility {
         return
       } // ?? Why ???
       attackDef.defenseDone = true
-      attackDef.defenseMode = defenseMode;
-      let defender = game.actors.get(attackDef.defenderId)
+      attackDef.defenseMode = defenseMode
+      let token = game.scenes.current.tokens.get(attackDef.targetId)
+      let defender = token.actor
 
       if (defenseMode == 'damage-with-armor') {
         let armorFormula = defender.getArmorFormula()
@@ -300,6 +301,7 @@ export class BoLUtility {
           rollHero: attackDef.rollHero,
           weaponHero: attackDef.weaponHero,
           armorProtect: attackDef.armorProtect,
+          name: defender.name,
           defender: defender,
           defenseMode: attackDef.defenseMode,
           finalDamage: attackDef.finalDamage

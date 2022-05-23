@@ -314,12 +314,12 @@ export class BoLRoll {
     })
     html.find('#boon').change((event) => {
       let boons = $('#boon').val()
-      this.rollData.nbBoons = (!boons || boons.length == 0) ? 0 : Math.max(...boons.map(i => parseInt(i)))
+      this.rollData.nbBoons = (!boons || boons.length == 0) ? 0 : boons.length
       this.updateTotalDice()
     })
     html.find('#flaw').change((event) => {
       let flaws = $('#flaw').val()
-      this.rollData.nbFlaws = (!flaws || flaws.length == 0) ? 0 : Math.max(...flaws.map(i => parseInt(i)))
+      this.rollData.nbFlaws = (!flaws || flaws.length == 0) ? 0 : flaws.length
       this.updateTotalDice()
     })
     html.find('.bdice').click((event) => {
@@ -335,15 +335,15 @@ export class BoLRoll {
   }
 
   /* -------------------------------------------- */
-  static preProcessWeapon(rollData) {
+  static preProcessWeapon(rollData, defender) {
     if (rollData.mode == "weapon") {
       rollData.weaponModifier = rollData.weapon.data.data.properties.attackModifiers ?? 0;
       rollData.attackBonusDice = rollData.weapon.data.data.properties.attackBonusDice
-      if (rollData.defender) { // If target is selected
-        rollData.defence = rollData.defender.defenseValue
-        rollData.armorMalus = rollData.defender.armorMalusValue
+      if (defender) { // If target is selected
+        rollData.defence = defender.defenseValue
+        rollData.armorMalus = defender.armorMalusValue
         rollData.shieldBlock = 'none'
-        let shields = rollData.defender.shields
+        let shields = defender.shields
         for (let shield of shields) {
           rollData.shieldBlock = (shield.data.properties.blocking.blockingAll) ? 'blockall' : 'blockone';
           rollData.shieldAttackMalus = (shield.data.properties.blocking.malus) ? shield.data.properties.blocking.malus : 1;
@@ -361,6 +361,12 @@ export class BoLRoll {
     const rollOptionTpl = `systems/bol/templates/dialogs/${rollData.mode}-roll-dialog.hbs`
 
     let actor = game.actors.get( rollData.actorId )
+    let defender
+    if ( rollData.targetId) {
+      let token = game.scenes.current.tokens.get(rollData.targetId)
+      defender = token.actor
+    }
+
     rollData.careers = actor.careers
     rollData.boons = actor.bonusBoons
     rollData.flaws = actor.malusFlaws
@@ -386,7 +392,7 @@ export class BoLRoll {
     rollData.attackBonusDice = false
     rollData.armorMalus = 0
     // Specific stuff 
-    this.preProcessWeapon(rollData)
+    this.preProcessWeapon(rollData, defender)
     this.preProcessFightOption(rollData)
     this.updateArmorMalus(rollData)
     this.updatePPCost(rollData)
