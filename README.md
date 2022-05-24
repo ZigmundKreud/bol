@@ -1,4 +1,12 @@
-# Système Foundry pour Barbarians of Lemuria (French version)
+====================================================================================================
+**ATTENTION** : Ce repository a été migré ici : https://www.uberwald.me/gitea/public/bol
+**WARNING** : This repository has been migrated here  : https://www.uberwald.me/gitea/public/bol
+
+**No more update in this space for BoL, please create an account in the new space.**
+====================================================================================================
+
+
+1# Système Foundry pour Barbarians of Lemuria (French version)
 
 ## EN
 
